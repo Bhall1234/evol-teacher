@@ -13,7 +13,6 @@ from dotenv import load_dotenv
 
 @dataclasses.dataclass
 class DecodingArguments:
-    """These are the values used in the WizardCoder paper"""
     max_tokens: int = 2048
     temperature: float = 1
     top_p: float = 0.9
@@ -24,20 +23,7 @@ class DecodingArguments:
     stop: Optional[Sequence[str]] = None
 
 
-def convert_alpaca_to_evol(
-    file_path: str, 
-    lines: bool = False,
-    output_file: str = "converted_alpaca.json"
-):
-    """Convert the Instruction/Input/Output format of Alpaca Instruct datasets
-    to the Evol-Instruct format of Instruction/Output. Inputs are appended to the
-    instructions.
-    
-    Args:
-        file_path: the file path to a single JSON file in alpaca format
-        lines: Set to True if the input is a JSONL file, the default is False
-        
-    Returns: a list of the instruction-output pairs generated from the alpaca set"""
+def convert_alpaca_to_evol(file_path: str, lines: bool = False, output_file: str = "converted_alpaca.json"):
     result = []
     if lines:
         with open(file_path, "r") as json_file:
@@ -64,10 +50,7 @@ def convert_alpaca_to_evol(
     return result
 
 
-def merge_evolutions(output_dir: str = "./new_generation/", output_file: str = "merged_datasets.json"):
-    """merge all jsons currently in the output_dir folder. This should be the
-    evolved datasets and the original dataset. Will deposit the merged dataset 
-    in the same folder"""
+def merge_evolutions(output_dir: str = "./generation/", output_file: str = "merged_datasets.json"):
     merged_json = []
     for json_file in glob.glob(os.path.join(output_dir, "*.json")):
         with open(json_file, "r") as file:
@@ -77,7 +60,6 @@ def merge_evolutions(output_dir: str = "./new_generation/", output_file: str = "
 
 
 def load_instructions(file_path: str):
-    """Load in JSON file in Evol Format"""
     with open(file_path, "r") as json_file:
         loaded_json = json.load(json_file)
     return loaded_json
@@ -110,22 +92,23 @@ def evolve_instructions(instructions, model: str, temperature: float, max_tokens
         prompt = f"Please modify the following instruction to include an intentional mistake that the user should identify and correct.\n\nInstruction: {task['instruction']}\n\nModification Method: {chosen_method}\n\nModified Instruction:"
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
         modified_instruction = response["choices"][0]["message"]["content"]
-        new_instructions.append({"instruction": modified_instruction})
+        new_instructions.append({"instruction": task['instruction'], "modified_instruction": modified_instruction})
     return new_instructions
 
 
 def generate_responses(instructions, model: str, temperature: float, max_tokens: int) -> list:
     responses = []
     for task in instructions:
-        prompt = f"Provide a code snippet for the following instruction. The code should contain an intentional mistake that the user should identify and correct.\n\nInstruction: {task['instruction']}\n\nCode Snippet with Mistake:"
+        prompt = f"Provide a code snippet for the following instruction with an intentional mistake.\n\nInstruction: {task['instruction']}\n\nModified Instruction: {task['modified_instruction']}\n\nCode Snippet with Mistake:"
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
         code_snippet = response["choices"][0]["message"]["content"]
-        responses.append({"instruction": task['instruction'], "output": code_snippet})
+        explanation_prompt = f"The user asked: {task['instruction']}\n\nHere is the modified instruction with an intentional mistake for you to identify and correct:\n\n{task['modified_instruction']}\n\nCode Snippet:\n\n{code_snippet}\n\nCan you find the mistake?"
+        responses.append({"instruction": task['instruction'], "explanation": explanation_prompt})
     return responses
 
 
 def check_instruction(instruction) -> bool:
-    content = instruction["output"]
+    content = instruction["modified_instruction"]
     if not content:
         return True
     if len(content.split()) <= 3:
@@ -136,7 +119,7 @@ def check_instruction(instruction) -> bool:
 
 
 def check_response(response) -> bool:
-    content = response["output"]
+    content = response["explanation"]
     if not content:
         return True
     if len(content.split()) <= 3:
@@ -147,7 +130,7 @@ def check_response(response) -> bool:
 
 
 def generate_evol_instruct_set(
-    output_dir="./new_generation/",
+    output_dir="./generation/",
     seed_tasks_path="./generation/EvolInstruct-Code-8k.json",
     evolutions=3,
     temperature=1,
@@ -188,6 +171,5 @@ def generate_evol_instruct_set(
 
 
 if __name__ == "__main__":
-    # convert_alpaca_to_evol(file_path="./data/code_alpaca_20k.json")
     generate_evol_instruct_set()
-    merge_evolutions(output_dir="./new_generation/")
+    merge_evolutions(output_dir="./new_generation")
