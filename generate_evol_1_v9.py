@@ -50,15 +50,25 @@ def generate_incorrect_responses(instructions, model: str, temperature: float, m
         'Omit a return statement in the function.',
         'Replace a commonly used function with a non-existent one.'
     ]
+    
+    response_templates = [
+        "I've written a piece of code based on your instruction, but I've included a small mistake on purpose. Can you figure out what's wrong?\n\n{}",
+        "Here's the code you asked for, but be aware that I've intentionally added an error. Can you spot and fix it?\n\n{}",
+        "I completed your instruction with a purposeful mistake. See if you can identify the error and correct it.\n\n{}",
+        "Take a look at this code. It includes a deliberate mistake based on your instruction. Can you find and fix it?\n\n{}",
+        "The following code has been written with your instruction in mind, but it contains an intentional error. Can you spot and correct it?\n\n{}"
+    ]
+
     new_tasks = []
     for task in instructions:
         chosen_method = random.choice(methods)
+        chosen_template = random.choice(response_templates)
         prompt = f"Generate a code response for the following instruction with an intentional mistake using the method '{chosen_method}'.\n\nInstruction: {task['instruction']}\n\nResponse with Mistake:"
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
         incorrect_response = response["choices"][0]["message"]["content"]
         new_tasks.append({
             "instruction": task['instruction'],
-            "output": f"I've written a piece of code based on your instruction, but I've included a small mistake on purpose. Can you figure out what's wrong?\n\n{incorrect_response}"
+            "output": chosen_template.format(incorrect_response)
         })
     return new_tasks
 
