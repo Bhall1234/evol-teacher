@@ -89,37 +89,18 @@ def evolve_instructions(instructions, model: str, temperature: float, max_tokens
     new_instructions = []
     for task in instructions:
         chosen_method = random.choice(methods)
-        prompt = f"Please modify the following instruction to include an intentional mistake that the user should identify and correct.\n\nInstruction: {task['instruction']}\n\nModification Method: {chosen_method}\n\nModified Instruction:"
+        prompt = f"Please generate an instruction and an intentionally incorrect response for a user to identify and correct.\n\nInstruction: {task['instruction']}\n\nModification Method: {chosen_method}\n\nResponse with Mistake:"
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
-        modified_instruction = response["choices"][0]["message"]["content"]
-        new_instructions.append({"instruction": task['instruction'], "modified_instruction": modified_instruction})
+        modified_response = response["choices"][0]["message"]["content"]
+        new_instructions.append({
+            "instruction": task['instruction'],
+            "output": f"Here is an explanation of {task['instruction']}, but I've included a small mistake. Can you figure out what's wrong?\n\n{modified_response}"
+        })
     return new_instructions
 
 
-def generate_responses(instructions, model: str, temperature: float, max_tokens: int) -> list:
-    responses = []
-    for task in instructions:
-        prompt = f"Provide a code snippet for the following instruction with an intentional mistake.\n\nInstruction: {task['instruction']}\n\nModified Instruction: {task['modified_instruction']}\n\nCode Snippet with Mistake:"
-        response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
-        code_snippet = response["choices"][0]["message"]["content"]
-        explanation_prompt = f"The user asked: {task['instruction']}\n\nHere is the modified instruction with an intentional mistake for you to identify and correct:\n\n{task['modified_instruction']}\n\nCode Snippet:\n\n{code_snippet}\n\nCan you find the mistake?"
-        responses.append({"instruction": task['instruction'], "explanation": explanation_prompt})
-    return responses
-
-
 def check_instruction(instruction) -> bool:
-    content = instruction["modified_instruction"]
-    if not content:
-        return True
-    if len(content.split()) <= 3:
-        return True
-    if not content[0].isascii():
-        return True
-    return False
-
-
-def check_response(response) -> bool:
-    content = response["explanation"]
+    content = instruction["output"]
     if not content:
         return True
     if len(content.split()) <= 3:
@@ -130,7 +111,7 @@ def check_response(response) -> bool:
 
 
 def generate_evol_instruct_set(
-    output_dir="./new_generation/",
+    output_dir="./generation/",
     seed_tasks_path="./generation/EvolInstruct-Code-8k.json",
     evolutions=3,
     temperature=1,
@@ -154,16 +135,11 @@ def generate_evol_instruct_set(
         new_tasks = evolve_instructions(prev_tasks, model_name, temperature, max_tokens)
         new_tasks = [task for task in new_tasks if not check_instruction(task)]
 
-        # 2. Generating Responses to the New Instructions
-        print("Generating New Responses")
-        new_dataset = generate_responses(new_tasks, model_name, temperature, max_tokens)
-        new_dataset = [task for task in new_dataset if not check_response(task)]
-
         # 3. Output Evolution to a JSON file
         output_file = output_dir + "evol-instruct-" + str(evolution) + '.json'
         with open(output_file, "w") as json_file:
-            json.dump(new_dataset, json_file)
-        prev_tasks = new_dataset
+            json.dump(new_tasks, json_file)
+        prev_tasks = new_tasks
         evolution_time = time.time() - evolution_start_time
         print(f'Evolution {evolution} complete, took {evolution_time:.2f}s')
     final_time = time.time() - start_time
@@ -171,5 +147,6 @@ def generate_evol_instruct_set(
 
 
 if __name__ == "__main__":
+    # convert_alpaca_to_evol(file_path="./data/code_alpaca_20k.json")
     generate_evol_instruct_set()
-    merge_evolutions(output_dir="./new_generation")
+    merge_evolutions(output_dir="./new_generation/")
