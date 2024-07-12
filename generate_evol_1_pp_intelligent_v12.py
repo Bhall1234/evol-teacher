@@ -121,7 +121,7 @@ def generate_incorrect_dataset(
     frequency_penalty=0,
     top_p=0.9,
     model_name="lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF",
-    num_instructions=10  # Commented out limit for testing, was None
+    num_instructions=None  # Commented out limit for testing, was None
 ):
     load_dotenv(override=True)
     logging.basicConfig(filename="app.log", filemode="w", format='%(name)s - %(levellevelname)s - %(message)s')
