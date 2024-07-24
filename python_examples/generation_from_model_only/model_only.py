@@ -8,6 +8,7 @@ import string
 from datetime import datetime
 from tqdm import tqdm
 from dotenv import load_dotenv
+import time
 
 def send_request_to_local_llm(prompt: str, model: str, temperature: float, max_tokens: int):
     url = "http://localhost:1234/v1/chat/completions"
@@ -64,11 +65,18 @@ def main(output_file_path, num_questions):
     temperature = 1.0
     max_tokens = 2048  # Adjust as necessary
 
+    start_time = time.time()
+    print(f"Start time: {datetime.fromtimestamp(start_time).strftime('%Y-%m-%d %H:%M:%S')}")
+
     print(f"Generating {num_questions} beginner Python questions...")
     questions = generate_beginner_questions(model_name, num_questions, temperature, max_tokens)
     
     save_generated_questions(questions, output_file_path)
     print(f"Generated questions saved to {output_file_path}. Total questions: {len(questions)}")
+
+    end_time = time.time()
+    print(f"End time: {datetime.fromtimestamp(end_time).strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Total duration: {end_time - start_time:.2f} seconds")
 
 if __name__ == "__main__":
     output_dir = './python_examples/generation_from_model_only/outputs'
@@ -79,5 +87,5 @@ if __name__ == "__main__":
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     output_file_path = os.path.join(output_dir, f'generated_python_questions_{timestamp}_{random_string}.json')
     
-    num_questions = 10  # Change to generate more or fewer questions
+    num_questions = 100  # Change to generate more or fewer questions
     main(output_file_path, num_questions)

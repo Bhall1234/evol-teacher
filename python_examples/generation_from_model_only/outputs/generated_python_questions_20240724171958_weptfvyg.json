@@ -1,0 +1,302 @@
+[
+    {
+        "instruction": "Write a Python program that prints out the numbers from 1 to 10, but instead of printing each number, it should print \"Hello\" if the number is even, and \"Goodbye\" if the number is odd."
+    },
+    {
+        "instruction": "What is the output when the following code is run?\n\n```\nx = 5\ny = \"Hello, \"\nfor i in range(x):\n    y += \"World!\"\nprint(y)\n```"
+    },
+    {
+        "instruction": "Write a Python program that prints the numbers from 1 to 10.\n\n(Note: Assume that the user has basic knowledge of variables, data types, and control flow.)"
+    },
+    {
+        "instruction": "Write a program that asks the user for their name and then prints out a personalized greeting message, including the user's name, three times. For example, if the user inputs \"John\", the output should be:\n\n\"Hello John!\nHello John!\nHello John!\""
+    },
+    {
+        "instruction": "What is the value of \"sum\" when the following code runs:\n\nx = [1, 2, 3, 4, 5]\nfor i in x:\n    sum += i\n\nWhat data type will be returned by the variable \"sum\"?"
+    },
+    {
+        "instruction": "Write a program that asks the user for their name and age, then prints out a personalized message saying \"Hello, [name]! You are [age] years old.\" Use variables to store the user's input and format the output string."
+    },
+    {
+        "instruction": "Write a Python program that prints the numbers from 1 to 10 on separate lines, with each number squared.\n\nExample output:\n```\n1\n1\n2\n4\n3\n9\n4\n16\n5\n25\n6\n36\n7\n49\n8\n64\n9\n81\n10\n100\n```"
+    },
+    {
+        "instruction": "What are the odd numbers between 1 and 20? Write a Python program to print them out."
+    },
+    {
+        "instruction": "Write a Python program that asks the user for their name and then greets them with a personalized message. The message should be displayed on the screen after the program has been run."
+    },
+    {
+        "instruction": "What is the output of the following code:\n\n```\nx = 5\ny = \"hello\"\nprint(x, y)\nfor i in range(3):\n    x += i\n    print(x)\n```"
+    },
+    {
+        "instruction": "Write a program that asks the user for their name and age, then prints out a personalized greeting message. The message should include the user's name and age. For example, if the user enters \"John\" as their name and 25 as their age, the output should be \"Hello John, you are 25 years old.\""
+    },
+    {
+        "instruction": "What is the value of `x` after executing the following code?\n\n```\nx = 5\nfor i in range(1, 6):\n    x += i\nprint(x)\n```"
+    },
+    {
+        "instruction": "What is the output of the following code?\n\n```\nfor i in range(1,6):\n    print(i*2)\n```"
+    },
+    {
+        "instruction": "What is the output of the following code when run?\n\n```\ni = 0\nsum = 0\nwhile i < 10:\n    sum += i\n    i += 1\nprint(sum)\n```"
+    },
+    {
+        "instruction": "What is the output of the following Python program?\n\n```\nx = 5\ny = \"hello\"\nz = x + y\nprint(z)\n```"
+    },
+    {
+        "instruction": "Write a Python program to print the numbers from 1 to 10, but only for the even numbers.\n\nNote: The output should be:\n```\n2\n4\n6\n8\n10\n```"
+    },
+    {
+        "instruction": "What is the output of the following code when executed?\n\n```\ni = 0\nwhile i < 5:\n    print(i)\n    i += 1\n```"
+    },
+    {
+        "instruction": "What is the output of the following code?\n```\nnumbers = [1, 2, 3, 4, 5]\nsum_of_numbers = 0\nfor number in numbers:\n    sum_of_numbers += number\nprint(sum_of_numbers)\n```"
+    },
+    {
+        "instruction": "Write a program that prints the numbers from 1 to 10 using a for loop, but only print the odd numbers.\n\n(Think you can do it? Give it a try!)"
+    },
+    {
+        "instruction": "What is the output of the following code when run?\n\n```\nx = 5\ny = \"hello\"\nfor i in range(x):\n    print(y)\n```"
+    },
+    {
+        "instruction": "Write a Python program to print the numbers from 1 to 10 using a for loop."
+    },
+    {
+        "instruction": "Write a program that prints out the numbers from 1 to 10, each followed by a space, and then says \"Hello World!\".\n\n(Note: Assume that you are allowed to use only basic concepts in your answer.)"
+    },
+    {
+        "instruction": "What is the output when you run this code?\n\n```\nfruits = ['apple', 'banana', 'cherry']\nfor i in range(len(fruits)):\n    if fruits[i] == 'banana':\n        print(\"You found a banana!\")\n    else:\n        print(fruits[i])\n```"
+    },
+    {
+        "instruction": "Write a program that takes a list of numbers as input from the user and prints out the sum of all even numbers in the list. For example, if the user inputs [1, 2, 3, 4, 5], the output should be 6 (which is the sum of 2 and 4)."
+    },
+    {
+        "instruction": "Write a program that prints the numbers from 1 to 10, with each number on a new line.\n\nWhat will be the output of this program?"
+    },
+    {
+        "instruction": "What is the value of `x` after running the following code?\n\n```\nx = 0\nfor i in range(5):\n    x += i\nprint(x)\n```"
+    },
+    {
+        "instruction": "What are the five largest numbers in the list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] when sorted in descending order?"
+    },
+    {
+        "instruction": "Write a Python program to print the numbers from 1 to 5 five times on the screen."
+    },
+    {
+        "instruction": "Write a program that prints the numbers from 1 to 10, with each number printed on a new line.\n\nNote: You can use a for loop or a while loop to solve this problem."
+    },
+    {
+        "instruction": "Write a program to print the numbers from 1 to 10, each followed by \"Hello!\" on a new line, using a loop."
+    },
+    {
+        "instruction": "What are the first three numbers in the sequence generated by the following code:\n\n```\nnumbers = []\nfor i in range(1, 100):\n    if i % 3 == 0:\n        numbers.append(i)\n```\n\nWrite a Python program to output these numbers."
+    },
+    {
+        "instruction": "What are the last three numbers in the series generated by the following code?\n\nfor i in range(1, 21):\n    print(i**2)"
+    },
+    {
+        "instruction": "What is the output of the following Python code?\n\n```\nfruits = ['apple', 'banana', 'orange']\nfor i, fruit in enumerate(fruits):\n    if i == 1:\n        print(\"My favorite fruit is:\", fruit)\n```"
+    },
+    {
+        "instruction": "Write a program that prints the numbers from 1 to 10, but for every multiple of 3, print \"Fizz\" instead of the number, and for every multiple of 5, print \"Buzz\". If a number is a multiple of both 3 and 5, print \"FizzBuzz\"."
+    },
+    {
+        "instruction": "Write a program that prints out all numbers from 1 to 10, each followed by \"Hello\".\n\nFor example:\n```\n1 Hello\n2 Hello\n3 Hello\n...\n10 Hello\n```"
+    },
+    {
+        "instruction": "Write a Python program that asks the user for their name, age, and favorite hobby. Then, it should display a personalized message using this information.\n\nFor example, if the user enters \"John\", 25, and \"reading\", the program should print:\n\n\"Hello John! You are 25 years old and enjoy reading.\""
+    },
+    {
+        "instruction": "Write a program that prints out all the numbers from 1 to 10.\n\n(Note: You can assume that the user will run this program in a command line or terminal.)"
+    },
+    {
+        "instruction": "What is the output when you run the following code?\n\n```\nx = 10\ny = \"hello\"\nwhile x > 0:\n    print(y)\n    x -= 1\n```"
+    },
+    {
+        "instruction": "Write a program that prints the numbers from 1 to 10, but with a twist: each number should be printed only once, even if it appears multiple times within the given range.\n\nFor example, since the number 3 appears twice in the range (1, 10), it should only be printed once. Similarly, all other numbers that appear more than once in this range should also be printed only once."
+    },
+    {
+        "instruction": "Write a program that prints the numbers from 1 to 10, but for multiples of three print \"Fizz\" instead of the number and for the multiples of five print \"Buzz\". For numbers which are multiples of both three and five print \"FizzBuzz\"."
+    },
+    {
+        "instruction": "Write a Python program to print out the numbers from 1 to 10 on separate lines, using a for loop."
+    },
+    {
+        "instruction": "What is the output when you run this code?\n\n```\nfruits = ['apple', 'banana', 'cherry']\nfor fruit in fruits:\n    print(fruit)\nprint(\"Done!\")\n```"
+    },
+    {
+        "instruction": "Write a program to calculate the sum of even numbers from 1 to 10."
+    },
+    {
+        "instruction": "Write a program that prints the numbers from 1 to 5 using a for loop."
+    },
+    {
+        "instruction": "Write a program that prints out the numbers from 1 to 10, but for every multiple of 3, print \"Fizz\" instead of the number, and for every multiple of 5, print \"Buzz\". If a number is a multiple of both 3 and 5, print \"FizzBuzz\"."
+    },
+    {
+        "instruction": "Write a Python program that prints out the numbers from 1 to 10, each followed by \"Hello\". For example, the output should be: \"1 Hello\", \"2 Hello\", ..., \"10 Hello\". Use a loop to achieve this."
+    },
+    {
+        "instruction": "Write a program that asks the user for their name and age. Then, it should print out a personalized greeting message stating \"Hello, your name is [name] and you are [age] years old.\" If the user's age is 25 or older, it should also add an extra sentence saying \"You are officially an adult!\""
+    },
+    {
+        "instruction": "Write a program that takes three integers as input from the user and prints out the largest one.\n\nThe input should look like this:\n```\nEnter number 1: \n25\nEnter number 2: \n36\nEnter number 3: \n19\n```\n\nWhat would be the output?"
+    },
+    {
+        "instruction": "Write a Python program that prints all even numbers from 1 to 10, one number per line.\n\n(Note: You can use any basic control structure, such as for loops or if-else statements, to solve this problem.)"
+    },
+    {
+        "instruction": "Write a program that asks the user for their name and then greets them with a personalized message. The program should use a variable to store the user's input, and it should print out the greeting using string concatenation or string formatting. For example, if the user inputs \"John\", the program should output \"Hello, John!\"."
+    },
+    {
+        "instruction": "What is the purpose of a \"for\" loop in Python? How does it differ from a \"while\" loop, and when would you use each type of loop? Provide an example to illustrate your answer."
+    },
+    {
+        "instruction": "What are the different types of loops in Python and how do they work? Can you explain when to use each type (e.g., for, while) and provide a simple example of their usage?"
+    },
+    {
+        "instruction": "What is the difference between the \"for\" loop and the \"while\" loop in Python, and how do you decide which one to use for a specific task? Provide an explanation with examples."
+    },
+    {
+        "instruction": "What are the differences between \"for\" loops and \"while\" loops in Python, and when would you use each? Can you provide an example of how they can be used to achieve the same result in a program?"
+    },
+    {
+        "instruction": "What is the difference between \"if\" and \"elif\" statements in Python? Can you provide an example of when to use each, and how they help control the flow of a program?"
+    },
+    {
+        "instruction": "What do you mean by \"integer\" when we define variables in Python? Can you explain how it differs from other data types like strings or floats, and provide an example to illustrate this concept?"
+    },
+    {
+        "instruction": "What are the differences between \"for\" and \"while\" loops in Python? How do you decide which one to use for a specific task, and provide an example of each loop being used in code?"
+    },
+    {
+        "instruction": "What is the purpose of the \"if\" statement in Python, and how can it be used to control the flow of a program? Provide an example code snippet that demonstrates its usage."
+    },
+    {
+        "instruction": "What is the purpose of the \"for\" loop in Python? Can you explain it with an example code snippet that demonstrates its functionality?"
+    },
+    {
+        "instruction": "What is the purpose of the \"for\" loop in Python, and how can it be used to iterate over a list of numbers and print each number?"
+    },
+    {
+        "instruction": "What is a for loop used for in Python?"
+    },
+    {
+        "instruction": "What is the difference between the \"for\" loop and the \"while\" loop in Python? How do you decide which one to use for a particular task, and can you provide an example of each being used in a simple program?"
+    },
+    {
+        "instruction": "What is the difference between \"for\" loop and \"while\" loop in Python, and how do you decide which one to use for a given task? Explain with an example."
+    },
+    {
+        "instruction": "What is the purpose of using a \"for\" loop in Python to iterate over a list of items, and how does it allow you to perform the same action on each item in the list? Can you provide an example of how this might be used in a simple program?"
+    },
+    {
+        "instruction": "What is a for loop used for in Python? How can you use it to iterate over a sequence of values, such as numbers or strings, and perform an action on each value? Provide an example code snippet to illustrate your explanation."
+    },
+    {
+        "instruction": "What is the difference between a for loop and a while loop in Python? Can you provide an example of when you would use each type of loop, and how they help control the flow of a program?"
+    },
+    {
+        "instruction": "What is the purpose of using a \"for\" loop in Python, and how can it be used to iterate through a list of numbers and print each number?"
+    },
+    {
+        "instruction": "What is the purpose of using the \"for\" loop in Python? Provide an explanation of how it works and give an example to illustrate its use."
+    },
+    {
+        "instruction": "What happens when you use the \"for\" loop with a range of numbers? For example, if you write `for i in range(5): print(i)`, what will be printed to the screen? Please explain the concept behind this type of loop and how it works in Python."
+    },
+    {
+        "instruction": "What are the different types of loops in Python? Can you explain how they work and provide examples of each type, including for loops, while loops, and do-while loops? How can we use these loops to repeat certain actions or processes in our code?"
+    },
+    {
+        "instruction": "What is the purpose of using \"for\" loop in Python and how does it help in repeating a specific action? Can you provide an example to illustrate this concept, making sure it's easy to understand for a beginner like me?"
+    },
+    {
+        "instruction": "What is the purpose of the \"if\" statement in Python, and how can it be used to control the flow of a program? Provide an example code snippet illustrating its usage."
+    },
+    {
+        "instruction": "What is a variable in Python, and how do you use it to store different types of data, such as numbers or strings? Can you also provide an example of how to assign a value to a variable and then print its contents?"
+    },
+    {
+        "instruction": "What are the differences between \"for\" loops and \"while\" loops in Python? Can you give an example of when to use each type, and explain how they work with a simple code snippet?"
+    },
+    {
+        "instruction": "What is the purpose of the `for` loop in Python, and how can you use it to iterate over a list of numbers and print each value? Provide an example code snippet to illustrate your answer."
+    },
+    {
+        "instruction": "What do you mean by \"range\" function when used with for loops in Python, and how does it work? Can you explain it with an example?"
+    },
+    {
+        "instruction": "What is the purpose of the \"for\" loop in Python, and how can it be used to iterate through a list of items? Can you provide an example code snippet that demonstrates its usage?"
+    },
+    {
+        "instruction": "What does the \"for\" loop do in Python, and how can you use it to iterate over a list of items? Provide an example code snippet that demonstrates its usage, explaining each part clearly."
+    },
+    {
+        "instruction": "What is the purpose of the `for` loop in Python? Can you explain how it works and provide an example of its usage?"
+    },
+    {
+        "instruction": "What are the main differences between the \"if\" statement and the \"for\" loop in Python? How do you decide which one to use for a specific task, and can you provide examples of when each would be most appropriate?"
+    },
+    {
+        "instruction": "What is the difference between a \"for\" loop and a \"while\" loop in Python? Can you provide an example of when you might use each type, and how they would be structured?"
+    },
+    {
+        "instruction": "What are the different ways to repeat an action in Python? Can you explain the concept of loops, including for loops and while loops, and provide an example of how they can be used to accomplish a simple task?"
+    },
+    {
+        "instruction": "What does the \"for\" loop do in Python when it's used to iterate over a list? Can you provide an example code snippet that demonstrates this concept? Explain how the loop works and what kind of data can be iterated over with this type of loop."
+    },
+    {
+        "instruction": "What is the purpose of an \"if\" statement in Python, and how can it be used to make decisions in code? Provide an example of how you would use an \"if\" statement to print out a different message depending on whether a variable is greater than or less than 5."
+    },
+    {
+        "instruction": "What is the difference between \"for\" and \"while\" loops in Python? Can you explain with an example, and how they are used to repeat a block of code until a specific condition is met?"
+    },
+    {
+        "instruction": "What do you mean by \"Boolean value\" in Python? Can you explain how it works and give an example of using it in a simple script?"
+    },
+    {
+        "instruction": "What happens when you use the \"for\" loop to iterate over a list of numbers in Python, and how does it differ from using a \"while\" loop? Provide an example code snippet that demonstrates this difference."
+    },
+    {
+        "instruction": "What is the difference between the for loop and while loop in Python? Provide an explanation with examples, highlighting their use cases and when to choose one over the other."
+    },
+    {
+        "instruction": "What is the purpose of using a \"for\" loop in Python, and how can it be used to iterate over a list of items? Provide an example code snippet that demonstrates its usage."
+    },
+    {
+        "instruction": "What is the purpose of the \"for\" loop in Python? How do you use it to repeat a task for each item in a list, and what kind of data can you use with a \"for\" loop?"
+    },
+    {
+        "instruction": "What are the different types of values that can be stored in a variable in Python, and how do you assign a value to a variable? Provide an example for each type of value."
+    },
+    {
+        "instruction": "What is the purpose of the \"for\" loop in Python, and how does it differ from other control structures like the \"while\" loop? Provide an example to illustrate this concept."
+    },
+    {
+        "instruction": "What do you mean by \"conditional statement\" in Python? Can you give an example of how it's used, and explain what happens when a condition is true or false?"
+    },
+    {
+        "instruction": "What is the difference between \"for\" loop and \"while\" loop in Python? How do they work and when would you use each type of loop in a program? Provide an example code snippet for both loops to help illustrate your answer."
+    },
+    {
+        "instruction": "What is the difference between \"for\" and \"while\" loops in Python? Can you explain when to use each one, providing examples to illustrate their uses?"
+    },
+    {
+        "instruction": "What is the purpose of an \"if\" statement in Python, and how can it be used to control the flow of a program? Provide an example that demonstrates its usage and explain what happens when the condition inside the \"if\" statement is met or not met."
+    },
+    {
+        "instruction": "What is the purpose of the \"for\" loop in Python, and how can it be used to iterate over a list of values? Can you provide an example of how to use this type of loop in a simple program?"
+    },
+    {
+        "instruction": "What do you mean by \"conditional statement\" in Python? Can you explain with an example how it can be used to control the flow of a program, making it decide whether to execute certain lines of code based on specific conditions?"
+    },
+    {
+        "instruction": "What is the purpose of the \"for\" loop in Python? Can you provide an example to demonstrate how it can be used to iterate through a sequence of elements, such as a list or a string?"
+    },
+    {
+        "instruction": "What is the difference between the \"for\" loop and the \"while\" loop in Python? Can you give an example of when you would use each, and how they work?"
+    }
+]
