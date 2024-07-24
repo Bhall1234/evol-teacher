@@ -88,7 +88,7 @@ if __name__ == "__main__":
     
     # Generate a unique file name
     random_string = generate_random_string()
-    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     output_file_path = os.path.join(output_dir, f'paired_python_qa_{timestamp}_{random_string}.json')
     
     sample_size = 5  # Change to limit the number of questions processed for testing
