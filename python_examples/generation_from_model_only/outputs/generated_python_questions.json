@@ -1,0 +1,32 @@
+[
+    {
+        "instruction": "What is the output of the following code?\n\n```\nx = 5\ny = \"hello\"\nfor i in range(x):\n    print(y)\n```"
+    },
+    {
+        "instruction": "What is the output of the following Python code:\n\n```\nx = 1\ny = \"hello\"\nwhile x < 5:\n    print(y)\n    x += 1\n```"
+    },
+    {
+        "instruction": "Write a program that prints the numbers from 1 to 10, but only for odd numbers.\n\nFor example: The output should be:\n```\n1\n3\n5\n7\n9\n```"
+    },
+    {
+        "instruction": "What is the output when you run this code?\n\n```\nx = 10\nfor i in range(1, 6):\n    x += i\nprint(x)\n```"
+    },
+    {
+        "instruction": "Write a Python program to calculate the sum of all even numbers from 1 to 20.\n\n(Note: Assume you can use only basic Python syntax.)"
+    },
+    {
+        "instruction": "Write a program to calculate the sum of squares of all numbers from 1 to 10. The output should be a single integer representing the sum of squares."
+    },
+    {
+        "instruction": "What are the first five even numbers in the list [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] when printed in ascending order?"
+    },
+    {
+        "instruction": "Write a program that prints the numbers from 1 to 10, each on a new line.\n\nNote: You can use any data type or control flow statement you think would be suitable for this task."
+    },
+    {
+        "instruction": "Write a program that prints the numbers from 1 to 10 on separate lines, but with each number multiplied by 2.\n\nExample output:\n\n```\n2\n4\n6\n8\n10\n12\n14\n16\n18\n20\n```"
+    },
+    {
+        "instruction": "Write a program that prints out the numbers from 1 to 10, but for every multiple of 3, it should print \"Fizz\" instead of the number.\n\nExample output:\n\n1\n2\nFizz\n4\n5\nFizz\n8\n9\nFizz"
+    }
+]

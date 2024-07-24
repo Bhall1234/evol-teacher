@@ -21,11 +21,10 @@ def send_request_to_local_llm(prompt: str, model: str, temperature: float, max_t
 
 def generate_beginner_questions(model: str, num_questions: int, temperature: float, max_tokens: int) -> list:
     questions = []
-    prompt = ("Please generate a beginner-level Python programming question focusing on topics like loops. "
-            "The question should be clear and simple, suitable for someone who is just starting to learn Python. "
+    prompt = ("Please generate a simple beginner-level Python programming question. "
+            "The question should be clear and straightforward, suitable for someone who is just starting to learn Python. "
+            "Focus on basic topics such as loops, variables, data types, control flow, lists, and functions. "
             "Avoid using any meta-text such as 'Here's a beginner-level Python programming question' in your response. "
-            "The question should include a brief description of the problem, followed by a specific task that the learner needs to accomplish using loops. "
-            "For example, you could ask the learner to write a program that prints the numbers from 1 to 10, or to sum the elements of a list. "
             "Ensure that the question is straightforward and does not require advanced knowledge of Python.")
     
     for _ in tqdm(range(num_questions), desc="Generating questions"):
@@ -55,6 +54,8 @@ def main(output_file_path, num_questions):
     print(f"Generated questions saved to {output_file_path}. Total questions: {len(questions)}")
 
 if __name__ == "__main__":
-    output_file_path = './python_examples/generation_from_model_only/outputs'
-    num_questions = 10  # Change this variable to generate more or fewer questions
+    output_dir = './python_examples/generation_from_model_only/outputs'
+    os.makedirs(output_dir, exist_ok=True)
+    output_file_path = os.path.join(output_dir, 'generated_python_questions.json')
+    num_questions = 10  # Change to generate more or fewer questions
     main(output_file_path, num_questions)
