@@ -1,0 +1,14 @@
+[
+    {
+        "instruction": "Calculate the Total Cost of Insurance Premiums\nAs an insurance agent, you need to calculate the total cost of premiums for a customer's policy. The premium calculation formula involves multiplying the base rate by the number of years. Write a Python function that takes two arguments: the base rate (a float) and the number of years (an integer). The function should use a loop to multiply the base rate by the number of years, then return the result.\n\nFor example, if the base rate is 100 and the number of years is 3, the output would be the product of the base rate and the number of years.",
+        "output": "def factorial(number):\n    fact = 1\n    for i in range(1, number + 1):\n        fact = fact * i\n    return fact"
+    },
+    {
+        "instruction": "Determine if a given number ends in an even digit (0, 2, 4, 6, or 8) using a single line of Python code.",
+        "output": "def is_even(number):\n    if number % 2 == 0:\n        return True\n    else:\n        return False"
+    },
+    {
+        "instruction": "Imagine you're planning a party with your five closest friends, and you want to send them a text message with the numbers of the tables where they'll be seated in descending order (so that the tallest friend gets the biggest table). How would you create a list of these table numbers in descending order? For example, if your list contains the numbers [4, 2, 9, 7, 1], how would you arrange them so that the largest number comes first and the smallest number comes last?",
+        "output": "The list of integer numbers can be sorted in descending order using the Python's list sorting method: numbers.sort(reverse=True)."
+    }
+]
