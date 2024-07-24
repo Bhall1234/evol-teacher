@@ -52,21 +52,21 @@ def send_request_to_local_llm(prompt: str, model: str, temperature: float, max_t
 
 def diversify_questions(instructions, model: str, temperature: float, max_tokens: int) -> list:
     methods = [
-        'Rephrase the instruction.',
-        'Rephrase the instruction in a way that someone new to python might ask.',
-        'Alter or add sample data provided in the question.',
-        'Combine two related tasks into one question.',
-        'Change the context or scenario of the question.'
+        'Rephrase the instruction to make it simpler in a way that someone new to python might ask.',
+        'Add a small real-world context to the question without increasing complexity.',
+        'Focus on common beginner topics like loops, conditionals, functions, and list operations.',
+        'Simplify existing contexts to make them more relatable to beginners python programmers.',
+        'Break down multi-step problems into simpler, single-step questions.'
     ]
     
     new_tasks = []
     for task in instructions:
         chosen_method = random.choice(methods)
-        prompt = (f"Please rewrite the following programming test question to make it more diverse and engaging using the following method:\n{chosen_method}\n\n"
+        prompt = (f"Please rewrite the following programming question to make it more suitable for a beginner Python student using the following method:\n{chosen_method}\n\n"
                   f"#Original Test#\n{task['instruction']}\n\n"
-                  "Ensure the rewritten test is clear, concise, and directly follows the method chosen. "
-                  "Do not include phrases like 'here is a rewritten version' or 'rewritten test'."
-                  "\n\n#Rewritten Test#")
+                  "Ensure the rewritten test is clear, simple, and directly follows the method chosen. "
+                  "Do not include phrases like 'here is a rewritten version' or 'rewritten question' or 'rewritten instruction' ."
+                  "\n\n#Rewritten Instruction#")
         
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
         rewritten_instruction = response["choices"][0]["message"]["content"].strip()

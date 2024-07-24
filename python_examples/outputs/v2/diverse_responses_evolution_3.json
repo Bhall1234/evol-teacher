@@ -1,0 +1,14 @@
+[
+    {
+        "instruction": "**Python Puzzle: \"Circus Performance\"**\n\nYou're the stage manager for a high-flying circus troupe that needs help setting up their act. They have `n` identical acrobats to arrange in `m` acts, with each act limited to at most `k` acrobats. The show's director, a perfectionist, wants the total number of possible arrangements.\n\nWrite a Python function to calculate this by using the factorial operation (`n!`) and then dividing it by the product of factorials for each act's capacity and the remaining acrobats.\n\nFor example, if `n` is 5 and `k` is 3, you should get an output of 720 (calculated using the formula `5! / (3!(5-3)!)`). Make sure to optimize your solution to handle large values of `n`. The circus is counting on you!",
+        "output": "def factorial(number):\n    fact = 1\n    for i in range(1, number + 1):\n        fact = fact * i\n    return fact"
+    },
+    {
+        "instruction": "As the chief meteorologist for Willow Creek's local weather station, I'm concerned about keeping our residents safe during this cold snap. To help them prepare, I need to analyze temperature readings to identify whether they're even (multiples of 2) or odd.\n\nCan you write a Python code that takes in six temperature readings (-5\u00b0C, 3\u00b0C, 10\u00b0C, 19\u00b0C, 30\u00b0C, and -9\u00b0C) and determines whether each reading is an even or odd integer value?",
+        "output": "def is_even(number):\n    if number % 2 == 0:\n        return True\n    else:\n        return False"
+    },
+    {
+        "instruction": "As a renowned travel agent, you've just received the latest customer feedback survey results for your upcoming \"Taste of Europe\" culinary tour. The survey ranks the top destinations by popularity, with scores out of 100 indicating the level of enthusiasm among participants. Here are the current rankings:\n\n| Destination | Ranking Score |\n| --- | --- |\n| Paris, France | 85 |\n| Rome, Italy | 78 |\n| Barcelona, Spain | 72 |\n| Amsterdam, Netherlands | 68 |\n| Vienna, Austria | 65 |\n\nHowever, you need to reorganize the list in descending order to ensure that the most sought-after locations are featured prominently throughout the trip. How would you sort the list of destination names and corresponding ranking scores to make sure the most popular stops shine brightest?",
+        "output": "The list of integer numbers can be sorted in descending order using the Python's list sorting method: numbers.sort(reverse=True)."
+    }
+]

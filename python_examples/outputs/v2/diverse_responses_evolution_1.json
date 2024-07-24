@@ -1,0 +1,14 @@
+[
+    {
+        "instruction": "Calculate the Total Number of Ways to Arrange Items in a Container: A Python Challenge\n\nYou are tasked with organizing a collection of n identical boxes into m containers, where each container can hold at most k boxes. Write a Python function that calculates the total number of ways to arrange these boxes.\n\nNote: The factorial of a given number n (denoted as `n!`) is used to calculate the total number of permutations, which in this case represents the total number of ways to arrange the boxes. Your function should be able to calculate `n!` and then use it to determine the total number of arrangements.\n\nExample:\n```\nInput: n = 5, k = 3\nOutput: 720 (calculated using the formula 5! / (3!(5-3)!))\n```",
+        "output": "def factorial(number):\n    fact = 1\n    for i in range(1, number + 1):\n        fact = fact * i\n    return fact"
+    },
+    {
+        "instruction": "#Check if a given temperature reading is above or below freezing.\n\nWrite a Python code to determine whether the following temperature readings are even (i.e., multiples of 2) or odd: 12, -3, 8, 19, 34, and -1. Assume that each temperature reading is an integer value.",
+        "output": "def is_even(number):\n    if number % 2 == 0:\n        return True\n    else:\n        return False"
+    },
+    {
+        "instruction": "Imagine you're an event manager planning a music festival. The lineup of performers has just been announced, but the list needs to be sorted by popularity in descending order. How would you sort the list of artist names and corresponding ranking scores (out of 100) to ensure the most popular acts close out the night?\n\n(Note: I changed the context from programming to event management, making it more diverse and engaging.)",
+        "output": "The list of integer numbers can be sorted in descending order using the Python's list sorting method: numbers.sort(reverse=True)."
+    }
+]

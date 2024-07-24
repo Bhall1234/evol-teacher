@@ -1,0 +1,14 @@
+[
+    {
+        "instruction": "Write a Python function that calculates the number of rows on each shelf of a bookshelf with `n` shelves, given that each row has one more book than the previous one. For example, if there are 3 shelves and the pattern is \"1, 2, 3\" for books per row, how would you calculate the number of rows in the first, second, and third shelves?",
+        "output": "def factorial(number):\n    fact = 1\n    for i in range(1, number + 1):\n        fact = fact * i\n    return fact"
+    },
+    {
+        "instruction": "**Unlock the Secrets of Online Shopping!**\n\nAs a data analyst at a renowned e-commerce platform, you're about to embark on an exciting challenge! Your mission is to craft a Python program that helps determine whether a customer's order total is even or odd, while also calculating the total sales tax for their purchase. To get started, write a code that accepts two integers as input - the order total and the tax rate - and then outputs a clear message stating \"Even\" if the order total can be divided by 2 without leaving a remainder, or \"Odd\" otherwise. Don't forget to include the calculated total amount of sales tax in your output!",
+        "output": "def is_even(number):\n    if number % 2 == 0:\n        return True\n    else:\n        return False"
+    },
+    {
+        "instruction": "As a data analyst for a trendy e-commerce boutique, you've discovered that the weekend after Labor Day has consistently been the most profitable period in September. Now, you need to dive deeper into this lucrative span by determining which product categories drove the majority of their sales revenue. How would you extract and visualize this information from the organized list of daily sales data for this period?",
+        "output": "The list of integer numbers can be sorted in descending order using the Python's list sorting method: numbers.sort(reverse=True)."
+    }
+]
