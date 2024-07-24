@@ -1,0 +1,32 @@
+[
+    {
+        "instruction": "Write a program that prints the numbers from 1 to 10, each on a separate line, using a loop.\n\n(Note: You can ask for help or clarification if needed!)"
+    },
+    {
+        "instruction": "What is the output of the following code snippet?\n\n```\nx = 5\ny = \"hello\"\nfor i in range(x):\n    print(y)\n```"
+    },
+    {
+        "instruction": "Write a Python program to ask the user for their name, age, and favorite hobby. The program should then print out a personalized message with this information. For example, if the user inputs \"John\", 25, and \"reading\", the output would be: \"Hello John! You are 25 years old and enjoy reading.\""
+    },
+    {
+        "instruction": "Write a Python program to print the numbers from 1 to 10 using a for loop. Each number should be printed on a separate line."
+    },
+    {
+        "instruction": "Write a Python program that prints the numbers from 1 to 10, but for each number, it should print \"Hello\" if the number is odd and \"Goodbye\" if the number is even."
+    },
+    {
+        "instruction": "What are the different types of data types in Python, and how do you use them to store values? Can you provide an example of how you might use each type (e.g., integer, float, string) and why you would choose one over another?"
+    },
+    {
+        "instruction": "What happens when you use a \"for\" loop to iterate over a list of numbers? For example, if you write `for num in [1, 2, 3, 4, 5]:`, what value will be assigned to the variable \"num\" on each iteration and why?"
+    },
+    {
+        "instruction": "What are the different types of variables in Python? Can you explain how they work and provide an example to demonstrate their usage?"
+    },
+    {
+        "instruction": "What are the different types of variables in Python and how do they work? Can you give an example to demonstrate their usage?"
+    },
+    {
+        "instruction": "What are the main differences between the for loop and the while loop in Python? Can you provide an example code snippet to illustrate when you would use each type of loop, and how they work together to accomplish a specific task?"
+    }
+]
