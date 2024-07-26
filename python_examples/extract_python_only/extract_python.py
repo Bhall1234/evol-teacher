@@ -24,6 +24,6 @@ def main(input_file_path, output_file_path):
     print(f"Filtered dataset saved to {output_file_path}. Total examples: {len(filtered_data)}")
 
 if __name__ == "__main__":
-    input_file_path = 'C:/Users/benha/Documents/GitHub/evol-teacher/converted_alpaca_2k.json'
-    output_file_path = 'C:/Users/benha/Documents/GitHub/evol-teacher/curated_python_examples.json'
+    input_file_path = 'C:/Users/benha/Documents/GitHub/evol-teacher/data/EvolInstruct-Code-8k.json'
+    output_file_path = 'C:/Users/benha/Documents/GitHub/evol-teacher/curated_python_examples_8k.json'
     main(input_file_path, output_file_path)
