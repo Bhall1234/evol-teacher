@@ -1,0 +1,11 @@
+[
+    {
+        "instruction": "Write a Python function to calculate the factorial of a given number using real-world context. For example, \"If you have 5 candies and want to buy more for your siblings, you can use factorial to determine how many different ways you can distribute the candies if each child gets at least one candy.\""
+    },
+    {
+        "instruction": "Original Test: Write a Python code to check if a given number is even or odd.\n\nRewritten Test: \nChecking whether a number is even or odd can be useful in various real-world contexts, such as when working with accounting software that needs to calculate taxes based on the number of hours worked.\n\nWrite a Python code to check if a given number is even or odd by using the following method: \n1. Create a variable called `number` and assign it to the input number from the user.\n2. Use the modulo operator `%` to check if the number is divisible by 2, i.e., `(number % 2) == 0`. If this condition is true, then the number is even. Otherwise, it is odd.\n3. Print out \"even\" or \"odd\" depending on whether the number is even or odd."
+    },
+    {
+        "instruction": "How would you sort a list of integer numbers in descending order using loops and list operations?"
+    }
+]

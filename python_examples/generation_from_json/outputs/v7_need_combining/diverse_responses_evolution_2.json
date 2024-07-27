@@ -1,0 +1,911 @@
+[
+    {
+        "instruction": "Write a Python function to find the factorial of a given positive integer in real-world context: \n\nReal-world context: A baker sells different types of cupcakes at different prices. They want to calculate the profit they can earn by selling these cupcakes. If the input is 5, then the output should be 120 (5!)."
+    },
+    {
+        "instruction": "Write a Python code to determine if a given number is even or odd by using the modulo operator (%)."
+    },
+    {
+        "instruction": "Create a list of integers and sort it in descending order using the `sorted()` function with the `reverse` argument set to `True`. Print the resulting sorted list."
+    },
+    {
+        "instruction": "Convert a string to a float in Python using `float()`."
+    },
+    {
+        "instruction": "1. Write a Python function named \"custom_exception\" that takes in two parameters: a string message and an integer code. The function should raise a custom exception with the specified message and code when it is called.\n\nHint: You can use the built-in Python \"Exception\" class to create a new custom exception."
+    },
+    {
+        "instruction": "Write a for loop in Python that prints out each fruit from the list of fruits: [\"apple\", \"banana\", \"cherry\", \"orange\"]."
+    },
+    {
+        "instruction": "Write a function in Python called `combine_lists` that takes two lists as inputs and returns a new list with all the elements from both lists in the same order. Use the following real-world context to explain your question:\nYou are planning a camping trip with two friends, Alice and Bob. Each of you has brought your own supplies, but you want to make sure that everything is easily accessible during the trip. Write a function called `combine_lists` that takes two lists as inputs (one list of Alice's supplies and one list of Bob's supplies) and returns a new list with all the items from both lists combined in the same order they would be used during the trip."
+    },
+    {
+        "instruction": "Write a Python program to check if a given string contains punctuation characters in an email address. If it does, return True; otherwise, return False."
+    },
+    {
+        "instruction": "Define a function named multiply that takes in two input parameters a and b and returns their product as a string using list operations, loops, conditionals, functions, and common beginner topics."
+    },
+    {
+        "instruction": "Please write a function called \"factorial\" that takes one argument (a positive integer) and returns its factorial value. Use loops to iterate through the values of n from 1 up to the input number, multiplying each value by the next one in the sequence, and return the final result as the output."
+    },
+    {
+        "instruction": "Please write a function to sort a list of names in descending order according to their length."
+    },
+    {
+        "instruction": "Create a class called \"Account\" in Python with two attributes: name and balance. The Account class should have three methods: init (), deposit (), and withdraw ()."
+    },
+    {
+        "instruction": "Write a function that takes in a JSON string as input and returns a dictionary object using the json.loads() method. The function should be able to handle JSON strings with multiple key-value pairs separated by commas."
+    },
+    {
+        "instruction": "Write a Python script to import the `random` module and generate a random number between 1 and 10 using the `randint()` function."
+    },
+    {
+        "instruction": "Write a Python code snippet to remove vowels from a given string using the `.replace()` method with the `in` parameter set to a list of all vowels and an empty string as the replacement value."
+    },
+    {
+        "instruction": "Create a Python class called \"Student\" with three methods: __init__(), display(), and grade_average().\nThe __init__() method should take in name, age, and grade as parameters and set them to their respective instance variables. \nThe display() method should return a string that contains the student's name, age, and grade, separated by commas.\nThe grade_average() method should calculate and return the average of all grades entered for that particular student."
+    },
+    {
+        "instruction": "Write a Python function named `print_multiplication_table` that takes an integer argument `n` and prints out a multiplication table with `n` rows and `n` columns showing all possible products of integers from 1 to `n`."
+    },
+    {
+        "instruction": "Question: How can I print \"Hello World\" using Python 3's `print()` function?"
+    },
+    {
+        "instruction": "Write a Python program that takes an integer list as input and returns a new list containing only the odd numbers from the original list, using a context of sorting and searching through a list to find specific elements."
+    },
+    {
+        "instruction": "Write a function `most_frequent_words` that takes in a string and returns a list of the 5 most frequently occurring words in the string.\n\nHint: You can use a dictionary to keep track of the frequency of each word, and you can sort the dictionary by value using the `sorted` function."
+    },
+    {
+        "instruction": "What is a deque (double-ended queue) in Python and how can it be used? Provide an example of its use case."
+    },
+    {
+        "instruction": "Write a Python program that removes all adjacent duplicates from a string in the context of a text editor."
+    },
+    {
+        "instruction": "Create a Python script named \"myscript.py\" in your text editor of choice with the following code:\n```python\n# Importing libraries\nimport os\nfrom pathlib import Path\n\n# Defining functions\ndef main(path):\n    # Getting all files and directories in the current directory\n    files = [str(file) for file in Path(path).glob('*')]\n\n    # Looping through each file\n    for file in files:\n        if file.endswith('.py'):\n            print(\"Running \" + file)\n            os.system(f\"python {file}\")\n\nif __name__ == '__main__':\n    main()\n```\nIn your terminal or command prompt, navigate to the directory where you saved the Python script and run the following commands:\n```bash\n# Setting the current working directory to the one containing \"myscript.py\"\ncd /path/to/directory\n\n# Running the Python script using the \"python3\" command\npython3 myscript.py\n```\nThe script will execute all Python files in the current directory and subdirectories."
+    },
+    {
+        "instruction": "Please sort the following items in numerical order using the bubble sort algorithm in Python: 2, 4, 1, 4, 6. Imagine a set of numbers being sorted in a toy box, with each number representing a different toy inside the box. The goal is to arrange all the toys in ascending numerical order by taking one toy at a time and placing it in its correct position within the box."
+    },
+    {
+        "instruction": "To find the mode in a Python list using a dictionary, we can create a dictionary to keep track of each unique value in the list and its frequency. Then, we iterate through the dictionary to find the key with the highest frequency, which corresponds to the mode. \n\nHere's an example of how this could be done:\n\n```python\nlist_numbers = [2, 4, 2, 6, 4]\n\n# Create a dictionary to keep track of each unique value and its frequency\nvalue_counts = {}\nfor value in list_numbers:\n    if value not in value_counts:\n        value_counts[value] = 1\n    else:\n        value_counts[value] += 1\n```"
+    },
+    {
+        "instruction": "Write a program in Python that converts Celsius temperatures to Fahrenheit temperatures using the formula (\u00b0F = \u00b0C \u00d7 9/5 + 32). The program should prompt the user for input and then convert the entered Celsius temperature to Fahrenheit and display the result."
+    },
+    {
+        "instruction": "Please write a Python function named \"count_words\" that counts how many words are in a given sentence as input when called."
+    },
+    {
+        "instruction": "Write a Python function named `largest_number` that takes in a list of numbers as input and returns the largest number in the list."
+    },
+    {
+        "instruction": "Write a Python function that takes in a list of numbers and returns all numbers that are over 20 feet tall."
+    },
+    {
+        "instruction": "Write a Python program that calculates the sum of even numbers from 0 to n using a loop. The user should be prompted to enter an integer value \"n\" which will determine the maximum number up to which the even numbers will be added."
+    },
+    {
+        "instruction": "What are some situations where using a loop can be helpful? Provide at least 2 examples of real-world scenarios where you would use a loop and explain how they simplify code."
+    },
+    {
+        "instruction": "Simplify the list of numbers and strings without changing the order of the items in the list."
+    },
+    {
+        "instruction": "Please write a code to count from 1 to 5 using both for-loop and while-loop in Python."
+    },
+    {
+        "instruction": "Please create a Python program that finds the sum of the first 10 natural numbers using a loop to iterate through each number from 1 to 10 and add it to a total variable."
+    },
+    {
+        "instruction": "1. Connect to a SQLite database called \"moviedb.db\" using `sqlite3.connect()`. What is the name of the connection object?\n2. Create a cursor object using `conn.cursor()`. What is the name of the cursor object?\n3. Write a query that retrieves all movies with a rating greater than 8.0 from the \"Movie\" table in your database. What is the query string?\n4. Execute the query using `c.execute()`. How many rows are returned?\n5. Fetch all of the results from the query using `fetchall()`. How many rows are returned?"
+    },
+    {
+        "instruction": "What is the correct way to return the last character of a string using the `string` module in Python?"
+    },
+    {
+        "instruction": "1. Define a function to remove duplicate characters from a given string called \"remove_duplicates\" with one input parameter of type \"string\". \n2. Initialize an empty list called \"unique_chars\" within the function definition for storing all unique characters in the input string."
+    },
+    {
+        "instruction": "Create a Python program to find the greatest common divisor (GCD) of two given numbers using a function named \"gcd\". The function should accept two integer arguments and return their GCD as an integer."
+    },
+    {
+        "instruction": "Write a function named \"get_factorial\" that takes an integer as input and returns its factorial using basic Python operations (e.g. multiplication, division). For example: get_factorial(5) should return 120 because the factorial of 5 is 1*2*3*4*5 = 120.\n\nStep 1: Define a function named \"get_factorial\" that takes an integer as input and returns its factorial using basic Python operations (e.g. multiplication, division).\n\n#Step 1 Solution#[/Inst]  ```def get_factorial(n):\n    # Write your code here\n    return result```"
+    },
+    {
+        "instruction": "Write a Python code to find the most common element in a given list using the `most_common()` method of the `Counter` class from the `collections` module. The list can be defined as `my_list = [1, 2, 3, 4, 5]`."
+    },
+    {
+        "instruction": "Create a pandas dataframe with 5 rows and 3 columns using the `pd.DataFrame()` function, and specify the column names using the `columns` parameter. Then, add data to each column by specifying the column name and the data to be added using square brackets notation (e.g., `df['Column1'] = ['Data1', 'Data2', ...]`)"
+    },
+    {
+        "instruction": "Instructions:\n\n1. Create a Python class called \"IntegerComparer\" that takes two integers as parameters in its constructor.\n2. Include two instance methods called \"get_max\" and \"get_min\". These methods should return the maximum and minimum of the two integers, respectively.\n3. Use only basic Python concepts such as loops, conditionals, functions, and list operations to complete this exercise.\n4. Your solution should be well-structured, easy to read, and follow best practices for writing clean and efficient code.\n5. You can use any resources available, but please do not copy or paste someone else's work without proper citation."
+    },
+    {
+        "instruction": "Please write a Python code to print \"Hello World\" 5 times. The code should use a loop that repeats 5 times."
+    },
+    {
+        "instruction": "Use the print() function to display the string \"GPT is awesome\" on the console."
+    },
+    {
+        "instruction": "Compare Two Strings in Python: Provide Two Strings and Receive Instructions for Comparison"
+    },
+    {
+        "instruction": "Write a for loop in Python that iterates over a list of numbers and prints their corresponding index values using the `list()` function to create the list."
+    },
+    {
+        "instruction": "What is the correct syntax to select all elements from a list in Python?"
+    },
+    {
+        "instruction": "Write a Python statement to find the index of \"GPT\" in the list using the \"in\" keyword:\nlist = [\"GPT\", \"is\", \"awesome\"]"
+    },
+    {
+        "instruction": "Write a Python function called `convert_currency()` that takes an amount as input and returns the converted amount in USD with two decimal places."
+    },
+    {
+        "instruction": "Create a class called `EmployeePay` to represent an employee's pay and track their earnings. The class should have attributes for the employee's name, salary, bonus, overtime hours worked, and overtime pay. It should also have methods to set these values and calculate the total pay. Use this class to represent the pay for an employee working at a small startup and display the employee's total pay after calculating it based on their work details using the `calculate_total_pay()` method."
+    },
+    {
+        "instruction": "Instructions:\nWrite a Python program that calculates the average grade of a student in a school using two real-world scenarios. The first scenario involves a test with two questions, and the second scenario involves a test with three questions. Use descriptive variable names to make your code clear and easy to understand."
+    },
+    {
+        "instruction": "Write a Python program that adds two lists together using a loop and list operations. The real-world context is a grocery store that requires you to keep track of items in your cart by adding them up. You have two lists: \"produce\" and \"bakery\". Produce contains fruits such as bananas, oranges, apples, etc., while bakery includes bread, cakes, pastries, etc. You need to add these items together using a loop so that you can easily see the total number of items in your cart at the checkout counter."
+    },
+    {
+        "instruction": "Write a Python program to print \"Hello World\" to the console using the sys module and the print() function while also including a brief real-world context to help clarify the purpose of the exercise for beginners."
+    },
+    {
+        "instruction": "Create a Python function called max_of_two that takes two integers as input and returns the maximum of the two."
+    },
+    {
+        "instruction": "Write a program using Python to print all prime numbers up to n (a given number) with an intuitive real-world context. For example:\n\"Imagine you are a chef and want to prepare a recipe for a dinner party with your friends. The recipe requires the following ingredients, but not in that order. You need to arrange them in the correct order to make the dish. Write a program that takes these ingredients (a list of numbers) as input and outputs the correct order using the Sieve of Eratosthenes algorithm.\""
+    },
+    {
+        "instruction": "Write a function in Python that takes an integer as input and returns its square using a loop."
+    },
+    {
+        "instruction": "Please use Python's `argparse` module to parse command line arguments correctly by simplifying existing contexts for beginner Python programmers."
+    },
+    {
+        "instruction": "1. Use the \"xml\" module in Python to parse XML data from a real-world source such as an RSS feed.\n2. Parse the data and store it in a Python variable.\n3. Write code to extract relevant information such as title, description, and link from each item in the parsed data."
+    },
+    {
+        "instruction": "Write a Python script that generates a random password with at least 8 characters, including uppercase and lowercase letters, numbers, and special characters, using the random module to generate the password."
+    },
+    {
+        "instruction": "Question:\nDebugging a Python script can be challenging, but it's an essential skill to have as a Python developer. In this task, you will learn how to debug a simple Python script using Visual Studio Code and its built-in features. You will also learn how to identify and fix common errors in your code.\n\nTask:\n1. Open a new Visual Studio Code window and create a new Python file called \"debugging.py\".\n2. In the debugging.py file, write a simple function that takes an integer as input and returns its double value. Test the function by calling it with different inputs and verifying the output.\n3. Introduce an error into your code to simulate a bug. For example, you can change the return statement in the function to \"return int(x) * 2\". Run the script using the \"Run Python File in Terminal\" feature in Visual Studio Code and verify that it returns the wrong output.\n4. Use the debugging tools in Visual Studio Code to identify the error in your code. You can use breakpoints, watch expressions, and other features to help you debug the issue.\n5. Fix the error in your code by changing the return statement back to \"return x * 2\". Run the script again using the \"Run Python File in Terminal\" feature in Visual Studio Code and verify that it returns the correct output this time.\n6. Submit a screenshot of your debugging session in Visual Studio Code, including your breakpoints, watch expressions, and other relevant information. Include a brief summary of what you learned during the task and how you used Visual Studio Code's debugging features to fix the error in your code."
+    },
+    {
+        "instruction": "Create a Python class called 'Person' that includes name, age, and address attributes as strings. Ensure all instances of the class have the same attributes using loops, conditionals, functions, and list operations."
+    },
+    {
+        "instruction": "Question: What is a \"for loop\" in Python programming?"
+    },
+    {
+        "instruction": "Write a Python function `get_cumulative_sum(numbers)` that takes a list of numbers as input and returns their cumulative sum using a for loop and list operations. The function should return 0 if an empty list is passed in."
+    },
+    {
+        "instruction": "Write a function 'fibonacci_num' in Python to find the nth number in the Fibonacci Sequence using the sequence: [0, 1, 1, 2, 3, ...]. This function should accept an integer input and return the corresponding Fibonacci number."
+    },
+    {
+        "instruction": "To create a set in Python, use curly braces {} to enclose the elements you want to include in your set. For example:\n```{1, 2, 3}```\nThis creates a set with the elements 1, 2, and 3."
+    },
+    {
+        "instruction": "How do you use a try/except block to handle exceptions in Python?"
+    },
+    {
+        "instruction": "What are the data types that can be passed to the print() function in Python?\n\nHint: The print() function can take multiple arguments of different data types, such as strings, integers, lists, etc."
+    },
+    {
+        "instruction": "Store your family members' names and phone numbers in a list of tuples."
+    },
+    {
+        "instruction": "Please write a Python code to print out all numbers from 0 to 10 except for 3 and 7 using a for loop."
+    },
+    {
+        "instruction": "Write a code segment that uses loops to generate a list of the first 5 even numbers using the following method:\n\n1. Define an empty list called `even_numbers`.\n2. Use a for loop to iterate from 0 to 9, incrementing by 1 each time.\n3. Inside the for loop, use an if statement to check if the current number is even. If it is, append it to the `even_numbers` list using the `.append()` method.\n4. After the for loop, print the contents of the `even_numbers` list using the `.join()` method on a string containing commas and spaces between elements.\n\nExample solution:\n```python\neven_numbers = []\nfor i in range(10):\n    if i % 2 == 0:\n        even_numbers.append(i)\nprint(\", \".join(even_numbers))\n```"
+    },
+    {
+        "instruction": "1. Create a variable called `radius` to store the value entered by the user as input.\n2. Use the formula: area = pi * radius^2 to calculate the area of the circle.\n3. Print \"The area of the circle is:\" followed by the calculated value rounded to two decimal places."
+    },
+    {
+        "instruction": "1. Write a Python function to calculate the distance between two points (x0, y0) and (x1, y1). The function should return the distance as an integer value."
+    },
+    {
+        "instruction": "Create a Python dictionary with three keys: \"name\", \"age\", and \"favorite_color\". Each key should have an appropriate value assigned to it based on your information."
+    },
+    {
+        "instruction": "Create a function in Python called `triangle_area` that takes two parameters: `base` and `height`. The function should return the area of the triangle."
+    },
+    {
+        "instruction": "Write a program to find the sum of digits in a number using Python. Use the context of a grocery store to make it more interesting. Imagine that you work at a grocery store and are responsible for adding up all the numbers on the items in a basket. You have to calculate the total cost of the items, so you need to find the sum of the digits in each item's number."
+    },
+    {
+        "instruction": "Write a function `bubble_sort` that takes in an array of integers as input and sorts them using the bubble sort algorithm. The function should return the sorted array."
+    },
+    {
+        "instruction": "Hi! Can you please provide more information about your question so I can better understand it?\n\nIf you are asking how to create a loop using the `for` keyword in Python, here is some general guidance:\n\n- Define a range of numbers or elements that you want to loop through.\n- Write a for loop with a variable and an iterator (e.g., `for x in range(5):`). The iterator should be something like a list or tuple that can be iterated over. \n- Indent any statements inside the loop using spaces or tabs to create a code block.\n- Use a break statement if you want to exit the loop before it ends naturally."
+    },
+    {
+        "instruction": "Display each element of a list using a loop in Python."
+    },
+    {
+        "instruction": "Create a function called `count_digits` that takes an integer as input and returns the number of digits in that integer."
+    },
+    {
+        "instruction": "Write a Python function called \"remove_duplicates\" that takes in a list of strings as an argument and returns a new list with all duplicates removed without changing the original list. Use the following context:\n\nYou are working for an online marketplace where customers can buy unique digital products. Each product is represented by a string in a list, and you need to remove any duplicate products from this list before displaying it to customers."
+    },
+    {
+        "instruction": "Write a function called \"is_prime\" that takes an integer as input, and returns True if the number is prime, and False otherwise. Use the following real-world context to make it more suitable for a beginner Python student:\n\nA friend recently asked you to help them determine whether their favorite number is prime or not. You want to write a function that can quickly and accurately determine this without having to manually check all of the numbers less than the input. Your function will need to take an integer as input, and return True if it's prime, and False otherwise.\n\nThis context adds a personal touch to the problem, making it more relatable and engaging for a beginner Python student. It also provides a clear goal or objective that the function needs to accomplish: determine whether a number is prime or not."
+    },
+    {
+        "instruction": "Write a loop to print all odd numbers from the list [1, 2, 3, 4, 5]."
+    },
+    {
+        "instruction": "Implement a Python function that prints a sequence of numbers from 1 to 10 using a loop, with the same logic as the C code provided in the original test."
+    },
+    {
+        "instruction": "How can I use Python's built-in \"time\" module to run a function after a specified amount of time has passed?"
+    },
+    {
+        "instruction": "Please write a Python function that takes in a list as input, sorts it, and returns the sorted list."
+    },
+    {
+        "instruction": "Write a function in Python called \"maxNum\" that takes two numbers and returns the greater one. The function should be called with two integer values and should return the larger of the two numbers as an integer value."
+    },
+    {
+        "instruction": "Using loops, conditionals, functions, and list operations, create a list of seven random integers between 1 and 10 by utilizing the \"random\" module and the \"range()\" function in Python."
+    },
+    {
+        "instruction": "Define a Python function `most_frequent()` that takes in a list as an argument and returns the most frequent element in the list. Use the `max()` function with the `key` parameter set to a custom function that counts the frequency of each item in the list, ensuring the rewritten test is clear, simple, and directly follows the chosen method without any unnecessary complexity or additional context."
+    },
+    {
+        "instruction": "Write a Python function that removes all characters from a list of elements specified in the `chars` parameter and returns the updated list without those characters."
+    },
+    {
+        "instruction": "Write a function called `largest_prime` that takes an array of numbers as input and returns the largest prime number found in the array. The function should be able to handle negative numbers as well.\n\nThe function should use a loop to iterate through the array, and inside the loop, it should check if each number is prime or not using a conditional statement. If the number is prime, the function should compare it with the current largest prime found so far and update the value of the `largest_prime` variable accordingly.\n\nAfter the loop finishes iterating through all the numbers in the array, the function should return the value of `largest_prime`."
+    },
+    {
+        "instruction": "Create a function called \"sortArray\" that takes an array of numbers as input and returns the sorted array in descending order using the built-in Python function \"sorted\"."
+    },
+    {
+        "instruction": "Write a function called `mean_absolute_error` that takes two lists as arguments and returns their mean absolute difference."
+    },
+    {
+        "instruction": "Write a Python function called \"circle_area\" that takes in one parameter, radius (r), and returns the area of the circle."
+    },
+    {
+        "instruction": "Create a Python list of numbers using a for loop to iterate through the given list of numbers. Then, create a new set object from the list using the `set()` method and store it in a variable."
+    },
+    {
+        "instruction": "Hello! I'm here to help you with your Python question. To get started, could you please provide more information about the array you're working with? What are its dimensions and contents? Are there any specific operations or tasks you need help with? Please let me know and I'll do my best to assist you!"
+    },
+    {
+        "instruction": "Define two vectors u and v to calculate their cross product in Python: \nu = [2,3], v = [-1,-2]."
+    },
+    {
+        "instruction": "Please create a Python dictionary containing information about your favorite movie:\n\n* \"title\": The title of your favorite movie (e.g., \"The Shawshank Redemption\").\n* \"year\": The year it was released (e.g., 1994).\n* \"genre(s)\": A list or tuple of genres the movie belongs to (e.g., [\"Drama\", \"Crime\"])."
+    },
+    {
+        "instruction": "Define a function named \"is_prime\" that takes an integer n as input and returns True if n is prime and False otherwise. Then, define another function called \"find_primes\" that loops through all numbers between 1 and 100 inclusive and uses the \"is_prime\" function to determine which ones are prime. Finally, return a list of all prime numbers found during this process.\n\n#Context#\nA bank wants to improve customer service by automating their phone calls to customers who have recently made large purchases or inquiries about their accounts. The bank has given you the task of writing a Python program that can analyze the data from these phone calls and identify potential issues with the bank's services. You have been provided with a dataset containing information about several hundred phone calls, including the date and time of each call, the customer's name and account number, and any issues or complaints raised during the call.\nYour goal is to write a Python program that can analyze this data and identify patterns in customer behavior that may indicate potential problems with the bank's services. You should use a combination of data cleaning, exploratory data analysis, and machine learning techniques to accomplish this task."
+    },
+    {
+        "instruction": "Here's a rewritten version of the programming question that makes it more suitable for beginner Python programmers:\n\n\"Create a new dictionary in Python using the `dict()` function.\""
+    },
+    {
+        "instruction": "Please rewrite the following python code to java using common beginner topics like loops, conditionals, functions, and list operations:\nFor word in words:\n    lower = lower + 1\n    if (word == \"cat\"):\n        cat = cat + 1\n        if (cat == 2):\n            print(\"The number of cats is 2\")\nPlease note that this rewritten instruction follows the method of using loops and conditionals to solve the problem. The code uses a for loop to iterate through each word in the \"words\" list, then checks if the current word equals \"cat\", and increments the variable \"cat\" by one if it does. Finally, it checks if the number of cats is 2, and prints a message if so. This approach follows common beginner topics like loops, conditionals, functions, and list operations."
+    },
+    {
+        "instruction": "Please describe how memory management works in Python as a beginner level student with little to no experience coding in Python using a real-world scenario like purchasing groceries at a supermarket. Include the following:"
+    },
+    {
+        "instruction": "Write a function named `shuffle()` that takes in a list as input and returns a shuffled version of it. Use loops to iterate through the list, conditionals to check if each element is already present in the shuffled list, and functions to generate random numbers for indexing into the original list. To avoid duplicates, keep track of elements added to the shuffled list using a set data structure. Finally, use list operations to append the random element to the shuffled list."
+    },
+    {
+        "instruction": "Please choose one of the following categories: classification, retrieval, generation, or editing, and write a program that can help a beginner Python student learn more about real-world applications of Python programming in that category. Please provide the code written in Java language with the same functionality and functionality as the provided Python code while following the chosen method.\n\n#Classification:\nWrite a program that takes user input from the command line or keyboard and classifies it into different categories based on their features, such as text classification, image classification, etc. The program should use machine learning algorithms to classify the input data.\n\n#Retrieval:\nWrite a program that retrieves relevant information from a database or file system based on user queries. The program should use natural language processing techniques to parse and understand the user's query and retrieve relevant information from the database.\n\n#Generation:\nWrite a program that generates new data or content based on existing data or input. For example, the program could generate a new image or text based on a given prompt. The program should use machine learning algorithms to generate the output.\n\n#Editing:\nWrite a program that edits existing data or content based on user inputs. For example, the program could edit an image or video by adding effects or changing its color scheme. The program should use computer vision or video processing techniques to modify the input data."
+    },
+    {
+        "instruction": "Write a function called `get_common_elements` that takes in two lists as arguments and returns a new list containing only the elements that are present in both original lists. Use a loop to iterate over one of the lists and a conditional statement to check if each element is also present in the other list. Do not use any built-in Python functions for this task.\n\n#Real-world Context#\nImagine you have two shopping baskets, one containing fruits like apples, bananas, and oranges, and the other with vegetables like carrots, potatoes, and broccoli. You want to combine these baskets into a single list of groceries that you can buy at a store together."
+    },
+    {
+        "instruction": "Write a function `print_increasing_numbers` that takes a number as input and prints each number in increasing order up to that number without using loops."
+    },
+    {
+        "instruction": "Write a function in Python that checks if an input number is odd by using the modulo operator (%)."
+    },
+    {
+        "instruction": "Write a Python script that uses BeautifulSoup library to scrape all webpages from \"www.example.com\". Loop through each webpage to extract only the title. Use a conditional statement to ensure only the titles of the pages are extracted and stored in a list. Print the results to the console."
+    },
+    {
+        "instruction": "Write a function in Python to calculate the median of an array of numbers using the following steps:\n\nStep 1: Sort the array in ascending order using the built-in `sorted()` function.\n\nStep 2: Calculate the middle index by dividing the length of the array by 2 and rounding down to the nearest integer.\n\nStep 3: Check if the length of the array is odd or even. If it's odd, the median is at the middle index. Otherwise, calculate the median as the average of the two middle indices (the one before and after the middle index)."
+    },
+    {
+        "instruction": "Write Python code that prints out \"I am a coder\" in a nicely formatted string."
+    },
+    {
+        "instruction": "Write a function named \"to_upper\" that takes a string as input and returns an uppercase version of that string."
+    },
+    {
+        "instruction": "Design a script that retrieves random quotes from a database of famous scientists and displays them in the terminal window every morning using Python."
+    },
+    {
+        "instruction": "Use a for loop to iterate from 0 to 4 instead of using range(5)."
+    },
+    {
+        "instruction": "Write a Python program that calculates Fibonacci numbers using a while loop. The user should input an integer \"n\" and the program should output the sequence of Fibonacci numbers until n is reached."
+    },
+    {
+        "instruction": "Write a Python function that takes a temperature in Celsius as an argument and returns its equivalent in Fahrenheit."
+    },
+    {
+        "instruction": "Write a C++ function to calculate the sum of elements in an array using a for-loop. The function should take an integer array as input and return the sum of all its elements."
+    },
+    {
+        "instruction": "Write a function called `invert_dict` that takes a dictionary as an argument and returns a new dictionary with all the keys and values inverted. The returned dictionary should have the original dictionary's values as keys and the original dictionary's keys as values.\n\nFor example:\n```python\ndef invert_dict(d):\n    # Your code here\n    return result\n\nd = {'a': 1, 'b': 2, 'c': 3}\nprint(invert_dict(d))  # Output: {'1': 'a', '2': 'b', '3': 'c'}\n```"
+    },
+    {
+        "instruction": "Please use the `json` module to convert the JSON string into a dictionary in Python: `{\"name\": \"Jackie\", \"age\": 25}`"
+    },
+    {
+        "instruction": "Write a Python function named `multiply_list` that accepts a list of numbers as input and returns their product as output. The function should be broken down into two steps:\n\nStep 1: Initialize an accumulator variable to store the product of the numbers in the input list.\n\nStep 2: Iterate through the input list and multiply each number by the accumulator variable, storing the result back in the accumulator variable. Finally, return the value of the accumulator variable as the function output."
+    },
+    {
+        "instruction": "Write a Python code to create a list of squares of all the even numbers between 0 and 50 using the range() function and the for loop. Focus on common beginner topics like loops, conditionals, functions, and list operations."
+    },
+    {
+        "instruction": "1. Create a list of strings called 'words'.\n2. Use a for loop to iterate through each element in the 'words' list and use the .append() function to add each element to a new list called 'sorted_list'.\n3. Print the 'sorted_list' list."
+    },
+    {
+        "instruction": "Write a Python program that prints out the first three characters of every item in the list \"Apple\", \"Banana\", \"Orange\"."
+    },
+    {
+        "instruction": "Here's a rewritten version of the original question that's more suitable for a beginner Python student:\n\"Given a list of strings, write a function called `longest_word` that returns the longest word in the list.\"\n\nThis rewritten test focuses on common beginner topics such as loops, conditionals, functions, and list operations. The method chosen is to define a function that takes in a list of strings and returns the longest string in the list."
+    },
+    {
+        "instruction": "Create a class that takes two integer inputs through its methods `add()` and `subtract()`, performing their respective operations in each case. Make sure your code follows best practices for object-oriented programming in Python by adhering to the principles of modularity, encapsulation, and abstraction."
+    },
+    {
+        "instruction": "Please use Python to find all even numbers between 3 and 10 that are divisible by 3 but not by 5."
+    },
+    {
+        "instruction": "Write a Python function that takes two inputs (a boolean value for each input) and returns their logical result based on the selected operation (e.g., AND, OR, XOR)."
+    },
+    {
+        "instruction": "Write a Python function called \"get_random_number\" that takes two integer arguments \"min_value\" and \"max_value\" (inclusive) and returns a random number between these values."
+    },
+    {
+        "instruction": "Define a function named \"print_odd_numbers\" that takes an integer parameter \"n\" as input. The function should return a list of all odd numbers between 1 and n (inclusive).\n\nNote: For example, if the input parameter \"n\" is 5, the output will be [1, 3, 5]."
+    },
+    {
+        "instruction": "How can I use Python to define a function that will return the result of this mathematical expression?"
+    },
+    {
+        "instruction": "Write a Python program that uses a loop to print out all odd numbers from 10 to 45 using the modulo (%) operator to determine if each number is odd or even."
+    },
+    {
+        "instruction": "Please rewrite the following coding problem to make it more suitable for a beginner Python programmer using the following method:\nSimplify existing contexts by making them more relatable to beginners.\n\nWrite a Python class called \"Hotel\" that represents a hotel with an array of rooms. Each room should have a status (i.e., occupied or vacant). The class should include methods for:\n\n* Checking if a room is available by searching the array for an empty room.\n* Booking a room by changing the room's status to \"occupied\".\n* Releasing a room by changing the room's status back to \"vacant\"."
+    },
+    {
+        "instruction": "Please create a for loop that iterates through each item in the list and prints it to the console:\nlist = [1, 2, 3]"
+    },
+    {
+        "instruction": "Write a Python function to calculate the sum of digits for an integer input using a loop that starts at zero and goes up until the input number is reached."
+    },
+    {
+        "instruction": "1. Create a function called `convert_to_binary()` that takes an integer as input and returns its equivalent binary number as a string.\n2. Use list comprehension to create the binary representation of the number."
+    },
+    {
+        "instruction": "1. Write a Python program to find the length of a string.\n2. Declare a variable called \"string\" and assign it the value \"Hello World!\"\n3. Use a for loop to iterate through the characters in the string, incrementing a counter for each character encountered.\n4. After the for loop completes, print the value of the counter as the length of the string."
+    },
+    {
+        "instruction": "Explain how classes in Python are used to model real-world objects and their behavior by giving examples from your personal experience or observations that illustrate how classes can be used to represent complex objects and their relationships with other objects. Use simple and clear language, focusing on beginner topics such as loops, conditionals, functions, and list operations."
+    },
+    {
+        "instruction": "You can use a virtual environment in Python to keep your project's dependencies isolated from other projects on your system. Here is an example of how you can create a new virtual environment and activate it:\n```\n1. Open a terminal or command prompt.\n2. Install the virtualenv package by running the following command:\npip install virtualenv\n3. Create a new virtual environment by running the following command, replacing <name> with the name of your environment:\nvirtualenv <name>\n4. Activate the virtual environment by running the following command, replacing <name> with the name of your environment:\nsource <name>/bin/activate\n5. Your terminal or command prompt will now show that you are working in the new virtual environment. You can deactivate the environment by running the following command:\ndeactivate\n```"
+    },
+    {
+        "instruction": "Write a Python function called `get_median_values()` that takes an array of integers as input and returns an array of the median values for each integer using a small real-world context to make it more suitable for a beginner Python student."
+    },
+    {
+        "instruction": "Write a function named `factorial` that takes an integer `n` as input and returns its factorial using loops and list operations in Python. The purpose of this function is to demonstrate how to calculate a factorial of a positive integer, and it should be simple enough for a beginner Python student to understand and implement correctly."
+    },
+    {
+        "instruction": "Display the current time using a combination of loops, conditionals, functions, and list operations in Python. \n\nUse the following code snippet to help you get started:\n```\nimport datetime\n\ncurrent_time = datetime.now()\nprint(current_time)\n```\nThis code will display the current time in the format \"YYYY-MM-DD HH:MM:SS\". You can modify this code to suit your needs by using loops, conditionals, functions, and list operations to manipulate the displayed information."
+    },
+    {
+        "instruction": "Write a Python program to reverse a string using a for loop, and return the reversed string as output."
+    },
+    {
+        "instruction": "Describe a problem you solved using Python programming by reformatting survey data into a more readable format. Provide an example of how you transformed the data into a more usable format for analysis."
+    },
+    {
+        "instruction": "Write a Python function called \"multiply\" that takes two arguments, x and y, and returns their product. Use a return statement to return the result of multiplying x and y together."
+    },
+    {
+        "instruction": "What is web scraping? Provide a brief description of what web scraping is. Please avoid using technical jargon that may be confusing to a beginner Python programmer."
+    },
+    {
+        "instruction": "Write a Python program to create a list from the JSON code by converting it into a dictionary, using a real-world example of a shopping cart. The list should contain the names and prices of all items in the cart."
+    },
+    {
+        "instruction": "Generate a random number between 1 and 6, inclusive, using Python's built-in `random` library."
+    },
+    {
+        "instruction": "1. What are some examples of data structures in Python that you can use to store different types of data?\n2. How do tuples work in Python and what is their purpose?"
+    },
+    {
+        "instruction": "Define a function `max_loop()` that takes in a list of integers as an argument. The function should use a for loop to iterate through each element in the list and compare it to the current maximum value found in the list. If the current element is greater than the current maximum value, it should be assigned as the new maximum value. After iterating through all elements in the list, return the maximum value found."
+    },
+    {
+        "instruction": "Create a function that takes an integer as input and returns \"even\" if the integer is even, and \"odd\" otherwise. Use this function to test whether a user-inputted integer is odd or even."
+    },
+    {
+        "instruction": "Convert a measurement in inches to its equivalent in centimeters by multiplying the number of inches by 2.54."
+    },
+    {
+        "instruction": "Create a function that takes a matrix as an argument and returns the sum of its diagonal elements. The function should use a loop to iterate through the rows of the matrix and add up the elements in each row at indices 0, 1, and 2. Then, return the resulting sum.\n\nIn this question, we are given a square matrix where we have to find the sum of its diagonal elements. For example, if the input is [1,2,3; 4,5,6; 7,8,9], then the output should be 1 + 5 + 9 = 15.\n\nHint: Think about how you can use a loop to iterate through each row of the matrix and add up the elements at indices 0, 1, and 2."
+    },
+    {
+        "instruction": "Create a Python program that takes an integer input (n) from the user and returns the nth Fibonacci number using loops and conditionals to perform calculations."
+    },
+    {
+        "instruction": "Write a function in Python to convert Fahrenheit temperature to Kelvin and Celsius temperature to Kelvin using the following formulas:\n\n* Fahrenheit to Kelvin: K = (F - 32) * 5 / 9 + 273.15\n* Celsius to Kelvin: K = C + 273.15"
+    },
+    {
+        "instruction": "Create a random integer between 0 and 9 using the randint() function in Python"
+    },
+    {
+        "instruction": "Write a function called `is_palindrome()` that takes in a string as an argument and returns True if the string is a palindrome (reads the same backwards and forwards), otherwise it returns False. Use only basic Python concepts like loops, conditionals, functions, list operations, etc."
+    },
+    {
+        "instruction": "Write a Python program to find the frequency of character in a given string. For example, if the input string is \"Python\", then the output should be 1 since there is only one occurrence of 'o'."
+    },
+    {
+        "instruction": "Find the longest palindromic substring in a given string using Python loops, conditionals, functions, and list operations."
+    },
+    {
+        "instruction": "Write a Python program to convert the string \"abcdef\" into a list of characters using the split() method and store it in a variable named \"char_list\"."
+    },
+    {
+        "instruction": "Write a function called `get_first` that takes in a list as an argument and returns the first element of the list.\n\n#Explanation: #\nThis method uses the keyword `def`, which is used to define functions. The name of the function, `get_first`, must follow after it. The word `as an argument` tells the beginner that a variable will be required as input in order to run this code. \n\n#Further Explanation: #\nThe function `get_first` is defined with the first element of the list `list`, which is referred to using `[]`. To test the code, one must run `get_first(myList)` with a value for `myList`, like so: `print(get_first([1, 2, 3]))` and output should be `1`."
+    },
+    {
+        "instruction": "Write a Python program to calculate the total time taken to bake 13 cupcakes using a kitchen timer with a minimum resolution of 1 second."
+    },
+    {
+        "instruction": "Create a Python class called 'Vector3' that represents a 3-dimensional vector in a game environment. The Vector3 class should have properties for x (horizontal), y (vertical), and z (depth) components and methods to add, subtract, multiply by scalar, get magnitude, and normalize vectors. Include a constructor method with default values for x, y, and z if they are not provided during instantiation."
+    },
+    {
+        "instruction": "Generate a Fibonacci sequence of length 10 using a loop."
+    },
+    {
+        "instruction": "Write a function called `binary_search()` that takes in an array of integers and a target value as inputs, and returns the index where the target value is found in the array if it exists, or -1 if it does not exist. The function should use the binary search algorithm to efficiently find the target value in the array."
+    },
+    {
+        "instruction": "Define a Python function that takes two input lists of points as arguments and calculates their Euclidean distance using `sqrt()`."
+    },
+    {
+        "instruction": "Use a list comprehension to create a list of integers from 1 to 10, then use the \"sum\" function to calculate the sum of the elements in the list."
+    },
+    {
+        "instruction": "Iterate through a list of numbers and print each number on a new line using a for loop."
+    },
+    {
+        "instruction": "Write a function called `get_length` that takes a Python list as input and returns its length, using the following real-world context:\n\nYou are creating an application to track the length of a shopping cart during online shopping. You will use this function to calculate the number of items in the cart."
+    },
+    {
+        "instruction": "Please write a Python program that prints \"HELLO WORLD\" on screen."
+    },
+    {
+        "instruction": "To determine if a given number is even using Python, you can use the modulo operator (%). For example:\n```python\nnum = 42\nif num % 2 == 0:\n    print(\"The number is even\")\nelse:\n    print(\"The number is odd\")\n```"
+    },
+    {
+        "instruction": "Can you tell me what function in Python is used to create a new list? Please provide an example using a real-world context that involves creating and manipulating lists."
+    },
+    {
+        "instruction": "Write a Python function that takes two integers as input and returns their product using the multiplication operator (*)."
+    },
+    {
+        "instruction": "Write a Python program that takes a positive integer `n` as input and returns the sum of all odd numbers less than or equal to `n`."
+    },
+    {
+        "instruction": "Write a function called `get_max` that takes in an array as input and returns the maximum element of the array."
+    },
+    {
+        "instruction": "Write a Python function called `get_unique_elements()` that takes a list of integers as an argument and returns a new list containing only the unique elements in the same order as they appear in the original list."
+    },
+    {
+        "instruction": "Implement a function in Python to check if a name on a business card is spelled correctly using a palindrome checking algorithm. If the function returns true, it indicates that the name is spelled correctly. If it returns false, it suggests there might be an error in the spelling of the name."
+    },
+    {
+        "instruction": "Write a Python function called `reverse_list` that takes a list as an argument and returns a new list with the elements in reverse order. This function is used to sort items based on their IDs, which are generated randomly. The function should include any necessary comments or documentation to help explain how it works and what it does."
+    },
+    {
+        "instruction": "Create a Python script using loops, conditionals, functions, and list operations to find all prime numbers between 1 and a given number using the Sieve of Eratosthenes algorithm, and then print them out in order. Include a brief real-world context to explain why this problem is important in the field of cryptography."
+    },
+    {
+        "instruction": "How do I write a Python function that takes in a list of items and returns all possible combinations as nested lists, ensuring that the order of elements in each nested list does not matter?"
+    },
+    {
+        "instruction": "Please create a Python class called \"Circle\" with a property to store its radius named \"radius\"."
+    },
+    {
+        "instruction": "Create an empty 2D array in Python with 4 columns and 3 rows using a list comprehension:\n```python\narr = [[None for _ in range(4)] for __ in range(3)]\n```"
+    },
+    {
+        "instruction": "Write a function called `volume_of_rectangular_prism` that takes three arguments: `length`, `width`, and `height`. The function should use these arguments to calculate the volume of a rectangular prism in centimeters. The function should return this value as an integer."
+    },
+    {
+        "instruction": "Use recursion to define a function that calculates the total number of eggs in a basket by adding together the number of eggs in each box. The function should take one argument: a list of boxes, where each box is represented as a tuple containing two items: (number_of_eggs, weight_of_box). Return the sum of all the eggs in the basket."
+    },
+    {
+        "instruction": "Create a function called `generate_list` that returns a list of integers from 1 to 10 using loops."
+    },
+    {
+        "instruction": "1. Create a class called `Increment`.\n2. Define two methods in `Increment` named `inc_by_one()` and `print_inc_by_one()`."
+    },
+    {
+        "instruction": "Please write a Python function called \"remove_whitespaces\" that takes a string as input and returns the same string without any whitespace characters.\n\nExample:\n```\nstring = \"Hello World!\"\nprint(remove_whitespaces(string))  # Output: HelloWorld!\n```"
+    },
+    {
+        "instruction": "Write a Python function called \"print_hello\" that prints the string \"Hello World\" with proper indentation and style guidelines. The function should use loops and conditionals to print the string multiple times, and list operations to perform different tasks. Call the function in your program to print the desired output."
+    },
+    {
+        "instruction": "Create a class in Python named \"Rectangle\" with two attributes: width and height. The class should have two methods:\n\n1. `calculate_area()` which returns the area of the rectangle based on the width and height attributes.\n2. `calculate_perimeter()` which returns the perimeter of the rectangle based on the width and height attributes."
+    },
+    {
+        "instruction": "1. Create a variable for the empty dictionary: `my_dict = {}`"
+    },
+    {
+        "instruction": "Write a function that takes an integer as input and returns the number of positive numbers in the list using a loop and conditional statements."
+    },
+    {
+        "instruction": "Write a Python code to add the first item in a grocery shopping list to the end of the same list to reflect that you bought all items already purchased and still need to buy them again next week."
+    },
+    {
+        "instruction": "Write a Python program that counts the number of times a given word appears in a sentence from a web page or generated by your program."
+    },
+    {
+        "instruction": "Write a for loop in Python that iterates over a list of numbers and prints each number to the console."
+    },
+    {
+        "instruction": "How to calculate the number of unique characters in a given string:\n1. Use a for loop to iterate over each character in the string.\n2. Create an empty list to store the unique characters.\n3. Use an if statement to check if the current character is already in the list, if not, add it to the list.\n4. Return the length of the list."
+    },
+    {
+        "instruction": "Write a function in Python that takes a string as an input and returns it with all punctuation removed. The output should be a new string without any punctuation marks."
+    },
+    {
+        "instruction": "Write a Python script that prompts the user to enter an integer value (n) representing the number of terms they want to see in the Fibonacci series. The script should use a loop and list operations to print out the first n terms of the Fibonacci series, starting from 0."
+    },
+    {
+        "instruction": "Rephrase the question to make it simpler for a beginner Python student:\n\nTest the Python code for syntax errors by adding spaces between keywords and arguments, removing extra space after function name, and correcting indentation of return statement."
+    },
+    {
+        "instruction": "Write a Python program that creates a list called `squares` containing the squares of numbers from 1 to 10 using loops and list operations."
+    },
+    {
+        "instruction": "Please use a loop to go through each number in the list and check if it is greater than the current smallest number in the sorted portion of the list. If it is, add it to the end of the sorted part of the list and continue checking numbers until you have added all numbers less than or equal to the largest number in the original list."
+    },
+    {
+        "instruction": "Define a new class named ComplexNumber that allows us to represent complex numbers using two properties: real and imaginary. Create getters and setters for both of these properties. Implement an addition method that takes another ComplexNumber instance as a parameter and returns the sum of the two numbers, and overload the + operator to use this method."
+    },
+    {
+        "instruction": "Create a class called \"Coin\" with two member variables: \"denomination\" (e.g. quarter) and \"value\" (e.g. 0.25). Use \"denomination\" to store the name of the coin, and use \"value\" to store its value in dollars."
+    },
+    {
+        "instruction": "Here's a rewritten version of the programming question that meets the requirements:\n\nTask:\nYou have been hired as a security consultant to analyze a website that uses user input evaluation with Python's eval function. Identify any potential security vulnerabilities in the code and suggest ways to fix them. Provide a clear explanation for each finding and proposed solution."
+    },
+    {
+        "instruction": "Design a function called `reverse_string()` that takes a string as input and returns the reverse of the original string.\n\n1. Create an empty string called `reversed_string`.\n2. Loop through each character in the input string using a for loop, starting from the last character and moving backwards to the first character.\n3. Append each character to `reversed_string` in reverse order.\n4. Return `reversed_string`."
+    },
+    {
+        "instruction": "Create a function called \"random_numbers\" that returns a list of 10 random numbers between 1 and 10 (inclusive) using the Python built-in random module."
+    },
+    {
+        "instruction": "1. Create a new dictionary that contains only the keys from the original dictionary.\n2. Sort the list of keys in descending order based on their corresponding values in the original dictionary.\n3. Use the sorted list of keys to create a new dictionary with the same key-value pairs as the original dictionary, but now sorted by value in descending order."
+    },
+    {
+        "instruction": "Write a function that uses selection sort to return sorted integers.\n\nNote: This instruction focuses on the essential parts of the problem, including providing a clear and simple description of the desired output."
+    },
+    {
+        "instruction": "Write a function called `get_smallest` that takes an array of integers as input. The function should return the smallest number in the array using only loops, conditionals, functions, and list operations."
+    },
+    {
+        "instruction": "Create a function called `add` that takes in two arguments `a` and `b`, and returns their sum. Use this function to calculate the sum of two numbers."
+    },
+    {
+        "instruction": "Write a function that takes an array of integers as input and returns the first index at which a given element can be found in the array. If the element is not present in the array, return -1. The input array will always contain unique elements.\n\nExample:\n\ninput array = [1, 2, 3, 4, 5]\ntarget element = 3\noutput = 2"
+    },
+    {
+        "instruction": "Write a function called \"is_anagram\" that takes two strings as input and returns True if they are anagrams, False otherwise. Use loops and list operations to check if all the characters in both strings are equivalent, ignoring case and order."
+    },
+    {
+        "instruction": "Create a list of 10 integers between 1 and 10 using Python's built-in `range` function. Select a random integer from the list using Python's built-in `random` library."
+    },
+    {
+        "instruction": "Classify the following movie review as positive or negative sentiment using a machine learning algorithm in Python:\n\n\"This movie was terrible!\"\n\n---\n\nPlease provide your code to classify this movie review using a machine learning algorithm in Python."
+    },
+    {
+        "instruction": "Write a Python function called \"fibonacci\" that takes an integer input (n) and returns the first n numbers in the Fibonacci sequence using the formula: f(n) = f(n-1) + f(n-2)."
+    },
+    {
+        "instruction": "Write a Python program to find the sum of all prime numbers in a given range using loops and conditionals.\n\n#Explanation#\nTo solve this problem, we will need to use loops and conditionals to iterate through the range of numbers and check if each number is prime. We can then add up the prime numbers to find the total sum.\n\nHere's a step-by-step approach to solving this problem:\n\n1. Define a function called `is_prime` that takes in a single integer as an argument. This function should use loops and conditionals to check if the number is prime.\n2. Create a list of integers from the start of the range to the end of the range, using a loop.\n3. Use a second loop to iterate through the list of integers and call the `is_prime` function on each integer. If an integer is prime, add it to a new list called `primes`.\n4. Use a third loop to sum up the elements in the `primes` list, which will give us the total sum of all prime numbers in the range.\n5. Return the total sum as the output of the function."
+    },
+    {
+        "instruction": "Use the load() function of the json module to convert a JSON string into a Python dictionary object that can be easily manipulated and accessed."
+    },
+    {
+        "instruction": "Write a Python program that retrieves data from a website using a try-except block to handle exceptions. If the website is currently unavailable or under maintenance, display an appropriate error message to the user."
+    },
+    {
+        "instruction": "What is a \"class\" in Python, and how do I create one?"
+    },
+    {
+        "instruction": "Write a function called \"contains_substring\" that takes a list of strings and a substring as input parameters. The function should return a list containing only the strings from the input list that contain the given substring, using a context related to food delivery and ordering online."
+    },
+    {
+        "instruction": "Create a depth-first search algorithm in Python using recursive functions to search for a specific value within a graph."
+    },
+    {
+        "instruction": "Write a Python program that counts the number of times a specific word appears in a given string. The program should take two inputs from the user: a text string and a search word. It should then count the number of times the search word appears in the text string and print the result."
+    },
+    {
+        "instruction": "Create a Python script to extract all words that start with the letter \"a\" from the text of a news article about a new AI assistant program at a local university."
+    },
+    {
+        "instruction": "Modify the code to print out only numbers in the list using loops and list operations."
+    },
+    {
+        "instruction": "To find out how many days in a year using a formula for leap years in Python, follow these steps: \n1. Start by calculating the number of leap years between two given dates, say 01/01/1990 and 31/12/2020.\n2. To calculate this, first get the difference between the two dates in terms of days (using datetime.timedelta).\n3. Then, you can use a while loop to add up the number of leap years during that period of time using the formula 4 divides the year perfectly and also the year is divisible by 100, but not by 400 (using modulo division).\n4. Finally, sum up all the days in each year to get the total number of days between the two given dates.\n\nThe code for this will look something like:\n```\nfrom datetime import datetime, timedelta\n\ndef calculate_leap_years(date1, date2):\n    num_days = 0\n    while date1 < date2:\n        if date1.year % 4 == 0 and (date1.year % 100 != 0 or date1.year % 400 == 0):\n            num_days += 366\n        else:\n            num_days += 365\n        date1 = date1 + timedelta(days=1)\n    return num_days\n```"
+    },
+    {
+        "instruction": "Write a Python function that uses a loop to print all numbers from 1 to 10, using the following syntax:\n```python\ndef print_numbers(start, end):\n    # Your code here\n    return result\n```\nYou can use the `range()` function to generate a sequence of numbers.\n\nRemember that in Python, functions are first-class citizens and can be called like any other object. You don't need to define them before calling them, but you should always declare them before using them."
+    },
+    {
+        "instruction": "Please write a Python code to sort a list of five numbers in increasing order using the .sort() method in a real-world context where you have a list of student grades from an online course and need to arrange them in increasing order so that students can see their positions."
+    },
+    {
+        "instruction": "Write a Python function named \"contains_hello\" that takes in a string as an argument and returns True if the string contains the word \"hello\". Then, call the function with the string \"goodbye, world!\" to verify it works correctly."
+    },
+    {
+        "instruction": "Using the Requests library to make an HTTP request with Python:\n1. Import the Requests library by using `import requests`."
+    },
+    {
+        "instruction": "Write a Python function called \"largest_integer\" that takes an array of integers as input and returns the largest integer in the array. If the array is empty, return 0."
+    },
+    {
+        "instruction": "Create a class called \"Book\" in Python to store information about your favorite book. The class should have attributes such as title, author, publication year, and genre."
+    },
+    {
+        "instruction": "Please describe a fictional scenario where you would use Python programming to solve a problem."
+    },
+    {
+        "instruction": "Sort a list of numbers from smallest to largest for a candy store owner who wants to display the candy bars in descending order by price."
+    },
+    {
+        "instruction": "Write a Python function called \"sum_list\" that takes in a list of numbers and returns their sum."
+    },
+    {
+        "instruction": "Please rewrite the following loop as a list comprehension in Python using the context of generating a list of even numbers from 0 to 10:\n```\nnumbers = [i for i in range(10) if i % 2 == 0]\n```"
+    },
+    {
+        "instruction": "Create a Python function that takes a string as input and returns True if the string can be read the same way from left to right and from right to left, and False otherwise. Provide an example of how the function should work with a real-world context."
+    },
+    {
+        "instruction": "Write a Python function to divide two integers without using the '/' operator in the context of a calculator that only supports addition and multiplication operations."
+    },
+    {
+        "instruction": "Write a Python program to display real-time stock prices for selected companies using their symbol (e.g., AAPL, TSLA, AMZN) and the following information:\n* Company name\n* Latest closing price\n* Change in closing price since yesterday\n* Percentage change in closing price since yesterday\n* Volume traded\n* Market capitalization\n* Total number of shares outstanding\nAllow the user to select a specific stock to view its detailed information."
+    },
+    {
+        "instruction": "Please create a Python script that takes a dictionary as input and returns a list containing only the values for the \"hobbies\" key. The dictionary should be in the format {\"name\": \"John\", \"age\": 30, \"hobbies\": [\"reading\", \"hiking\", \"biking\"]}."
+    },
+    {
+        "instruction": "Please create a Python program to print out the constant list of characters in alphabetical order from the string \"Hello World!\"."
+    },
+    {
+        "instruction": "1. Write a function named \"remove_duplicates\" that takes in a list of integers as an argument.\n2. Create an empty set to store unique elements.\n3. Iterate through the input list and check if each element is already present in the set. If it's not, add it to the set and return the list of unique elements."
+    },
+    {
+        "instruction": "Write code in Python that finds the longest word in a sentence using a list comprehension, with a real-world context of a sentence analysis program. The input sentence will be provided as a string."
+    },
+    {
+        "instruction": "Create a Python function `calculate_sphere_volume()` that takes in the radius of a sphere as its parameter and returns the volume of that sphere."
+    },
+    {
+        "instruction": "Write a Python program to sort a list using Bubble Sort. The program should take one argument (a list of integers) and return a sorted version of that list."
+    },
+    {
+        "instruction": "Write a Python function that takes a root node as input and returns a list of all the nodes in a tree using pre-order traversal algorithm. The function should return the nodes in the order they are visited."
+    },
+    {
+        "instruction": "You are a beginner Python student who has been asked to write a program that rotates an array of numbers by k positions using arrays and functions. To make things more interesting, you have been given a real-world scenario in which you will use your knowledge of programming.\n\nYou work at a fast food restaurant and you want to automate the process of ordering food from the customers. You have a program that takes an array of integers as input, where each integer represents the order number of a customer. You need to write a function that rotates this array by k positions, where k is a positive integer, so that the first item in the array becomes the (k+1)th item in the array.\n\nFor example, if the input array is [1, 2, 3, 4, 5], and you want to rotate it by k = 2, the output array should be [4, 5, 1, 2, 3].\n\nYour program needs to be efficient and scalable, so that it can handle a large number of customers. Write your function in a way that makes sense for this scenario. Good luck!"
+    },
+    {
+        "instruction": "Given a Python dictionary that represents a table with columns \"fruit\" and \"vegetable\", create an HTML-ready table using a for loop to iterate over each key in the dictionary."
+    },
+    {
+        "instruction": "Write a Python script that creates an array from a list of strings in order to display a list of options on a website for users to select their preferred order."
+    },
+    {
+        "instruction": "Generate 1000 random integers between 0 and 250 in Python using the `random` module."
+    },
+    {
+        "instruction": "Rewrite the following programming question to make it more suitable for a beginner Python student using the following method:\n\n1. Add a small real-world context to the question without increasing complexity.\n2. Use a simpler and more direct approach to solving the problem, avoiding advanced concepts or complex loops.\n3. Make sure the rewritten test is clear, simple, and directly follows the chosen method.\n\nOriginal Test:\nDefine a function `find_median` that takes a list of numbers as an argument and returns their median. Use a loop to iterate over the list, and use conditional statements to determine if the element is greater than or less than the previous element. If it is greater, increment a counter by 1. If it is less, decrement a counter by 1. Once the loop has completed, check if the counter is odd or even, and return the median accordingly.\n\nRewritten Instruction:\nWrite a function `find_median` that takes a list of numbers as an argument and returns their median. Use a simple loop to iterate over the list and check if each element is greater than or less than the previous element. If it is greater, increment a counter by 1. If it is less, decrement a counter by 1. Once the loop has completed, check if the counter is odd or even, and return the median accordingly."
+    },
+    {
+        "instruction": "What is the largest number in the list [2, 15, 13, 8, 6]?"
+    },
+    {
+        "instruction": "Write a function called \"rectangular_area\" that takes as input a list of numbers and returns the sum of the area covered by those rectangles. The list should contain the length and width of each rectangle, and the function should return the sum of all the areas. For example, if the input is [2, 4, 6], the output should be the sum of the area of all three rectangles: 10 + 8 + 9 = 27."
+    },
+    {
+        "instruction": "You are a data analyst for a retail company that sells multiple products in various categories. You have been tasked with prioritizing your inventory management system by placing the most frequently sold product at the top of the list and the least frequently sold product at the bottom of the list, based on sales data.\n\nYou are provided with a list of products: my_list = [4, 5, 8, 6, 9]. Can you help rearrange this list such that the greatest element is placed at the first position and the smallest element at the last?"
+    },
+    {
+        "instruction": "Please write a Python function that takes an integer as input and returns a list of its prime factors."
+    },
+    {
+        "instruction": "Write a function that takes in two arguments: a list and an item to be added to the list. The function should use a loop to add the item to the list and return the updated list."
+    },
+    {
+        "instruction": "Input two numbers from user. Find their greatest common divisor in Python."
+    },
+    {
+        "instruction": "Write a function that checks if all characters in a string are unique. If all characters are unique, return True; otherwise, return False."
+    },
+    {
+        "instruction": "Write a Python function called \"check_alphabet\" that takes a string as input and returns True if the string contains all 26 letters of the alphabet (uppercase or lowercase) using loops and list operations."
+    },
+    {
+        "instruction": "Write a for loop to print out all natural numbers in range 0 to 10 using the \"range\" function and assigning it to a variable called \"my_numbers\".\n\nAdding context: In a real-world scenario, you are creating a program that prints out the numbers from 0 to 10 using a for loop. You want to make sure that your code is simple enough for a beginner Python student to understand and complete with minimal difficulty."
+    },
+    {
+        "instruction": "Create a Python program that calculates the total number of students who passed an exam. The input list contains passing scores, where each score represents a passing grade. Please note that only passing grades should be considered when calculating the total number of passing students."
+    },
+    {
+        "instruction": "Can you write a Python program that checks if two given strings are anagrams of each other?"
+    },
+    {
+        "instruction": "Implement a function that takes an integer as input and returns a boolean indicating whether it is prime or not. The function should use the following steps:\n\n1. Define a variable named `is_prime` to store the result of the test.\n2. Use a loop to iterate from 2 to the square root of the input number.\n3. For each iteration, check if the current value is divisible by the input number without leaving a remainder (e.g., using the modulo operator).\n4. If any number evenly divides the input number, set `is_prime` to False and exit the loop.\n5. Otherwise, set `is_prime` to True if the loop completes successfully.\n6. Return `is_prime`."
+    },
+    {
+        "instruction": "Write a Python code snippet to print all items from a list. How will you do it?"
+    },
+    {
+        "instruction": "To delete a specific key-value pair from a dictionary in Python, use the del keyword followed by the name of the dictionary and the key you want to remove, as shown below:\ndel my_dict[\"key1\"]"
+    },
+    {
+        "instruction": "Generate ten random numbers using Python's built-in `random` module. Ensure each number is between 0 and 100 (inclusive)."
+    },
+    {
+        "instruction": "Write a Python script that uses the `collections.Counter` function to find the most frequent words in the sentence \"The quick brown fox jumps over the lazy dog.\""
+    },
+    {
+        "instruction": "Create a class called \u201cPerson\u201d in Python that takes in name and age as parameters and ensures the data entered is correct, with a small real-world context to make it more suitable for a beginner Python student."
+    },
+    {
+        "instruction": "Create a Python function called \"sum_list\" that takes a list of numbers as an input parameter and returns the sum of all the numbers in the list.\n\nExample: If the user enters [1, 2, 3], then the output should be 6."
+    },
+    {
+        "instruction": "Create a list of dictionaries where each dictionary contains the name and age of one person using Python."
+    },
+    {
+        "instruction": "Create a Python function that takes in an array of numbers as an argument and returns the sum of all even numbers in the array."
+    },
+    {
+        "instruction": "Write a for loop that prints numbers from 10 to 20 using Python. Hint: You can use the range() function with two arguments to specify the starting and ending values of the loop."
+    },
+    {
+        "instruction": "What is the syntax for sorting a list in ascending order using Python?"
+    },
+    {
+        "instruction": "Write a Python program to read an integer from user input and print its absolute value using the abs() function."
+    },
+    {
+        "instruction": "Using Python and pandas, calculate the mean of all columns in the \"Dataframe\" dataframe using the following code:\n```python\nimport pandas as pd\ndf = pd.read_csv(\"data.csv\") #replace with your dataset\nmean_cols = df.mean() \nprint(mean_cols)\n```\nIn this example, we import the pandas library and use it to read a CSV file called \"data.csv\" and store its content in a dataframe variable called \"df\". We then calculate the mean of all columns using the \"mean()\" function and store the result in a variable called \"mean_cols\". Finally, we print the result to the console."
+    },
+    {
+        "instruction": "How can you separate a long sentence into individual words using Python? Provide a solution using string methods like `.split()` and regular expressions, and explain your choice of method and why you think it is appropriate for this task."
+    },
+    {
+        "instruction": "Please write a Python program that takes in a tuple of items (e.g., fruits, bread) as input and prints out all unique items in the tuple. For example: If the input is `(banana, apple, orange, banana, bread)`, the output should be `('banana', 'apple', 'orange', 'bread')`."
+    },
+    {
+        "instruction": "How do I use regular expressions (regex) to identify and replace text in Python?"
+    },
+    {
+        "instruction": "Imagine you are working as an employee at a restaurant that offers online ordering services. One of your tasks is to parse the delivery time from customer orders. Write a Python program that takes in a string representing a date and returns a datetime object representing the corresponding date and time. Be sure to handle any errors that may occur during parsing, using the following code as a reference:\n\n```\nimport datetime\n\ndef parse_delivery_time(date_string):\n    try:\n        dt = datetime.datetime.strptime(date_string, '%m/%d/%Y')\n        return dt\n    except ValueError:\n        print(\"Invalid date format\")\n    return None\n```"
+    },
+    {
+        "instruction": "Convert temperatures from Fahrenheit to Celsius by using a formula in Python."
+    },
+    {
+        "instruction": "Write a Python code snippet that randomly selects one number from the list [1, 2, 3, 4, 5, 6]."
+    },
+    {
+        "instruction": "Write a function called \"max_number\" that takes two integer parameters (num1 and num2) as input and returns the larger of the two numbers."
+    },
+    {
+        "instruction": "Write a function that takes a list as an argument and prints the first 10 elements of the list using a for loop with an index variable."
+    },
+    {
+        "instruction": "Write a Python function to find the mode of a given list of numbers by using a dictionary to count the frequency of each number in the list, ensuring the function is clear and simple enough for a beginner Python student to follow."
+    },
+    {
+        "instruction": "Write a Python program that calculates the mean of a list of numbers entered by the user in a real-world context."
+    },
+    {
+        "instruction": "Write a Python function called `reverse_word` that takes in a single string argument representing a word and returns the reverse of the word."
+    },
+    {
+        "instruction": "Please create a Python class called 'Animal' with 2 fields: name and type. Use loops, conditionals, functions, and list operations to solve the problem."
+    },
+    {
+        "instruction": "Convert the following information about a person into a Python dictionary:\nAlice is 32 years old, married with two children.\n\nNote: This rewritten test follows the method of simplifying existing contexts to make them more relatable to beginner Python programmers. The real-world context has been modified by changing the name from John to Alice and the age from 25 to 32, while keeping the same structure and details about being married with two children."
+    },
+    {
+        "instruction": "Create a Python dictionary using the JSON string \"{\"id\": 105, \"name\": \"John Doe\", \"age\": 30}\" and print the resulting dictionary."
+    },
+    {
+        "instruction": "Create a LaTeX table with 4 columns to compare Java, Python, C#, and JavaScript programming languages."
+    },
+    {
+        "instruction": "Create a Python script that returns the sum of all integers in a list called `lst`. The list contains integers 1, 2, 3, 4, and 5."
+    },
+    {
+        "instruction": "Create a function that takes a URL as an input and returns a list of all links on that page using loops to iterate through the HTML elements of the page and conditionals to check if each element is an anchor tag (<a>)."
+    },
+    {
+        "instruction": "Write a Python program that prints \"Hello World\" using the `print()` function."
+    },
+    {
+        "instruction": "Write a function called `reverse_string` in Python that takes a string as an argument and returns the reverse of the given string."
+    },
+    {
+        "instruction": "Write a Python class called InsertionSort with one method named sort that takes an integer array as input and returns the sorted array using the insertion sort algorithm."
+    },
+    {
+        "instruction": "Write a Python function that takes a string as input and returns a list of all alphabetic words in the string using regular expressions."
+    },
+    {
+        "instruction": "1. Import the requests and BeautifulSoup libraries.\n2. Use the requests library to fetch the web page using the `get()` method.\n3. Use the `content` attribute of the response object to get the HTML content of the web page.\n4. Pass the HTML content to the BeautifulSoup constructor and assign it to a variable.\n5. Use the `find_all()` method to find all the paragraph elements in the web page.\n6. Iterate over the list of paragraphs and extract their text using the `get_text()` method."
+    },
+    {
+        "instruction": "Write a function that checks whether a list of integers is sorted in ascending order using a loop. The input will be a list of integer numbers, and the output should be True if the list is sorted in ascending order, and False otherwise."
+    },
+    {
+        "instruction": "Write a Python program to find the optimal number of clusters using the following methods:\n\n1. K-Means++ algorithm\n2. Elbow method\n3. Silhouette method"
+    },
+    {
+        "instruction": "Please create a Python dictionary using keys from the \"Keys\" list as key names and values from the \"Values\" list as corresponding values for each key name."
+    },
+    {
+        "instruction": "To write less Python code for a deep learning model using loops, conditionals, functions, and list operations, follow these steps:\n\n1. Define a loop to iterate over the data.\n2. Use a conditional statement to check if the model has already been created or not.\n3. If not, define a function that creates the necessary layers for the deep learning model using list operations.\n4. Call this function inside the loop to create multiple models with different parameters.\n5. Finally, use a conditional statement again to check if all the models have been trained and then save them.\n\nNote: This is just one possible way to write less Python code for deep learning models. There are many other ways to achieve the same goal using different programming techniques."
+    },
+    {
+        "instruction": "Create a Python class called `PlateStack` to represent a stack of paper plates for a catering company's inventory management system. The `PlateStack` class should have methods to add and remove plates, check the current number of plates on the stack, and print a summary of the stack's contents.\n\nUse this opportunity to practice defining classes, methods, and using lists in Python."
+    },
+    {
+        "instruction": "Sort an array using a try-except block to catch exceptions."
+    },
+    {
+        "instruction": "How can you split a string like \"192.168.0.1\" into four parts separated by periods in Python?"
+    },
+    {
+        "instruction": "Write a Python program to separate even numbers from odd numbers in a list of integers using the \"list\" function."
+    },
+    {
+        "instruction": "Write a Python function called \"is_value_in_dict\" that takes a dictionary and a value as input parameters. The function should return True if the value is in the dictionary, and False otherwise.\n\nUse a for loop to iterate over the keys of the dictionary, and use a conditional statement to check if the current key's value is equal to the input value. If so, set the function's output variable to True and break out of the loop. Otherwise, continue iterating until all keys have been checked or a match is found.\n\nAt the end of the function, return the output variable as the function's return value."
+    },
+    {
+        "instruction": "Instructions:\nWrite a Python function that takes in a string, a substring to replace, and a new substring. The function should return the original string with all occurrences of the specified substring replaced with the new one. For example, if the input string is \"Hello World\", the input substring is \"World\", and the new substring is \"Python\", the output should be \"Hello Python\".\n\nYou can assume that the substring to replace only appears once in the original string."
+    },
+    {
+        "instruction": "Please write a Python function that takes a list of tuples as an argument and returns the same list sorted in ascending order based on the first element of each tuple."
+    }
+]
