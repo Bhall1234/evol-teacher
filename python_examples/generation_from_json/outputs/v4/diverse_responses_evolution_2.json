@@ -1,0 +1,11 @@
+[
+    {
+        "instruction": "Write a function named \"factorial\" that takes one positive integer argument \"n\" and returns its factorial, which is defined as n * (n - 1) * (n - 2) ... * 1 for positive integers n > 0."
+    },
+    {
+        "instruction": "Write a Python code to determine if a given number is even or odd using an `if-else` statement."
+    },
+    {
+        "instruction": "To sort a list of integer numbers in descending order using Python, you can use the `sorted()` function with the `reverse` parameter set to `True`. Here is an example:\n```python\nnumbers = [10, 5, 8, 2, 6, 9]\nsorted_numbers = sorted(numbers, reverse=True)\nprint(sorted_numbers) # Output: [10, 9, 8, 6, 5, 2]\n```\nYou can also use the `reverse()` method of a list to achieve the same result. Here is an example:\n```python\nnumbers = [10, 5, 8, 2, 6, 9]\nsorted_numbers = numbers.reverse()\nprint(sorted_numbers) # Output: [10, 9, 8, 6, 5, 2]\n```"
+    }
+]

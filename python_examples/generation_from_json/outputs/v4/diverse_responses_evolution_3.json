@@ -1,0 +1,11 @@
+[
+    {
+        "instruction": "Write a function named \"factorial\" that takes one positive integer argument \"n\" and returns its factorial, which is defined as n * (n - 1) * (n - 2) ... * 1 for positive integers n > 0."
+    },
+    {
+        "instruction": "Create a function called `is_even()` that takes a single integer argument `num`. Use an if-else statement to determine whether `num` is even. If it is, return the string \"even\". If not, return the string \"odd\"."
+    },
+    {
+        "instruction": "Sort a list of integer numbers in descending order using Python. You can use either the `sorted()` function with the `reverse` parameter set to `True`, or the `reverse()` method of a list to achieve this result."
+    }
+]
