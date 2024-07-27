@@ -60,11 +60,11 @@ def diversify_questions(instructions, model: str, temperature: float, max_tokens
     ]
     
     new_tasks = []
-    for task in instructions:
+    for task in tqdm(instructions, desc="Diversifying questions"):
         chosen_method = random.choice(methods)
         prompt = (f"Please rewrite the following programming question to make it more suitable for a beginner Python student using the following method:\n{chosen_method}\n\n"
                   f"#Original Test#\n{task['instruction']}\n\n"
-                  "Ensure the rewritten instruction is clear, simple, and directly follows the method chosen. "
+                  "Ensure the rewritten test is clear, simple, and directly follows the method chosen. "
                   "Do not include phrases like 'here is a rewritten version' or 'rewritten question' or 'rewritten instruction' ."
                   "\n\n#Rewritten Instruction#")
         

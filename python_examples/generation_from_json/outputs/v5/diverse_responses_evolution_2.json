@@ -1,0 +1,11 @@
+[
+    {
+        "instruction": "Write a Python function that calculates the total number of cakes shared among all guests at a birthday party with 30 guests. The input to the function is the number of cakes brought by each guest, and the output should be the total number of cakes shared between all guests."
+    },
+    {
+        "instruction": "Write Python code to check if the answer is even by first writing a statement that checks whether the number is divisible by 2. If it is divisible by 2, then print \"Even.\" Otherwise, print \"Odd.\""
+    },
+    {
+        "instruction": "You have been hired as a data analyst at a car manufacturing company. You need to arrange the sales figures for different types of cars in descending order to determine which ones are selling well. You have been given 10 numbers that represent the number of cars sold, and you must use Python programming language to sort them in descending order (i.e., highest number first). How would you approach this problem?"
+    }
+]

@@ -1,0 +1,11 @@
+[
+    {
+        "instruction": "Write a Python function to calculate the factorial of a given number in the context of a birthday party with 30 guests, where each guest brings a cake that can be shared equally among all 30 guests. The input is the number of cakes brought by each guest, and the output should be the total number of cakes shared between all guests."
+    },
+    {
+        "instruction": "Is the number even? (True/False)\n\nWrite Python code to check if the answer is true. If it is true, print \"Even.\" Otherwise, print \"Odd.\""
+    },
+    {
+        "instruction": "You have just been hired at a new job as a data analyst for a company that produces and sells automobiles. You have to analyze the sales data of several car models and find out which ones are performing better in terms of sales. Your task is to sort a list of integer numbers in descending order using Python programming language.\n\nYou have been given a list of 10 integers, representing the number of cars sold for each model, and your goal is to arrange them in descending order (i.e., highest number first). How would you approach this problem?"
+    }
+]
