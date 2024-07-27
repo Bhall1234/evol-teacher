@@ -90,7 +90,7 @@ def check_instruction(instruction) -> bool:
 
 def generate_diverse_dataset(
     output_dir="./python_examples/",
-    seed_tasks_path="./python_examples/curated_python_examples.json",
+    seed_tasks_path="./python_examples/extract_python_only/curated_python_examples.json",
     evolutions=3,
     temperature=1,
     max_tokens=2048,
