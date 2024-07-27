@@ -87,5 +87,5 @@ if __name__ == "__main__":
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     output_file_path = os.path.join(output_dir, f'generated_python_questions_{timestamp}_{random_string}.json')
     
-    num_questions = 100  # Change to generate more or fewer questions
+    num_questions = 1000  # Change to generate more or fewer questions
     main(output_file_path, num_questions)
