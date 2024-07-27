@@ -58,7 +58,7 @@ def main(input_file_path, output_file_path, sample_size):
     logging.basicConfig(filename="app.log", filemode="w", format='%(name)s - %(levellevelname)s - %(message)s')
     logger = logging.getLogger(__name__)
 
-    model_name = "lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF"
+    model_name = "lmstudio-community/codellama-13b-instruct" #does this even matter?
     temperature = 1.0
     max_tokens = 2048  # Adjust as necessary
 
