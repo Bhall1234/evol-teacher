@@ -53,12 +53,12 @@ def generate_random_string(length=8):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(length))
 
-def main(input_file_path, output_file_path, sample_size):
+def main(input_file_path, output_file_path, sample_size=None):
     load_dotenv(override=True)
     logging.basicConfig(filename="app.log", filemode="w", format='%(name)s - %(levellevelname)s - %(message)s')
     logger = logging.getLogger(__name__)
 
-    model_name = "lmstudio-community/codellama-13b-instruct" #does this even matter?
+    model_name = "lmstudio-community/codellama-13b-instruct"
     temperature = 1.0
     max_tokens = 2048  # Adjust as necessary
 
@@ -81,8 +81,7 @@ def main(input_file_path, output_file_path, sample_size):
     print(f"Total duration: {end_time - start_time:.2f} seconds")
 
 if __name__ == "__main__":
-    #input_file_path = './python_examples/evolved_questions/outputs/evolved_python_questions_20240724173137_bkhpcvgx.json' # EVOLVED
-    input_file_path = './python_examples/generation_from_model_only/outputs/generated_python_questions_20240724171958_weptfvyg.json' # NOT EVOLVED
+    input_file_path = './python_examples/combined_questions/combined_output.json'
     output_dir = './python_examples/answered_questions/outputs'
     os.makedirs(output_dir, exist_ok=True)
     
@@ -91,5 +90,5 @@ if __name__ == "__main__":
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     output_file_path = os.path.join(output_dir, f'paired_python_qa_{timestamp}_{random_string}.json')
     
-    sample_size = 5  # Change to limit the number of questions processed for testing
+    sample_size = None  # Set to None to process the entire dataset
     main(input_file_path, output_file_path, sample_size)
