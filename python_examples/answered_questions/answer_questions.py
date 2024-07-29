@@ -30,7 +30,7 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     paired_qa = []
 
     # LAST WORKING
-    """prompt_answer = ( 
+    prompt_answer = ( 
     "Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
     "The answer should include:\n"
     "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
@@ -46,10 +46,10 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     "Prompt:\n"
     "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISN'T WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important.\n\n"
     "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE."
-    )"""
+    )
 
-        
-    prompt_answer = (
+    # partially correct prompt    
+    """prompt_answer = (
     "Please generate an explanation and partial code for the following beginner-level Python programming question. "
     "The answer should include:\n"
     "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
@@ -65,7 +65,7 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     "Prompt:\n"
     "Ask the user to complete the missing parts of the code. DO NOT provide an explanation AS TO HOW TO COMPLETE THE CODE. DO NOT PROVIDE AN EXPLANATION as to how to complete the code. NOT providing an explanation is very important.\n\n"
     "IMPORTANT: DO NOT EXPLAIN HOW TO COMPLETE THE CODE. ONLY PROVIDE THE PARTIAL CODE AND ASK THE USER TO COMPLETE IT. THE PARTIAL CODE MUST HAVE SOME PARTS MISSING OR INCOMPLETE."
-    )
+    )"""
 
     for question in tqdm(questions, desc="Generating answers"):
         prompt = prompt_answer.format(question=question['instruction'])
