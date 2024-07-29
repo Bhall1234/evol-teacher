@@ -58,7 +58,7 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     "Explanation:\n"
     "Provide a clear and concise explanation of the problem.\n\n"
     "Incorrect Code:\n"
-    "Provide some incorrect code that a beginner might write when trying to solve the problem.\n\n"
+    "Provide some incorrect code that a beginner might write when trying to solve the problem. THE CODE MUST INCLUDE SOME KIND OF MISTAKE, THE CODE CANNOT BE CORRECET.\n\n"
     "Prompt:\n"
     "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISN'T WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important.\n\n"
     "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE."
