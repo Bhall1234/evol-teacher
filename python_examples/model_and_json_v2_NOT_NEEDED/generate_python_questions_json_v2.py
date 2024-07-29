@@ -53,8 +53,8 @@ def send_request_to_local_llm(prompt: str, model: str, temperature: float, max_t
 def clean_instruction(text):
     # Remove any unwanted meta-text or instructions
     to_remove = [
-        "Rewrite the test without any additional context or explanations.",
-        "Ensure the rewritten test is clear, simple, and directly follows the method chosen.",
+        "Rewrite the instruction without any additional context or explanations.",
+        "Ensure the rewritten instruction is clear, simple, and directly follows the method chosen.",
         "Do not include phrases like 'here is a rewritten version' or 'rewritten question' or 'rewritten instruction'."
     ]
     for phrase in to_remove:
@@ -102,7 +102,7 @@ def check_instruction(instruction) -> bool:
     return False
 
 def generate_diverse_dataset(
-    output_dir="./python_examples/",
+    output_dir="./python_examples/model_and_json_v2/outputs",
     seed_tasks_path="./python_examples/extract_python_only/curated_python_examples.json",
     evolutions=3,
     temperature=1,
