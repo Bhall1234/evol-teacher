@@ -29,12 +29,12 @@ def load_questions(file_path: str):
 def generate_answers(questions, model: str, temperature: float, max_tokens: int) -> list:
     paired_qa = []
 
-    # LAST WORKING
+    # incorrect code prompt
     prompt_answer = ( 
     "Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
     "The answer should include:\n"
     "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
-    "2. Some incorrect code based on the question, so the user can try and learn the concepts by debugging, THE CODE MUST INCLUDE SOME KIND OF MISTAKE, THE CODE CANNOT BE CORRECET. \n"
+    "2. Some INCORRECT or MISSING code based on the question, so the user can try and learn the concepts by debugging, THE CODE MUST INCLUDE SOME KIND OF MISTAKE, THE CODE CANNOT BE CORRECT. \n"
     "3. A prompt asking the user to spot the problem in the code. DO NOT provide the correct code. DO NOT EXPLAIN why the code is incorrect. This is for the user to try and understand.\n"
     "Avoid using any meta-text such as 'Here's the answer' or any phrases indicating the correct solution. DO NOT EXPLAIN WHY THE CODE IS INCORRECT.\n\n"
     "Question:\n{question}\n\n"
@@ -42,11 +42,11 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     "Explanation:\n"
     "Provide a clear and concise explanation of the problem.\n\n"
     "Incorrect Code:\n"
-    "Provide some incorrect code that a beginner might write when trying to solve the problem. THE CODE MUST INCLUDE SOME KIND OF MISTAKE, THE CODE CANNOT BE CORRECET.\n\n"
+    "Provide some incorrect code that a beginner might write when trying to solve the problem. THE CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS, THE CODE CANNOT BE CORRECT.\n\n"
     "Prompt:\n"
     "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISN'T WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important.\n\n"
-    "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE."
-    )
+    "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS THAT MAKE THE CODE INCORRECT."
+    ) #maybe add more missing code here
 
     # partially correct prompt    
     """prompt_answer = (
