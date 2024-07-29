@@ -49,7 +49,7 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     )""" #maybe add more missing code here
 
     # v2
-    prompt_answer = (
+    """prompt_answer = (
     "Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
     "The answer should include:\n"
     "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
@@ -65,8 +65,26 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     "Prompt:\n"
     "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISN'T WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important.\n\n"
     "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS THAT MAKE THE CODE INCORRECT."
-)
+)"""
     
+    #v3
+    prompt_answer = (
+        "Create an explanation and an incorrect or partially correct code snippet for the following beginner-level Python programming question. "
+        "The response should include:\n"
+        "1. A detailed yet clear explanation of the problem to help the user grasp the fundamental concept.\n"
+        "2. An incorrect or partially correct code snippet relevant to the question. The code must contain a mistake that logically aligns with the user's question, such as a syntax error, logical error, incorrect function usage, missing return statement, or incorrect variable name.\n"
+        "3. A prompt that asks the user to identify the problem in the code. Do not provide the correct solution or explain why the code is incorrect.\n\n"
+        "Question:\n{question}\n\n"
+        "Answer:\n"
+        "Explanation:\n"
+        "Offer a clear and thorough explanation of the problem.\n\n"
+        "Incorrect Code:\n"
+        "Present an incorrect or partially correct code snippet that a beginner might write when attempting to solve the problem. Ensure the code includes a logical mistake, such as a syntax error, logical error, incorrect function usage, missing return statement, or incorrect variable name.\n\n"
+        "Prompt:\n"
+        "Encourage the user to identify the problem in the code. Avoid providing an explanation as to why the code is incorrect. The goal is for the user to understand the issue independently.\n"
+        "IMPORTANT: Do not explain why the code is incorrect. Only provide the incorrect code and prompt the user to find the mistake. The incorrect code must contain a mistake or be incomplete, making it logically incorrect."
+    )
+
     for question in tqdm(questions, desc="Generating answers"):
         prompt = prompt_answer.format(question=question['instruction'])
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
