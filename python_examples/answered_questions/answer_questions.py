@@ -48,8 +48,8 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS THAT MAKE THE CODE INCORRECT."
     )""" #maybe add more missing code here
 
-    # v2
-    """prompt_answer = (
+    # v2 this was better
+    prompt_answer = (
     "Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
     "The answer should include:\n"
     "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
@@ -65,10 +65,10 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     "Prompt:\n"
     "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISN'T WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important.\n\n"
     "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS THAT MAKE THE CODE INCORRECT."
-)"""
+)
     
     #v3
-    prompt_answer = (
+    """prompt_answer = (
         "Create an explanation and an incorrect or partially correct code snippet for the following beginner-level Python programming question. "
         "The response should include:\n"
         "1. A detailed yet clear explanation of the problem to help the user grasp the fundamental concept.\n"
@@ -83,7 +83,7 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
         "Prompt:\n"
         "Encourage the user to identify the problem in the code. Avoid providing an explanation as to why the code is incorrect. The goal is for the user to understand the issue independently.\n"
         "IMPORTANT: Do not explain why the code is incorrect. Only provide the incorrect code and prompt the user to find the mistake. The incorrect code must contain a mistake or be incomplete, making it logically incorrect."
-    )
+    )"""
 
     for question in tqdm(questions, desc="Generating answers"):
         prompt = prompt_answer.format(question=question['instruction'])
@@ -129,8 +129,8 @@ def main(input_file_path, output_file_path, sample_size=None):
     print(f"Total duration: {end_time - start_time:.2f} seconds")
 
 if __name__ == "__main__":
-    input_file_path = 'python_examples/combined_questions/Datasets/half_of_baoviwnf.json' # just generated from model. didnt seem to change a lot.
-    #input_file_path =  './python_examples/combined_questions/combined_output.json' #combined 
+    #input_file_path = 'python_examples/combined_questions/Datasets/half_of_baoviwnf.json' # just generated from model. didnt seem to change a lot.
+    input_file_path =  './python_examples/combined_questions/combined_output.json' #combined 
     output_dir = './python_examples/answered_questions/outputs'
     os.makedirs(output_dir, exist_ok=True)
     
