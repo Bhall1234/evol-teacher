@@ -28,20 +28,52 @@ def load_questions(file_path: str):
 
 def generate_answers(questions, model: str, temperature: float, max_tokens: int) -> list:
     paired_qa = []
-    prompt_answer = ("Please generate an explanation and an incorrect code for the following beginner-level Python programming question. "
+    """prompt_answer = ("Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
                      "The answer should include:\n"
-                     "1. An explanation of the problem.\n"
-                     "2. Some incorrect code based on the question.\n"
-                     "3. A prompt asking the user to spot the problem in the code.\n"
+                     "1. An explanation of the problem, this should be detailed enough for a beginner to then be able to debug the incorrect code snippet that you provide after the explanation.\n"
+                     "2. Some incorrect code based on the question so the user can try and learn the fundamental concepts behind the question they asked.\n"
+                     "3. A prompt asking the user to spot the problem in the code, do NOT provide the correct code or an explanation as to why the code is incorrect. This is for the user to try and understand.\n"
                      "Avoid using any meta-text such as 'Here's the answer' in your response.\n\n"
                      "Question:\n{question}\n\n"
-                     "Answer:")
+                     "Answer:")"""
+    
+    """prompt_answer = ("Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
+                     "The answer should include:\n"
+                     "1. An explanation of the problem, this should be detailed enough for a beginner to then be able to debug the incorrect code snippet that you provide after the explanation.\n"
+                     "2. Some incorrect code based on the question so the user can try and learn the fundamental concepts behind the question they asked.\n"
+                     "3. A prompt asking the user to spot the problem in the code, do NOT provide the correct code. DO NOT explain as to why the code is incorrect. This is for the user to try and understand.\n"
+                     "Avoid using any meta-text such as 'Here's the answer', 'Do not provide the correct solution or explanation as this is for the user to try and understand' in your response.\n\n"
+                     "Question:\n{question}\n\n"
+                     "Answer:\n"
+                     "Explanation:\n"
+                     "Provide a clear and concise explanation of the problem.\n\n"
+                     "Incorrect Code:\n"
+                     "Provide some incorrect code that a beginner might write when trying to solve the problem.\n\n"
+                     "Prompt:\n"
+                     "Ask the user to identify the problem in the code, do NOT provide an explanation or hint as to why the code is not working, NOT providing an explanation is very important.")"""
+    
+    prompt_answer = (
+    "Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
+    "The answer should include:\n"
+    "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
+    "2. Some incorrect code based on the question, so the user can try and learn the concepts by debugging.\n"
+    "3. A prompt asking the user to spot the problem in the code, do NOT provide the correct code. DO NOT explain as to why the code is incorrect. This is for the user to try and understand.\n"
+    "Avoid using any meta-text such as 'Here's the answer' or any phrases indicating the correct solution.\n\n"
+    "Question:\n{question}\n\n"
+    "Answer:\n"
+    "Explanation:\n"
+    "Provide a clear and concise explanation of the problem.\n\n"
+    "Incorrect Code:\n"
+    "Provide some incorrect code that a beginner might write when trying to solve the problem.\n\n"
+    "Prompt:\n"
+    "Ask the user to identify the problem in the code. DO NOT provide an explanation. DO NOT hint as to why the code is not working. NOT providing an explanation is very important."
+)
 
     for question in tqdm(questions, desc="Generating answers"):
         prompt = prompt_answer.format(question=question['instruction'])
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
         answer = response["choices"][0]["message"]["content"].strip()
-        paired_qa.append({"instruction": question['instruction'], "answer": answer})
+        paired_qa.append({"instruction": question['instruction'], "output": answer}) #changed answer to output
     
     return paired_qa
 
@@ -59,7 +91,7 @@ def main(input_file_path, output_file_path, sample_size=None):
     logger = logging.getLogger(__name__)
 
     model_name = "lmstudio-community/codellama-13b-instruct"
-    temperature = 1.0
+    temperature = 0.8
     max_tokens = 2048  # Adjust as necessary
 
     start_time = time.time()
@@ -90,5 +122,5 @@ if __name__ == "__main__":
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     output_file_path = os.path.join(output_dir, f'paired_python_qa_{timestamp}_{random_string}.json')
     
-    sample_size = None  # Set to None to process the entire dataset
+    sample_size = 10 #None  # Set to None to process the entire dataset
     main(input_file_path, output_file_path, sample_size)
