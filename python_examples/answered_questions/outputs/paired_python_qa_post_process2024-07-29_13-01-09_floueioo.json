@@ -1,0 +1,42 @@
+[
+    {
+        "instruction": "Write a Python function to find the factorial of a given positive integer using real-world context. For example, if the input is 5, then the output should be 120 (5!).",
+        "output": "Explanation:\nThe user has provided a Python code snippet that is intended to print \"Hello, World!\" to the console. However, there is an error in the code that prevents it from running correctly.\n\nIncorrect Code:\n```python\nprint(\"Hello, World!\")\n```\nPrompt for User Engagement:\nCan you identify the problem with this code?"
+    },
+    {
+        "instruction": "Write a Python code to determine if a given number is even or odd by using the modulo operator (%).",
+        "output": "Explanation:\nThe user is trying to create a list called \"my_list\" and add elements to it using a for loop. However, they are not using the correct syntax for creating a list or adding elements to it.\n\nIncorrect Code:\n```python\nmy_list = []\nfor i in range(5):\n    my_list[i] = i * 2\nprint(my_list)\n```\nPrompt:\nCan you identify the problem with this code?"
+    },
+    {
+        "instruction": "Sorting a list of integers in descending order can be achieved using the built-in `sorted()` function with the `reverse` argument set to `True`. Here's an example:\n```python\nnumbers = [3, 5, 1, 2, 4]\nsorted_descending = sorted(numbers, reverse=True)\nprint(sorted_descending) # Output: [5, 4, 3, 2, 1]\n```",
+        "output": "Explanation:\nThe user has defined a function called `add_numbers` that takes two arguments, `num1` and `num2`, and returns their sum. However, the function is not indented properly, which means it will not be recognized as a function by Python.\n\nIncorrect Code:\n```python\ndef add_numbers(num1, num2):\nreturn num1 + num2\n```\nPrompt for User Engagement:\nCan you spot the error in the code?"
+    },
+    {
+        "instruction": "To convert a string to a float in Python, you can use the `float()` function with the string as an argument:\n```\nmy_string = \"3.14\"\nmy_float = float(my_string) # output: 3.14\n```",
+        "output": "Explanation:\nThe user is trying to use a for loop to iterate over a list of strings, but they are using the wrong syntax. Instead of using `for i in range(len(my_list))`, they should be using `for item in my_list`.\n\nIncorrect Code:\n```python\nmy_list = [\"apple\", \"banana\", \"cherry\"]\n\nfor i in range(len(my_list)):\n    print(i)\n```\nOutput:\n```bash\n0\n1\n2\n```\nPrompt for User Engagement:\nCan you spot the error in the code? What is the correct syntax to iterate over a list of strings using a for loop?"
+    },
+    {
+        "instruction": "1. How to create a custom exception in Python?\nPlease provide an example of how to write code using try/except blocks that throws a custom exception in Python.",
+        "output": "Explanation:\nThe user has provided a code snippet for a Python program that is supposed to print \"Hello, World!\" to the console. However, there is an error in the code that prevents it from running correctly.\n\nIncorrect Code:\n```python\nprint(\"Hello, World!\")\n```\nPrompt for User Engagement:\nCan you identify the problem with this code?"
+    },
+    {
+        "instruction": "Please create a for loop in Python to print out the items in the following list of fruits: [\"apple\", \"banana\", \"cherry\", \"orange\"].",
+        "output": "Explanation:\nThe user is trying to create a list called \"my_list\" using the list constructor, but they have made a typo in the name of the variable. Instead of \"my_list\", they have written \"my_listt\". This will cause an error when the code is run because Python does not recognize the variable name as valid.\n\nIncorrect Code:\n```python\nmy_listt = [1, 2, 3]\nprint(my_listt)\n```\nPrompt for User Engagement:\nCan you spot the error in this code? What is the correct variable name that should be used to create a list called \"my_list\"?"
+    },
+    {
+        "instruction": "Write a function in Python that takes two lists as inputs and returns a new list with all the elements from both lists in the same order. Use the following real-world context to explain your question:\nImagine you have two friends, Alice and Bob, who are going on a camping trip together. They each bring their own supplies, but they also want to make sure that everything they need is in one place for easy access. Write a function that takes two lists as inputs (one list of Alice's supplies and one list of Bob's supplies) and returns a new list with all the items from both lists combined in the same order that they would be used during the trip.",
+        "output": "Explanation:\nThe user is trying to create a list called \"my_list\" by using the range function, but they have made a mistake in their syntax. The correct way to do this would be to use square brackets instead of parentheses.\n\nIncorrect Code:\n```\nmy_list = range(1, 5)\nprint(my_list)\n```\nOutput:\n```\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nNameError: name 'range' is not defined\n```\nPrompt for User Engagement:\nCan you spot the error in the code?"
+    },
+    {
+        "instruction": "Write a Python program to check if a given string contains punctuation characters.",
+        "output": "[PYTHON]\ndef get_unique_elements(my_list):\n    return list(set(my_list))\n\nprint(get_unique_elements([1, 2, 3, 4, 5]))\n[/PYTHON]\n[TESTS]\n# Test case 1:\n[PYTHON]\nassert get_unique_elements([1, 1, 2, 2, 3, 3, 4, 4, 5, 5]) == [1, 2, 3, 4, 5]\n[/PYTHON]\n# Test case 2:\n[PYTHON]\nassert get_unique_elements([1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]\n[/PYTHON]\n# Test case 3:\n[PYTHON]\nassert get_unique_elements([1, 1, 1, 1, 1]) == [1]\n[/PYTHON]\n[/TESTS]"
+    },
+    {
+        "instruction": "Create a function named multiply that takes in two input parameters a and b and returns their product as a string.",
+        "output": "Explanation:\nThe user has provided a Python script that contains an error in the indentation. The error is caused by the fact that the `print` statement is not properly aligned with the rest of the code.\n\nIncorrect Code:\n```python\ndef greet(name):\n    print(\"Hello, \" + name)\n        print(\"How are you?\")\n```\nPrompt for User Engagement:\nCan you spot the error in the indentation?"
+    },
+    {
+        "instruction": "Can you please help me to define a function factorial in Python?",
+        "output": "Explanation:\nThe user is trying to print a list of numbers using the `print()` function, but they are getting an error message.\n\nIncorrect Code:\n```python\nnumbers = [1, 2, 3, 4, 5]\nprint(numbers)\n```\nOutput:\n```\nTraceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>\nTypeError: 'list' object is not callable\n```\nPrompt for User Engagement:\nCan you identify the problem with this code?"
+    }
+]
