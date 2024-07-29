@@ -29,8 +29,8 @@ def load_questions(file_path: str):
 def generate_answers(questions, model: str, temperature: float, max_tokens: int) -> list:
     paired_qa = []
 
-    # incorrect code prompt
-    prompt_answer = ( 
+    # incorrect code prompt v1
+    """prompt_answer = ( 
     "Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
     "The answer should include:\n"
     "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
@@ -46,27 +46,27 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     "Prompt:\n"
     "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISN'T WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important.\n\n"
     "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS THAT MAKE THE CODE INCORRECT."
-    ) #maybe add more missing code here
+    )""" #maybe add more missing code here
 
-    # partially correct prompt    
-    """prompt_answer = (
-    "Please generate an explanation and partial code for the following beginner-level Python programming question. "
+    # v2
+    prompt_answer = (
+    "Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
     "The answer should include:\n"
     "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
-    "2. Partial code based on the question, with some parts missing or incomplete, so the user can try and learn the concepts by finishing the code.\n"
-    "3. A prompt asking the user to complete the missing parts of the code. DO NOT provide the complete code. DO NOT EXPLAIN how to complete the code. This is for the user to try and understand.\n"
-    "Avoid using any meta-text such as 'Here's the answer' or any phrases indicating the correct solution. DO NOT EXPLAIN HOW TO COMPLETE THE CODE.\n\n"
+    "2. Some INCORRECT or MISSING code based on the question, so the user can try and learn the concepts by debugging. THE CODE MUST INCLUDE SOME KIND OF MISTAKE, THE CODE CANNOT BE CORRECT. Examples of mistakes include syntax errors, logical errors, incorrect function usage, missing return statements, incorrect variable names. These mistakes should make logical sense for the given question.\n"
+    "3. A prompt asking the user to spot the problem in the code. DO NOT provide the correct code. DO NOT EXPLAIN why the code is incorrect. This is for the user to try and understand.\n"
+    "Avoid using any meta-text such as 'Here's the answer' or any phrases indicating the correct solution. DO NOT EXPLAIN WHY THE CODE IS INCORRECT.\n\n"
     "Question:\n{question}\n\n"
     "Answer:\n"
     "Explanation:\n"
     "Provide a clear and concise explanation of the problem.\n\n"
-    "Partial Code:\n"
-    "Provide some partial code that a beginner might write when trying to solve the problem. The code should have some parts missing or incomplete.\n\n"
+    "Incorrect Code:\n"
+    "Provide some incorrect code that a beginner might write when trying to solve the problem. THE CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS, THE CODE CANNOT BE CORRECT. Examples of mistakes include syntax errors, logical errors, incorrect function usage, missing return statements, incorrect variable names, etc.\n\n"
     "Prompt:\n"
-    "Ask the user to complete the missing parts of the code. DO NOT provide an explanation AS TO HOW TO COMPLETE THE CODE. DO NOT PROVIDE AN EXPLANATION as to how to complete the code. NOT providing an explanation is very important.\n\n"
-    "IMPORTANT: DO NOT EXPLAIN HOW TO COMPLETE THE CODE. ONLY PROVIDE THE PARTIAL CODE AND ASK THE USER TO COMPLETE IT. THE PARTIAL CODE MUST HAVE SOME PARTS MISSING OR INCOMPLETE."
-    )"""
-
+    "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISN'T WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important.\n\n"
+    "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS THAT MAKE THE CODE INCORRECT."
+)
+    
     for question in tqdm(questions, desc="Generating answers"):
         prompt = prompt_answer.format(question=question['instruction'])
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
@@ -111,7 +111,8 @@ def main(input_file_path, output_file_path, sample_size=None):
     print(f"Total duration: {end_time - start_time:.2f} seconds")
 
 if __name__ == "__main__":
-    input_file_path = './python_examples/combined_questions/combined_output.json'
+    input_file_path = 'python_examples/combined_questions/Datasets/half_of_baoviwnf.json' # just generated from model. didnt seem to change a lot.
+    #input_file_path =  './python_examples/combined_questions/combined_output.json' #combined 
     output_dir = './python_examples/answered_questions/outputs'
     os.makedirs(output_dir, exist_ok=True)
     
