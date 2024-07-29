@@ -29,24 +29,8 @@ def load_questions(file_path: str):
 def generate_answers(questions, model: str, temperature: float, max_tokens: int) -> list:
     paired_qa = []
 
-    """prompt_answer = (
-    "Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
-    "The answer should include:\n"
-    "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
-    "2. Some incorrect code based on the question, so the user can try and learn the concepts by debugging.\n"
-    "3. A prompt asking the user to spot the problem in the code, do NOT provide the correct code. DO NOT EXPLAIN why the code is incorrect, this is for the user to try and understand.\n"
-    "Avoid using any meta-text such as 'Here's the answer' or any phrases indicating the correct solution. DO NOT EXPLAIN WHY THE CODE IS INCORRECT.\n\n"
-    "Question:\n{question}\n\n"
-    "Answer:\n"
-    "Explanation:\n"
-    "Provide a clear and concise explanation of the problem.\n\n"
-    "Incorrect Code:\n"
-    "Provide some incorrect code that a beginner might write when trying to solve the problem.\n\n"
-    "Prompt:\n"
-    "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISNT WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important."
-    )"""
-    
-    prompt_answer = (
+    # LAST WORKING
+    """prompt_answer = ( 
     "Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
     "The answer should include:\n"
     "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
@@ -62,6 +46,25 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     "Prompt:\n"
     "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISN'T WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important.\n\n"
     "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE."
+    )"""
+
+        
+    prompt_answer = (
+    "Please generate an explanation and partial code for the following beginner-level Python programming question. "
+    "The answer should include:\n"
+    "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
+    "2. Partial code based on the question, with some parts missing or incomplete, so the user can try and learn the concepts by finishing the code.\n"
+    "3. A prompt asking the user to complete the missing parts of the code. DO NOT provide the complete code. DO NOT EXPLAIN how to complete the code. This is for the user to try and understand.\n"
+    "Avoid using any meta-text such as 'Here's the answer' or any phrases indicating the correct solution. DO NOT EXPLAIN HOW TO COMPLETE THE CODE.\n\n"
+    "Question:\n{question}\n\n"
+    "Answer:\n"
+    "Explanation:\n"
+    "Provide a clear and concise explanation of the problem.\n\n"
+    "Partial Code:\n"
+    "Provide some partial code that a beginner might write when trying to solve the problem. The code should have some parts missing or incomplete.\n\n"
+    "Prompt:\n"
+    "Ask the user to complete the missing parts of the code. DO NOT provide an explanation AS TO HOW TO COMPLETE THE CODE. DO NOT PROVIDE AN EXPLANATION as to how to complete the code. NOT providing an explanation is very important.\n\n"
+    "IMPORTANT: DO NOT EXPLAIN HOW TO COMPLETE THE CODE. ONLY PROVIDE THE PARTIAL CODE AND ASK THE USER TO COMPLETE IT. THE PARTIAL CODE MUST HAVE SOME PARTS MISSING OR INCOMPLETE."
     )
 
     for question in tqdm(questions, desc="Generating answers"):
