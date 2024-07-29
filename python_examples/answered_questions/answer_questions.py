@@ -65,7 +65,7 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     "Prompt:\n"
     "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISN'T WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important.\n\n"
     "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS THAT MAKE THE CODE INCORRECT."
-)
+    )
     
     #v3
     """prompt_answer = (
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     random_string = generate_random_string()
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     temperature = "02"
-    output_file_path = os.path.join(output_dir, f'paired_python_qa_{timestamp}_{random_string}_temp_{temperature}.json')
+    output_file_path = os.path.join(output_dir, f'paired_python_qa_{timestamp}_{random_string}_temp_{temperature}_1900_v2.json')
     
     sample_size = 10 #None  # Set to None to process the entire dataset
     main(input_file_path, output_file_path, sample_size)
