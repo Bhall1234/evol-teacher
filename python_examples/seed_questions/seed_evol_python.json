@@ -1,0 +1,26 @@
+[
+    {
+        "instruction": "Generate a correct Python program to fulfill the following purpose:\nCount the occurrence of an element x in a list y.",
+        "output": "def count_x(x, y):\n    count = 0\n    for i in range(y):\n        if i == x:\n            count += 1\n    return count"
+    },
+    {
+        "instruction": "Write Python code to solve this leetcode problem.\nProblem: You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.\n\nYou may assume the two numbers do not contain any leading zero, except the number 0 itself.",
+        "output": "class Solution(object):\n    def addTwoNumbers(self, l1, l2):\n        \"\"\"\n        :type l1: ListNode\n        :type l2: ListNode\n        :rtype: ListNode\n        \"\"\"\n        carry = 0\n        root = n = ListNode(0)\n        while l1 or l2 or carry:\n            v1 = v2 = 0\n            if l1:\n                v1 = l1.val\n                l1 = l1.next\n            if l2:\n                v2 = l2.val\n                l2 = l2.next\n            carry, val = divmod(v1+v2+carry, 10)\n            n.next = ListNode(val)\n            n = n.next\n        return root.next"
+    },
+    {
+        "instruction": "Write a Python function to find all prime numbers up to the given number n.",
+        "output": "def is_prime(n):\n if n <= 1:\n return False\n for i in range(2, int(n**0.5) + 1):\n if n % i == 0:\n return False\n return True\n\ndef find_prime_numbers(n):\n primes = []\n for i in range(2, n + 1):\n if is_prime(i):\n primes.append(i)\n return primes"
+    },
+    {
+        "instruction": "Write a Python function to check if a given word is a palindrome or not. A palindrome is a word that reads the same backwards as forwards.",
+        "output": "def is_palindrome(word):\n return word == word[::-1]"
+    },
+    {
+        "instruction": "Write a Python function to reverse a given list of integers.",
+        "output": "def reverse_list(numbers):\n return numbers[::-1]"
+    },
+    {
+        "instruction": "Write a Python function that takes two numbers as input and returns their sum.\n5, 7",
+        "output": "def add_numbers(a, b):\n    return a + b\n\nresult = add_numbers(5, 7)\nprint(result)"
+    }
+]
