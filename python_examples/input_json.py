@@ -7,17 +7,17 @@ def add_input_field(file_path):
     for record in data:
         # Store the original keys and values
         instruction = record.pop("instruction")
-        answer = record.pop("answer")
+        output = record.pop("output")
         
         # Reinsert the keys in the desired order
         record["instruction"] = instruction
         record["input"] = ""
-        record["answer"] = answer
+        record["output"] = output
 
     with open(file_path, 'w') as file:
         json.dump(data, file, indent=4)
 
-# Example usage
-file_path = './python_examples/answered_questions/outputs/paired_python_qa_2024-07-27_15-20-53_ysogztji_1900_alpaca.json'
+# Example usage python_examples\answered_questions\outputs\paired_python_qa_2024-07-29_23-41-00_csdyeqpg_temp_02_1900_v2.json
+file_path = './python_examples/answered_questions/outputs/paired_python_qa_2024-07-29_23-41-00_csdyeqpg_temp_02_1900_v2.json'
 add_input_field(file_path)
 print("Added 'input' field to each record in the dataset.")

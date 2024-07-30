@@ -20,7 +20,7 @@ def add_eos_to_dataset(input_file, output_file):
     print(f"EOS tokens added to dataset and saved to {output_file}")
 
 if __name__ == "__main__":
-    input_file_path = './training/datasets/paired_python_qa_2024-07-27_15-20-53_ysogztji_1805_alpaca.json'
-    output_file_path = './training/datasets/eos_alpaca.json'
+    input_file_path = './python_examples/answered_questions/outputs/paired_python_qa_2024-07-29_23-41-00_csdyeqpg_temp_02_1900_input_v2.json' #python_examples\answered_questions\outputs\paired_python_qa_2024-07-29_23-41-00_csdyeqpg_temp_02_1900_input_eos_v2.json
+    output_file_path = './python_examples/answered_questions/outputs/paired_python_qa_2024-07-29_23-41-00_csdyeqpg_temp_02_1900_input_eos_v2.json'
     
     add_eos_to_dataset(input_file_path, output_file_path)
