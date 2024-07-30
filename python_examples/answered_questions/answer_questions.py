@@ -138,7 +138,7 @@ if __name__ == "__main__":
     random_string = generate_random_string()
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     temperature = "02"
-    output_file_path = os.path.join(output_dir, f'paired_python_qa_{timestamp}_{random_string}_temp_{temperature}_1900_v2.json')
+    output_file_path = os.path.join(output_dir, f'paired_python_qa_{timestamp}_{random_string}_temp_{temperature}_1900_v2.json') # may need changing.
     
-    sample_size = 10 #None  # Set to None to process the entire dataset
+    sample_size = None  # Set to None to process the entire dataset
     main(input_file_path, output_file_path, sample_size)
