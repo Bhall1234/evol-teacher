@@ -2,76 +2,76 @@
     {
         "instruction": "What is the correct way to write a function in Python that returns the sum of two numbers?",
         "input": "",
-        "output": "Explanation:\nTo write a function in Python that returns the sum of two numbers, define the function using the `def` keyword, add parameters for the two numbers, and use a return statement to return the sum.\n\nIncorrect Code:\n```python\ndef add_numbers(a, b):\n    # Add the two numbers and return the sum\n    # return the sum of a and b\n```\nHint: Make sure to write the return statement correctly to return the sum of the two numbers. <|endoftext|>"
+        "output": "Explanation:\nTo write a function in Python that returns the sum of two numbers, define the function using the `def` keyword, add parameters for the two numbers, and use a return statement to return the sum.\n\nMissing Code:\n```python\ndef add_numbers(a, b):\n    # Add the two numbers and return the sum\n    # return the sum of a and b\n```\nHint: Make sure to write the return statement correctly to return the sum of the two numbers. <|endoftext|>"
     },
     {
         "instruction": "How do you use a for loop to iterate over a list in Python?",
         "input": "",
-        "output": "Explanation:\nTo use a for loop to iterate over a list in Python, use the `for` keyword followed by a variable name, the `in` keyword, and the list. Then, write the loop body indented.\n\nIncorrect Code:\n```python\nmy_list = [1, 2, 3, 4]\nfor item in my_list:\n    # Print each item in the list\n    # print(item)\n```\nHint: Ensure that you correctly use the print function within the for loop to print each item. <|endoftext|>"
+        "output": "Explanation:\nTo use a for loop to iterate over a list in Python, use the `for` keyword followed by a variable name, the `in` keyword, and the list. Then, write the loop body indented.\n\nMissing Code:\n```python\nmy_list = [1, 2, 3, 4]\nfor item in my_list:\n    # Print each item in the list\n    # print(item)\n```\nHint: Ensure that you correctly use the print function within the for loop to print each item. <|endoftext|>"
     },
     {
         "instruction": "How do you write a while loop in Python that continues until a condition is met?",
         "input": "",
-        "output": "Explanation:\nA while loop in Python continues to execute the block of code as long as the condition specified is true. Use the `while` keyword followed by the condition and a colon, then write the loop body indented.\n\nIncorrect Code:\n```python\ncount = 0\nwhile count < 5:\n    # Increment count by 1\n    # count += 1\n    # Print the current value of count\n    # print(count)\n```\nHint: Remember to write the statements that modify and print the variable inside the loop body. <|endoftext|>"
+        "output": "Explanation:\nA while loop in Python continues to execute the block of code as long as the condition specified is true. Use the `while` keyword followed by the condition and a colon, then write the loop body indented.\n\nMissing Code:\n```python\ncount = 0\nwhile count < 5:\n    # Increment count by 1\n    # count += 1\n    # Print the current value of count\n    # print(count)\n```\nHint: Remember to write the statements that modify and print the variable inside the loop body. <|endoftext|>"
     },
     {
         "instruction": "How can you define a class in Python?",
         "input": "",
-        "output": "Explanation:\nTo define a class in Python, use the `class` keyword followed by the class name and a colon. Inside the class, define methods using the `def` keyword and the `self` parameter.\n\nIncorrect Code:\n```python\nclass MyClass:\n    def __init__(self, value):\n        # Initialize the attribute 'value'\n        # self.value = value\n    def get_value(self):\n        # Return the attribute 'value'\n        # return self.value\n```\nHint: Make sure to complete the `__init__` method to initialize the class attribute and the `get_value` method to return the attribute. <|endoftext|>"
+        "output": "Explanation:\nTo define a class in Python, use the `class` keyword followed by the class name and a colon. Inside the class, define methods using the `def` keyword and the `self` parameter.\n\nMissing Code:\n```python\nclass MyClass:\n    def __init__(self, value):\n        # Initialize the attribute 'value'\n        # self.value = value\n    def get_value(self):\n        # Return the attribute 'value'\n        # return self.value\n```\nHint: Make sure to complete the `__init__` method to initialize the class attribute and the `get_value` method to return the attribute. <|endoftext|>"
     },
     {
         "instruction": "How can you append an item to a list in Python?",
         "input": "",
-        "output": "Explanation:\nTo append an item to a list in Python, use the `append()` method of the list object.\n\nIncorrect Code:\n```python\nmy_list = [1, 2, 3]\n# Append the number 4 to the list\n# my_list.append(4)\nprint(my_list)\n```\nHint: Ensure you use the `append` method to add the new item to the list before printing. <|endoftext|>"
+        "output": "Explanation:\nTo append an item to a list in Python, use the `append()` method of the list object.\n\nMissing Code:\n```python\nmy_list = [1, 2, 3]\n# Append the number 4 to the list\n# my_list.append(4)\nprint(my_list)\n```\nHint: Ensure you use the `append` method to add the new item to the list before printing. <|endoftext|>"
     },
     {
         "instruction": "How can you create and use a dictionary in Python?",
         "input": "",
-        "output": "Explanation:\nA dictionary in Python is created using curly braces `{}` with key-value pairs separated by colons. To use a dictionary, you can access values by their keys.\n\nIncorrect Code:\n```python\nmy_dict = {\"name\": \"Alice\", \"age\": 25}\n# Access the value associated with the key 'name'\n# name = my_dict[\"name\"]\nprint(name)\n```\nHint: Ensure you correctly access the value using the key and assign it to a variable. <|endoftext|>"
+        "output": "Explanation:\nA dictionary in Python is created using curly braces `{}` with key-value pairs separated by colons. To use a dictionary, you can access values by their keys.\n\nMissing Code:\n```python\nmy_dict = {\"name\": \"Alice\", \"age\": 25}\n# Access the value associated with the key 'name'\n# name = my_dict[\"name\"]\nprint(name)\n```\nHint: Ensure you correctly access the value using the key and assign it to a variable. <|endoftext|>"
     },
     {
         "instruction": "How do you handle exceptions in Python using try-except?",
         "input": "",
-        "output": "Explanation:\nTo handle exceptions in Python, use the `try` block to wrap the code that may raise an exception, and the `except` block to handle the exception.\n\nIncorrect Code:\n```python\ntry:\n    # Divide 10 by 0\n    # result = 10 / 0\nexcept ZeroDivisionError:\n    # Print an error message\n    # print(\"Cannot divide by zero.\")\n```\nHint: Ensure the code that may raise an exception is inside the try block and the error handling code is in the except block. <|endoftext|>"
+        "output": "Explanation:\nTo handle exceptions in Python, use the `try` block to wrap the code that may raise an exception, and the `except` block to handle the exception.\n\nMissing Code:\n```python\ntry:\n    # Divide 10 by 0\n    # result = 10 / 0\nexcept ZeroDivisionError:\n    # Print an error message\n    # print(\"Cannot divide by zero.\")\n```\nHint: Ensure the code that may raise an exception is inside the try block and the error handling code is in the except block. <|endoftext|>"
     },
     {
         "instruction": "How do you import a module and use a function from it in Python?",
         "input": "",
-        "output": "Explanation:\nTo import a module in Python, use the `import` statement followed by the module name. To use a function from the module, call it with the module name.\n\nIncorrect Code:\n```python\n# Import the math module\n# import math\n# Use the sqrt function from the math module\n# result = math.sqrt(16)\nprint(result)\n```\nHint: Ensure you correctly import the module and use the function with the module name. <|endoftext|>"
+        "output": "Explanation:\nTo import a module in Python, use the `import` statement followed by the module name. To use a function from the module, call it with the module name.\n\nMissing Code:\n```python\n# Import the math module\n# import math\n# Use the sqrt function from the math module\n# result = math.sqrt(16)\nprint(result)\n```\nHint: Ensure you correctly import the module and use the function with the module name. <|endoftext|>"
     },
     {
         "instruction": "How can you create a list comprehension in Python?",
         "input": "",
-        "output": "Explanation:\nA list comprehension in Python is a concise way to create lists. It consists of brackets containing an expression followed by a for clause.\n\nIncorrect Code:\n```python\n# Create a list of squares using list comprehension\n# squares = [x**2 for x in range(10)]\nprint(squares)\n```\nHint: Ensure you use the correct syntax for the list comprehension. <|endoftext|>"
+        "output": "Explanation:\nA list comprehension in Python is a concise way to create lists. It consists of brackets containing an expression followed by a for clause.\n\nMissing Code:\n```python\n# Create a list of squares using list comprehension\n# squares = [x**2 for x in range(10)]\nprint(squares)\n```\nHint: Ensure you use the correct syntax for the list comprehension. <|endoftext|>"
     },
     {
         "instruction": "How do you use the range() function in a for loop in Python?",
         "input": "",
-        "output": "Explanation:\nThe `range()` function generates a sequence of numbers. It can be used in a for loop to iterate over a specific range of numbers.\n\nIncorrect Code:\n```python\n# Use the range function to iterate from 0 to 4\nfor i in range(5):\n    # Print the current value of i\n    # print(i)\n```\nHint: Ensure you correctly use the `print` function within the for loop to print each number. <|endoftext|>"
+        "output": "Explanation:\nThe `range()` function generates a sequence of numbers. It can be used in a for loop to iterate over a specific range of numbers.\n\nMissing Code:\n```python\n# Use the range function to iterate from 0 to 4\nfor i in range(5):\n    # Print the current value of i\n    # print(i)\n```\nHint: Ensure you correctly use the `print` function within the for loop to print each number. <|endoftext|>"
     },
     {
         "instruction": "How do you use an if-elif-else statement in Python?",
         "input": "",
-        "output": "Explanation:\nThe if-elif-else statement in Python allows you to execute different blocks of code based on different conditions.\n\nIncorrect Code:\n```python\nx = 10\nif x < 5:\n    # Print 'Less than 5'\n    # print(\"Less than 5\")\nelif x < 10:\n    # Print 'Less than 10'\n    # print(\"Less than 10\")\nelse:\n    # Print '10 or more'\n    # print(\"10 or more\")\n```\nHint: Ensure you correctly use the `print` function within each block of the if-elif-else statement. <|endoftext|>"
+        "output": "Explanation:\nThe if-elif-else statement in Python allows you to execute different blocks of code based on different conditions.\n\nMissing Code:\n```python\nx = 10\nif x < 5:\n    # Print 'Less than 5'\n    # print(\"Less than 5\")\nelif x < 10:\n    # Print 'Less than 10'\n    # print(\"Less than 10\")\nelse:\n    # Print '10 or more'\n    # print(\"10 or more\")\n```\nHint: Ensure you correctly use the `print` function within each block of the if-elif-else statement. <|endoftext|>"
     },
     {
         "instruction": "How do you concatenate two strings in Python?",
         "input": "",
-        "output": "Explanation:\nTo concatenate two strings in Python, use the `+` operator to combine them.\n\nIncorrect Code:\n```python\nstr1 = \"Hello\"\nstr2 = \"World\"\n# Concatenate str1 and str2\n# result = str1 + \" \" + str2\nprint(result)\n```\nHint: Ensure you correctly use the `+` operator to concatenate the strings and include a space between them if needed. <|endoftext|>"
+        "output": "Explanation:\nTo concatenate two strings in Python, use the `+` operator to combine them.\n\nMissing Code:\n```python\nstr1 = \"Hello\"\nstr2 = \"World\"\n# Concatenate str1 and str2\n# result = str1 + \" \" + str2\nprint(result)\n```\nHint: Ensure you correctly use the `+` operator to concatenate the strings and include a space between them if needed. <|endoftext|>"
     },
     {
         "instruction": "How can you convert a string to an integer in Python?",
         "input": "",
-        "output": "Explanation:\nTo convert a string to an integer in Python, use the `int()` function.\n\nIncorrect Code:\n```python\nnum_str = \"123\"\n# Convert the string to an integer\n# num = int(num_str)\nprint(num)\n```\nHint: Ensure you use the `int()` function correctly to convert the string to an integer. <|endoftext|>"
+        "output": "Explanation:\nTo convert a string to an integer in Python, use the `int()` function.\n\nMissing Code:\n```python\nnum_str = \"123\"\n# Convert the string to an integer\n# num = int(num_str)\nprint(num)\n```\nHint: Ensure you use the `int()` function correctly to convert the string to an integer. <|endoftext|>"
     },
     {
         "instruction": "How do you check if a number is even or odd in Python?",
         "input": "",
-        "output": "Explanation:\nTo check if a number is even or odd in Python, use the modulus operator `%` to determine if the number is divisible by 2.\n\nIncorrect Code:\n```python\nnum = 4\nif num % 2 == 0:\n    # Print 'Even'\n    # print(\"Even\")\nelse:\n    # Print 'Odd'\n    # print(\"Odd\")\n```\nHint: Ensure you use the modulus operator correctly to check if the number is even or odd. <|endoftext|>"
+        "output": "Explanation:\nTo check if a number is even or odd in Python, use the modulus operator `%` to determine if the number is divisible by 2.\n\nMissing Code:\n```python\nnum = 4\nif num % 2 == 0:\n    # Print 'Even'\n    # print(\"Even\")\nelse:\n    # Print 'Odd'\n    # print(\"Odd\")\n```\nHint: Ensure you use the modulus operator correctly to check if the number is even or odd. <|endoftext|>"
     },
     {
         "instruction": "How do you find the maximum value in a list in Python?",
         "input": "",
-        "output": "Explanation:\nTo find the maximum value in a list in Python, use the `max()` function.\n\nIncorrect Code:\n```python\nmy_list = [1, 2, 3, 4, 5]\n# Find the maximum value in the list\n# max_value = max(my_list)\nprint(max_value)\n```\nHint: Ensure you use the `max()` function correctly to find the maximum value in the list. <|endoftext|>"
+        "output": "Explanation:\nTo find the maximum value in a list in Python, use the `max()` function.\n\nMissing Code:\n```python\nmy_list = [1, 2, 3, 4, 5]\n# Find the maximum value in the list\n# max_value = max(my_list)\nprint(max_value)\n```\nHint: Ensure you use the `max()` function correctly to find the maximum value in the list. <|endoftext|>"
     }
 ]
