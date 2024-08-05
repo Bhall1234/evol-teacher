@@ -49,12 +49,14 @@ def diversify_questions(task, model: str, temperature: float, max_tokens: int) -
     ]
     
     new_tasks = []
-    for _ in range(5):  # Generate 5 variations for each question
+    num_variations = random.randint(3, 7)  # Generate between 3 and 7 variations for each question
+    for _ in range(num_variations):
         chosen_method = random.choice(methods)
         prompt = (f"Please rewrite the following programming question using the following method:\n{chosen_method}\n\n"
                   f"#Original Test#\n{task['instruction']}\n\n"
-                  "Ensure the rewritten test is clear and simple. "
+                  "Ensure the rewritten question is clear and simple. "
                   "Do not include any answer, solution, or explanation, just the instruction."
+                  "ONLY INCLUDE THE REWIRTTEN QUESTION! NO 'HERE IS THE REWRITTEN ANSWER' OR SIMILAR"
                   "\n\n#Rewritten Instruction#")
         
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
@@ -80,8 +82,8 @@ def check_instruction(instruction) -> bool:
     return False
 
 def generate_diverse_dataset(
-    output_dir="./python_examples/",
-    seed_tasks_path="./python_examples/extract_python_only/curated_python_examples.json",
+    output_dir="./python_examples/generation_from_json/outputs",
+    seed_tasks_path="./python_examples/answered_questions/outputs/manual_edited_shuffle_noEOS_smaller_no_input.json",
     evolutions=3,
     temperature=1,
     max_tokens=2048,
@@ -89,7 +91,7 @@ def generate_diverse_dataset(
     top_p=0.9,
     model_name="lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF",
     num_instructions=343,
-    sample_size=343  # Sample size for testing
+    sample_size=10  # Sample size for testing
 ):
     load_dotenv(override=True)
     logging.basicConfig(filename="app.log", filemode="w", format='%(name)s - %(levellevelname)s - %(message)s')
@@ -110,6 +112,9 @@ def generate_diverse_dataset(
             new_tasks = diversify_questions(task, model_name, temperature, max_tokens)
             new_tasks = [task for task in new_tasks if not check_instruction(task)]
             all_tasks.extend(new_tasks)
+
+        # Shuffle all tasks to add randomness
+        random.shuffle(all_tasks)
 
         # Output to a JSON file with pretty printing
         output_file = os.path.join(output_dir, f"diverse_responses_evolution_{evolution}.json")
