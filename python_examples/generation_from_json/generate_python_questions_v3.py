@@ -25,18 +25,9 @@ def load_dataset(file_path):
     with open(file_path, 'r') as f:
         return json.load(f)
 
-def save_filtered_dataset(filtered_data, output_file_path):
+def save_dataset(data, output_file_path):
     with open(output_file_path, 'w') as f:
-        json.dump(filtered_data, f, indent=4)
-
-def filter_python_examples(dataset):
-    filtered_data = []
-    for item in dataset:
-        instruction = item.get('instruction', '').lower()
-        output = item.get('output', '').lower()
-        if 'python' in instruction or 'python' in output:
-            filtered_data.append(item)
-    return filtered_data
+        json.dump(data, f, indent=4)
 
 def send_request_to_local_llm(prompt: str, model: str, temperature: float, max_tokens: int):
     url = "http://localhost:1234/v1/chat/completions"
@@ -50,32 +41,19 @@ def send_request_to_local_llm(prompt: str, model: str, temperature: float, max_t
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 
-def clean_instruction(text):
-    # Remove any unwanted meta-text or instructions
-    to_remove = [
-        "Rewrite the test without any additional context or explanations.",
-        "Ensure the rewritten test is clear, simple, and directly follows the method chosen.",
-        "Do not include phrases like 'here is a rewritten version' or 'rewritten question' or 'rewritten instruction'."
-    ]
-    for phrase in to_remove:
-        text = text.replace(phrase, "").strip()
-    return text
-
-def diversify_questions(instructions, model: str, temperature: float, max_tokens: int) -> list:
+def diversify_questions(task, model: str, temperature: float, max_tokens: int) -> list:
     methods = [
-        'Rephrase the instruction to make it simpler in a way that someone new to Python might ask.',
-        'Add a small real-world context to the question without increasing complexity.',
-        'Focus on common beginner topics like loops, conditionals, functions, and list operations.',
-        'Simplify existing contexts to make them more relatable to beginner Python programmers.',
-        'Break down multi-step problems into simpler, single-step questions.'
+        'Rephrase the instruction to make it more concise.',
+        'Rewrite the instruction using different wording but keeping the same meaning.',
+        'Change the phrasing of the instruction without altering its original intent.'
     ]
     
     new_tasks = []
-    for task in tqdm(instructions, desc="Diversifying questions"):
+    for _ in range(5):  # Generate 5 variations for each question
         chosen_method = random.choice(methods)
-        prompt = (f"Please rewrite the following programming question to make it more suitable for a beginner Python student using the following method:\n{chosen_method}\n\n"
+        prompt = (f"Please rewrite the following programming question using the following method:\n{chosen_method}\n\n"
                   f"#Original Test#\n{task['instruction']}\n\n"
-                  "Ensure the rewritten test is clear, simple, and directly follows the method chosen. "
+                  "Ensure the rewritten test is clear and simple. "
                   "Do not include any answer, solution, or explanation, just the instruction."
                   "\n\n#Rewritten Instruction#")
         
@@ -83,11 +61,11 @@ def diversify_questions(instructions, model: str, temperature: float, max_tokens
         rewritten_instruction = response["choices"][0]["message"]["content"].strip()
         
         # Clean the rewritten instruction from any meta-text
-        rewritten_instruction = clean_instruction(rewritten_instruction)
         rewritten_instruction = rewritten_instruction.replace("#Rewritten Instruction#", "").strip()
         
         new_tasks.append({
-            "instruction": rewritten_instruction
+            "instruction": rewritten_instruction,
+            "output": task['output']  # Pair with the original output
         })
     return new_tasks
 
@@ -120,26 +98,24 @@ def generate_diverse_dataset(
     prev_tasks = load_dataset(seed_tasks_path)[:sample_size]
     start_time = time.time()
 
+    all_tasks = []
+
     for evolution in range(1, evolutions + 1):
         print(f'Evolution {evolution}:')
         evolution_start_time = time.time()
 
         # Generate diverse responses
         print("Generating Diverse Responses")
-        new_tasks = diversify_questions(prev_tasks, model_name, temperature, max_tokens)
-        new_tasks = [task for task in new_tasks if not check_instruction(task)]
-
-        # Print some of the new tasks for verification
-        for task in new_tasks[:5]:
-            print(json.dumps(task, indent=2))
+        for task in tqdm(prev_tasks, desc="Processing tasks"):
+            new_tasks = diversify_questions(task, model_name, temperature, max_tokens)
+            new_tasks = [task for task in new_tasks if not check_instruction(task)]
+            all_tasks.extend(new_tasks)
 
         # Output to a JSON file with pretty printing
         output_file = os.path.join(output_dir, f"diverse_responses_evolution_{evolution}.json")
         os.makedirs(output_dir, exist_ok=True)
-        with open(output_file, "w") as json_file:
-            json.dump(new_tasks, json_file, indent=4)
+        save_dataset(all_tasks, output_file)
 
-        prev_tasks = new_tasks
         evolution_time = time.time() - evolution_start_time
         print(f'Evolution {evolution} complete, took {evolution_time:.2f}s')
 
