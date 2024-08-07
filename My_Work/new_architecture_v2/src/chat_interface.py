@@ -17,7 +17,7 @@ def get_related_code(question, correct_code_examples):
     return random.choice(correct_code_examples)["code"]
 
 def chat_interface(correct_code_examples, user_questions):
-    log_file_path = './logs/chat_interactions.log'
+    log_file_path = './My_Work/new_architecture_v2/src/logs/chat_interactions.log'
     while True:
         user_question = input("Ask a question about Python: ")
         print("Processing your question...")
