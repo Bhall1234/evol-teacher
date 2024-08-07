@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "hint": "Check the condition used for the loop.",
+        "code": "for i in range(5):\n    print(i)\n"
+    },
+    {
+        "id": 2,
+        "hint": "Make sure you are incrementing the variable inside the loop.",
+        "code": "count = 0\nwhile count < 5:\n    print(count)\n"
+    },
+    {
+        "id": 3,
+        "hint": "Verify the operation used for checking even numbers.",
+        "code": "for num in range(0, 20):\n    if num // 2 == 0:\n        print(num)\n"
+    },
+    {
+        "id": 4,
+        "hint": "Ensure the correct method is used to add items to the list.",
+        "code": "even_numbers = []\nfor num in range(0, 21):\n    if num % 2 == 0:\n        even_numbers.add(num)\nprint(even_numbers)\n"
+    },
+    {
+        "id": 5,
+        "hint": "Check the way the dictionary is accessed.",
+        "code": "student = {'name': 'Alice', 'age': 25}\nprint(student['grades'])\n"
+    },
+    {
+        "id": 6,
+        "hint": "Make sure you handle the case when the list is empty.",
+        "code": "numbers = [1, 2, 3, 4, 5]\nprint(sum(numbers) / len(numbers))\n"
+    },
+    {
+        "id": 7,
+        "hint": "Check the use of the 'append' method in the loop.",
+        "code": "squares = []\nfor i in range(10):\n    squares.add(i ** 2)\nprint(squares)\n"
+    },
+    {
+        "id": 8,
+        "hint": "Ensure the function returns a value.",
+        "code": "def add(a, b):\n    result = a + b\n\nprint(add(2, 3))\n"
+    },
+    {
+        "id": 9,
+        "hint": "Check the way the list comprehension is used.",
+        "code": "numbers = [1, 2, 3, 4, 5]\nsquares = [x * x for x in numbers if x % 2 == 0]\nprint(squares)\n"
+    },
+    {
+        "id": 10,
+        "hint": "Verify the use of the 'split' method for strings.",
+        "code": "sentence = 'Hello world!'\nwords = sentence.split(' ')\nprint(words[3])\n"
+    }
+]

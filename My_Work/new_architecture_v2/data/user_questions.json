@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "question": "How do you create a for loop in Python?"
+    },
+    {
+        "id": 2,
+        "question": "Can you explain how to use a while loop in Python?"
+    },
+    {
+        "id": 3,
+        "question": "How can I check if a number is even in Python?"
+    },
+    {
+        "id": 4,
+        "question": "How do I add elements to a list in Python?"
+    },
+    {
+        "id": 5,
+        "question": "How do I access a value in a dictionary in Python?"
+    },
+    {
+        "id": 6,
+        "question": "How do I calculate the average of numbers in a list in Python?"
+    },
+    {
+        "id": 7,
+        "question": "How do I append items to a list in Python?"
+    },
+    {
+        "id": 8,
+        "question": "How do I define a function that returns a value in Python?"
+    },
+    {
+        "id": 9,
+        "question": "How do I use list comprehension to filter elements in a list?"
+    },
+    {
+        "id": 10,
+        "question": "How do I split a string into a list of words in Python?"
+    }
+]
