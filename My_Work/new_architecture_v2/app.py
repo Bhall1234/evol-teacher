@@ -1,7 +1,9 @@
+import os
+import random
 from flask import Flask, request, render_template
 from src.utils import load_dataset
-from src.chat_interface import generate_explanation, create_combined_response
-import random
+from src.explanation_generation import generate_explanation
+from src.response_combination import create_combined_response
 
 app = Flask(__name__)
 
@@ -37,3 +39,4 @@ def get_related_code(question, correct_code_examples):
 
 if __name__ == "__main__":
     app.run(debug=True)
+

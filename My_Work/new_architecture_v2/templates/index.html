@@ -4,20 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Tutor Chatbot</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .chat-box {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: .25rem;
+            padding: 20px;
+        }
+        .chat-box pre {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: .25rem;
+        }
+    </style>
 </head>
 <body>
-    <h1>Python Tutor Chatbot</h1>
-    <form method="POST" action="/ask">
-        <label for="question">Ask a question about Python:</label><br>
-        <input type="text" id="question" name="question" required><br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="chat-box">
+                    <h1 class="text-center">Python Tutor Chatbot</h1>
+                    <form method="POST" action="/ask" id="chat-form">
+                        <div class="form-group">
+                            <label for="question">Ask a question about Python:</label>
+                            <input type="text" id="question" name="question" class="form-control" required>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                    
+                    {% if question %}
+                    <h2>Your Question:</h2>
+                    <p>{{ question }}</p>
+                    <h2>Response:</h2>
+                    <pre id="response">{{ response }}</pre>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const responseElement = document.getElementById("response");
+            const responseText = responseElement.innerText;
+            responseElement.innerText = "";
+            let index = 0;
 
-    {% if question %}
-    <h2>Your Question:</h2>
-    <p>{{ question }}</p>
-    <h2>Response:</h2>
-    <pre>{{ response }}</pre>
-    {% endif %}
+            function typeWriter() {
+                if (index < responseText.length) {
+                    responseElement.innerText += responseText.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+
+            if (responseText) {
+                typeWriter();
+            }
+        });
+    </script>
 </body>
 </html>
