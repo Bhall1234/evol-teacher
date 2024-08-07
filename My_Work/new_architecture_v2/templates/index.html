@@ -25,6 +25,9 @@
             font-style: italic;
             color: #666;
         }
+        .response {
+            white-space: pre-wrap; /* Keeps the white-space and line breaks in the response */
+        }
     </style>
 </head>
 <body>
@@ -40,7 +43,7 @@
         <h2>Your Question:</h2>
         <p>{{ question }}</p>
         <h2>Response:</h2>
-        <div id="response">
+        <div id="response" class="response">
             {% if response %}
             {{ response | safe }}
             {% else %}

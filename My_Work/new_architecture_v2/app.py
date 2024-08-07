@@ -16,7 +16,7 @@ log_path = os.path.join(os.getcwd(), 'My_Work', 'new_architecture_v2', 'src', 'l
 os.makedirs(os.path.dirname(log_path), exist_ok=True)  # Ensure the log directory exists
 logging.basicConfig(filename=log_path, level=logging.INFO, format='%(asctime)s - %(message)s')
 
-# Load datasets
+# Load datasets, these arent necessary anymore.
 correct_code_examples = load_dataset('./My_Work/new_architecture_v2/data/code_examples.json')
 user_questions = load_dataset('./My_Work/new_architecture_v2/data/user_questions.json')
 
