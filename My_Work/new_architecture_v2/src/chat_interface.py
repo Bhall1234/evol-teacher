@@ -8,20 +8,24 @@ from src.utils import save_log
 
 def get_related_code(question, correct_code_examples):
     # Simple matching based on keywords. You can expand this to be more sophisticated.
-    for example in correct_code_examples:
-        if "for loop" in question.lower() and "for loop" in example["hint"].lower():
-            return example["code"]
-        elif "while loop" in question.lower() and "while loop" in example["hint"].lower():
-            return example["code"]
-        # Add more conditions as needed for other types of questions
-    return random.choice(correct_code_examples)["code"]
+    if "for loop" in question.lower():
+        related_hints = [example for example in correct_code_examples if "for loop" in example["hint"].lower()]
+    elif "while loop" in question.lower():
+        related_hints = [example for example in correct_code_examples if "while loop" in example["hint"].lower()]
+    else:
+        related_hints = correct_code_examples  # fallback to any example
+
+    if related_hints:
+        return random.choice(related_hints)["code"]
+    else:
+        return random.choice(correct_code_examples)["code"]
 
 def chat_interface(correct_code_examples, user_questions):
     log_file_path = './My_Work/new_architecture_v2/src/logs/chat_interactions.log'
     while True:
         user_question = input("Ask a question about Python: ")
         print("Processing your question...")
-        explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF") # was "deepseekcoder"
+        explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")  # was "deepseekcoder"
         
         correct_code = get_related_code(user_question, correct_code_examples)
         
