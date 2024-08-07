@@ -57,12 +57,9 @@ def format_code_snippets(response):
     parts = response.split("```python")
     formatted_response = parts[0]
     for part in parts[1:]:
-        if "```" in part:
-            code, rest = part.split("```", 1)
-            highlighted_code = highlight(code, PythonLexer(), HtmlFormatter())
-            formatted_response += f"<div class='code-block'>{highlighted_code}</div>{rest}"
-        else:
-            formatted_response += part
+        code, rest = part.split("```", 1)
+        highlighted_code = highlight(code, PythonLexer(), HtmlFormatter())
+        formatted_response += f"<div class='code-block'>{highlighted_code}</div>{rest}"
     return formatted_response
 
 if __name__ == "__main__":

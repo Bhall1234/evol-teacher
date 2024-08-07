@@ -1,13 +1,11 @@
-import os
+#ORGINAL
+"""import os
 import random
 import logging
 from flask import Flask, request, render_template
 from src.utils import load_dataset
 from src.explanation_generation import generate_explanation
 from src.response_combination import create_combined_response
-from pygments import highlight
-from pygments.lexers import PythonLexer
-from pygments.formatters import HtmlFormatter
 
 app = Flask(__name__)
 
@@ -33,9 +31,6 @@ def ask():
     correct_code = get_related_code(user_question, correct_code_examples)
     combined_response = create_combined_response(user_question, explanation, correct_code)
     
-    # Apply syntax highlighting to the code
-    combined_response = format_code_snippets(combined_response)
-    
     logging.info(f"Generated response: {combined_response}")
     
     return render_template("index.html", question=user_question, response=combined_response)
@@ -53,17 +48,5 @@ def get_related_code(question, correct_code_examples):
     else:
         return random.choice(correct_code_examples)["code"]
 
-def format_code_snippets(response):
-    parts = response.split("```python")
-    formatted_response = parts[0]
-    for part in parts[1:]:
-        if "```" in part:
-            code, rest = part.split("```", 1)
-            highlighted_code = highlight(code, PythonLexer(), HtmlFormatter())
-            formatted_response += f"<div class='code-block'>{highlighted_code}</div>{rest}"
-        else:
-            formatted_response += part
-    return formatted_response
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True)"""
