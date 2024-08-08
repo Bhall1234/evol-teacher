@@ -115,8 +115,6 @@
             <h2>Incorrect Code:</h2>
             <p><strong>Task Description:</strong> {{ task_description }}</p>
             <div class="code-block">{{ incorrect_code | safe }}</div>
-            <button onclick="toggleHint()">Show Hint</button>
-            <button onclick="toggleExplanation()">Show Explanation</button>
             <p id="hint" style="display: none;"><strong>Hint:</strong> {{ hint }}</p>
             <p id="explanation" style="display: none;"><strong>Explanation:</strong> {{ detailed_explanation }}</p>
             {% endif %}
@@ -126,6 +124,8 @@
             <div class="buttons">
                 <button onclick="runCode()">Run Code</button>
                 <button onclick="resetCode()">Reset Code</button>
+                <button onclick="toggleHint()">Show Hint</button>
+                <button onclick="toggleExplanation()">Show Explanation</button>
             </div>
         </div>
     </div>
