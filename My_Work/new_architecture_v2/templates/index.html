@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Learning Chatbot</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,6 +20,14 @@
             margin: 10px 0;
             overflow-x: auto;
         }
+        .highlight {
+            padding: 0;
+        }
+        .highlight pre {
+            margin: 0;
+            padding: 10px;
+            white-space: pre-wrap;
+        }
         .loading {
             font-style: italic;
             color: #666;
@@ -28,6 +35,14 @@
         .response {
             white-space: pre-wrap; /* Keeps the white-space and line breaks in the response */
         }
+        /* Pygments styles */
+        .highlight .k { color: #008000; } /* Keyword */
+        .highlight .o { color: #666666; } /* Operator */
+        .highlight .n { color: #000000; } /* Name */
+        .highlight .p { color: #000000; } /* Punctuation */
+        .highlight .mi { color: #0000ff; } /* Number */
+        .highlight .s { color: #ba2121; } /* String */
+        .highlight .c { color: #999988; font-style: italic; } /* Comment */
     </style>
 </head>
 <body>
@@ -52,7 +67,5 @@
         </div>
         {% endif %}
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
 </body>
 </html>

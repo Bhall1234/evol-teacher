@@ -1,7 +1,6 @@
 import os
 import random
 import logging
-import re
 from flask import Flask, request, render_template
 from src.utils import load_dataset
 from src.explanation_generation import generate_explanation
@@ -9,6 +8,7 @@ from src.response_combination import create_combined_response
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
+import re
 
 app = Flask(__name__)
 
@@ -35,10 +35,10 @@ def ask():
     
     explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")  # was "deepseekcoder"
     correct_code = get_related_code(user_question, correct_code_examples)
-    combined_response = create_combined_response(user_question, explanation, correct_code)
+    combined_response = create_combined_response(user_question, explanation, correct_code).strip()
     
     # Apply syntax highlighting to the code
-    combined_response = format_code_snippets(combined_response)
+    combined_response = format_code_snippets(combined_response).strip()
     
     logging.info(f"Generated response: {combined_response}")
     
@@ -68,7 +68,7 @@ def format_code_snippets(response):
     
     def replace_code_block(match):
         code = match.group(2).strip()
-        highlighted_code = highlight(code, PythonLexer(), HtmlFormatter(full=True))
+        highlighted_code = highlight(code, PythonLexer(), HtmlFormatter())
         return f"<div class='code-block'>{highlighted_code}</div>"
 
     formatted_response = code_block_pattern.sub(replace_code_block, response)
