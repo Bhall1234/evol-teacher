@@ -45,8 +45,8 @@ def ask():
     logging.info(f"Incorrect code: {incorrect_code_data['code']}")
     
     return render_template("index.html", question=user_question, explanation=formatted_explanation, 
-                           incorrect_code=formatted_incorrect_code, hint=incorrect_code_data["description"], 
-                           detailed_explanation=incorrect_code_data["explanation"])
+                           incorrect_code=formatted_incorrect_code, task_description=incorrect_code_data["task_description"],
+                           hint=incorrect_code_data["description"], detailed_explanation=incorrect_code_data["explanation"])
 
 @app.route("/run_code", methods=["POST"])
 def run_code():
@@ -69,7 +69,7 @@ def get_related_code(question, correct_code_examples):
     filtered_examples = [ex for ex in correct_code_examples["examples"] if any(label in ex["label"] for label in keywords)]
 
     if not filtered_examples:
-        return {"code": "No related code examples found.", "description": "", "explanation": ""}
+        return {"code": "No related code examples found.", "task_description": "", "description": "", "explanation": ""}
 
     best_match = random.choice(filtered_examples)
     return best_match

@@ -113,6 +113,7 @@
         <div class="column">
             {% if incorrect_code %}
             <h2>Incorrect Code:</h2>
+            <p><strong>Task Description:</strong> {{ task_description }}</p>
             <div class="code-block">{{ incorrect_code | safe }}</div>
             <button onclick="toggleHint()">Show Hint</button>
             <button onclick="toggleExplanation()">Show Explanation</button>
