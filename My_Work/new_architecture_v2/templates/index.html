@@ -114,6 +114,10 @@
             {% if incorrect_code %}
             <h2>Incorrect Code:</h2>
             <div class="code-block">{{ incorrect_code | safe }}</div>
+            <button onclick="toggleHint()">Show Hint</button>
+            <button onclick="toggleExplanation()">Show Explanation</button>
+            <p id="hint" style="display: none;"><strong>Hint:</strong> {{ hint }}</p>
+            <p id="explanation" style="display: none;"><strong>Explanation:</strong> {{ detailed_explanation }}</p>
             {% endif %}
             <h2>Try to Fix the Incorrect Code:</h2>
             <textarea id="editor"></textarea>
@@ -130,6 +134,24 @@
             mode: "python",
             theme: "default"
         });
+
+        function toggleHint() {
+            var hint = document.getElementById("hint");
+            if (hint.style.display === "none") {
+                hint.style.display = "block";
+            } else {
+                hint.style.display = "none";
+            }
+        }
+
+        function toggleExplanation() {
+            var explanation = document.getElementById("explanation");
+            if (explanation.style.display === "none") {
+                explanation.style.display = "block";
+            } else {
+                explanation.style.display = "none";
+            }
+        }
 
         function runCode() {
             var code = editor.getValue();

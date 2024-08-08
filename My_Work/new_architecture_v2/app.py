@@ -5,7 +5,6 @@ import re
 from flask import Flask, request, render_template, jsonify
 from src.utils import load_dataset
 from src.explanation_generation import generate_explanation
-from src.response_combination import create_combined_response
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
@@ -36,16 +35,18 @@ def ask():
     logging.info(f"User question: {user_question}")
     
     explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")  # was "deepseekcoder"
-    incorrect_code = get_related_code(user_question, correct_code_examples)
+    incorrect_code_data = get_related_code(user_question, correct_code_examples)
     
     # Apply syntax highlighting to the explanation and incorrect code
     formatted_explanation = format_code_snippets(explanation)
-    formatted_incorrect_code = highlight(incorrect_code, PythonLexer(), HtmlFormatter(noclasses=True))
+    formatted_incorrect_code = highlight(incorrect_code_data["code"], PythonLexer(), HtmlFormatter(noclasses=True))
     
     logging.info(f"Generated explanation: {explanation}")
-    logging.info(f"Incorrect code: {incorrect_code}")
+    logging.info(f"Incorrect code: {incorrect_code_data['code']}")
     
-    return render_template("index.html", question=user_question, explanation=formatted_explanation, incorrect_code=formatted_incorrect_code)
+    return render_template("index.html", question=user_question, explanation=formatted_explanation, 
+                           incorrect_code=formatted_incorrect_code, hint=incorrect_code_data["description"], 
+                           detailed_explanation=incorrect_code_data["explanation"])
 
 @app.route("/run_code", methods=["POST"])
 def run_code():
@@ -64,18 +65,14 @@ def get_related_code(question, correct_code_examples):
     keywords = [token.lemma_ for token in doc if token.is_alpha and not token.is_stop]
     logging.info(f"Extracted keywords: {keywords}")
 
-    best_match = None
-    highest_score = 0
+    # Filter examples by label
+    filtered_examples = [ex for ex in correct_code_examples["examples"] if any(label in ex["label"] for label in keywords)]
 
-    for example in correct_code_examples:
-        hint_doc = nlp(example["hint"])
-        hint_keywords = [token.lemma_ for token in hint_doc if token.is_alpha and not token.is_stop]
-        score = len(set(keywords) & set(hint_keywords))
-        if score > highest_score:
-            highest_score = score
-            best_match = example
+    if not filtered_examples:
+        return {"code": "No related code examples found.", "description": "", "explanation": ""}
 
-    return best_match["code"] if best_match else random.choice(correct_code_examples)["code"]
+    best_match = random.choice(filtered_examples)
+    return best_match
 
 def format_code_snippets(response):
     # This regex finds all code blocks wrapped in triple backticks
