@@ -46,6 +46,6 @@ def send_request_to_local_llm(prompt, model, temperature=0.8, max_tokens=512):
 def generate_explanation(prompt, model, temperature=0.8, max_tokens=512):
     response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
     explanation = response["choices"][0]["message"]["content"].strip()
-    # Preserve the whitespace and indentation for code blocks
+    # Preserve the whitespace and indentation for code blocks, was previously removing all whitespace from the explanation text.
     explanation = explanation.replace('\n```', '\n```\n')
     return explanation
