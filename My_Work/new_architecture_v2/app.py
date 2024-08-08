@@ -35,7 +35,7 @@ def ask():
     
     explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")  # was "deepseekcoder"
     correct_code = get_related_code(user_question, correct_code_examples)
-    combined_response = create_combined_response(user_question, explanation, correct_code).strip()
+    combined_response = create_combined_response(explanation, correct_code).strip()
     
     # Apply syntax highlighting to the code
     combined_response = format_code_snippets(combined_response).strip()
