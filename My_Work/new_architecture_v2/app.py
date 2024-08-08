@@ -69,7 +69,7 @@ def format_code_snippets(response):
     def replace_code_block(match):
         code = match.group(2).strip()
         highlighted_code = highlight(code, PythonLexer(), HtmlFormatter(noclasses=True))
-        return f"<div class='code-block'><pre><code>{highlighted_code}</code></pre></div>"
+        return f"<pre><code>{highlighted_code}</code></pre>"
 
     formatted_response = code_block_pattern.sub(replace_code_block, response)
     return formatted_response

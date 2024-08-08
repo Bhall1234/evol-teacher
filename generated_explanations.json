@@ -1,0 +1,5 @@
+{
+    "question": "How do you create a for loop in python? ",
+    "explanation": "To create a for loop in Python, you can use the following syntax:\n```python\nfor variable in iterable:\n# do something with the current element of the iterable\n```\nThe `variable` represents the current element of the iterable being processed. The `iterable` is any object that can be iterated over, such as a list or a string.\nFor example, to print all the numbers from 1 to 5:\n```python\nfor i in range(1, 6):\nprint(i)\n```\nThis will output:\n```\n1\n2\n3\n4\n5\n```\nYou can also use a for loop with multiple variables, like this:\n```python\nfor x, y in [(1, 2), (3, 4), (5, 6)]:\nprint(x, y)\n```\nThis will output:\n```\n1 2\n3 4\n5 6\n```\nI hope this helps! Let me know if you have any other questions.",
+    "code": "for i in range(5):\n    print(i)\n"
+}
