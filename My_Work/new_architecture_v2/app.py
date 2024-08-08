@@ -36,15 +36,16 @@ def ask():
     logging.info(f"User question: {user_question}")
     
     explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")  # was "deepseekcoder"
-    correct_code = get_related_code(user_question, correct_code_examples)
-    combined_response = create_combined_response(explanation, correct_code).strip()
+    incorrect_code = get_related_code(user_question, correct_code_examples)
     
-    # Apply syntax highlighting to the code
-    combined_response = format_code_snippets(combined_response)
+    # Apply syntax highlighting to the explanation and incorrect code
+    formatted_explanation = format_code_snippets(explanation)
+    formatted_incorrect_code = highlight(incorrect_code, PythonLexer(), HtmlFormatter(noclasses=True))
     
-    logging.info(f"Generated response: {combined_response}")
+    logging.info(f"Generated explanation: {explanation}")
+    logging.info(f"Incorrect code: {incorrect_code}")
     
-    return render_template("index.html", question=user_question, response=combined_response)
+    return render_template("index.html", question=user_question, explanation=formatted_explanation, incorrect_code=formatted_incorrect_code)
 
 @app.route("/run_code", methods=["POST"])
 def run_code():
@@ -78,10 +79,10 @@ def get_related_code(question, correct_code_examples):
 
 def format_code_snippets(response):
     # This regex finds all code blocks wrapped in triple backticks
-    code_block_pattern = re.compile(r'```(python)?\n(.*?)\n```', re.DOTALL)
+    code_block_pattern = re.compile(r'```\n(.*?)\n```', re.DOTALL)
     
     def replace_code_block(match):
-        code = match.group(2).strip()
+        code = match.group(1).strip()
         highlighted_code = highlight(code, PythonLexer(), HtmlFormatter(noclasses=True))
         return f"<pre><code>{highlighted_code}</code></pre>"
 
