@@ -1,6 +1,7 @@
 import os
 import random
 import logging
+import re
 from flask import Flask, request, render_template
 from src.utils import load_dataset
 from src.explanation_generation import generate_explanation
@@ -8,7 +9,6 @@ from src.response_combination import create_combined_response
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
-import re
 
 app = Flask(__name__)
 
@@ -38,7 +38,7 @@ def ask():
     combined_response = create_combined_response(explanation, correct_code).strip()
     
     # Apply syntax highlighting to the code
-    combined_response = format_code_snippets(combined_response).strip()
+    combined_response = format_code_snippets(combined_response)
     
     logging.info(f"Generated response: {combined_response}")
     
