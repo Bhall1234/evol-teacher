@@ -1,7 +1,7 @@
 import os
 import random
 import logging
-import spacy
+import re
 from flask import Flask, request, render_template
 from src.utils import load_dataset
 from src.explanation_generation import generate_explanation
@@ -21,6 +21,7 @@ logging.basicConfig(filename=log_path, level=logging.INFO, format='%(asctime)s -
 correct_code_examples = load_dataset('./My_Work/new_architecture_v2/data/code_examples.json')
 
 # Load spaCy model
+import spacy
 nlp = spacy.load("en_core_web_sm")
 
 @app.route("/")
@@ -62,15 +63,15 @@ def get_related_code(question, correct_code_examples):
     return best_match["code"] if best_match else random.choice(correct_code_examples)["code"]
 
 def format_code_snippets(response):
-    parts = response.split("```python")
-    formatted_response = parts[0]
-    for part in parts[1:]:
-        if "```" in part:
-            code, rest = part.split("```", 1)
-            highlighted_code = highlight(code, PythonLexer(), HtmlFormatter())
-            formatted_response += f"<div class='code-block'>{highlighted_code}</div>{rest}"
-        else:
-            formatted_response += part
+    # This regex finds all code blocks wrapped in triple backticks
+    code_block_pattern = re.compile(r'```(python)?\n(.*?)\n```', re.DOTALL)
+    
+    def replace_code_block(match):
+        code = match.group(2).strip()
+        highlighted_code = highlight(code, PythonLexer(), HtmlFormatter(full=True))
+        return f"<div class='code-block'>{highlighted_code}</div>"
+
+    formatted_response = code_block_pattern.sub(replace_code_block, response)
     return formatted_response
 
 if __name__ == "__main__":
