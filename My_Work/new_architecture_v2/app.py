@@ -10,6 +10,7 @@ from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
 import subprocess
+import sys
 
 app = Flask(__name__)
 
@@ -45,13 +46,13 @@ def ask():
     
     return render_template("index.html", question=user_question, response=combined_response)
 
-# Add a new route to run Python code
 @app.route("/run_code", methods=["POST"])
 def run_code():
     data = request.get_json()
     code = data["code"]
     try:
-        result = subprocess.run(["python3", "-c", code], capture_output=True, text=True, check=True)
+        # Use the Python interpreter from the virtual environment
+        result = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, check=True)
         output = result.stdout
     except subprocess.CalledProcessError as e:
         output = e.stderr
