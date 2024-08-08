@@ -2,13 +2,14 @@ import os
 import random
 import logging
 import re
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from src.utils import load_dataset
 from src.explanation_generation import generate_explanation
 from src.response_combination import create_combined_response
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
+import subprocess
 
 app = Flask(__name__)
 
@@ -43,6 +44,18 @@ def ask():
     logging.info(f"Generated response: {combined_response}")
     
     return render_template("index.html", question=user_question, response=combined_response)
+
+# Add a new route to run Python code
+@app.route("/run_code", methods=["POST"])
+def run_code():
+    data = request.get_json()
+    code = data["code"]
+    try:
+        result = subprocess.run(["python3", "-c", code], capture_output=True, text=True, check=True)
+        output = result.stdout
+    except subprocess.CalledProcessError as e:
+        output = e.stderr
+    return jsonify({"output": output})
 
 def get_related_code(question, correct_code_examples):
     doc = nlp(question)

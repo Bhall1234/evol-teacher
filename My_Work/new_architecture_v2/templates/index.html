@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Learning Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,31 +23,19 @@
             margin: 10px 0;
             overflow-x: auto;
         }
-        pre {
-            background-color: #f8f8f8;
+        .CodeMirror {
             border: 1px solid #ddd;
-            padding: 10px;
-            white-space: pre-wrap; /* Ensures that white-space is preserved */
-            margin: 0;
-            overflow: auto;
-        }
-        code {
-            white-space: pre-wrap; /* Ensures that white-space is preserved */
-        }
-        .highlight {
-            padding: 0;
-        }
-        .highlight pre {
-            margin: 0;
-            padding: 10px;
-            white-space: pre-wrap;
-        }
-        .loading {
-            font-style: italic;
-            color: #666;
+            height: auto;
         }
         .response {
-            white-space: pre-wrap; /* Keeps the white-space and line breaks in the response */
+            white-space: pre-wrap;
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -69,6 +60,42 @@
             {% endif %}
         </div>
         {% endif %}
+        <h2>Try to Fix the Incorrect Code:</h2>
+        <textarea id="editor">{{ incorrect_code }}</textarea>
+        <div class="buttons">
+            <button onclick="runCode()">Run Code</button>
+            <button onclick="resetCode()">Reset Code</button>
+        </div>
+        <pre id="output"></pre>
     </div>
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+            lineNumbers: true,
+            mode: "python",
+            theme: "default"
+        });
+
+        function runCode() {
+            var code = editor.getValue();
+            var outputElement = document.getElementById("output");
+            outputElement.textContent = "Running code...\n";
+
+            fetch("/run_code", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code: code })
+            })
+            .then(response => response.json())
+            .then(data => {
+                outputElement.textContent = data.output;
+            });
+        }
+
+        function resetCode() {
+            editor.setValue("{{ incorrect_code }}");
+        }
+    </script>
 </body>
 </html>
