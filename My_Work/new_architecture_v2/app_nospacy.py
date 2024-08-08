@@ -1,7 +1,6 @@
 import os
 import random
 import logging
-import spacy
 from flask import Flask, request, render_template
 from src.utils import load_dataset
 from src.explanation_generation import generate_explanation
@@ -17,11 +16,9 @@ log_path = os.path.join(os.getcwd(), 'My_Work', 'new_architecture_v2', 'src', 'l
 os.makedirs(os.path.dirname(log_path), exist_ok=True)  # Ensure the log directory exists
 logging.basicConfig(filename=log_path, level=logging.INFO, format='%(asctime)s - %(message)s')
 
-# Load datasets
+# Load datasets, user_questions inst necessary right now, could be good for testing later on.
 correct_code_examples = load_dataset('./My_Work/new_architecture_v2/data/code_examples.json')
-
-# Load spaCy model
-nlp = spacy.load("en_core_web_sm")
+#user_questions = load_dataset('./My_Work/new_architecture_v2/data/user_questions.json')
 
 @app.route("/")
 def home():
@@ -43,23 +40,19 @@ def ask():
     
     return render_template("index.html", question=user_question, response=combined_response)
 
+# this is awful, needs to be refactored and improved upon in the future
 def get_related_code(question, correct_code_examples):
-    doc = nlp(question)
-    keywords = [token.lemma_ for token in doc if token.is_alpha and not token.is_stop]
-    logging.info(f"Extracted keywords: {keywords}")
+    if "for loop" in question.lower():
+        related_hints = [example for example in correct_code_examples if "for loop" in example["hint"].lower()]
+    elif "while loop" in question.lower():
+        related_hints = [example for example in correct_code_examples if "while loop" in example["hint"].lower()]
+    else:
+        related_hints = correct_code_examples
 
-    best_match = None
-    highest_score = 0
-
-    for example in correct_code_examples:
-        hint_doc = nlp(example["hint"])
-        hint_keywords = [token.lemma_ for token in hint_doc if token.is_alpha and not token.is_stop]
-        score = len(set(keywords) & set(hint_keywords))
-        if score > highest_score:
-            highest_score = score
-            best_match = example
-
-    return best_match["code"] if best_match else random.choice(correct_code_examples)["code"]
+    if related_hints:
+        return random.choice(related_hints)["code"]
+    else:
+        return random.choice(correct_code_examples)["code"]
 
 def format_code_snippets(response):
     parts = response.split("```python")
