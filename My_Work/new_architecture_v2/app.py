@@ -65,21 +65,54 @@ def run_code():
         output = e.stderr
     return jsonify({"output": output})
 
+"""
 def get_related_code(question, correct_code_examples):
     doc = nlp(question)
 
     keywords = [token.lemma_ for token in doc if token.is_alpha and not token.is_stop]
 
-    # Predefined programming keywords
+    # Check for the presence of specific programming keywords in the user's question
     programming_keywords = ["for", "while", "if", "else", "elif", "def", "class", "import", "try", "except", "with", "return"]
+    detected_programming_keywords = [kw for kw in programming_keywords if kw in question.lower()]
     
     # Combine the extracted keywords with the predefined programming keywords
-    combined_keywords = set(keywords + programming_keywords)
+    combined_keywords = set(keywords + detected_programming_keywords)
 
     logging.info(f"Extracted keywords: {combined_keywords}")
 
     # Filter examples by label
     filtered_examples = [ex for ex in correct_code_examples["examples"] if any(label in ex["label"] for label in combined_keywords)]
+
+    if not filtered_examples:
+        return {"code": "No related code examples found.", "task_description": "", "description": "", "explanation": ""}
+
+    best_match = random.choice(filtered_examples)
+    return best_match"""
+
+def get_related_code(question, correct_code_examples):
+    doc = nlp(question)
+
+    # Extract keywords using spaCy
+    keywords = [token.lemma_ for token in doc if token.is_alpha and not token.is_stop]
+    
+    # Check for the presence of specific programming keywords in the user's question
+    programming_keywords = ["for", "while", "if", "else", "elif", "def", "class", "import", "try", "except", "with", "return"]
+    detected_programming_keywords = [kw for kw in programming_keywords if kw in question.lower()]
+    
+    # Combine the extracted keywords with the detected programming keywords
+    combined_keywords = set(keywords + detected_programming_keywords)
+
+    logging.info(f"Extracted keywords: {combined_keywords}")
+
+    # Prioritize exact matches for "for loop" and "while loop"
+    exact_match_keywords = ["for loop", "while loop"]
+    exact_matches = [ex for ex in correct_code_examples["examples"] if any(label in ex["label"] for label in exact_match_keywords)]
+    
+    if exact_matches:
+        filtered_examples = exact_matches
+    else:
+        # Filter examples by label
+        filtered_examples = [ex for ex in correct_code_examples["examples"] if any(label in ex["label"] for label in combined_keywords)]
 
     if not filtered_examples:
         return {"code": "No related code examples found.", "task_description": "", "description": "", "explanation": ""}
