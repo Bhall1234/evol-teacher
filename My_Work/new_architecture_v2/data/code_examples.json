@@ -39,6 +39,46 @@
             "description": "Using list index instead of value.",
             "code": "fruits = [\"apple\", \"banana\", \"cherry\"]\nfor i in range(len(fruits)):\n    print(fruits)\n",
             "explanation": "The loop prints the entire list each time. Use print(fruits[i]) to print each fruit."
+        },
+        {
+            "id": 6,
+            "label": "while loop",
+            "task_description": "This code is supposed to print numbers from 1 to 5, but it's not working correctly.",
+            "description": "Off-by-one error in the loop condition.",
+            "code": "i = 0\nwhile i < 6:\n    print(i)\n    i += 1\n",
+            "explanation": "This loop runs from 0 to 5. If you want to print from 1 to 5, you should initialize i to 1 and use while i <= 5."
+        },
+        {
+            "id": 7,
+            "label": "while loop",
+            "task_description": "This code is supposed to iterate over a range of numbers, but it's not working correctly.",
+            "description": "Incorrect loop condition.",
+            "code": "i = 5\nwhile i:\n    print(i)\n    i -= 1\n",
+            "explanation": "The loop condition will eventually become false when i is 0. If you want to iterate from 5 to 1, use while i > 0."
+        },
+        {
+            "id": 8,
+            "label": "while loop",
+            "task_description": "This code is supposed to print numbers from 1 to 5, but it's not working correctly.",
+            "description": "Incorrect loop initialization.",
+            "code": "i = 5\nwhile i > 1:\n    print(i)\n    i -= 1\n",
+            "explanation": "The start value is greater than the stop value, so the loop will not print the desired range. Initialize i to 1 and use while i <= 5."
+        },
+        {
+            "id": 9,
+            "label": "while loop",
+            "task_description": "This code is supposed to print numbers from 0 to 4, but it's not working correctly.",
+            "description": "Indentation error.",
+            "code": "i = 0\nwhile i < 5:\nprint(i)\n    i += 1\n",
+            "explanation": "The print statement should be indented to be inside the while loop. Correct indentation is crucial in Python."
+        },
+        {
+            "id": 10,
+            "label": "while loop",
+            "task_description": "This code is supposed to print each fruit in the list, but it's not working correctly.",
+            "description": "Using list index instead of value.",
+            "code": "fruits = [\"apple\", \"banana\", \"cherry\"]\ni = 0\nwhile i < len(fruits):\n    print(fruits)\n    i += 1\n",
+            "explanation": "The loop prints the entire list each time. Use print(fruits[i]) to print each fruit."
         }
     ]
 }
