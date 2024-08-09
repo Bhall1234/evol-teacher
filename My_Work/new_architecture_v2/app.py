@@ -184,9 +184,15 @@ def run_code():
         output = e.stderr
     return jsonify({"output": output})
 
-def extract_initial_explanation(explanation):
+"""def extract_initial_explanation(explanation):
     # Split the explanation into sentences and take the first sentence
     sentences = explanation.split('. ')
+    initial_part = '. '.join(sentences[:1])  # Adjust the number of sentences as needed
+    return initial_part"""
+
+def extract_initial_explanation(explanation):
+    # Split the explanation into sentences using both '.' and ':'
+    sentences = re.split(r'[.:]\s*', explanation)
     initial_part = '. '.join(sentences[:1])  # Adjust the number of sentences as needed
     return initial_part
 
