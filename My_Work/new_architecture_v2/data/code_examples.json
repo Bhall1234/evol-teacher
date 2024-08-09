@@ -79,6 +79,86 @@
             "description": "Using list index instead of value.",
             "code": "fruits = [\"apple\", \"banana\", \"cherry\"]\ni = 0\nwhile i < len(fruits):\n    print(fruits)\n    i += 1\n",
             "explanation": "The loop prints the entire list each time. Use print(fruits[i]) to print each fruit."
+        },
+        {
+            "id": 11,
+            "label": "variable assignment",
+            "task_description": "This code is supposed to assign a value to a variable, but it's not working correctly.",
+            "description": "Using the wrong assignment operator.",
+            "code": "x == 5\nprint(x)\n",
+            "explanation": "The == operator is used for comparison, not assignment. Use = to assign a value to a variable."
+        },
+        {
+            "id": 12,
+            "label": "function definition",
+            "task_description": "This code is supposed to define a function, but it's not working correctly.",
+            "description": "Missing colon after function definition.",
+            "code": "def my_function()\n    print('Hello')\n",
+            "explanation": "A colon is required after the function definition. Correct syntax is def my_function():"
+        },
+        {
+            "id": 13,
+            "label": "list operations",
+            "task_description": "This code is supposed to append an item to a list, but it's not working correctly.",
+            "description": "Using the wrong method to append an item.",
+            "code": "fruits = ['apple', 'banana', 'cherry']\nfruits.add('orange')\n",
+            "explanation": "The add method is not used for lists. Use append to add an item to a list."
+        },
+        {
+            "id": 14,
+            "label": "string operations",
+            "task_description": "This code is supposed to concatenate two strings, but it's not working correctly.",
+            "description": "Using the wrong operator for string concatenation.",
+            "code": "greeting = 'Hello' + ' ' * 'World'\nprint(greeting)\n",
+            "explanation": "The * operator is not used for string concatenation. Use + to concatenate strings."
+        },
+        {
+            "id": 15,
+            "label": "dictionary operations",
+            "task_description": "This code is supposed to add a key-value pair to a dictionary, but it's not working correctly.",
+            "description": "Using the wrong method to add a key-value pair.",
+            "code": "my_dict = {'name': 'Alice', 'age': 25}\nmy_dict.add('city', 'New York')\n",
+            "explanation": "The add method is not used for dictionaries. Use my_dict['city'] = 'New York' to add a key-value pair."
+        },
+        {
+            "id": 16,
+            "label": "if statement",
+            "task_description": "This code is supposed to check if a number is positive, but it's not working correctly.",
+            "description": "Using the wrong comparison operator.",
+            "code": "x = 5\nif x => 0:\n    print('Positive')\n",
+            "explanation": "The => operator is not valid in Python. Use >= to check if a number is greater than or equal to 0."
+        },
+        {
+            "id": 17,
+            "label": "file operations",
+            "task_description": "This code is supposed to open a file and read its contents, but it's not working correctly.",
+            "description": "Using the wrong mode to open the file.",
+            "code": "with open('file.txt', 'w') as file:\n    contents = file.read()\n",
+            "explanation": "The 'w' mode is for writing, not reading. Use 'r' mode to open a file for reading."
+        },
+        {
+            "id": 18,
+            "label": "list comprehension",
+            "task_description": "This code is supposed to create a list of squares, but it's not working correctly.",
+            "description": "Incorrect syntax for list comprehension.",
+            "code": "squares = [for x in range(10) x**2]\n",
+            "explanation": "The correct syntax for list comprehension is [x**2 for x in range(10)]."
+        },
+        {
+            "id": 19,
+            "label": "import statement",
+            "task_description": "This code is supposed to import a module, but it's not working correctly.",
+            "description": "Incorrect syntax for import statement.",
+            "code": "import os sys\n",
+            "explanation": "To import multiple modules, use separate import statements or import them in a single line separated by commas, e.g., import os, sys."
+        },
+        {
+            "id": 20,
+            "label": "class definition",
+            "task_description": "This code is supposed to define a class, but it's not working correctly.",
+            "description": "Missing colon after class definition.",
+            "code": "class MyClass\n    def __init__(self):\n        self.name = 'MyClass'\n",
+            "explanation": "A colon is required after the class definition. Correct syntax is class MyClass:"
         }
     ]
 }
