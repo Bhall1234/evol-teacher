@@ -54,6 +54,18 @@
             padding: 10px 20px;
             margin-right: 10px;
         }
+        .run-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .reset-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
         pre {
             background-color: #f8f8f8;
             border: 1px solid #ddd;
@@ -122,8 +134,8 @@
             <textarea id="editor"></textarea>
             <pre id="output"></pre>
             <div class="buttons">
-                <button onclick="runCode()">Run Code</button>
-                <button onclick="resetCode()">Reset Code</button>
+                <button class="run-button" onclick="runCode()">Run Code</button>
+                <button class="reset-button" onclick="resetCode()">Reset Code</button>
                 <button onclick="toggleHint()">Show Hint</button>
                 <button onclick="toggleExplanation()">Show Explanation</button>
             </div>
