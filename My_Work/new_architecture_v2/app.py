@@ -33,6 +33,11 @@ def home():
 def ask():
     user_question = request.form["question"]
     logging.info(f"User question: {user_question}")
+
+    # Check if "python" is in the question, if not, append it. Could improve this check to be more robust in the future.
+    if "python" not in user_question.lower():
+        user_question += " python"
+        logging.info(f"Modified user question: {user_question}")
     
     explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")  # was "deepseekcoder"
     incorrect_code_data = get_related_code(user_question, correct_code_examples)
