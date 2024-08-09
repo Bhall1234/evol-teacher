@@ -145,7 +145,7 @@ def ask():
 
     # Check if "python" is in the question, if not, append it.
     if "python" not in user_question.lower():
-        user_question += " python"
+        user_question += " (programming Language: python)"
         logging.info(f"Modified user question: {user_question}")
     
     # Generate explanation using LLM
