@@ -69,15 +69,17 @@ def get_related_code(question, correct_code_examples):
     doc = nlp(question)
 
     keywords = [token.lemma_ for token in doc if token.is_alpha and not token.is_stop]
-    
-    # Manually add programming keywords
-    programming_keywords = ["for", "while", "if", "else", "elif", "def", "class", "import", "try", "except", "with", "return"]
-    keywords.extend(programming_keywords)
 
-    logging.info(f"Extracted keywords: {keywords}")
+    # Predefined programming keywords
+    programming_keywords = ["for", "while", "if", "else", "elif", "def", "class", "import", "try", "except", "with", "return"]
+    
+    # Combine the extracted keywords with the predefined programming keywords
+    combined_keywords = set(keywords + programming_keywords)
+
+    logging.info(f"Extracted keywords: {combined_keywords}")
 
     # Filter examples by label
-    filtered_examples = [ex for ex in correct_code_examples["examples"] if any(label in ex["label"] for label in keywords)]
+    filtered_examples = [ex for ex in correct_code_examples["examples"] if any(label in ex["label"] for label in combined_keywords)]
 
     if not filtered_examples:
         return {"code": "No related code examples found.", "task_description": "", "description": "", "explanation": ""}
