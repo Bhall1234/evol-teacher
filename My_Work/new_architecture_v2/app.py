@@ -195,7 +195,7 @@ def extract_keywords_from_text(text):
     keywords = [token.lemma_ for token in doc if token.is_alpha and not token.is_stop]
     
     # Define a list of programming keywords
-    programming_keywords = ["for", "while", "if", "else", "elif", "def", "class", "import", "try", "except", "with", "return"]
+    programming_keywords = ["for", "while","for loop","while loop", "if", "else", "elif", "def", "class", "import", "try", "except", "with", "return"]
     
     # Check for the presence of these keywords in the user's question
     detected_programming_keywords = [kw for kw in text.lower().split() if kw in programming_keywords]

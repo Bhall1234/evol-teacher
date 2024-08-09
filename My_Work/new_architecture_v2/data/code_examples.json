@@ -2,7 +2,7 @@
     "examples": [
         {
             "id": 1,
-            "label": "for",
+            "label": ["for", "for loop"],
             "task_description": "This code is supposed to print each fruit in the list, but it's not working correctly.",
             "description": "Using list index instead of value.",
             "code": "fruits = [\"apple\", \"banana\", \"cherry\"]\nfor i in range(len(fruits)):\n    print(fruits)\n",
@@ -10,7 +10,7 @@
         },
         {
             "id": 2,
-            "label": "while",
+            "label": ["while", "while loop"],
             "task_description": "This code is supposed to print numbers from 1 to 5, but it's not working correctly.",
             "description": "Off-by-one error in the loop condition.",
             "code": "i = 0\nwhile i < 6:\n    print(i)\n    i += 1\n",
