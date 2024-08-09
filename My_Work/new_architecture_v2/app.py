@@ -156,7 +156,7 @@ def ask():
     # Generate explanation using LLM
     explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")
     
-    # Extract keywords from the LLM-generated explanation
+    # Extract keywords from the LLM-generated explanation, and find related code examples from the dataset based on these keywords.
     explanation_keywords = extract_keywords_from_text(explanation)
     
     # Match the explanation keywords with incorrect code examples
