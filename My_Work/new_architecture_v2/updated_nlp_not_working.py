@@ -12,6 +12,10 @@ from pygments.formatters import HtmlFormatter
 import subprocess
 import sys
 import spacy
+from gensim.models import KeyedVectors
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+from transformers import pipeline
 
 app = Flask(__name__)
 
@@ -25,6 +29,12 @@ correct_code_examples = load_dataset('./My_Work/new_architecture_v2/data/code_ex
 
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
+
+# Load pre-trained word vectors
+word_vectors = KeyedVectors.load_word2vec_format('path/to/word2vec.bin', binary=True)
+
+# Load a semantic similarity model
+semantic_model = pipeline("feature-extraction", model="bert-base-uncased")
 
 @app.route("/")
 def home():
@@ -124,6 +134,15 @@ def extract_keywords_from_text(text):
     doc = nlp(text)
     keywords = [token.lemma_ for token in doc if token.is_alpha and not token.is_stop]
     
+    # Named Entity Recognition (NER)
+    entities = [ent.text for ent in doc.ents]
+    
+    # Dependency Parsing
+    dependencies = [token.dep_ for token in doc]
+    
+    # Phrase Extraction
+    phrases = [chunk.text for chunk in doc.noun_chunks]
+    
     # Define a list of programming keywords
     programming_keywords = ["for", "while","for loop","while loop","`while`","`for`","`if`","if","`def`","else", "elif", "def", "class", "import", "try", "except", "with", "return"]
     
@@ -131,10 +150,26 @@ def extract_keywords_from_text(text):
     detected_programming_keywords = [kw for kw in text.lower().split() if kw in programming_keywords]
     
     # Combine the extracted keywords with the detected programming keywords
-    combined_keywords = set(keywords + detected_programming_keywords)
+    combined_keywords = set(keywords + entities + dependencies + phrases + detected_programming_keywords)
     
     logging.info(f"Extracted keywords from text: {combined_keywords}")
     return combined_keywords
+
+def get_vector(word):
+    try:
+        return word_vectors[word]
+    except KeyError:
+        return np.zeros((word_vectors.vector_size,))
+
+def calculate_similarity(keywords1, keywords2):
+    vectors1 = np.array([get_vector(word) for word in keywords1])
+    vectors2 = np.array([get_vector(word) for word in keywords2])
+    return cosine_similarity(np.mean(vectors1, axis=0).reshape(1, -1), np.mean(vectors2, axis=0).reshape(1, -1))[0][0]
+
+def semantic_similarity(text1, text2):
+    vec1 = np.mean(semantic_model(text1), axis=1)
+    vec2 = np.mean(semantic_model(text2), axis=1)
+    return cosine_similarity(vec1, vec2)[0][0]
 
 def get_related_code_by_keywords(keywords, correct_code_examples):
     logging.info(f"Matching keywords: {keywords}")
@@ -145,7 +180,17 @@ def get_related_code_by_keywords(keywords, correct_code_examples):
     if not filtered_examples:
         return {"incorrect_code": "No related code examples found.", "task_description": "", "description": "", "explanation": "", "task_id": "N/A"}
 
-    best_match = random.choice(filtered_examples)
+    best_match = None
+    highest_similarity = 0
+    for example in filtered_examples:
+        example_keywords = extract_keywords_from_text(example["label"])
+        keyword_similarity = calculate_similarity(keywords, example_keywords)
+        semantic_sim = semantic_similarity(' '.join(keywords), example["label"])
+        total_similarity = 0.5 * keyword_similarity + 0.5 * semantic_sim  # Weighted matching
+        if total_similarity > highest_similarity:
+            highest_similarity = total_similarity
+            best_match = example
+
     return best_match
 
 def format_code_snippets(response):
