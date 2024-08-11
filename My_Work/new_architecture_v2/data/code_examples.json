@@ -5,7 +5,7 @@
             "label": ["function", "default parameter", "`def`", "`function`", "parameters"],
             "task_description": "This code is supposed to greet a user, but it's not working correctly when no name is provided. Use the name 'Guest' in this case.",
             "incorrect_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet()\n",
-            "correct_code": "# Solution 1\n def greet(name='Guest'):\n    print(f'Hello, {name}!')\n\ngreet()\n\n # Solution 2\n def greet(name):\n    print(f'Hello, {name}!')\n\nname='Guest'\ngreet(name)\n",
+            "correct_code": "# Solution 1\ndef greet(name='Guest'):\n    print(f'Hello, {name}!')\n\ngreet()\n\n # Solution 2\ndef greet(name):\n    print(f'Hello, {name}!')\n\nname='Guest'\ngreet(name)\n",
             "description": "Missing default parameter value.",
             "explanation": "To handle cases where no argument is provided, use a default parameter value like `name='Guest'`.",
             "expected_output": "Hello, Guest!"
