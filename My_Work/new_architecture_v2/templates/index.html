@@ -53,18 +53,34 @@
         button {
             padding: 10px 20px;
             margin-right: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
         .run-button {
             background-color: #4CAF50;
             color: white;
-            border: none;
-            cursor: pointer;
+        }
+        .run-button:hover {
+            background-color: #45a049;
         }
         .reset-button {
             background-color: #f44336;
             color: white;
-            border: none;
-            cursor: pointer;
+        }
+        .reset-button:hover {
+            background-color: #e53935;
+        }
+        .hint-button, .explanation-button, .check-button {
+            background-color: #008CBA;
+            color: white;
+        }
+        .hint-button:hover, .explanation-button:hover, .check-button:hover {
+            background-color: #007bb5;
+        }
+        .check-button {
+            margin-top: 10px;
         }
         pre {
             background-color: #f8f8f8;
@@ -96,6 +112,13 @@
             width: fit-content;
             padding: 10px 20px;
             align-self: flex-start;
+        }
+        #check-result {
+            font-size: 1.2em;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f8f8f8;
         }
     </style>
 </head>
@@ -136,12 +159,12 @@
             <div class="buttons">
                 <button class="run-button" onclick="runCode()">Run Code</button>
                 <button class="reset-button" onclick="resetCode()">Reset Code</button>
-                <button onclick="toggleHint()">Show Hint</button>
-                <button onclick="toggleExplanation()">Show Explanation</button>
+                <button class="hint-button" onclick="toggleHint()">Show Hint</button>
+                <button class="explanation-button" onclick="toggleExplanation()">Show Explanation</button>
             </div>
             <form id="check-code-form">
                 <input type="hidden" id="task-id" name="task_id" value="{{ task_id }}">
-                <button type="submit">Check Code</button>
+                <button type="submit" class="check-button">Check Code</button>
             </form>
             <div id="check-result"></div>
         </div>
@@ -208,7 +231,14 @@
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById("check-result").innerText = data.result;
+                var resultElement = document.getElementById("check-result");
+                if (data.result === "Correct") {
+                    resultElement.innerText = "Great job! Your code is correct.";
+                    resultElement.style.color = "green";
+                } else {
+                    resultElement.innerText = "Oops! There seems to be an error in your code.";
+                    resultElement.style.color = "red";
+                }
             });
         });
     </script>
