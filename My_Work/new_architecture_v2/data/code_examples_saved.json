@@ -2,86 +2,22 @@
     "examples": [
         {
             "id": 1,
-            "label": "for",
-            "task_description": "This code is supposed to print numbers from 1 to 5, but it's not working correctly.",
-            "description": "Off-by-one error in the range function.",
-            "code": "for i in range(6):\n    print(i)\n",
-            "explanation": "This loop runs from 0 to 5. If you want to print from 1 to 5, you should use range(1, 6)."
-        },
-        {
-            "id": 2,
-            "label": "for",
-            "task_description": "This code is supposed to iterate over a range of numbers, but it's not working correctly.",
-            "description": "Iterating over a non-iterable.",
-            "code": "for i in 5:\n    print(i)\n",
-            "explanation": "You cannot iterate directly over an integer. You might want to use range(5) instead."
-        },
-        {
-            "id": 3,
-            "label": "for",
-            "task_description": "This code is supposed to print numbers from 1 to 5, but it's not working correctly.",
-            "description": "Incorrect range parameters.",
-            "code": "for i in range(5, 1):\n    print(i)\n",
-            "explanation": "The start value is greater than the stop value, so the loop will not run. Try using range(1, 5)."
-        },
-        {
-            "id": 4,
-            "label": "for",
-            "task_description": "This code is supposed to print numbers from 0 to 4, but it's not working correctly.",
-            "description": "Indentation error.",
-            "code": "for i in range(5):\nprint(i)\n",
-            "explanation": "The print statement should be indented to be inside the for loop. Correct indentation is crucial in Python."
-        },
-        {
-            "id": 5,
-            "label": "for",
+            "label": ["for", "for loop", "`for loop`", "`for`"],
             "task_description": "This code is supposed to print each fruit in the list, but it's not working correctly.",
             "description": "Using list index instead of value.",
             "code": "fruits = [\"apple\", \"banana\", \"cherry\"]\nfor i in range(len(fruits)):\n    print(fruits)\n",
             "explanation": "The loop prints the entire list each time. Use print(fruits[i]) to print each fruit."
         },
         {
-            "id": 6,
-            "label": "while",
-            "task_description": "This code is supposed to print numbers from 1 to 5, but it's not working correctly.",
+            "id": 2,
+            "label": ["while", "while loop", "`while loop`", "`while`"],
+            "task_description": "This code is supposed to print numbers from 1 to 5, but it's not working correctly. \nIt's printing numbers from 0 to 5.",
             "description": "Off-by-one error in the loop condition.",
             "code": "i = 0\nwhile i < 6:\n    print(i)\n    i += 1\n",
             "explanation": "This loop runs from 0 to 5. If you want to print from 1 to 5, you should initialize i to 1 and use while i <= 5."
         },
         {
-            "id": 7,
-            "label": "while",
-            "task_description": "This code is supposed to iterate over a range of numbers, but it's not working correctly.",
-            "description": "Incorrect loop condition.",
-            "code": "i = 5\nwhile i:\n    print(i)\n    i -= 1\n",
-            "explanation": "The loop condition will eventually become false when i is 0. If you want to iterate from 5 to 1, use while i > 0."
-        },
-        {
-            "id": 8,
-            "label": "while",
-            "task_description": "This code is supposed to print numbers from 1 to 5, but it's not working correctly.",
-            "description": "Incorrect loop initialization.",
-            "code": "i = 5\nwhile i > 1:\n    print(i)\n    i -= 1\n",
-            "explanation": "The start value is greater than the stop value, so the loop will not print the desired range. Initialize i to 1 and use while i <= 5."
-        },
-        {
-            "id": 9,
-            "label": "while",
-            "task_description": "This code is supposed to print numbers from 0 to 4, but it's not working correctly.",
-            "description": "Indentation error.",
-            "code": "i = 0\nwhile i < 5:\nprint(i)\n    i += 1\n",
-            "explanation": "The print statement should be indented to be inside the while loop. Correct indentation is crucial in Python."
-        },
-        {
-            "id": 10,
-            "label": "while",
-            "task_description": "This code is supposed to print each fruit in the list, but it's not working correctly.",
-            "description": "Using list index instead of value.",
-            "code": "fruits = [\"apple\", \"banana\", \"cherry\"]\ni = 0\nwhile i < len(fruits):\n    print(fruits)\n    i += 1\n",
-            "explanation": "The loop prints the entire list each time. Use print(fruits[i]) to print each fruit."
-        },
-        {
-            "id": 11,
+            "id": 3,
             "label": "variable assignment",
             "task_description": "This code is supposed to assign a value to a variable, but it's not working correctly.",
             "description": "Using the wrong assignment operator.",
@@ -89,7 +25,7 @@
             "explanation": "The == operator is used for comparison, not assignment. Use = to assign a value to a variable."
         },
         {
-            "id": 12,
+            "id": 4,
             "label": "function definition",
             "task_description": "This code is supposed to define a function, but it's not working correctly.",
             "description": "Missing colon after function definition.",
@@ -97,15 +33,15 @@
             "explanation": "A colon is required after the function definition. Correct syntax is def my_function():"
         },
         {
-            "id": 13,
-            "label": "list operations",
+            "id": 5,
+            "label": ["list operations","list"],
             "task_description": "This code is supposed to append an item to a list, but it's not working correctly.",
             "description": "Using the wrong method to append an item.",
             "code": "fruits = ['apple', 'banana', 'cherry']\nfruits.add('orange')\n",
             "explanation": "The add method is not used for lists. Use append to add an item to a list."
         },
         {
-            "id": 14,
+            "id": 6,
             "label": "string operations",
             "task_description": "This code is supposed to concatenate two strings, but it's not working correctly.",
             "description": "Using the wrong operator for string concatenation.",
@@ -113,7 +49,7 @@
             "explanation": "The * operator is not used for string concatenation. Use + to concatenate strings."
         },
         {
-            "id": 15,
+            "id": 7,
             "label": "dictionary operations",
             "task_description": "This code is supposed to add a key-value pair to a dictionary, but it's not working correctly.",
             "description": "Using the wrong method to add a key-value pair.",
@@ -121,7 +57,7 @@
             "explanation": "The add method is not used for dictionaries. Use my_dict['city'] = 'New York' to add a key-value pair."
         },
         {
-            "id": 16,
+            "id": 8,
             "label": "if statement",
             "task_description": "This code is supposed to check if a number is positive, but it's not working correctly.",
             "description": "Using the wrong comparison operator.",
@@ -129,7 +65,7 @@
             "explanation": "The => operator is not valid in Python. Use >= to check if a number is greater than or equal to 0."
         },
         {
-            "id": 17,
+            "id": 9,
             "label": "file operations",
             "task_description": "This code is supposed to open a file and read its contents, but it's not working correctly.",
             "description": "Using the wrong mode to open the file.",
@@ -137,7 +73,7 @@
             "explanation": "The 'w' mode is for writing, not reading. Use 'r' mode to open a file for reading."
         },
         {
-            "id": 18,
+            "id": 10,
             "label": "list comprehension",
             "task_description": "This code is supposed to create a list of squares, but it's not working correctly.",
             "description": "Incorrect syntax for list comprehension.",
@@ -145,7 +81,7 @@
             "explanation": "The correct syntax for list comprehension is [x**2 for x in range(10)]."
         },
         {
-            "id": 19,
+            "id": 11,
             "label": "import statement",
             "task_description": "This code is supposed to import a module, but it's not working correctly.",
             "description": "Incorrect syntax for import statement.",
@@ -153,7 +89,7 @@
             "explanation": "To import multiple modules, use separate import statements or import them in a single line separated by commas, e.g., import os, sys."
         },
         {
-            "id": 20,
+            "id": 12,
             "label": "class definition",
             "task_description": "This code is supposed to define a class, but it's not working correctly.",
             "description": "Missing colon after class definition.",

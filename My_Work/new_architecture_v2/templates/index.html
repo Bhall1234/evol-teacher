@@ -139,6 +139,11 @@
                 <button onclick="toggleHint()">Show Hint</button>
                 <button onclick="toggleExplanation()">Show Explanation</button>
             </div>
+            <form id="check-code-form">
+                <input type="hidden" id="task-description" name="task_description" value="{{ task_description }}">
+                <button type="submit">Check Code</button>
+            </form>
+            <div id="check-result"></div>
         </div>
     </div>
     <script>
@@ -187,6 +192,25 @@
         function resetCode() {
             editor.setValue("");
         }
+
+        document.getElementById("check-code-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var userCode = editor.getValue();
+            var taskDescription = document.getElementById("task-description").value;
+            
+            fetch("/check_code", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code: userCode, task_description: taskDescription })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("check-result").innerText = data.result;
+            });
+        });
     </script>
 </body>
 </html>

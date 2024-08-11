@@ -63,7 +63,6 @@ def ask():
                            incorrect_code=formatted_incorrect_code, task_description=incorrect_code_data["task_description"],
                            hint=incorrect_code_data["description"], detailed_explanation=incorrect_code_data["explanation"])
 
-
 @app.route("/run_code", methods=["POST"])
 def run_code():
     data = request.get_json()
@@ -75,6 +74,28 @@ def run_code():
     except subprocess.CalledProcessError as e:
         output = e.stderr
     return jsonify({"output": output})
+
+@app.route("/check_code", methods=["POST"])
+def check_code():
+    data = request.get_json()
+    user_code = data["code"]
+    task_description = data["task_description"]
+    
+    # Find the correct code example based on the task description
+    correct_example = next((ex for ex in correct_code_examples["examples"] if ex["task_description"] == task_description), None)
+    
+    if not correct_example:
+        return jsonify({"result": "No matching task found."}), 404
+    
+    correct_code = correct_example["correct_code"]
+    
+    # Compare the user's code with the correct code
+    if user_code.strip() == correct_code.strip():
+        result = "Correct"
+    else:
+        result = "Incorrect"
+    
+    return jsonify({"result": result})
 
 def extract_initial_explanation(explanation):
     # Split the explanation into sentences using both '.' and ':', these are the most common sentence delimiters in the explanations.
