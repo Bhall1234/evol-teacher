@@ -34,7 +34,7 @@
         },
         {
             "id": 5,
-            "label": "list operations",
+            "label": ["list operations","list"],
             "task_description": "This code is supposed to append an item to a list, but it's not working correctly.",
             "description": "Using the wrong method to append an item.",
             "code": "fruits = ['apple', 'banana', 'cherry']\nfruits.add('orange')\n",
