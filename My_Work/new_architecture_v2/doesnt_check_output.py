@@ -95,17 +95,10 @@ def check_code():
         logging.error("No matching task found.")
         return jsonify({"result": "No matching task found."}), 404
     
-    expected_output = correct_example["expected_output"]
+    correct_code = correct_example["correct_code"]
     
-    try:
-        # Use the Python interpreter from the virtual environment
-        result = subprocess.run([sys.executable, "-c", user_code], capture_output=True, text=True, check=True)
-        user_output = result.stdout
-    except subprocess.CalledProcessError as e:
-        user_output = e.stderr
-    
-    # Compare the user's code output with the expected output
-    if user_output.strip() == expected_output.strip():
+    # Compare the user's code with the correct code
+    if user_code.strip() == correct_code.strip():
         result = "Correct"
     else:
         result = "Incorrect"

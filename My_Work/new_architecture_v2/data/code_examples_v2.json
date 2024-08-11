@@ -34,8 +34,7 @@
             "incorrect_code": "def calculate_area(width, height):\n    return width * height\n\nwidth = 5\nheight = 10\nresult = calculate_area()\nprint(result)\n",
             "correct_code": "def calculate_area(width, height):\n    return width * height\n\nwidth = 5\nheight = 10\nresult = calculate_area(width, height)\nprint(result)\n",
             "description": "The function `calculate_area()` is called without passing the required positional arguments `width` and `height`, resulting in a `TypeError`.",
-            "explanation": "In the incorrect code, the function `calculate_area()` is defined with two parameters, `width` and `height`, but it is called without passing any arguments. This leads to a `TypeError` because Python requires the arguments to be passed when the function is called. The correct approach is to call the function with the required arguments, like `calculate_area(width, height)`.",
-            "expected_output": ""
+            "explanation": "In the incorrect code, the function `calculate_area()` is defined with two parameters, `width` and `height`, but it is called without passing any arguments. This leads to a `TypeError` because Python requires the arguments to be passed when the function is called. The correct approach is to call the function with the required arguments, like `calculate_area(width, height)`."
         },           
         {
             "task_id": 5,
@@ -76,12 +75,11 @@
         {
             "task_id": 9,
             "label": ["function", "return", "syntax", "`def`", "`function`", "parameters"],
-            "task_description": "This code is supposed to greet a user, but it's not working correctly when no name is provided. Use the name 'Guest' in this case.",
+            "task_description": "This code is supposed to greet a user, but it's not working correctly when no name is provided.",
             "incorrect_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet()\n",
             "correct_code": "def greet(name='Guest'):\n    print(f'Hello, {name}!')\n\ngreet()\n",
             "description": "Missing default parameter value.",
-            "explanation": "To handle cases where no argument is provided, use a default parameter value like `name='Guest'`.",
-            "expected_output": "Hello, Guest!"
+            "explanation": "To handle cases where no argument is provided, use a default parameter value like `name='Guest'`."
         },
         {
             "task_id": 10,
