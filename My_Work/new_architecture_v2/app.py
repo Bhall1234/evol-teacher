@@ -58,12 +58,14 @@ def ask():
     # Apply syntax highlighting to the explanation and incorrect code
     formatted_explanation = format_code_snippets(explanation)  # Use the full explanation for display
     formatted_incorrect_code = highlight(incorrect_code_data["incorrect_code"], PythonLexer(), HtmlFormatter(noclasses=True))
+    formatted_correct_code = highlight(incorrect_code_data["correct_code"], PythonLexer(), HtmlFormatter(noclasses=True))
     
     logging.info(f"Generated explanation: {explanation}")
     logging.info(f"Incorrect code: {incorrect_code_data['incorrect_code']}")
     
     return render_template("index.html", question=user_question, explanation=formatted_explanation, 
-                           incorrect_code=formatted_incorrect_code, task_description=incorrect_code_data["task_description"],
+                           incorrect_code=formatted_incorrect_code, correct_code=formatted_correct_code,
+                           task_description=incorrect_code_data["task_description"],
                            hint=incorrect_code_data["description"], detailed_explanation=incorrect_code_data["explanation"],
                            task_id=incorrect_code_data["task_id"])
 

@@ -72,11 +72,11 @@
         .reset-button:hover {
             background-color: #e53935;
         }
-        .hint-button, .explanation-button, .check-button {
+        .hint-button, .explanation-button, .check-button, .solution-button {
             background-color: #008CBA;
             color: white;
         }
-        .hint-button:hover, .explanation-button:hover, .check-button:hover {
+        .hint-button:hover, .explanation-button:hover, .check-button:hover, .solution-button:hover {
             background-color: #007bb5;
         }
         .check-button {
@@ -161,12 +161,19 @@
                 <button class="reset-button" onclick="resetCode()">Reset Code</button>
                 <button class="hint-button" onclick="toggleHint()">Show Hint</button>
                 <button class="explanation-button" onclick="toggleExplanation()">Show Explanation</button>
+                <button class="solution-button" onclick="toggleSolution()">Show Solution</button>
             </div>
             <form id="check-code-form">
                 <input type="hidden" id="task-id" name="task_id" value="{{ task_id }}">
                 <button type="submit" class="check-button">Check Code</button>
             </form>
             <div id="check-result"></div>
+            {% if correct_code %}
+            <div id="solution" style="display: none;">
+                <h2>Correct Code:</h2>
+                <div class="code-block">{{ correct_code | safe }}</div>
+            </div>
+            {% endif %}
         </div>
     </div>
     <script>
@@ -191,6 +198,15 @@
                 explanation.style.display = "block";
             } else {
                 explanation.style.display = "none";
+            }
+        }
+
+        function toggleSolution() {
+            var solution = document.getElementById("solution");
+            if (solution.style.display === "none") {
+                solution.style.display = "block";
+            } else {
+                solution.style.display = "none";
             }
         }
 
