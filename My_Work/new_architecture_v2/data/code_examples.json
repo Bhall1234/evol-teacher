@@ -1,6 +1,7 @@
 {
     "examples": [
         {
+            "task_id": 1,
             "label": ["while", "while loop", "`while loop`", "`while`"],
             "task_description": "This code is supposed to print numbers from 1 to 5, but it's not working correctly.",
             "incorrect_code": "i = 0\nwhile i < 6:\n    print(i)\n    i += 1\n",
@@ -9,6 +10,7 @@
             "explanation": "This loop runs from 0 to 5. If you want to print from 1 to 5, you should initialize i to 1 and use while i <= 5."
         },
         {
+            "task_id": 2,
             "label": ["for", "for loop", "`for loop`", "`for`"],
             "task_description": "This code is supposed to print the squares of numbers from 1 to 5, but it's not working correctly.",
             "incorrect_code": "for i in range(1, 5):\n    print(i * i)\n",
@@ -17,6 +19,7 @@
             "explanation": "The range function in Python does not include the end value. To include 5, you should use range(1, 6)."
         },
         {
+            "task_id": 3,
             "label": ["if", "else", "condition"],
             "task_description": "This code is supposed to check if a number is even or odd, but it's not working correctly.",
             "incorrect_code": "num = 4\nif num % 2 = 0:\n    print('Even')\nelse:\n    print('Odd')\n",
@@ -25,6 +28,7 @@
             "explanation": "The comparison operator in Python is '==', not '='. Use '==' to compare values."
         },
         {
+            "task_id": 4,
             "label": ["function", "return", "syntax"],
             "task_description": "This code is supposed to return the sum of two numbers, but it's not working correctly.",
             "incorrect_code": "def add(a, b):\n    return a + b\n\nresult = add(2, 3)\nprint result\n",
@@ -33,6 +37,7 @@
             "explanation": "In Python 3, print is a function and requires parentheses. Use print(result) instead of print result."
         },
         {
+            "task_id": 5,
             "label": ["list", "append", "method"],
             "task_description": "This code is supposed to add an element to a list, but it's not working correctly.",
             "incorrect_code": "my_list = [1, 2, 3]\nmy_list.add(4)\nprint(my_list)\n",

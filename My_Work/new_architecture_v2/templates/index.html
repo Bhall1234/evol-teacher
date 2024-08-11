@@ -140,7 +140,7 @@
                 <button onclick="toggleExplanation()">Show Explanation</button>
             </div>
             <form id="check-code-form">
-                <input type="hidden" id="task-description" name="task_description" value="{{ task_description }}">
+                <input type="hidden" id="task-id" name="task_id" value="{{ task_id }}">
                 <button type="submit">Check Code</button>
             </form>
             <div id="check-result"></div>
@@ -197,14 +197,14 @@
             event.preventDefault();
             
             var userCode = editor.getValue();
-            var taskDescription = document.getElementById("task-description").value;
+            var taskId = document.getElementById("task-id").value;
             
             fetch("/check_code", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ code: userCode, task_description: taskDescription })
+                body: JSON.stringify({ code: userCode, task_id: taskId })
             })
             .then(response => response.json())
             .then(data => {

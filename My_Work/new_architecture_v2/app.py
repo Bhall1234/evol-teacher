@@ -52,16 +52,20 @@ def ask():
     # Match the explanation keywords with incorrect code examples
     incorrect_code_data = get_related_code_by_keywords(explanation_keywords, correct_code_examples)
     
+    # Log the task_id to ensure it's being set correctly
+    logging.info(f"Task ID: {incorrect_code_data.get('task_id', 'No task_id found')}")
+    
     # Apply syntax highlighting to the explanation and incorrect code
     formatted_explanation = format_code_snippets(explanation)  # Use the full explanation for display
-    formatted_incorrect_code = highlight(incorrect_code_data["code"], PythonLexer(), HtmlFormatter(noclasses=True))
+    formatted_incorrect_code = highlight(incorrect_code_data["incorrect_code"], PythonLexer(), HtmlFormatter(noclasses=True))
     
     logging.info(f"Generated explanation: {explanation}")
-    logging.info(f"Incorrect code: {incorrect_code_data['code']}")
+    logging.info(f"Incorrect code: {incorrect_code_data['incorrect_code']}")
     
     return render_template("index.html", question=user_question, explanation=formatted_explanation, 
                            incorrect_code=formatted_incorrect_code, task_description=incorrect_code_data["task_description"],
-                           hint=incorrect_code_data["description"], detailed_explanation=incorrect_code_data["explanation"])
+                           hint=incorrect_code_data["description"], detailed_explanation=incorrect_code_data["explanation"],
+                           task_id=incorrect_code_data["task_id"])
 
 @app.route("/run_code", methods=["POST"])
 def run_code():
@@ -79,12 +83,16 @@ def run_code():
 def check_code():
     data = request.get_json()
     user_code = data["code"]
-    task_description = data["task_description"]
+    task_id = data["task_id"]
     
-    # Find the correct code example based on the task description
-    correct_example = next((ex for ex in correct_code_examples["examples"] if ex["task_description"] == task_description), None)
+    # Log the task_id to ensure it's being received correctly
+    logging.info(f"Received task ID: {task_id} (type: {type(task_id)})")
+    
+    # Find the correct code example based on the task ID
+    correct_example = next((ex for ex in correct_code_examples["examples"] if str(ex["task_id"]) == str(task_id)), None)
     
     if not correct_example:
+        logging.error("No matching task found.")
         return jsonify({"result": "No matching task found."}), 404
     
     correct_code = correct_example["correct_code"]
@@ -126,7 +134,7 @@ def get_related_code_by_keywords(keywords, correct_code_examples):
     filtered_examples = [ex for ex in correct_code_examples["examples"] if any(label in ex["label"] for label in keywords)]
 
     if not filtered_examples:
-        return {"code": "No related code examples found.", "task_description": "", "description": "", "explanation": ""}
+        return {"incorrect_code": "No related code examples found.", "task_description": "", "description": "", "explanation": "", "task_id": "N/A"}
 
     best_match = random.choice(filtered_examples)
     return best_match
