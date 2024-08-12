@@ -480,7 +480,7 @@ def extract_programming_keywords(text):
                                 "subtract", "subtraction", "multiply", "multiplication",
                                 "divide", "division", "loop", "loops", "condition", "conditions",
                                 "variable", "variables", "list", "dictionary", "set", "tuple",
-                                "range", "open", "read", "write", "import", "from", "as",
+                                "range", "open", "read", "write", "import",
                                 "combine", "hash map", "key error", "hash", "hash table", "table", "modulus"}
     
     # Extract keywords using spaCy and filter to include only programming keywords
