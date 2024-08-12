@@ -1,0 +1,64 @@
+{
+    "examples": [
+        {
+            "task_id": 1,
+            "label": ["function", "default parameter", "`def`", "`function`", "parameters"],
+            "task_description": "This code is supposed to greet a user, but it's not working correctly when no name is provided. Use the name 'Guest' in this case.",
+            "incorrect_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet()\n",
+            "correct_code": "# Solution 1\ndef greet(name='Guest'):\n    print(f'Hello, {name}!')\n\ngreet()\n\n # Solution 2\ndef greet(name):\n    print(f'Hello, {name}!')\n\nname='Guest'\ngreet(name)\n",
+            "description": "Missing default parameter value.",
+            "explanation": "To handle cases where no argument is provided, use a default parameter value like `name='Guest'`.",
+            "expected_output": "Hello, Guest!"
+        },
+        {
+            "task_id": 2,
+            "label": ["list", "append", "method", "modification"],
+            "task_description": "This code is supposed to add an element to a list and print the updated list, but it's not working correctly.",
+            "incorrect_code": "my_list = [1, 2, 3]\nnew_list = my_list.append(4)\nprint(new_list)\n",
+            "correct_code": "my_list = [1, 2, 3]\nmy_list.append(4)\nprint(my_list)\n",
+            "description": "Misunderstanding the `append` method's return value.",
+            "explanation": "The `append` method modifies the list in place and returns `None`. You should not assign its result to a new variable.",
+            "expected_output": "[1, 2, 3, 4]"
+        },
+        {
+            "task_id": 3,
+            "label": ["dictionary", "key", "lookup", "`dict`", "error handling", "hash map", "key error", "hash", "hash table", "table"],
+            "task_description": "This code is supposed to print the value associated with a given key in a dictionary, but it's not working correctly when the key is not found. The output should be 'City not found'.",
+            "incorrect_code": "my_dict = {'name': 'Alice', 'age': 25}\nprint(my_dict['city'])\n",
+            "correct_code": "# Solution 1\nmy_dict = {'name': 'Alice', 'age': 25}\ncity = my_dict.get('city')\nif city:\n    print(city)\nelse:\n    print('City not found')\n",
+            "description": "The code raises a KeyError because the key 'city' does not exist in the dictionary.",
+            "explanation": "In Python, trying to access a dictionary key that does not exist will raise a KeyError. To avoid this, you can use the `get` method to safely retrieve a key's value. The `get` method returns `None` if the key is not found, which you can then check using an if statement.",
+            "expected_output": "City not found"
+        },
+        {
+            "task_id": 4,
+            "label": ["string", "concatenation", "`str`", "type error", "concatenate", "combine"],
+            "task_description": "This code is supposed to concatenate a string and a number, but it's not working correctly.",
+            "incorrect_code": "age = 25\nmessage = 'I am ' + age + ' years old.'\nprint(message)\n",
+            "correct_code": "# Solution 1\nage = 25\nmessage = 'I am ' + str(age) + ' years old.'\nprint(message)\n# Solution 2\nage = 25\nmessage = f'I am {age} years old.'\nprint(message)\n",
+            "description": "TypeError: cannot concatenate 'str' and 'int' objects.",
+            "explanation": "You need to convert the integer to a string before concatenation or use an f-string for formatting.",
+            "expected_output": "I am 25 years old."
+        },
+        {
+            "task_id": 5,
+            "label": ["for", "for loop", "`for loop`", "`for`"],
+            "task_description": "This code is supposed to print each character in the string 'hello', but it's not working correctly.",
+            "incorrect_code": "word = 'hello'\nfor i in range(0, len(word) + 1):\n    print(word[i])\n",
+            "correct_code": "word = 'hello'\nfor i in range(0, len(word)):\n    print(word[i])\n",
+            "description": "IndexError: string index out of range.",
+            "explanation": "The range should stop at `len(word)`, not `len(word) + 1`, because indexing is zero-based.",
+            "expected_output": "h\ne\nl\nl\no"
+        },
+        {
+            "task_id": 6,
+            "label": ["while", "while loop", "`while loop`", "`while`"],
+            "task_description": "This code is supposed to print the numbers from 1 to 5, but it's not working correctly.",
+            "incorrect_code": "i = 1\nwhile i <= 5:\n    print(i)\n",
+            "correct_code": "i = 1\nwhile i <= 5:\n    print(i)\n    i += 1\n",
+            "description": "The loop condition is correct, but the loop becomes an infinite loop because the increment step is missing.",
+            "explanation": "In the incorrect code, the value of `i` is not being incremented inside the loop, causing an infinite loop. To fix this, you need to increment `i` by 1 after each iteration.",
+            "expected_output": "1\n2\n3\n4\n5"
+        }
+    ]
+}
