@@ -141,28 +141,6 @@ def check_code():
         logging.error(f"Error in check_code: {e}", exc_info=True)
         return jsonify({"result": "An error occurred", "error": str(e)}), 500
 
-"""def run_static_analysis(user_code):
-    logging.debug("Entered run_static_analysis function with user_code: %s", user_code)
-    try:
-        # Ensure that the input is a string (not bytes)
-        if isinstance(user_code, bytes):
-            user_code = user_code.decode('utf-8')
-        
-        result = subprocess.run(
-            ['pylint', '--from-stdin'],
-            input=user_code,  # Pass as string
-            capture_output=True,
-            text=True,
-            check=False  # Don't raise an exception on non-zero exit
-        )
-        logging.debug("Completed static analysis with stdout: %s", result.stdout)
-        logging.error("Static analysis error: %s", result.stderr)
-        return result.stdout + result.stderr
-    except subprocess.CalledProcessError as e:
-        logging.error("Static analysis failed with error: %s", e.stderr)
-        return e.stderr"""
-
-
 def run_static_analysis(user_code):
     logging.debug("Entered run_static_analysis function with user_code: %s", user_code)
     try:
