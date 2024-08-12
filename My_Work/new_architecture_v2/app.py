@@ -208,7 +208,7 @@ def extract_programming_keywords(text):
                                 "divide", "division", "loop", "loops", "condition", "conditions",
                                 "variable", "variables", "list", "dictionary", "set", "tuple",
                                 "range", "open", "read", "write", "import", "from", "as", "with",
-                                "combine"}
+                                "combine", "hash map", "key error", "hash", "hash table", "table"}
     
     # Extract keywords using spaCy and filter to include only programming keywords
     keywords = {token.lemma_ for token in doc if token.lemma_ in programming_keywords}

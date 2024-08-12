@@ -22,7 +22,7 @@
         },
         {
             "task_id": 3,
-            "label": ["dictionary", "key", "lookup", "`dict`", "error handling"],
+            "label": ["dictionary", "key", "lookup", "`dict`", "error handling", "hash map", "key error", "hash", "hash table", "table"],
             "task_description": "This code is supposed to print the value associated with a given key in a dictionary, but it's not working correctly when the key is not found.",
             "incorrect_code": "my_dict = {'name': 'Alice', 'age': 25}\nprint(my_dict['city'])\n",
             "correct_code": "# Solution 1\nmy_dict = {'name': 'Alice', 'age': 25}\nprint(my_dict.get('city', 'Not Found'))\n# Solution 2\nmy_dict = {'name': 'Alice', 'age': 25}\nif 'city' in my_dict:\n    print(my_dict['city'])\nelse:\n    print('Not Found')\n",
