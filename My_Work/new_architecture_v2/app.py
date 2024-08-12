@@ -30,10 +30,8 @@ nlp = spacy.load("en_core_web_sm")
 # Synonyms for better keyword matching
 synonyms = {
     "append": ["add", "insert", "push"],
-    "loop": ["iterate", "repeat", "for loop", "while loop", "looping", "iteration", "repetition", "loop through", "loop over", "looping through", "looping over"],
-    "condition": ["if", "else", "elif", "ternary", "ternary operator", "conditional", "ternary condition"],
     "variable": ["var", "name", "identifier"],
-    "list": ["array"],
+    "list": ["array", "vector", "sequence"],
     "dictionary": ["dict", "map", "hash map", "hash table", "key-value"],
     "tuple": ["pair", "ordered pair"],
     "range": ["sequence"],
@@ -241,12 +239,26 @@ def get_related_code_by_keywords(keywords, correct_code_examples):
     return selected_example
 
 def find_correct_example(task_id, correct_code_examples):
-    for data in correct_code_examples.items():
-        correct_example = next((ex for ex in data["examples"] if str(ex["task_id"]) == str(task_id)), None)
-        if correct_example:
-            logging.info(f"Found correct example for task ID {task_id}: {correct_example}")
-            return correct_example
-    logging.warning(f"No correct example found for task ID {task_id}")
+    for category, data in correct_code_examples.items():
+        logging.debug(f"Processing category: {category} with data: {data}")
+
+        # Ensure data is a dictionary and has the key 'examples'
+        if isinstance(data, dict) and "examples" in data:
+            examples = data["examples"]
+
+            # Ensure examples is a list
+            if isinstance(examples, list):
+                correct_example = next((ex for ex in examples if str(ex["task_id"]) == str(task_id)), None)
+                
+                if correct_example:
+                    logging.info(f"Found correct example for task ID {task_id}: {correct_example}")
+                    return correct_example
+            else:
+                logging.warning(f"'examples' in category '{category}' is not a list: {examples}")
+        else:
+            logging.warning(f"Data in category '{category}' is not a dictionary or lacks 'examples' key: {data}")
+    
+    logging.error(f"No correct example found for task ID: {task_id}")
     return None
 
 def format_code_snippets(response):
