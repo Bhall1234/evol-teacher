@@ -170,6 +170,17 @@
                 <button type="submit" class="check-button">Check Code</button>
             </form>
             <div id="check-result"></div>
+
+            <!-- Static Analysis and Code Completion Sections -->
+            <div id="static-analysis" style="margin-top: 10px;">
+                <h3>Static Analysis Results:</h3>
+                <pre id="static-analysis-result"></pre>
+            </div>
+            <div id="code-completion" style="margin-top: 10px;">
+                <h3>Code Completion Suggestions:</h3>
+                <ul id="code-completion-list"></ul>
+            </div>
+
             {% if correct_code %}
             <div id="solution" style="display: none;">
                 <h2>Correct Code:</h2>
@@ -257,6 +268,19 @@
                     resultElement.innerText = "Oops! There seems to be an error in your code.";
                     resultElement.style.color = "red";
                 }
+
+                // Display static analysis results
+                var staticAnalysisElement = document.getElementById("static-analysis-result");
+                staticAnalysisElement.textContent = data.static_analysis;
+
+                // Display code completion suggestions
+                var codeCompletionList = document.getElementById("code-completion-list");
+                codeCompletionList.innerHTML = ""; // Clear previous suggestions
+                data.code_completion.forEach(function(suggestion) {
+                    var listItem = document.createElement("li");
+                    listItem.textContent = suggestion;
+                    codeCompletionList.appendChild(listItem);
+                });
             });
         });
     </script>

@@ -1,6 +1,11 @@
 # IM NOT SURE IF THIS IS ACTUALLY THE BEST WAY OF DOING THIS BUT IT DOES SEEM TO WORK SO FAR. 
 # IM COMBINING THE USER QUERY AND THE EXPLANATION TO FIND THE KEYWORDS AND THEN USING THESE KEYWORDS TO FIND RELATED CODE EXAMPLES.
 
+import jedi
+import pylint.lint
+import tempfile
+import io
+from contextlib import redirect_stdout
 import os
 import random
 import logging
@@ -92,36 +97,109 @@ def run_code():
 
 @app.route("/check_code", methods=["POST"])
 def check_code():
-    data = request.get_json()
-    user_code = data["code"]
-    task_id = data["task_id"]
-    
-    # Log the task_id to ensure it's being received correctly
-    logging.info(f"Received task ID: {task_id} (type: {type(task_id)})")
-    
-    # Find the correct code example based on the task ID
-    correct_example = next((ex for ex in correct_code_examples["examples"] if str(ex["task_id"]) == str(task_id)), None)
-    
-    if not correct_example:
-        logging.error("No matching task found.")
-        return jsonify({"result": "No matching task found."}), 404
-    
-    expected_output = correct_example["expected_output"]
-    
     try:
-        # Use the Python interpreter from the virtual environment
-        result = subprocess.run([sys.executable, "-c", user_code], capture_output=True, text=True, check=True)
-        user_output = result.stdout
+        data = request.get_json()
+        user_code = data["code"]
+        task_id = data["task_id"]
+        
+        # Log the task_id to ensure it's being received correctly
+        logging.info(f"Received task ID: {task_id} (type: {type(task_id)})")
+        
+        # Find the correct code example based on the task ID
+        correct_example = next((ex for ex in correct_code_examples["examples"] if str(ex["task_id"]) == str(task_id)), None)
+        
+        if not correct_example:
+            logging.error("No matching task found.")
+            return jsonify({"result": "No matching task found."}), 404
+        
+        expected_output = correct_example["expected_output"]
+        
+        try:
+            # Use the Python interpreter from the virtual environment
+            result = subprocess.run([sys.executable, "-c", user_code], capture_output=True, text=True, check=True)
+            user_output = result.stdout
+        except subprocess.CalledProcessError as e:
+            user_output = e.stderr
+        
+        # Compare the user's code output with the expected output
+        if user_output.strip() == expected_output.strip():
+            result = "Correct"
+        else:
+            result = "Incorrect"
+        
+        # Run static analysis
+        logging.debug("Running static analysis...")
+        static_analysis_result = run_static_analysis(user_code)
+        logging.debug("Static analysis result: %s", static_analysis_result)
+        
+        # Run code completion
+        logging.debug("Running code completion...")
+        code_completion_suggestions = get_code_completion_suggestions(user_code)
+        
+        return jsonify({
+            "result": result,
+            "static_analysis": static_analysis_result,
+            "code_completion": code_completion_suggestions
+        })
+    except Exception as e:
+        logging.error(f"Error in check_code: {e}", exc_info=True)
+        return jsonify({"result": "An error occurred", "error": str(e)}), 500
+
+"""def run_static_analysis(user_code):
+    logging.debug("Entered run_static_analysis function with user_code: %s", user_code)
+    try:
+        # Ensure that the input is a string (not bytes)
+        if isinstance(user_code, bytes):
+            user_code = user_code.decode('utf-8')
+        
+        result = subprocess.run(
+            ['pylint', '--from-stdin'],
+            input=user_code,  # Pass as string
+            capture_output=True,
+            text=True,
+            check=False  # Don't raise an exception on non-zero exit
+        )
+        logging.debug("Completed static analysis with stdout: %s", result.stdout)
+        logging.error("Static analysis error: %s", result.stderr)
+        return result.stdout + result.stderr
     except subprocess.CalledProcessError as e:
-        user_output = e.stderr
-    
-    # Compare the user's code output with the expected output
-    if user_output.strip() == expected_output.strip():
-        result = "Correct"
-    else:
-        result = "Incorrect"
-    
-    return jsonify({"result": result})
+        logging.error("Static analysis failed with error: %s", e.stderr)
+        return e.stderr"""
+
+
+def run_static_analysis(user_code):
+    logging.debug("Entered run_static_analysis function with user_code: %s", user_code)
+    try:
+        # Create a temporary file with the user code
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".py") as temp_file:
+            temp_file.write(user_code.encode('utf-8'))
+            temp_file_name = temp_file.name
+        
+        # Run pylint on the temporary file
+        result = subprocess.run(
+            ['pylint', temp_file_name],
+            capture_output=True,
+            text=True,
+            check=False  # Don't raise an exception on non-zero exit
+        )
+        logging.debug("Completed static analysis with stdout: %s", result.stdout)
+        logging.error("Static analysis error: %s", result.stderr)
+
+        return result.stdout + result.stderr
+    except subprocess.CalledProcessError as e:
+        logging.error("Static analysis failed with error: %s", e.stderr)
+        return e.stderr
+    finally:
+        # Clean up the temporary file
+        if os.path.exists(temp_file_name):
+            os.remove(temp_file_name)
+
+
+def get_code_completion_suggestions(code):
+    script = jedi.Script(code)
+    completions = script.complete()
+    suggestions = [completion.name for completion in completions]
+    return suggestions
 
 def extract_initial_explanation(explanation):
     # Split the explanation into sentences using both '.' and ':', these are the most common sentence delimiters in the explanations.
