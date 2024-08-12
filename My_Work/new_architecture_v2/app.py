@@ -174,18 +174,22 @@ def run_static_analysis(user_code):
         with tempfile.NamedTemporaryFile(delete=False, suffix=".py") as temp_file:
             temp_file.write(user_code.encode('utf-8'))
             temp_file_name = temp_file.name
-        
+
         # Run pylint on the temporary file
         result = subprocess.run(
-            ['pylint', temp_file_name],
+            ['pylint', '--disable=C0114,C0116,C0304', temp_file_name],  # Disable specific pylint warnings
             capture_output=True,
             text=True,
             check=False  # Don't raise an exception on non-zero exit
         )
+
+        # Parse output to remove file paths and line numbers
+        filtered_output = parse_pylint_output(result.stdout)
+
         logging.debug("Completed static analysis with stdout: %s", result.stdout)
         logging.error("Static analysis error: %s", result.stderr)
 
-        return result.stdout + result.stderr
+        return filtered_output + result.stderr
     except subprocess.CalledProcessError as e:
         logging.error("Static analysis failed with error: %s", e.stderr)
         return e.stderr
@@ -194,12 +198,45 @@ def run_static_analysis(user_code):
         if os.path.exists(temp_file_name):
             os.remove(temp_file_name)
 
+def parse_pylint_output(output):
+    # Example function to filter and group pylint output
+    lines = output.splitlines()
+    filtered_lines = []
+    for line in lines:
+        if line.startswith("*************"):
+            continue
+        # Remove file path and line numbers
+        match = re.match(r'.*:\d+:\d+: (.+)', line)
+        if match:
+            filtered_lines.append(match.group(1))
+        else:
+            filtered_lines.append(line)
+    
+    # Join filtered lines and enhance readability
+    return "\n".join(filtered_lines)
 
 def get_code_completion_suggestions(code):
     script = jedi.Script(code)
     completions = script.complete()
-    suggestions = [completion.name for completion in completions]
+
+    # Define beginner-friendly and commonly used Python keywords and functions
+    beginner_friendly_keywords = {
+        'print', 'input', 'len', 'for', 'while', 'if', 'else', 'elif', 'def', 'return', 'str', 'int', 'float', 'list',
+        'dict', 'set', 'tuple', 'range', 'open', 'read', 'write', 'append', 'import', 'from', 'as', 'with', 'try',
+        'except', 'raise', 'class', 'self', 'lambda', 'True', 'False', 'None'
+    }
+
+    suggestions = [
+        completion.name for completion in completions 
+        if completion.name in beginner_friendly_keywords
+    ]
+
+    # Prioritize suggestions by common usage (bring 'print', 'input', etc., to the top)
+    priority_keywords = ['print', 'input', 'len', 'for', 'if', 'def', 'return']
+    suggestions.sort(key=lambda x: (x not in priority_keywords, x))
+
     return suggestions
+
 
 def extract_initial_explanation(explanation):
     # Split the explanation into sentences using both '.' and ':', these are the most common sentence delimiters in the explanations.

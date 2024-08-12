@@ -75,8 +75,8 @@
         .hint-button, .explanation-button, .check-button, .solution-button {
             background-color: #008CBA;
             color: white;
-            padding: 10px 20px; /* Add padding */
-            margin-top: 10px; /* Add margin-top for spacing */
+            padding: 10px 20px;
+            margin-top: 10px;
         }
         .hint-button:hover, .explanation-button:hover, .check-button:hover, .solution-button:hover {
             background-color: #007bb5;
@@ -274,15 +274,29 @@
                 staticAnalysisElement.textContent = data.static_analysis;
 
                 // Display code completion suggestions
-                var codeCompletionList = document.getElementById("code-completion-list");
-                codeCompletionList.innerHTML = ""; // Clear previous suggestions
-                data.code_completion.forEach(function(suggestion) {
-                    var listItem = document.createElement("li");
-                    listItem.textContent = suggestion;
-                    codeCompletionList.appendChild(listItem);
-                });
+                displayCodeCompletionSuggestions(data.code_completion);
             });
         });
+
+        function displayCodeCompletionSuggestions(suggestions) {
+            var codeCompletionList = document.getElementById("code-completion-list");
+            codeCompletionList.innerHTML = ""; // Clear previous suggestions
+
+            if (suggestions.length === 0) {
+                var listItem = document.createElement("li");
+                listItem.textContent = "No relevant suggestions available.";
+                codeCompletionList.appendChild(listItem);
+            } else {
+                suggestions.forEach(function(suggestion) {
+                    var listItem = document.createElement("li");
+                    listItem.textContent = suggestion;
+
+                    // Add a tooltip or example usage for each suggestion
+                    listItem.title = `Example usage: ${suggestion}()`;
+                    codeCompletionList.appendChild(listItem);
+                });
+            }
+        }
     </script>
 </body>
 </html>
