@@ -32,7 +32,7 @@
         },
         {
             "task_id": 4,
-            "label": ["string", "concatenation", "`str`", "type error"],
+            "label": ["string", "concatenation", "`str`", "type error", "concatenate", "combine"],
             "task_description": "This code is supposed to concatenate a string and a number, but it's not working correctly.",
             "incorrect_code": "age = 25\nmessage = 'I am ' + age + ' years old.'\nprint(message)\n",
             "correct_code": "# Solution 1\nage = 25\nmessage = 'I am ' + str(age) + ' years old.'\nprint(message)\n# Solution 2\nage = 25\nmessage = f'I am {age} years old.'\nprint(message)\n",

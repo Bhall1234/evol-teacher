@@ -132,14 +132,10 @@ def check_code():
         static_analysis_result = run_static_analysis(user_code)
         logging.debug("Static analysis result: %s", static_analysis_result)
         
-        # Run code completion
-        logging.debug("Running code completion...")
-        code_completion_suggestions = get_code_completion_suggestions(user_code)
-        
+
         return jsonify({
             "result": result,
             "static_analysis": static_analysis_result,
-            "code_completion": code_completion_suggestions
         })
     except Exception as e:
         logging.error(f"Error in check_code: {e}", exc_info=True)
@@ -215,29 +211,6 @@ def parse_pylint_output(output):
     # Join filtered lines and enhance readability
     return "\n".join(filtered_lines)
 
-def get_code_completion_suggestions(code):
-    script = jedi.Script(code)
-    completions = script.complete()
-
-    # Define beginner-friendly and commonly used Python keywords and functions
-    beginner_friendly_keywords = {
-        'print', 'input', 'len', 'for', 'while', 'if', 'else', 'elif', 'def', 'return', 'str', 'int', 'float', 'list',
-        'dict', 'set', 'tuple', 'range', 'open', 'read', 'write', 'append', 'import', 'from', 'as', 'with', 'try',
-        'except', 'raise', 'class', 'self', 'lambda', 'True', 'False', 'None'
-    }
-
-    suggestions = [
-        completion.name for completion in completions 
-        if completion.name in beginner_friendly_keywords
-    ]
-
-    # Prioritize suggestions by common usage (bring 'print', 'input', etc., to the top)
-    priority_keywords = ['print', 'input', 'len', 'for', 'if', 'def', 'return']
-    suggestions.sort(key=lambda x: (x not in priority_keywords, x))
-
-    return suggestions
-
-
 def extract_initial_explanation(explanation):
     # Split the explanation into sentences using both '.' and ':', these are the most common sentence delimiters in the explanations.
     sentences = re.split(r'[.:]\s*', explanation)
@@ -248,11 +221,17 @@ def extract_programming_keywords(text):
     doc = nlp(text)
     
     # Define a list of programming keywords
-    programming_keywords = {"for","`for`","for loop",
-                             "while","while loop","`while`",
-                             "`if`","if","if statement",
-                             "`def`", "def", "function", "functions", "`function`", "return",
-                             "else", "elif","class", "import", "try", "except",}
+    programming_keywords = {    "for","`for`","for loop",
+                                "while","while loop","`while`",
+                                "`if`","if","if statement",
+                                "`def`", "def", "function", "functions", "`function`", "return",
+                                "else", "elif","class", "import", "try", "except",
+                                "concatenate", "concatenation", "append", "add", "addition",
+                                "subtract", "subtraction", "multiply", "multiplication",
+                                "divide", "division", "loop", "loops", "condition", "conditions",
+                                "variable", "variables", "list", "dictionary", "set", "tuple",
+                                "range", "open", "read", "write", "import", "from", "as", "with",
+                                "combine"}
     
     # Extract keywords using spaCy and filter to include only programming keywords
     keywords = {token.lemma_ for token in doc if token.lemma_ in programming_keywords}

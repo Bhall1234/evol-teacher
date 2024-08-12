@@ -6,18 +6,21 @@
     <title>Python Learning Chatbot</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>    
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
             padding: 0;
+            overflow: hidden; /* Prevent scrolling when popup is active */
         }
         .container {
             display: flex;
             max-width: 1200px;
             margin: auto;
             gap: 20px;
+            opacity: 0.2; /* Make content dim while popup is active */
+            pointer-events: none; /* Disable interaction with content while popup is active */
         }
         .column {
             flex: 1;
@@ -122,10 +125,57 @@
             border: 1px solid #ddd;
             background-color: #f8f8f8;
         }
+
+        /* Popup Styling */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 500px;
+            box-sizing: border-box;
+        }
+        .popup-content h2 {
+            margin-bottom: 10px;
+        }
+        .popup-content p {
+            margin-bottom: 20px;
+        }
+        .popup-content button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Disclaimer Popup -->
+    <div class="popup" id="disclaimer-popup">
+        <div class="popup-content">
+            <h2>Disclaimer</h2>
+            <p>Please note that the content presented by this chatbot does not represent my views or the views of the University of Nottingham.</p>
+            <p>By continuing, you acknowledge that the information provided is for educational purposes only.</p>
+            <button onclick="closePopup()">I Understand</button>
+        </div>
+    </div>
+
+    <div class="container" id="content-container">
         <div class="column">
             <h1>Python Learning Chatbot</h1>
             <form method="POST" action="/ask">
@@ -176,10 +226,6 @@
                 <h3>Static Analysis Results:</h3>
                 <pre id="static-analysis-result"></pre>
             </div>
-            <div id="code-completion" style="margin-top: 10px;">
-                <h3>Code Completion Suggestions:</h3>
-                <ul id="code-completion-list"></ul>
-            </div>
 
             {% if correct_code %}
             <div id="solution" style="display: none;">
@@ -189,6 +235,7 @@
             {% endif %}
         </div>
     </div>
+
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
             lineNumbers: true,
@@ -278,25 +325,52 @@
             });
         });
 
-        function displayCodeCompletionSuggestions(suggestions) {
-            var codeCompletionList = document.getElementById("code-completion-list");
-            codeCompletionList.innerHTML = ""; // Clear previous suggestions
-
-            if (suggestions.length === 0) {
-                var listItem = document.createElement("li");
-                listItem.textContent = "No relevant suggestions available.";
-                codeCompletionList.appendChild(listItem);
-            } else {
-                suggestions.forEach(function(suggestion) {
-                    var listItem = document.createElement("li");
-                    listItem.textContent = suggestion;
-
-                    // Add a tooltip or example usage for each suggestion
-                    listItem.title = `Example usage: ${suggestion}()`;
-                    codeCompletionList.appendChild(listItem);
-                });
-            }
+        // Function to close the popup and store a cookie
+        function closePopup() {
+            setCookie('disclaimer_acknowledged', 'true', 30); // Store cookie for 30 days
+            var popup = document.getElementById("disclaimer-popup");
+            var content = document.getElementById("content-container");
+            popup.style.display = "none";
+            content.style.opacity = "1";
+            content.style.pointerEvents = "auto";
+            document.body.style.overflow = "auto"; // Re-enable scrolling
         }
+
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // Function to get a cookie
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Check if the user has already acknowledged the disclaimer
+        window.onload = function() {
+            var disclaimerAcknowledged = getCookie('disclaimer_acknowledged');
+            if (disclaimerAcknowledged) {
+                var popup = document.getElementById("disclaimer-popup");
+                var content = document.getElementById("content-container");
+                popup.style.display = "none";
+                content.style.opacity = "1";
+                content.style.pointerEvents = "auto";
+                document.body.style.overflow = "auto"; // Re-enable scrolling
+            }
+        };
     </script>
 </body>
 </html>
