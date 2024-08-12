@@ -65,7 +65,7 @@
         ]
     },
     "for loops":{
-        "label": ["for", "for loop", "`for loop`", "`for`"],
+        "label": ["for loop", "`for loop`", "`for`", "for_loop"],
         "examples": [
             {
                 "task_id": 6,
@@ -79,7 +79,7 @@
         ]
     },
     "while loops":{
-        "label": ["while", "while loop", "`while loop`", "`while`"],
+        "label": ["while loop", "`while loop`", "`while`", "while_loop"],
         "examples": [
             {
                 "task_id": 7,
@@ -227,6 +227,20 @@
                 "description": "The code is performing addition instead of multiplication.",
                 "explanation": "The `+` operator is used for addition, while the `*` operator is used for multiplication.",
                 "expected_output": "12"
+            }
+        ]
+    },
+    "if statements":{
+        "label": ["if", "if statement", "if_statement", "`if`", "conditional", "condition", "conditionals", "if_statements"],
+        "examples": [
+            {
+                "task_id": 20,
+                "task_description": "This code is supposed to check if a number is positive, negative, or zero, but it's not working correctly.",
+                "incorrect_code": "num = 5\nif num > 0:\n    print('Positive')\nelif num < 0:\n    print('Negative')\nelse:\n    print('Zero')\n",
+                "correct_code": "num = 5\nif num > 0:\n    print('Positive')\nelif num < 0:\n    print('Negative')\nelse:\n    print('Zero')\n",
+                "description": "The code is correct, but the description is misleading.",
+                "explanation": "The code correctly checks if a number is positive, negative, or zero.",
+                "expected_output": "Positive"
             }
         ]
     }
