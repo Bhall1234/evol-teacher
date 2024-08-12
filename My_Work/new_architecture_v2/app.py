@@ -1,7 +1,6 @@
 # IM NOT SURE IF THIS IS ACTUALLY THE BEST WAY OF DOING THIS BUT IT DOES SEEM TO WORK SO FAR. 
 # IM COMBINING THE USER QUERY AND THE EXPLANATION TO FIND THE KEYWORDS AND THEN USING THESE KEYWORDS TO FIND RELATED CODE EXAMPLES.
 
-import jedi
 import pylint.lint
 import tempfile
 import io
@@ -151,10 +150,10 @@ def run_static_analysis(user_code):
 
         # Run pylint on the temporary file
         result = subprocess.run(
-            ['pylint', '--disable=C0114,C0116,C0304', temp_file_name],  # Disable specific pylint warnings
+            ['pylint', '--disable=C0114,C0116,C0304', temp_file_name],  # Disable specific pylint warnings that arent relevant to the user.
             capture_output=True,
             text=True,
-            check=False  # Don't raise an exception on non-zero exit
+            check=False  # Don't raise an exception on non-zero exit.
         )
 
         # Parse output to remove file paths and line numbers
