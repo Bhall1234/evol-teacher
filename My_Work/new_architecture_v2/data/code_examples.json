@@ -23,7 +23,7 @@
         ]
     },
     "functions": {
-        "label": ["function", "default parameter", "`def`", "`function`", "parameters"],
+        "label": ["function", "default parameter", "`def`", "`function`", "parameters", "functions"],
         "examples": [
             {
                 "task_id": 3,
@@ -231,7 +231,7 @@
         ]
     },
     "if statements":{
-        "label": ["if", "if statement", "if_statement", "`if`", "conditional", "condition", "conditionals", "if_statements"],
+        "label": ["if", "if statement", "if_statement", "`if`", "if_statements"],
         "examples": [
             {
                 "task_id": 20,
@@ -241,6 +241,20 @@
                 "description": "The code is correct, but the description is misleading.",
                 "explanation": "The code correctly checks if a number is positive, negative, or zero.",
                 "expected_output": "Positive"
+            }
+        ]
+    },
+    "condtionals":{
+        "label": ["conditionals", "conditional", "condition", "conditional statement", "conditional_statement", "conditional_statement", "conditional_statements"],
+        "examples": [
+            {
+                "task_id": 21,
+                "task_description": "This code is supposed to check if a number is even or odd, but it's not working correctly.",
+                "incorrect_code": "num = 5\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
+                "correct_code": "num = 5\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
+                "description": "The code is correct, but the description is misleading.",
+                "explanation": "The code correctly checks if a number is even or odd based on the remainder of division by 2.",
+                "expected_output": "Odd"
             }
         ]
     }

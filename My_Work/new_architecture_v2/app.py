@@ -307,7 +307,7 @@ nlp = spacy.load("en_core_web_sm")
 phrase_matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
 
 # Add patterns to the matcher
-phrases = ["for loop", "while loop", "if statement", "if statements","hash table", "key-value", "conditional statement", "key value pair"]
+phrases = ["for loop", "while loop", "if statement", "if statements","hash table", "key-value", "conditional statement", "key value pair", "conditional statements"]
 patterns = [nlp.make_doc(phrase) for phrase in phrases]
 phrase_matcher.add("PROGRAMMING_PHRASES", patterns)
 
@@ -469,17 +469,18 @@ def extract_programming_keywords(text):
 
     # Existing keywords and synonyms logic
     programming_keywords = {
-        "def", "function", "return",
+        "def", "function", "return", "functions",
         "else", "elif", "class", "import", "try", "except",
         "concatenate", "append", "add", "subtract", "multiply", "divide",
-        "loop", "condition", "variable", "list", "dictionary", "set",
+        "variable", "list", "dictionary", "set",
         "tuple", "range", "open", "read", "write", "combine",
         "hash map", "key error", "hash", "hash table", "modulus",
         "arithmetic", "maths", "remainder", "modulo", "integer",
         "float", "string", "integer division", "while loop", "for loop", 
-        "conditionals","if statement", "conditional statement", "conditional",
         "key-value", "key value", "key value pair", "key-value pair",
-        "if_statement", "for_loop", "while_loop", "hash_table", "key-value"
+        "if_statement", "if statement", "for_loop", "while_loop", "hash_table", "key-value",
+        "addition", "subtraction", "multiplication", "division","+","-","*","/","%","//",
+        "condition", "conditions", "conditional statement", "conditional statements",
     }
 
     for token in doc:
@@ -492,6 +493,7 @@ def extract_programming_keywords(text):
     logging.info(f"Extracted programming keywords: {keywords}")
     return keywords
 
+"""
 def get_related_code_by_keywords(keywords, correct_code_examples):
     logging.info(f"Matching keywords: {keywords}")
     
@@ -520,7 +522,40 @@ def get_related_code_by_keywords(keywords, correct_code_examples):
     
     selected_example = random.choice(matching_examples)
     logging.info(f"Selected example based on keywords: {selected_example}")
-    return selected_example
+    return selected_example"""
+
+def get_related_code_by_keywords(keywords, correct_code_examples):
+    logging.info(f"Matching keywords: {keywords}")
+    
+    matching_examples = []
+    best_match_score = 0
+    best_match_example = None
+
+    for category, data in correct_code_examples.items():
+        logging.debug(f"Processing category: {category} with data: {data}")
+        
+        if isinstance(data, dict) and "label" in data and "examples" in data:
+            for key in data["label"]:
+                fuzzy_scores = [(fuzz.partial_ratio(keyword, key), keyword) for keyword in keywords]
+                
+                for score, keyword in fuzzy_scores:
+                    logging.debug(f"Fuzzy matching score between '{keyword}' and '{key}': {score}")
+                    
+                    # Only update if the new score is higher than the current best match
+                    if score > best_match_score:
+                        best_match_score = score
+                        best_match_example = random.choice(data["examples"])
+
+                    # Optionally, add a threshold for matching to avoid irrelevant selections
+                    if score > 80:
+                        matching_examples.extend(data["examples"])
+        
+    if not best_match_example:
+        logging.warning("No related code examples found.")
+        return {"incorrect_code": "No related code examples found.", "task_description": "", "description": "", "explanation": "", "task_id": "N/A"}
+    
+    logging.info(f"Selected example based on highest match score: {best_match_example}")
+    return best_match_example
 
 def find_correct_example(task_id, correct_code_examples):
     for category, data in correct_code_examples.items():
