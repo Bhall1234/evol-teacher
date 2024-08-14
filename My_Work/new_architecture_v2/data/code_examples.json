@@ -60,6 +60,7 @@
                 "correct_code": "# Solution 1\nage = 25\nmessage = 'I am ' + str(age) + ' years old.'\nprint(message)\n# Solution 2\nage = 25\nmessage = f'I am {age} years old.'\nprint(message)\n",
                 "description": "TypeError: cannot concatenate 'str' and 'int' objects.",
                 "explanation": "You need to convert the integer to a string before concatenation or use an f-string for formatting.",
+                "chat_context": "The task is about concatenating a string and a number in Python. The issue is related to type conversion between integers and strings. Focus on explaining how type conversion works in Python and why the error occurs.",
                 "expected_output": "I am 25 years old."
             }
         ]

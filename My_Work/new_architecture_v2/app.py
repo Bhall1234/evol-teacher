@@ -142,9 +142,8 @@ def check_code():
         logging.error(f"Error in check_code: {e}", exc_info=True)
         return jsonify({"result": "An error occurred", "error": str(e)}), 500
     
-# ORIGINAL CHAT CODE
-
-@app.route("/chat", methods=["POST"])
+# ORIGINAL CHAT CODE - WORKS THE BEST
+"""@app.route("/chat", methods=["POST"])
 def chat():
     user_message = request.form.get("message")
     task_id = request.form.get("task_id")
@@ -165,7 +164,36 @@ def chat():
     formatted_explanation = format_code_snippets(explanation)
     logging.info(f"Formatted chat explanation: {formatted_explanation}")
 
-    return jsonify({"response": formatted_explanation})
+    return jsonify({"response": formatted_explanation})"""
+
+# USES A NEW CHAT CONTEXT STORED IN THE JSON, WORKS OKAY. THE CONVERSATION FLOW STILL DOESNT FEEL THAT GREAT.
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    logging.info(f"User chat message: {user_message} for task ID: {task_id}")
+
+    # Find the correct example based on the task ID
+    correct_example = find_correct_example(task_id, correct_code_examples)
+    
+    if correct_example:
+        chat_context = correct_example.get("chat_context", "")
+
+        # Create the prompt using the chat context
+        prompt = f"Context: {chat_context}\nUser's Question: '{user_message}'\n Please help the user understand the task without giving out the solution to the problem."
+
+        # Generate explanation using the refined prompt
+        explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+        logging.info(f"Generated chat explanation: {explanation}")
+
+        # Format the explanation for display
+        formatted_explanation = format_code_snippets(explanation)
+        logging.info(f"Formatted chat explanation: {formatted_explanation}")
+
+        return jsonify({"response": formatted_explanation})
+    else:
+        logging.error(f"No matching task found for task ID: {task_id}")
+        return jsonify({"response": "Sorry, I couldn't find any information about this task."})
 
 # CHAT WITH PROMPT - NOT VERY GOOD, BASICALLY BECOMES NOT A CHATBOT AND IS MORE OF A Q&A BOT WITH PROMPT AND RESPONSE.
 """@app.route("/chat", methods=["POST"])
