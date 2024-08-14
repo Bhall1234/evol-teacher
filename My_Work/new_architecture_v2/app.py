@@ -142,25 +142,33 @@ def check_code():
         logging.error(f"Error in check_code: {e}", exc_info=True)
         return jsonify({"result": "An error occurred", "error": str(e)}), 500
     
+# ORIGINAL CHAT CODE
 
-"""# Create a new route to handle chat responses
 @app.route("/chat", methods=["POST"])
 def chat():
     user_message = request.form.get("message")
     task_id = request.form.get("task_id")
+    #task_description = request.form.get("task_description")
     logging.info(f"User chat message: {user_message} for task ID: {task_id}")
 
-    # Generate a response using the LLM based on the current task
-    explanation = generate_explanation(f"{user_message} (task ID: {task_id})", "TheBloke/CodeLlama-13B-Instruct-GGUF")
-    logging.info(f"Generated chat explanation: {explanation}")
+    # Retrieve the correct example associated with the task ID
+    correct_example = find_correct_example(task_id, correct_code_examples)
 
-    # Apply syntax highlighting to the assistant's explanation
+    task_description = correct_example.get("task_description", "")
+    incorrect_code = correct_example.get("incorrect_code", "")
+
+    # Generate a response using the LLM based on the current task
+    explanation = generate_explanation(f"{user_message} (Incorrect Code: {incorrect_code}), (Task Description: {task_description})", "TheBloke/CodeLlama-13B-Instruct-GGUF")
+    logging.info(f"Generated chat explanation: {explanation}")
+    
+    # Format the explanation to ensure code snippets are highlighted
     formatted_explanation = format_code_snippets(explanation)
     logging.info(f"Formatted chat explanation: {formatted_explanation}")
 
-    return jsonify({"response": formatted_explanation})"""
+    return jsonify({"response": formatted_explanation})
 
-@app.route("/chat", methods=["POST"])
+# CHAT WITH PROMPT - NOT VERY GOOD, BASICALLY BECOMES NOT A CHATBOT AND IS MORE OF A Q&A BOT WITH PROMPT AND RESPONSE.
+"""@app.route("/chat", methods=["POST"])
 def chat():
     user_message = request.form.get("message")
     task_id = request.form.get("task_id")
@@ -173,11 +181,11 @@ def chat():
         task_description = correct_example.get("task_description", "")
         incorrect_code = correct_example.get("incorrect_code", "")
         
-        # Prepare the prompt for the LLM with more context
+        # Refine the prompt with clear context separation
         prompt = (f"Task Description: {task_description}\n"
                   f"Incorrect Code:\n```\n{incorrect_code}\n```\n"
-                  f"User Message: {user_message}\n"
-                  "Please help the user understand why the code is not working and provide guidance.")
+                  "Please help the user understand the task without giving out the solution to the problem:"
+                  f" '{user_message}'")
 
         explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
         logging.info(f"Generated chat explanation: {explanation}")
@@ -189,7 +197,55 @@ def chat():
         return jsonify({"response": formatted_explanation})
     else:
         logging.error(f"No matching task found for task ID: {task_id}")
+        return jsonify({"response": "Sorry, I couldn't find any information about this task."})"""
+
+# THIS WORKS BETTER, INCLUDES THE FUNCTION NEEDS_CONTEXT TO DETERMINE IF THE USER'S MESSAGE REQUIRES TASK-SPECIFIC CONTEXT.
+"""@app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    logging.info(f"User chat message: {user_message} for task ID: {task_id}")
+
+    # Find the correct example based on the task ID
+    correct_example = find_correct_example(task_id, correct_code_examples)
+    
+    if correct_example:
+        task_description = correct_example.get("task_description", "")
+        incorrect_code = correct_example.get("incorrect_code", "")
+
+        # Determine if the user's message requires task-specific context
+        if needs_context(user_message):
+            # Include the task context in the prompt
+            prompt = (
+                f"Task Description: {task_description}\n"
+                f"Incorrect Code:\n```\n{incorrect_code}\n```\n"
+                f"User's Question: '{user_message}'\n"
+                "Please help the user understand the task without giving out the solution to the problem."
+            )
+        else:
+            # Use the user's message directly without adding task context
+            prompt = user_message
+
+        # Generate explanation using the refined prompt
+        explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+        logging.info(f"Generated chat explanation: {explanation}")
+
+        # Format the explanation for display
+        formatted_explanation = format_code_snippets(explanation)
+        logging.info(f"Formatted chat explanation: {formatted_explanation}")
+
+        return jsonify({"response": formatted_explanation})
+    else:
+        logging.error(f"No matching task found for task ID: {task_id}")
         return jsonify({"response": "Sorry, I couldn't find any information about this task."})
+
+def needs_context(user_message):
+    #Determine if the user's message needs task-specific context.
+    # List of keywords that indicate the user is asking for help or clarification
+    help_keywords = ["help", "why", "explain", "understand", "what", "how", "problem", "issue"]
+
+    # Check if any of the keywords are in the user's message
+    return any(keyword in user_message.lower() for keyword in help_keywords)"""
 
 
 def run_static_analysis(user_code):
