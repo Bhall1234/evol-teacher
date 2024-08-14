@@ -59,6 +59,9 @@ def ask():
     user_question = request.form["question"]
     logging.info(f"User question: {user_question}")
 
+    # RESET THE CONTEXT FOR THE CHAT CONVERSATION WHEN A NEW QUESTION IS ASKED.
+    session.clear()
+
     if "python" not in user_question.lower():
         user_question += " (programming Language: python)"
         logging.info(f"Modified user question: {user_question}")
@@ -185,6 +188,7 @@ def chat():
             chat_context = correct_example.get("chat_context", "")
             # Create the initial prompt with context
             prompt = f"Context: {chat_context}\nUser's Question: '{user_message}'\nPlease help the user understand the task without giving out the solution to the problem."
+            logging.info(f"Initial chat prompt with context: {prompt}")
             # Mark that context has been provided
             session[f"context_provided_{task_id}"] = True
         else:
