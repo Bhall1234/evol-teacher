@@ -145,32 +145,8 @@ def check_code():
     except Exception as e:
         logging.error(f"Error in check_code: {e}", exc_info=True)
         return jsonify({"result": "An error occurred", "error": str(e)}), 500
-    
-# ORIGINAL CHAT CODE - WORKS THE BEST
-"""@app.route("/chat", methods=["POST"])
-def chat():
-    user_message = request.form.get("message")
-    task_id = request.form.get("task_id")
-    #task_description = request.form.get("task_description")
-    logging.info(f"User chat message: {user_message} for task ID: {task_id}")
 
-    # Retrieve the correct example associated with the task ID
-    correct_example = find_correct_example(task_id, correct_code_examples)
-
-    task_description = correct_example.get("task_description", "")
-    incorrect_code = correct_example.get("incorrect_code", "")
-
-    # Generate a response using the LLM based on the current task
-    explanation = generate_explanation(f"{user_message} (Incorrect Code: {incorrect_code}), (Task Description: {task_description})", "TheBloke/CodeLlama-13B-Instruct-GGUF")
-    logging.info(f"Generated chat explanation: {explanation}")
-    
-    # Format the explanation to ensure code snippets are highlighted
-    formatted_explanation = format_code_snippets(explanation)
-    logging.info(f"Formatted chat explanation: {formatted_explanation}")
-
-    return jsonify({"response": formatted_explanation})"""
-
-# updated with session to try and store the context for the chat conversation in an attempt to improve conversation flow
+# updated with session to try and store the context for the chat conversation in an attempt to improve conversation flow - best so far.
 @app.route("/chat", methods=["POST"])
 def chat():
     user_message = request.form.get("message")
@@ -207,6 +183,30 @@ def chat():
     else:
         logging.error(f"No matching task found for task ID: {task_id}")
         return jsonify({"response": "Sorry, I couldn't find any information about this task."})
+
+# ORIGINAL CHAT CODE
+"""@app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    #task_description = request.form.get("task_description")
+    logging.info(f"User chat message: {user_message} for task ID: {task_id}")
+
+    # Retrieve the correct example associated with the task ID
+    correct_example = find_correct_example(task_id, correct_code_examples)
+
+    task_description = correct_example.get("task_description", "")
+    incorrect_code = correct_example.get("incorrect_code", "")
+
+    # Generate a response using the LLM based on the current task
+    explanation = generate_explanation(f"{user_message} (Incorrect Code: {incorrect_code}), (Task Description: {task_description})", "TheBloke/CodeLlama-13B-Instruct-GGUF")
+    logging.info(f"Generated chat explanation: {explanation}")
+    
+    # Format the explanation to ensure code snippets are highlighted
+    formatted_explanation = format_code_snippets(explanation)
+    logging.info(f"Formatted chat explanation: {formatted_explanation}")
+
+    return jsonify({"response": formatted_explanation})"""
 
 # USES A NEW CHAT CONTEXT STORED IN THE JSON, WORKS OKAY. THE CONVERSATION FLOW STILL DOESNT FEEL THAT GREAT.
 """@app.route("/chat", methods=["POST"])
