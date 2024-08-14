@@ -9,6 +9,7 @@
                 "correct_code": "my_list = [1, 2, 3]\nmy_list.append(4)\nprint(my_list)\n",
                 "description": "Misunderstanding the `append` method's return value.",
                 "explanation": "The `append` method modifies the list in place and returns `None`. You should not assign its result to a new variable.",
+                "chat_context": "The task is about list modification in Python, specifically using the `append` method. The issue is related to understanding the return value of the `append` method and how it modifies the list in place. Focus on explaining why the incorrect code does not work as expected and how to fix it.",
                 "expected_output": "[1, 2, 3, 4]"
             },
             {
@@ -18,6 +19,7 @@
                 "correct_code": "my_list = [1, 2]\nmy_list.append(3)\nprint(my_list)",
                 "description": "The same mistake with `append` method.",
                 "explanation": "Understanding `append` returns None.",
+                "chat_context": "The task is focusing on list modification using the `append` method. The incorrect code assigns the result of `append` to the list variable, which is not the intended usage. Explain why this approach does not work and how to correct it.",
                 "expected_output": "[1, 2, 3]"
             }
         ]
@@ -32,6 +34,7 @@
                 "correct_code": "# Solution 1\ndef greet(name='Guest'):\n    print(f'Hello, {name}!')\n\ngreet()\n\n # Solution 2\ndef greet(name):\n    print(f'Hello, {name}!')\n\nname='Guest'\ngreet(name)\n",
                 "description": "Missing default parameter value.",
                 "explanation": "To handle cases where no argument is provided, use a default parameter value like `name='Guest'`.",
+                "chat_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
                 "expected_output": "Hello, Guest!"
             }
         ]
@@ -46,6 +49,7 @@
                 "correct_code": "# Solution 1\nmy_dict = {'name': 'Alice', 'age': 25}\ncity = my_dict.get('city')\nif city:\n    print(city)\nelse:\n    print('City not found')\n",
                 "description": "The code raises a KeyError because the key 'city' does not exist in the dictionary.",
                 "explanation": "In Python, trying to access a dictionary key that does not exist will raise a KeyError. To avoid this, you can use the `get` method to safely retrieve a key's value. The `get` method returns `None` if the key is not found, which you can then check using an if statement.",
+                "chat_context": "The task involves working with dictionaries in Python and handling key errors when a key is not found in the dictionary. The issue is related to KeyError exceptions and how to handle them using the `get` method. Focus on explaining why the incorrect code raises an error and how the correct code addresses this issue.",
                 "expected_output": "City not found"
             }
         ]
@@ -75,6 +79,7 @@
                 "correct_code": "word = 'hello'\nfor i in range(0, len(word)):\n    print(word[i])\n",
                 "description": "IndexError: string index out of range.",
                 "explanation": "The range should stop at `len(word)`, not `len(word) + 1`, because indexing is zero-based.",
+                "chat_context": "The task involves iterating over the characters of a string using a for loop in Python. The issue is related to the range used for iteration and how it relates to string indexing. Focus on explaining why the incorrect code raises an error and how to fix it.",
                 "expected_output": "h\ne\nl\nl\no"
             }
         ]
@@ -89,6 +94,7 @@
                 "correct_code": "i = 1\nwhile i <= 5:\n    print(i)\n    i += 1\n",
                 "description": "The loop condition is correct, but the loop becomes an infinite loop because the increment step is missing.",
                 "explanation": "In the incorrect code, the value of `i` is not being incremented inside the loop, causing an infinite loop. To fix this, you need to increment `i` by 1 after each iteration.",
+                "chat_context": "The task involves using a while loop to print numbers from 1 to 5 in Python. The issue is related to the loop becoming an infinite loop due to a missing increment step. Focus on explaining why the incorrect code does not terminate and how to correct it.",
                 "expected_output": "1\n2\n3\n4\n5"
             }
         ]
@@ -103,6 +109,7 @@
                 "correct_code": "def multiply(a, b):\n    return a * b\n\nresult = multiply(3, 4)\nprint(result)\n",
                 "description": "The code is performing addition instead of multiplication.",
                 "explanation": "The `+` operator is used for addition, while the `*` operator is used for multiplication.",
+                "chat_context": "The task involves multiplying two numbers in Python. The issue is related to using the addition operator instead of the multiplication operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
                 "expected_output": "12"
             }
         ]
@@ -117,6 +124,7 @@
                 "correct_code": "def add(a, b):\n    return a + b\n\nresult = add(3, 4)\nprint(result)\n",
                 "description": "The code is performing multiplication instead of addition.",
                 "explanation": "The `*` operator is used for multiplication, while the `+` operator is used for addition.",
+                "chat_context": "The task involves adding two numbers in Python. The issue is related to using the multiplication operator instead of the addition operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
                 "expected_output": "7"
             },
             {
@@ -126,6 +134,7 @@
                 "correct_code": "result = (10 + 5) * 2\nprint(result)\n",
                 "description": "The code is not following the correct order of operations.",
                 "explanation": "In Python, multiplication and division have higher precedence than addition and subtraction. To ensure the addition is performed first, use parentheses to group the addition operation.",
+                "chat_context": "The task involves a simple arithmetic calculation in Python. The issue is related to the order of operations and how to ensure the addition is performed before multiplication. Focus on explaining why the incorrect code produces the wrong result and how to correct it.",
                 "expected_output": "30"
             }
         ]
@@ -140,6 +149,7 @@
                 "correct_code": "def subtract(a, b):\n    return a - b\n\nresult = subtract(7, 3)\nprint(result)\n",
                 "description": "The code is performing multiplication instead of subtraction.",
                 "explanation": "The `*` operator is used for multiplication, while the `-` operator is used for subtraction.",
+                "chat_context": "The task involves subtracting two numbers in Python. The issue is related to using the multiplication operator instead of the subtraction operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
                 "expected_output": "4"
             }
         ]
@@ -154,6 +164,7 @@
                 "correct_code": "def divide(a, b):\n    return a / b\n\nresult = divide(10, 2)\nprint(result)\n",
                 "description": "The code is performing addition instead of division.",
                 "explanation": "The `+` operator is used for addition, while the `/` operator is used for division.",
+                "chat_context": "The task involves dividing two numbers in Python. The issue is related to using the addition operator instead of the division operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
                 "expected_output": "5.0"
             }
         ]
@@ -168,6 +179,7 @@
                 "correct_code": "def find_remainder(a, b):\n    return a % b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
                 "description": "The code is performing division instead of finding the remainder.",
                 "explanation": "The `/` operator is used for division, while the `%` operator is used to find the remainder of division.",
+                "chat_context": "The task involves finding the remainder of dividing two numbers in Python. The issue is related to using the division operator instead of the modulus operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
                 "expected_output": "1"
             }
         ]
@@ -182,6 +194,7 @@
                 "correct_code": "result = (10 + 5) * 2\nprint(result)\n",
                 "description": "The code is not following the correct order of operations.",
                 "explanation": "In Python, multiplication and division have higher precedence than addition and subtraction. To ensure the addition is performed first, use parentheses to group the addition operation.",
+                "chat_context": "The task involves a simple arithmetic calculation in Python. The issue is related to the order of operations and how to ensure the addition is performed before multiplication. Focus on explaining why the incorrect code produces the wrong result and how to correct it.",
                 "expected_output": "30"
             },
             {
@@ -191,6 +204,7 @@
                 "correct_code": "def find_remainder(a, b):\n    return a % b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
                 "description": "The code is performing division instead of finding the remainder.",
                 "explanation": "The `/` operator is used for division, while the `%` operator is used to find the remainder of division.",
+                "chat_context": "The task involves finding the remainder of dividing two numbers in Python. The issue is related to using the division operator instead of the modulus operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
                 "expected_output": "1"
             },
             {
@@ -200,6 +214,7 @@
                 "correct_code": "def divide(a, b):\n    return a / b\n\nresult = divide(10, 2)\nprint(result)\n",
                 "description": "The code is performing addition instead of division.",
                 "explanation": "The `+` operator is used for addition, while the `/` operator is used for division.",
+                "chat_context": "The task involves dividing two numbers in Python. The issue is related to using the addition operator instead of the division operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
                 "expected_output": "5.0"
             },
             {
@@ -209,6 +224,7 @@
                 "correct_code": "def subtract(a, b):\n    return a - b\n\nresult = subtract(7, 3)\nprint(result)\n",
                 "description": "The code is performing multiplication instead of subtraction.",
                 "explanation": "The `*` operator is used for multiplication, while the `-` operator is used for subtraction.",
+                "chat_context": "The task involves subtracting two numbers in Python. The issue is related to using the multiplication operator instead of the subtraction operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
                 "expected_output": "4"
             },
             {
@@ -218,6 +234,7 @@
                 "correct_code": "def add(a, b):\n    return a + b\n\nresult = add(3, 4)\nprint(result)\n",
                 "description": "The code is performing multiplication instead of addition.",
                 "explanation": "The `*` operator is used for multiplication, while the `+` operator is used for addition.",
+                "chat_context": "The task involves adding two numbers in Python. The issue is related to using the multiplication operator instead of the addition operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
                 "expected_output": "7"
             },
             {
@@ -227,6 +244,7 @@
                 "correct_code": "def multiply(a, b):\n    return a * b\n\nresult = multiply(3, 4)\nprint(result)\n",
                 "description": "The code is performing addition instead of multiplication.",
                 "explanation": "The `+` operator is used for addition, while the `*` operator is used for multiplication.",
+                "chat_context": "The task involves multiplying two numbers in Python. The issue is related to using the addition operator instead of the multiplication operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
                 "expected_output": "12"
             }
         ]
@@ -241,6 +259,7 @@
                 "correct_code": "num = 5\nif num > 0:\n    print('Positive')\nelif num < 0:\n    print('Negative')\nelse:\n    print('Zero')\n",
                 "description": "The code is correct, but the description is misleading.",
                 "explanation": "The code correctly checks if a number is positive, negative, or zero.",
+                "chat_context": "The task involves using if statements to check if a number is positive, negative, or zero in Python. The code provided is correct, but the description is misleading. Focus on explaining why the code works as expected and how the if-elif-else structure handles different cases.",
                 "expected_output": "Positive"
             }
         ]
@@ -255,6 +274,7 @@
                 "correct_code": "num = 5\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
                 "description": "The code is correct, but the description is misleading.",
                 "explanation": "The code correctly checks if a number is even or odd based on the remainder of division by 2.",
+                "chat_context": "The task involves using conditionals to check if a number is even or odd in Python. The code provided is correct, but the description is misleading. Focus on explaining why the code works as expected and how the conditional statement determines if a number is even or odd.",
                 "expected_output": "Odd"
             }
         ]

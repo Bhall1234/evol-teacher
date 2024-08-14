@@ -5,7 +5,7 @@ import os
 import tempfile
 import subprocess
 import sys
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, session
 from src.utils import load_dataset
 from src.explanation_generation import generate_explanation
 from pygments import highlight
@@ -17,6 +17,7 @@ from spacy.matcher import PhraseMatcher
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
+app.secret_key = "your_secret_key"  # Required for session management
 
 # Set up logging
 log_path = os.path.join(os.getcwd(), 'My_Work', 'new_architecture_v2', 'src', 'logs', 'chat_interactions.log')
@@ -166,8 +167,45 @@ def chat():
 
     return jsonify({"response": formatted_explanation})"""
 
-# USES A NEW CHAT CONTEXT STORED IN THE JSON, WORKS OKAY. THE CONVERSATION FLOW STILL DOESNT FEEL THAT GREAT.
+# updated with session to try and store the context for the chat conversation in an attempt to improve conversation flow
 @app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    logging.info(f"User chat message: {user_message} for task ID: {task_id}")
+
+    # Retrieve the conversation state
+    context_provided = session.get(f"context_provided_{task_id}", False)
+
+    # Find the correct example based on the task ID
+    correct_example = find_correct_example(task_id, correct_code_examples)
+
+    if correct_example:
+        if not context_provided:
+            chat_context = correct_example.get("chat_context", "")
+            # Create the initial prompt with context
+            prompt = f"Context: {chat_context}\nUser's Question: '{user_message}'\nPlease help the user understand the task without giving out the solution to the problem."
+            # Mark that context has been provided
+            session[f"context_provided_{task_id}"] = True
+        else:
+            # Create the prompt without context
+            prompt = f"User's Question: '{user_message}'\nPlease provide an explanation."
+
+        # Generate explanation using the refined prompt
+        explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+        logging.info(f"Generated chat explanation: {explanation}")
+
+        # Format the explanation for display
+        formatted_explanation = format_code_snippets(explanation)
+        logging.info(f"Formatted chat explanation: {formatted_explanation}")
+
+        return jsonify({"response": formatted_explanation})
+    else:
+        logging.error(f"No matching task found for task ID: {task_id}")
+        return jsonify({"response": "Sorry, I couldn't find any information about this task."})
+
+# USES A NEW CHAT CONTEXT STORED IN THE JSON, WORKS OKAY. THE CONVERSATION FLOW STILL DOESNT FEEL THAT GREAT.
+"""@app.route("/chat", methods=["POST"])
 def chat():
     user_message = request.form.get("message")
     task_id = request.form.get("task_id")
@@ -193,7 +231,7 @@ def chat():
         return jsonify({"response": formatted_explanation})
     else:
         logging.error(f"No matching task found for task ID: {task_id}")
-        return jsonify({"response": "Sorry, I couldn't find any information about this task."})
+        return jsonify({"response": "Sorry, I couldn't find any information about this task."})"""
 
 # CHAT WITH PROMPT - NOT VERY GOOD, BASICALLY BECOMES NOT A CHATBOT AND IS MORE OF A Q&A BOT WITH PROMPT AND RESPONSE.
 """@app.route("/chat", methods=["POST"])
