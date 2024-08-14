@@ -237,6 +237,13 @@
             {% endif %}
         </div>
     </div>
+    <!-- New column for chat interaction -->
+    <div class="column" id="chat-column">
+        <h2>Chat with Assistant</h2>
+        <div id="chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
+        <input type="text" id="chat-input" placeholder="Ask about the code..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
+        <button onclick="sendMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
+    </div>
 
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
@@ -326,6 +333,29 @@
                 displayCodeCompletionSuggestions(data.code_completion);
             });
         });
+
+    function sendMessage() {
+        var message = document.getElementById("chat-input").value;
+        var chatbox = document.getElementById("chatbox");
+        var taskId = document.getElementById("task-id").value;
+
+        chatbox.innerHTML += "<p><strong>You:</strong> " + message + "</p>";
+        document.getElementById("chat-input").value = ""; // Clear the input box
+
+        fetch("/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "message=" + encodeURIComponent(message) + "&task_id=" + taskId
+        })
+        .then(response => response.json())
+        .then(data => {
+            chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.response + "</p>";
+            chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
+        });
+    }
+
 
         // Function to close the popup and store a cookie
         function closePopup() {

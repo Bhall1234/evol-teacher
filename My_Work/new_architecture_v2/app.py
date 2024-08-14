@@ -14,6 +14,7 @@ from pygments.formatters import HtmlFormatter
 import spacy
 from fuzzywuzzy import fuzz
 from spacy.matcher import PhraseMatcher
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 
@@ -140,6 +141,56 @@ def check_code():
     except Exception as e:
         logging.error(f"Error in check_code: {e}", exc_info=True)
         return jsonify({"result": "An error occurred", "error": str(e)}), 500
+    
+
+"""# Create a new route to handle chat responses
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    logging.info(f"User chat message: {user_message} for task ID: {task_id}")
+
+    # Generate a response using the LLM based on the current task
+    explanation = generate_explanation(f"{user_message} (task ID: {task_id})", "TheBloke/CodeLlama-13B-Instruct-GGUF")
+    logging.info(f"Generated chat explanation: {explanation}")
+
+    # Apply syntax highlighting to the assistant's explanation
+    formatted_explanation = format_code_snippets(explanation)
+    logging.info(f"Formatted chat explanation: {formatted_explanation}")
+
+    return jsonify({"response": formatted_explanation})"""
+
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    logging.info(f"User chat message: {user_message} for task ID: {task_id}")
+
+    # Retrieve the correct example associated with the task ID
+    correct_example = find_correct_example(task_id, correct_code_examples)
+    
+    if correct_example:
+        task_description = correct_example.get("task_description", "")
+        incorrect_code = correct_example.get("incorrect_code", "")
+        
+        # Prepare the prompt for the LLM with more context
+        prompt = (f"Task Description: {task_description}\n"
+                  f"Incorrect Code:\n```\n{incorrect_code}\n```\n"
+                  f"User Message: {user_message}\n"
+                  "Please help the user understand why the code is not working and provide guidance.")
+
+        explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+        logging.info(f"Generated chat explanation: {explanation}")
+
+        # Format the explanation for consistent code formatting
+        formatted_explanation = format_code_snippets(explanation)
+        logging.info(f"Formatted chat explanation: {formatted_explanation}")
+
+        return jsonify({"response": formatted_explanation})
+    else:
+        logging.error(f"No matching task found for task ID: {task_id}")
+        return jsonify({"response": "Sorry, I couldn't find any information about this task."})
+
 
 def run_static_analysis(user_code):
     logging.debug("Entered run_static_analysis function with user_code:\n%s", user_code)
@@ -205,7 +256,7 @@ def extract_programming_keywords(text):
         "key-value", "key value", "key value pair", "key-value pair",
         "if_statement", "if statement", "for_loop", "while_loop", "hash_table", "key-value",
         "addition", "subtraction", "multiplication", "division","+","-","*","/","%","//",
-        "condition", "conditions", "conditional statement", "conditional statements",
+        "conditions", "conditional statement", "conditional statements",
     }
 
     for token in doc:
@@ -217,37 +268,6 @@ def extract_programming_keywords(text):
     
     logging.info(f"Extracted programming keywords: {keywords}")
     return keywords
-
-"""
-def get_related_code_by_keywords(keywords, correct_code_examples):
-    logging.info(f"Matching keywords: {keywords}")
-    
-    matching_examples = []
-    
-    for category, data in correct_code_examples.items():
-        logging.debug(f"Processing category: {category} with data: {data}")
-        
-        if isinstance(data, dict) and "label" in data and "examples" in data:
-            for key in data["label"]:
-                fuzzy_scores = [(fuzz.partial_ratio(keyword, key), keyword) for keyword in keywords]
-                
-                for score, keyword in fuzzy_scores:
-                    logging.debug(f"Fuzzy matching score between '{keyword}' and '{key}': {score}")
-                
-                if any(score > 80 for score, keyword in fuzzy_scores):
-                    logging.info(f"Fuzzy match found: Label '{key}' matches with keyword '{keyword}' (score: {score})")
-                    matching_examples.extend(data["examples"])
-                    break
-        else:
-            logging.warning(f"Unexpected data structure in category '{category}': {data}")
-    
-    if not matching_examples:
-        logging.warning("No related code examples found.")
-        return {"incorrect_code": "No related code examples found.", "task_description": "", "description": "", "explanation": "", "task_id": "N/A"}
-    
-    selected_example = random.choice(matching_examples)
-    logging.info(f"Selected example based on keywords: {selected_example}")
-    return selected_example"""
 
 def get_related_code_by_keywords(keywords, correct_code_examples):
     logging.info(f"Matching keywords: {keywords}")
