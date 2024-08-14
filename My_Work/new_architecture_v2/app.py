@@ -138,13 +138,53 @@ def check_code():
         logging.info(f"Code check result: {result}")
         static_analysis_result = run_static_analysis(user_code)
         
-        return jsonify({
+        response = {
             "result": result,
             "static_analysis": static_analysis_result,
-        })
+        }
+        
+        if result == "Correct":
+            response["show_reflection_chat"] = True
+            session[f"context_provided_{task_id}_reflection"] = False
+            # Proactive chatbot message
+            initial_prompt = f"Great job! You've submitted the correct solution. Can you explain why your solution is correct? What specifically about your code makes it work as intended?"
+            response["initial_chat_message"] = initial_prompt
+        
+        return jsonify(response)
     except Exception as e:
         logging.error(f"Error in check_code: {e}", exc_info=True)
         return jsonify({"result": "An error occurred", "error": str(e)}), 500
+    
+@app.route("/reflection_chat", methods=["POST"])
+def reflection_chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    logging.info(f"User reflection message: {user_message} for task ID: {task_id}")
+
+    # Retrieve the reflection state
+    context_provided = session.get(f"context_provided_{task_id}_reflection", False)
+
+    correct_example = find_correct_example(task_id, correct_code_examples)
+
+    if correct_example:
+        if not context_provided:
+            reflection_context = correct_example.get("reflection_context", "")
+            prompt = f"Context: {reflection_context}\nUser's Reflection: '{user_message}'\nPlease ask the user to explain why their solution is correct."
+            logging.info(f"Initial reflection prompt with context: {prompt}")
+            session[f"context_provided_{task_id}_reflection"] = True
+        else:
+            prompt = f"User's Reflection: '{user_message}'\nPlease provide feedback and encourage further reflection."
+
+        explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+        logging.info(f"Generated reflection explanation: {explanation}")
+
+        formatted_explanation = format_code_snippets(explanation)
+        logging.info(f"Formatted reflection explanation: {formatted_explanation}")
+
+        return jsonify({"response": formatted_explanation})
+    else:
+        logging.error(f"No matching task found for task ID: {task_id}")
+        return jsonify({"response": "Sorry, I couldn't find any information about this task."})
 
 # updated with session to try and store the context for the chat conversation in an attempt to improve conversation flow - best so far.
 @app.route("/chat", methods=["POST"])
@@ -248,7 +288,8 @@ def extract_programming_keywords(text):
         "key-value", "key value", "key value pair", "key-value pair",
         "if_statement", "if statement", "for_loop", "while_loop", "hash_table", "key-value",
         "addition", "subtraction", "multiplication", "division","+","-","*","/","%","//",
-        "conditions", "conditional statement", "conditional statements",
+        "conditions", "conditional statement", "conditional statements", "`while`", "while_loop",
+        "if_statement", "if statements", "for_loop", "for loop",
     }
 
     for token in doc:

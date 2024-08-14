@@ -35,6 +35,7 @@
                 "description": "Missing default parameter value.",
                 "explanation": "To handle cases where no argument is provided, use a default parameter value like `name='Guest'`.",
                 "chat_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
+                "reflection_context": "The user submitted the correct code for concatenating strings and integers. Encourage them to explain why converting the integer to a string was necessary.",
                 "expected_output": "Hello, Guest!"
             }
         ]
