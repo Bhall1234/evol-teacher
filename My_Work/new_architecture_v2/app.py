@@ -113,6 +113,7 @@ def run_code():
         logging.error(f"Code execution error: {output}")
     return jsonify({"output": output})
 
+# ORIGINAL
 @app.route("/check_code", methods=["POST"])
 def check_code():
     try:
@@ -156,9 +157,9 @@ def check_code():
 
             # Generate the reflection question immediately
             reflection_context = correct_example.get("reflection_context", "")
-            prompt = (f"Context: {reflection_context}\n"
-                      f"User's Submitted Code:\n{user_code}\n"
-                      f"Please generate an initial question to ask the user about their solution, encouraging them to reflect on why their solution is correct.")
+            prompt = (f"Ask the user about the submitted code, encourage the user to reflect on why their solution. Ask question that will help the user understand the concepts deeper.\n"
+                      f"Context: {reflection_context}\n" # messing around with this to see if it helps with the chat conversation. maybe provide the incorrect code as well?
+                      f"User's Submitted Code:\n{user_code}\n")
             
             initial_question = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
             logging.info(f"Generated initial reflection question: {initial_question}")
