@@ -4,22 +4,22 @@
         "examples": [
             {
                 "task_id": 1,
-                "task_description": "This code is supposed to add an element to a list and print the updated list, but it's not working correctly.",
-                "incorrect_code": "my_list = [1, 2, 3]\nnew_list = my_list.append(4)\nprint(new_list)\n",
-                "correct_code": "my_list = [1, 2, 3]\nmy_list.append(4)\nprint(my_list)\n",
+                "task_description": "This code is supposed to add elements to a list and print the updated list, but it's not working correctly.",
+                "incorrect_code": "my_list = [1, 2, 3]\nfor i in range(4, 5):\n    new_list = my_list.append(i)\nprint(new_list)\n",
+                "correct_code": "my_list = [1, 2, 3]\nfor i in range(4, 5):\n    my_list.append(i)\nprint(my_list)\n",
                 "description": "Misunderstanding the `append` method's return value.",
                 "explanation": "The `append` method modifies the list in place and returns `None`. You should not assign its result to a new variable.",
-                "chat_context": "The task is about list modification in Python, specifically using the `append` method. The issue is related to understanding the return value of the `append` method and how it modifies the list in place. Focus on explaining why the incorrect code does not work as expected and how to fix it.",
+                "chat_context": "The task is about list modification in Python, specifically using the `append` method within a `for` loop. The issue is related to understanding the return value of the `append` method and how it modifies the list in place. Focus on explaining why the incorrect code does not work as expected and how to fix it.",
                 "expected_output": "[1, 2, 3, 4]"
             },
             {
                 "task_id": 2,
                 "task_description": "Another example related to list modification.",
-                "incorrect_code": "my_list = [1, 2]\nmy_list = my_list.append(3)\nprint(my_list)",
-                "correct_code": "my_list = [1, 2]\nmy_list.append(3)\nprint(my_list)",
+                "incorrect_code": "my_list = [1, 2]\nfor i in range(3, 4):\n    my_list = my_list.append(i)\nprint(my_list)",
+                "correct_code": "my_list = [1, 2]\nfor i in range(3, 4):\n    my_list.append(i)\nprint(my_list)",
                 "description": "The same mistake with `append` method.",
                 "explanation": "Understanding `append` returns None.",
-                "chat_context": "The task is focusing on list modification using the `append` method. The incorrect code assigns the result of `append` to the list variable, which is not the intended usage. Explain why this approach does not work and how to correct it.",
+                "chat_context": "The task is focusing on list modification using the `append` method within a `for` loop. The incorrect code assigns the result of `append` to the list variable, which is not the intended usage. Explain why this approach does not work and how to correct it.",
                 "expected_output": "[1, 2, 3]"
             }
         ]
@@ -35,7 +35,7 @@
                 "description": "Missing default parameter value.",
                 "explanation": "To handle cases where no argument is provided, use a default parameter value like `name='Guest'`.",
                 "chat_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
-                "reflection_context": "The user submitted the correct code for concatenating strings and integers. Encourage them to explain why converting the integer to a string was necessary.",
+                "reflection_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
                 "expected_output": "Hello, Guest!"
             }
         ]

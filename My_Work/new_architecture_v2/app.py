@@ -47,7 +47,11 @@ synonyms = {
     "tuple": ["pair", "ordered pair"],
     "open": ["read"],
     "write": ["save"],
-    "import": ["include"], 
+    "import": ["include"],
+    "while loop": ["while_loop", "`while`", "while"],
+    "for loop": ["for_loop", "for"],
+    "hash table": ["hash_map", "hashmap", "hash"],
+    "key-value": ["key value", "key-value pair", "key-value pairs"], 
 }
 
 @app.route("/")
@@ -144,9 +148,11 @@ def check_code():
         }
         
         if result == "Correct":
+            # Store the user's correct code in the session for reflection
+            session[f"user_code_{task_id}"] = user_code
+
             response["show_reflection_chat"] = True
             session[f"context_provided_{task_id}_reflection"] = False
-            # Proactive chatbot message
             initial_prompt = f"Great job! You've submitted the correct solution. Can you explain why your solution is correct? What specifically about your code makes it work as intended?"
             response["initial_chat_message"] = initial_prompt
         
@@ -161,6 +167,10 @@ def reflection_chat():
     task_id = request.form.get("task_id")
     logging.info(f"User reflection message: {user_message} for task ID: {task_id}")
 
+    # Retrieve the user's correct code from the session
+    user_code = session.get(f"user_code_{task_id}", "")
+    logging.info(f"User's submitted code: {user_code}")
+
     # Retrieve the reflection state
     context_provided = session.get(f"context_provided_{task_id}_reflection", False)
 
@@ -169,11 +179,13 @@ def reflection_chat():
     if correct_example:
         if not context_provided:
             reflection_context = correct_example.get("reflection_context", "")
-            prompt = f"Context: {reflection_context}\nUser's Reflection: '{user_message}'\nPlease ask the user to explain why their solution is correct."
+            # Include the user's submitted code in the prompt
+            prompt = f"Context: {reflection_context}\nUser's Submitted Code:\n{user_code}\nUser's Reflection: '{user_message}'\nPlease ask the user to explain why their solution is correct."
             logging.info(f"Initial reflection prompt with context: {prompt}")
             session[f"context_provided_{task_id}_reflection"] = True
         else:
-            prompt = f"User's Reflection: '{user_message}'\nPlease provide feedback and encourage further reflection."
+            # Include the user's submitted code in the prompt
+            prompt = f"User's Submitted Code:\n{user_code}\nUser's Reflection: '{user_message}'\nPlease provide feedback and encourage further reflection."
 
         explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
         logging.info(f"Generated reflection explanation: {explanation}")
@@ -287,7 +299,7 @@ def extract_programming_keywords(text):
         "float", "string", "integer division", "while loop", "for loop", 
         "key-value", "key value", "key value pair", "key-value pair",
         "if_statement", "if statement", "for_loop", "while_loop", "hash_table", "key-value",
-        "addition", "subtraction", "multiplication", "division","+","-","*","/","%","//",
+        "addition", "subtraction", "multiplication", "division","+","*","/","%","//",
         "conditions", "conditional statement", "conditional statements", "`while`", "while_loop",
         "if_statement", "if statements", "for_loop", "for loop",
     }
