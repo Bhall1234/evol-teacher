@@ -29,7 +29,7 @@
         "examples": [
             {
                 "task_id": 3,
-                "task_description": "You need to create a function in Python that greets a user by their name. If no name is provided when calling the function, it should default to 'Guest'. However, the current implementation of the code fails to handle the scenario where no name is provided, resulting in an error. Your task is to modify the function to use a default parameter value, ensuring it works correctly when no argument is given.",
+                "task_description": "You need to create a function in Python that greets a user by their name. If no name is provided when calling the function, it should default to 'Guest'. Your task is to modify the function to use a default parameter value, ensuring it works correctly when no argument is given. The output should be 'Hello, Guest!'",
                 "incorrect_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet()\n",
                 "correct_code": "# Solution 1\ndef greet(name='Guest'):\n    print(f'Hello, {name}!')\n\ngreet()\n\n # Solution 2\ndef greet(name):\n    print(f'Hello, {name}!')\n\nname='Guest'\ngreet(name)\n",
                 "description": "Missing default parameter value.",
@@ -60,7 +60,7 @@
         "examples": [
             {
                 "task_id": 5,
-                "task_description": "This task involves concatenating a string and a number in Python to form a complete sentence. The code should take a number representing age and combine it with a string to produce a message like 'I am 25 years old.' However, the current implementation results in an error due to type incompatibility. Your job is to fix the code so that it correctly concatenates the string and number to form the desired output.",
+                "task_description": "This task involves concatenating a string and a number in Python to form a complete sentence. The code should take a number representing age and combine it with a string to produce a message like 'I am 25 years old.' However, the current implementation results in an error. Your job is to fix the code so that it correctly joins the string and number to form the desired output.",
                 "incorrect_code": "age = 25\nmessage = 'I am ' + age + ' years old.'\nprint(message)\n",
                 "correct_code": "# Solution 1\nage = 25\nmessage = 'I am ' + str(age) + ' years old.'\nprint(message)\n# Solution 2\nage = 25\nmessage = f'I am {age} years old.'\nprint(message)\n",
                 "description": "TypeError: cannot concatenate 'str' and 'int' objects.",
@@ -75,7 +75,7 @@
         "examples": [
             {
                 "task_id": 6,
-                "task_description": "The task requires you to write a `for` loop that iterates over each character in a string and prints it. The current code is supposed to print each character of the string 'hello', but it fails to work correctly due to an indexing issue. Your job is to analyze the code, identify the mistake, and modify it so that it correctly prints each character of the string.",
+                "task_description": "The task requires you to write a `for` loop that iterates over each character in a string and prints it. The current code is supposed to print each character of the string 'hello'. Your job is to analyze the code, identify the mistake, and modify it so that it correctly prints each character of the string.",
                 "incorrect_code": "word = 'hello'\nfor i in range(0, len(word) + 1):\n    print(word[i])\n",
                 "correct_code": "word = 'hello'\nfor i in range(0, len(word)):\n    print(word[i])\n",
                 "description": "IndexError: string index out of range.",
@@ -90,7 +90,7 @@
         "examples": [
             {
                 "task_id": 7,
-                "task_description": "This task involves using a `while` loop to print numbers from 1 to 5. The code should iterate through the numbers, printing each one in sequence. However, the current implementation has an issue that causes the loop to run indefinitely. Your task is to identify and fix the problem in the code so that the loop terminates correctly after printing the numbers 1 to 5.",
+                "task_description": "This task involves using a `while` loop to print numbers from 1 to 5. The code should iterate through the numbers, printing each one in sequence. Your task is to identify and fix the problem in the code so that the loop terminates correctly after printing the numbers 1 to 5.",
                 "incorrect_code": "i = 1\nwhile i <= 5:\n    print(i)\n",
                 "correct_code": "i = 1\nwhile i <= 5:\n    print(i)\n    i += 1\n",
                 "description": "The loop condition is correct, but the loop becomes an infinite loop because the increment step is missing.",
@@ -105,7 +105,7 @@
         "examples": [
             {
                 "task_id": 8,
-                "task_description": "In this task, you need to write a function that multiplies two numbers and returns the result. The code should take two input values, multiply them, and return the product. However, the current implementation incorrectly performs addition instead of multiplication. Your task is to correct the code so that it multiplies the numbers as intended.",
+                "task_description": "In this task, you need to write a function that multiplies two numbers and returns the result. The code should take two input values, multiply them, and return the product. Your task is to correct the code so that it multiplies the numbers as intended.",
                 "incorrect_code": "def multiply(a, b):\n    return a + b\n\nresult = multiply(3, 4)\nprint(result)\n",
                 "correct_code": "def multiply(a, b):\n    return a * b\n\nresult = multiply(3, 4)\nprint(result)\n",
                 "description": "The code is performing addition instead of multiplication.",
@@ -120,7 +120,7 @@
         "examples": [
             {
                 "task_id": 9,
-                "task_description": "This task requires you to write a function that adds two numbers and returns the result. The code is supposed to take two input values, add them, and return the sum. However, the current implementation mistakenly performs multiplication instead of addition. Your task is to identify and correct the error so that the function correctly adds the numbers.",
+                "task_description": "This task requires you to write a function that adds two numbers and returns the result. The code is supposed to take two input values, add them, and return the sum. Your task is to identify and correct the error so that the function correctly adds the numbers.",
                 "incorrect_code": "def add(a, b):\n    return a * b\n\nresult = add(3, 4)\nprint(result)\n",
                 "correct_code": "def add(a, b):\n    return a + b\n\nresult = add(3, 4)\nprint(result)\n",
                 "description": "The code is performing multiplication instead of addition.",
@@ -130,7 +130,7 @@
             },
             {
                 "task_id": 10,
-                "task_description": "The task involves performing a simple arithmetic calculation that combines addition and multiplication. The goal is to ensure that addition is performed first, followed by multiplication. However, the current code does not follow the correct order of operations, leading to an incorrect result. Your job is to modify the code to ensure that the calculation is performed in the correct sequence.",
+                "task_description": "The task involves performing a simple arithmetic calculation that combines addition and multiplication. The goal is to ensure that addition is performed first, followed by multiplication. Your job is to modify the code to ensure that the calculation is performed in the correct sequence.",
                 "incorrect_code": "result = 10 + 5 * 2\nprint(result)\n",
                 "correct_code": "result = (10 + 5) * 2\nprint(result)\n",
                 "description": "The code is not following the correct order of operations.",
@@ -145,7 +145,7 @@
         "examples": [
             {
                 "task_id": 11,
-                "task_description": "You are required to write a function that subtracts one number from another and returns the result. The code should take two input values, subtract the second value from the first, and return the difference. However, the current implementation mistakenly performs multiplication instead of subtraction. Your task is to correct the code so that it performs the subtraction as intended.",
+                "task_description": "You are required to write a function that subtracts one number from another and returns the result. The code should take two input values, subtract the second value from the first, and return the difference. Your task is to correct the code so that it performs the subtraction as intended.",
                 "incorrect_code": "def subtract(a, b):\n    return a * b\n\nresult = subtract(7, 3)\nprint(result)\n",
                 "correct_code": "def subtract(a, b):\n    return a - b\n\nresult = subtract(7, 3)\nprint(result)\n",
                 "description": "The code is performing multiplication instead of subtraction.",
@@ -160,7 +160,7 @@
         "examples": [
             {
                 "task_id": 12,
-                "task_description": "In this task, you need to write a function that divides two numbers and returns the result. The code should take two input values, divide the first value by the second, and return the quotient. However, the current implementation incorrectly performs addition instead of division. Your job is to fix the code so that it correctly divides the numbers and returns the expected result.",
+                "task_description": "In this task, you need to write a function that divides two numbers and returns the result. The code should take two input values, divide the first value by the second, and return the quotient. Your job is to fix the code so that it correctly divides the numbers and returns the expected result.",
                 "incorrect_code": "def divide(a, b):\n    return a + b\n\nresult = divide(10, 2)\nprint(result)\n",
                 "correct_code": "def divide(a, b):\n    return a / b\n\nresult = divide(10, 2)\nprint(result)\n",
                 "description": "The code is performing addition instead of division.",
@@ -175,7 +175,7 @@
         "examples": [
             {
                 "task_id": 13,
-                "task_description": "This task involves writing a function that calculates the remainder when one number is divided by another. The code should take two input values, find the remainder of their division, and return the result. However, the current implementation mistakenly performs division instead of finding the remainder. Your task is to correct the code so that it uses the modulus operator to return the correct remainder.",
+                "task_description": "This task involves writing a function that calculates the remainder when one number is divided by another. The code should take two input values, find the remainder of their division, and return the result. Your task is to correct the code so that it uses the right operator to return the correct remainder.",
                 "incorrect_code": "def find_remainder(a, b):\n    return a / b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
                 "correct_code": "def find_remainder(a, b):\n    return a % b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
                 "description": "The code is performing division instead of finding the remainder.",
@@ -190,7 +190,7 @@
         "examples": [
             {
                 "task_id": 14,
-                "task_description": "This task involves performing a simple arithmetic calculation that combines addition and multiplication. The goal is to ensure that addition is performed first, followed by multiplication. However, the current code does not follow the correct order of operations, leading to an incorrect result. Your job is to modify the code to ensure that the calculation is performed in the correct sequence.",
+                "task_description": "This task involves performing a simple arithmetic calculation that combines addition and multiplication. The goal is to ensure that addition is performed first, followed by multiplication. Your job is to modify the code to ensure that the calculation is performed in the correct sequence.",
                 "incorrect_code": "result = 10 + 5 * 2\nprint(result)\n",
                 "correct_code": "result = (10 + 5) * 2\nprint(result)\n",
                 "description": "The code is not following the correct order of operations.",
@@ -200,7 +200,7 @@
             },
             {
                 "task_id": 15,
-                "task_description": "You need to write a function that calculates the remainder when one number is divided by another. The code should take two input values, find the remainder of their division, and return the result. However, the current implementation mistakenly performs division instead of finding the remainder. Your task is to correct the code so that it uses the modulus operator to return the correct remainder.",
+                "task_description": "You need to write a function that calculates the remainder when one number is divided by another. The code should take two input values, find the remainder of their division, and return the result. Your task is to correct the code so that it uses the modulus operator to return the correct remainder.",
                 "incorrect_code": "def find_remainder(a, b):\n    return a / b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
                 "correct_code": "def find_remainder(a, b):\n    return a % b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
                 "description": "The code is performing division instead of finding the remainder.",
@@ -210,7 +210,7 @@
             },
             {
                 "task_id": 16,
-                "task_description": "In this task, you need to write a function that divides two numbers and returns the result. The code should take two input values, divide the first value by the second, and return the quotient. However, the current implementation incorrectly performs addition instead of division. Your job is to fix the code so that it correctly divides the numbers and returns the expected result.",
+                "task_description": "In this task, you need to write a function that divides two numbers and returns the result. The code should take two input values, divide the first value by the second, and return the quotient. Your job is to fix the code so that it correctly divides the numbers and returns the expected result.",
                 "incorrect_code": "def divide(a, b):\n    return a + b\n\nresult = divide(10, 2)\nprint(result)\n",
                 "correct_code": "def divide(a, b):\n    return a / b\n\nresult = divide(10, 2)\nprint(result)\n",
                 "description": "The code is performing addition instead of division.",
@@ -220,7 +220,7 @@
             },
             {
                 "task_id": 17,
-                "task_description": "You are required to write a function that subtracts one number from another and returns the result. The code should take two input values, subtract the second value from the first, and return the difference. However, the current implementation mistakenly performs multiplication instead of subtraction. Your task is to correct the code so that it performs the subtraction as intended.",
+                "task_description": "You are required to write a function that subtracts one number from another and returns the result. The code should take two input values, subtract the second value from the first, and return the difference. Your task is to correct the code so that it performs the subtraction as intended.",
                 "incorrect_code": "def subtract(a, b):\n    return a * b\n\nresult = subtract(7, 3)\nprint(result)\n",
                 "correct_code": "def subtract(a, b):\n    return a - b\n\nresult = subtract(7, 3)\nprint(result)\n",
                 "description": "The code is performing multiplication instead of subtraction.",
@@ -230,7 +230,7 @@
             },
             {
                 "task_id": 18,
-                "task_description": "This task requires you to write a function that adds two numbers and returns the result. The code is supposed to take two input values, add them, and return the sum. However, the current implementation mistakenly performs multiplication instead of addition. Your task is to identify and correct the error so that the function correctly adds the numbers.",
+                "task_description": "This task requires you to write a function that adds two numbers and returns the result. The code is supposed to take two input values, add them, and return the sum. Your task is to identify and correct the error so that the function correctly adds the numbers.",
                 "incorrect_code": "def add(a, b):\n    return a * b\n\nresult = add(3, 4)\nprint(result)\n",
                 "correct_code": "def add(a, b):\n    return a + b\n\nresult = add(3, 4)\nprint(result)\n",
                 "description": "The code is performing multiplication instead of addition.",
@@ -240,7 +240,7 @@
             },
             {
                 "task_id": 19,
-                "task_description": "In this task, you need to write a function that multiplies two numbers and returns the result. The code should take two input values, multiply them, and return the product. However, the current implementation incorrectly performs addition instead of multiplication. Your task is to correct the code so that it multiplies the numbers as intended.",
+                "task_description": "In this task, you need to write a function that multiplies two numbers and returns the result. The code should take two input values, multiply them, and return the product. Your task is to correct the code so that it multiplies the numbers as intended.",
                 "incorrect_code": "def multiply(a, b):\n    return a + b\n\nresult = multiply(3, 4)\nprint(result)\n",
                 "correct_code": "def multiply(a, b):\n    return a * b\n\nresult = multiply(3, 4)\nprint(result)\n",
                 "description": "The code is performing addition instead of multiplication.",
@@ -255,7 +255,7 @@
         "examples": [
             {
                 "task_id": 20,
-                "task_description": "This task involves using an if statement to check whether a given number is even or odd. The code is supposed to evaluate the condition and print 'Even' if the number is even, and 'Odd' if the number is odd. However, the current implementation has a syntax error due to incorrect use of the comparison operator. Your task is to fix the code so that it correctly identifies and prints whether the number is even or odd.",
+                "task_description": "This task involves using an if statement to check whether a given number is even or odd. The code is supposed to evaluate the condition and print 'Even' if the number is even, and 'Odd' if the number is odd. Your task is to fix the code so that it correctly identifies and prints whether the number is even or odd.",
                 "incorrect_code": "num = 4\nif num % 2 = 0:\n    print('Even')\nelse:\n    print('Odd')\n",
                 "correct_code": "num = 4\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
                 "description": "Using a single equals sign for comparison instead of a double equals sign.",
@@ -265,7 +265,7 @@
             },
             {
                 "task_id": 21,
-                "task_description": "In this task, you need to write code that checks if a number is positive, negative, or zero using if, elif, and else statements. The code is supposed to evaluate the number and print the corresponding message based on its value. However, the current implementation has syntax errors due to missing colons at the end of the conditional statements. Your task is to correct the syntax so that the code works as intended.",
+                "task_description": "In this task, you need to write code that checks if a number is positive, negative, or zero using if, elif, and else statements. The code is supposed to evaluate the number and print the corresponding message based on its value.",
                 "incorrect_code": "num = 3\nif num > 0\n    print('Positive')\nelif num < 0\n    print('Negative')\nelse\n    print('Zero')\n",
                 "correct_code": "num = 3\nif num > 0:\n    print('Positive')\nelif num < 0:\n    print('Negative')\nelse:\n    print('Zero')\n",
                 "description": "Forgetting to include the colon at the end of the if, elif, and else statements.",
@@ -275,17 +275,17 @@
             }
         ]
     },
-    "condtionals":{
-        "label": ["conditionals", "conditional", "condition", "conditional statement", "conditional_statement", "conditional_statement", "conditional_statements"],
+    "conditionals": {
+        "label": ["conditionals", "conditional", "condition", "conditional statement", "conditional_statement", "conditional_statements"],
         "examples": [
             {
-                "task_id": 21,
-                "task_description": "This task involves using a conditional statement to determine if a number is even or odd in Python. The code provided is correct and should print 'Even' if the number is divisible by 2 and 'Odd' otherwise. However, the task description may be misleading. Focus on understanding why the code works as expected and how the conditional statement accurately determines whether a number is even or odd.",
-                "incorrect_code": "num = 5\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
+                "task_id": 22,
+                "task_description": "This task involves using a conditional statement to determine if a number is even or odd in Python. The code is supposed to print 'Even' if the number is divisible by 2 and 'Odd' otherwise.",
+                "incorrect_code": "num = 5\nif num % 2 = 0:\n    print('Even')\nelse:\n    print('Odd')\n",
                 "correct_code": "num = 5\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
-                "description": "The code is correct, but the description is misleading.",
-                "explanation": "The code correctly checks if a number is even or odd based on the remainder of division by 2.",
-                "chat_context": "The task involves using conditionals to check if a number is even or odd in Python. The code provided is correct, but the description is misleading. Focus on explaining why the code works as expected and how the conditional statement determines if a number is even or odd.",
+                "description": "Using the assignment operator `=` instead of the comparison operator `==` results in a syntax error.",
+                "explanation": "In Python, `=` is used for assignment, while `==` is used for comparison. The incorrect code attempts to assign 0 to `num % 2`, which is not allowed in an if statement. The correct code uses `==` to compare `num % 2` with 0, determining if the number is even.",
+                "chat_context": "The task involves using conditionals to check if a number is even or odd in Python. The common mistake here is using the assignment operator instead of the comparison operator. Focus on explaining the difference between these operators and how to correct the code.",
                 "expected_output": "Odd"
             }
         ]
