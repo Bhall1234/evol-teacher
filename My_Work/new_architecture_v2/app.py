@@ -181,25 +181,15 @@ def reflection_chat():
     user_code = session.get(f"user_code_{task_id}", "")
     logging.info(f"User's submitted code: {user_code}")
 
-    # Retrieve the reflection state to check if context has been provided
+    # Retrieve the reflection state to check if context has been provided - this isnt being used.
     context_provided = session.get(f"context_provided_{task_id}_reflection", False)
 
     # Context is already provided, so this will handle follow-up reflections
     prompt = (f"User's Message: '{user_message}'\n"
-              f"User's Submitted Code:\n{user_code}\n"
               f"Please continue the conversation to support the user's reflection.")
 
     explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
     logging.info(f"Generated reflection explanation: {explanation}")
-
-    if explanation:
-        # Format and return the response
-        formatted_explanation = format_code_snippets(explanation)
-        logging.info(f"Formatted reflection explanation: {formatted_explanation}")
-        return jsonify({"response": formatted_explanation})
-    else:
-        logging.error("Failed to generate reflection explanation.")
-        return jsonify({"response": "Sorry, I couldn't generate a reflection response."})
 
     if explanation:
         # Format and return the response
