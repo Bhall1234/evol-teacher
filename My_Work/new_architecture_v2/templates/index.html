@@ -328,8 +328,12 @@
                     resultElement.innerText = "Great job! Your code is correct.";
                     resultElement.style.color = "green";
 
+                    // Check if the reflection chat should be shown
                     if (data.show_reflection_chat) {
+                        // Show the reflection chat column
                         document.getElementById("reflection-chat-column").style.display = "block";
+                        
+                        // Add the initial reflection question to the chatbox
                         var chatbox = document.getElementById("reflection-chatbox");
                         chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.initial_chat_message + "</p>";
                     }
@@ -342,6 +346,7 @@
                 staticAnalysisElement.textContent = data.static_analysis;
             });
         });
+
 
 
     function sendReflectionMessage() {
@@ -365,7 +370,6 @@
             chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
         });
     }
-
 
     function sendMessage() {
         var message = document.getElementById("chat-input").value;

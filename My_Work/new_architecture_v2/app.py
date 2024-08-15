@@ -151,11 +151,21 @@ def check_code():
             # Store the user's correct code in the session for reflection
             session[f"user_code_{task_id}"] = user_code
 
-            response["show_reflection_chat"] = True
+            # Trigger the reflection chat UI with the initial reflection question
             session[f"context_provided_{task_id}_reflection"] = False
-            initial_prompt = f"Great job! You've submitted the correct solution. Can you explain why your solution is correct? What specifically about your code makes it work as intended?"
-            response["initial_chat_message"] = initial_prompt
-        
+
+            # Generate the reflection question immediately
+            reflection_context = correct_example.get("reflection_context", "")
+            prompt = (f"Context: {reflection_context}\n"
+                      f"User's Submitted Code:\n{user_code}\n"
+                      f"Please generate an initial question to ask the user about their solution, encouraging them to reflect on why their solution is correct.")
+            
+            initial_question = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+            logging.info(f"Generated initial reflection question: {initial_question}")
+
+            response["show_reflection_chat"] = True
+            response["initial_chat_message"] = initial_question.strip()
+
         return jsonify(response)
     except Exception as e:
         logging.error(f"Error in check_code: {e}", exc_info=True)
@@ -174,31 +184,31 @@ def reflection_chat():
     # Retrieve the reflection state to check if context has been provided
     context_provided = session.get(f"context_provided_{task_id}_reflection", False)
 
-    if not context_provided:
-        correct_example = find_correct_example(task_id, correct_code_examples)
-        if correct_example:
-            reflection_context = correct_example.get("reflection_context", "")
-            prompt = (f"Context: {reflection_context}\n"
-                      f"User's Submitted Code:\n{user_code}\n"
-                      f"User's Reflection: '{user_message}'\n"
-                      f"Ask further questions to encourage reflection, try and understand the user's thought process behind correct solution that the user submitted.")
-            # Mark context as provided
-            session[f"context_provided_{task_id}_reflection"] = True
-        else:
-            return jsonify({"response": "Sorry, I couldn't find any information about this task."})
-    else:
-        # Subsequent prompts only use the user's message and submitted code
-        prompt = (f"User's Message: '{user_message}'\n"
-                  f"Please continue the conversation to support the user's reflection.")
+    # Context is already provided, so this will handle follow-up reflections
+    prompt = (f"User's Message: '{user_message}'\n"
+              f"User's Submitted Code:\n{user_code}\n"
+              f"Please continue the conversation to support the user's reflection.")
 
     explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
     logging.info(f"Generated reflection explanation: {explanation}")
 
-    # Format and return the response
-    formatted_explanation = format_code_snippets(explanation)
-    logging.info(f"Formatted reflection explanation: {formatted_explanation}")
+    if explanation:
+        # Format and return the response
+        formatted_explanation = format_code_snippets(explanation)
+        logging.info(f"Formatted reflection explanation: {formatted_explanation}")
+        return jsonify({"response": formatted_explanation})
+    else:
+        logging.error("Failed to generate reflection explanation.")
+        return jsonify({"response": "Sorry, I couldn't generate a reflection response."})
 
-    return jsonify({"response": formatted_explanation})
+    if explanation:
+        # Format and return the response
+        formatted_explanation = format_code_snippets(explanation)
+        logging.info(f"Formatted reflection explanation: {formatted_explanation}")
+        return jsonify({"response": formatted_explanation})
+    else:
+        logging.error("Failed to generate reflection explanation.")
+        return jsonify({"response": "Sorry, I couldn't generate a reflection response."})
 
 # updated with session to try and store the context for the chat conversation in an attempt to improve conversation flow - best so far.
 @app.route("/chat", methods=["POST"])
