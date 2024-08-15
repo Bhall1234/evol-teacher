@@ -255,13 +255,13 @@
         "examples": [
             {
                 "task_id": 20,
-                "task_description": "This code is supposed to check if a number is positive, negative, or zero, but it's not working correctly.",
-                "incorrect_code": "num = 5\nif num > 0:\n    print('Positive')\nelif num < 0:\n    print('Negative')\nelse:\n    print('Zero')\n",
-                "correct_code": "num = 5\nif num > 0:\n    print('Positive')\nelif num < 0:\n    print('Negative')\nelse:\n    print('Zero')\n",
-                "description": "The code is correct, but the description is misleading.",
-                "explanation": "The code correctly checks if a number is positive, negative, or zero.",
-                "chat_context": "The task involves using if statements to check if a number is positive, negative, or zero in Python. The code provided is correct, but the description is misleading. Focus on explaining why the code works as expected and how the if-elif-else structure handles different cases.",
-                "expected_output": "Positive"
+                "task_description": "This code is supposed to check if a number is even or odd, but it's not working correctly.",
+                "incorrect_code": "num = 4\nif num % 2 = 0:\n    print('Even')\nelse:\n    print('Odd')\n",
+                "correct_code": "num = 4\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
+                "description": "Using a single equals sign for comparison instead of a double equals sign.",
+                "explanation": "In Python, a single equals sign `=` is used for assignment, while a double equals sign `==` is used for comparison. The incorrect code uses `=` for comparison, which results in a syntax error. The correct code uses `==` to properly compare if `num % 2` is equal to `0`.",
+                "chat_context": "The task involves using if statements to check if a number is even or odd in Python. The common mistake here is using a single equals sign for comparison instead of a double equals sign. Focus on explaining the difference between assignment and comparison operators and how to correctly use them in if statements.",
+                "expected_output": "Even"
             }
         ]
     },
