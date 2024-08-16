@@ -5,6 +5,7 @@ import os
 import tempfile
 import subprocess
 import sys
+import uuid
 from flask import Flask, request, render_template, jsonify, session
 from src.utils import load_dataset
 from src.explanation_generation import generate_explanation
@@ -14,15 +15,28 @@ from pygments.formatters import HtmlFormatter
 import spacy
 from fuzzywuzzy import fuzz
 from spacy.matcher import PhraseMatcher
-from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key"  # Required for session management
 
+@app.before_request
+def assign_session_id():
+    if 'session_id' not in session:
+        session['session_id'] = str(uuid.uuid4())  # Generate a unique session ID
+
+def get_session_id():
+    return session.get('session_id', 'UnknownSession')
+
+def log_with_session(message, level=logging.INFO):
+    session_id = get_session_id()
+    task_id = session.get('current_task_id', 'UnknownTask')
+    logging.log(level, f"Session ID: {session_id}, Task ID: {task_id} - {message}")
+
 # Set up logging
-log_path = os.path.join(os.getcwd(), 'My_Work', 'new_architecture_v2', 'src', 'logs', 'chat_interactions.log')
+log_path = os.path.join(os.getcwd(), 'My_Work', 'new_architecture_v2', 'src', 'logs', 'user_interactions.log')
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
-logging.basicConfig(filename=log_path, level=logging.INFO, format='%(asctime)s - %(message)s')
+logging.basicConfig(filename=log_path, level=logging.INFO, 
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Load datasets
 correct_code_examples = load_dataset('./My_Work/new_architecture_v2/data/code_examples.json')
@@ -59,37 +73,39 @@ synonyms = {
 
 @app.route("/")
 def home():
+    log_with_session("Accessed the home page.")
     return render_template("index.html")
 
 @app.route("/ask", methods=["POST"])
 def ask():
     user_question = request.form["question"]
-    logging.info(f"User question: {user_question}")
+    log_with_session(f"User question received: {user_question}")
 
-    # RESET THE CONTEXT FOR THE CHAT CONVERSATION WHEN A NEW QUESTION IS ASKED.
+    # Reset the context for the chat conversation when a new question is asked.
     session.clear()
 
     if "python" not in user_question.lower():
         user_question += " (programming Language: python)"
-        logging.info(f"Modified user question: {user_question}")
+        log_with_session(f"Modified user question: {user_question}")
     
     explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")
-    logging.info(f"Generated explanation: {explanation}")
+    log_with_session(f"Generated explanation: {explanation}")
     
     initial_explanation = extract_initial_explanation(explanation)
-    logging.info(f"Initial part of the explanation: {initial_explanation}")
+    log_with_session(f"Initial part of the explanation: {initial_explanation}")
     
     user_keywords = extract_programming_keywords(user_question)
     explanation_keywords = extract_programming_keywords(initial_explanation)
     combined_keywords = user_keywords.union(explanation_keywords)
-    logging.info(f"Extracted user keywords: {user_keywords}")
-    logging.info(f"Extracted explanation keywords: {explanation_keywords}")
-    logging.info(f"Combined keywords: {combined_keywords}")
+    log_with_session(f"Extracted user keywords: {user_keywords}")
+    log_with_session(f"Extracted explanation keywords: {explanation_keywords}")
+    log_with_session(f"Combined keywords: {combined_keywords}")
     
     incorrect_code_data = get_related_code_by_keywords(combined_keywords, correct_code_examples)
-    logging.info(f"Selected incorrect code example: {incorrect_code_data}")
+    log_with_session(f"Selected incorrect code example: {incorrect_code_data}")
     
-    logging.info(f"Task ID: {incorrect_code_data.get('task_id', 'No task ID found')}")
+    session['current_task_id'] = incorrect_code_data.get('task_id', 'No task ID found')
+    log_with_session(f"Task ID set to: {session['current_task_id']}")
     
     formatted_explanation = format_code_snippets(explanation)
     formatted_incorrect_code = highlight(incorrect_code_data.get("incorrect_code", "No incorrect code found."), PythonLexer(), HtmlFormatter(noclasses=True))
@@ -106,44 +122,44 @@ def ask():
 def run_code():
     data = request.get_json()
     code = data["code"]
-    logging.info(f"Running user code:\n{code}")
+    log_with_session(f"Running user code:\n{code}")
     try:
         result = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, check=True)
         output = result.stdout
-        logging.info(f"Code output: {output}")
+        log_with_session(f"Code output: {output}")
     except subprocess.CalledProcessError as e:
         output = e.stderr
-        logging.error(f"Code execution error: {output}")
+        log_with_session(f"Code execution error: {output}", level=logging.ERROR)
     return jsonify({"output": output})
 
-# ORIGINAL
 @app.route("/check_code", methods=["POST"])
 def check_code():
     try:
         data = request.get_json()
         user_code = data["code"]
         task_id = data["task_id"]
-        logging.info(f"Received task ID: {task_id} (type: {type(task_id)})")
+        session['current_task_id'] = task_id
+        log_with_session(f"Received task ID: {task_id}")
         
         correct_example = find_correct_example(task_id, correct_code_examples)
         if not correct_example:
-            logging.error("No matching task found.")
+            log_with_session("No matching task found.", level=logging.ERROR)
             return jsonify({"result": "No matching task found."}), 404
         
         expected_output = correct_example["expected_output"]
-        logging.info(f"Expected output: {expected_output}")
-        logging.info(f"User code:\n{user_code}")
+        log_with_session(f"Expected output: {expected_output}")
+        log_with_session(f"User code:\n{user_code}")
         
         try:
             result = subprocess.run([sys.executable, "-c", user_code], capture_output=True, text=True, check=True)
             user_output = result.stdout
-            logging.info(f"User code output: {user_output}")
+            log_with_session(f"User code output: {user_output}")
         except subprocess.CalledProcessError as e:
             user_output = e.stderr
-            logging.error(f"User code execution error: {user_output}")
+            log_with_session(f"User code execution error: {user_output}", level=logging.ERROR)
         
         result = "Correct" if user_output.strip() == expected_output.strip() else "Incorrect"
-        logging.info(f"Code check result: {result}")
+        log_with_session(f"Code check result: {result}")
         static_analysis_result = run_static_analysis(user_code)
         
         response = {
@@ -161,57 +177,51 @@ def check_code():
             # Generate the reflection question immediately
             reflection_context = correct_example.get("reflection_context", "")
             prompt = (
-                    f"Context: {reflection_context}\n" # this may be adding unnecessary context to the prompt.
+                    f"Context: {reflection_context}\n" 
                     f"User's Submitted Code:\n{user_code}\n"
                     f"Given the user's submitted code, ask a reflection question that probes the users understanding of the code they submitted. CONCISE"
-                    f"Please focus on asking a concise, targeted question related to the correctness, efficiency, or design of the code. DO NOT INCLUDE PADDING LIKE 'Here is a possible reflection question:'")
+                    f"Please focus on asking a concise, targeted question related to the correctness, efficiency, or design of the code.")
 
             initial_question = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
-            logging.info(f"Generated initial reflection question: {initial_question}")
+            log_with_session(f"Generated initial reflection question: {initial_question}")
 
             response["show_reflection_chat"] = True
             response["initial_chat_message"] = initial_question.strip()
 
         return jsonify(response)
     except Exception as e:
-        logging.error(f"Error in check_code: {e}", exc_info=True)
+        log_with_session(f"Error in check_code: {e}", level=logging.ERROR)
         return jsonify({"result": "An error occurred", "error": str(e)}), 500
     
 @app.route("/reflection_chat", methods=["POST"])
 def reflection_chat():
     user_message = request.form.get("message")
     task_id = request.form.get("task_id")
-    logging.info(f"User reflection message: {user_message} for task ID: {task_id}")
+    log_with_session(f"User reflection message: {user_message} for task ID: {task_id}")
 
     # Retrieve the user's correct code from the session
     user_code = session.get(f"user_code_{task_id}", "")
-    logging.info(f"User's submitted code: {user_code}")
+    log_with_session(f"User's submitted code: {user_code}")
 
-    # Retrieve the reflection state to check if context has been provided - this isnt being used.
-    context_provided = session.get(f"context_provided_{task_id}_reflection", False)
-
-    # Context is already provided, so this will handle follow-up reflections
+    # Handle the follow-up reflections
     prompt = (user_message)
-              #f"Please continue the conversation to support the user's reflection.")
-
     explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
-    logging.info(f"Generated reflection explanation: {explanation}")
+    log_with_session(f"Generated reflection explanation: {explanation}")
 
     if explanation:
         # Format and return the response
         formatted_explanation = format_code_snippets(explanation)
-        logging.info(f"Formatted reflection explanation: {formatted_explanation}")
+        log_with_session(f"Formatted reflection explanation: {formatted_explanation}")
         return jsonify({"response": formatted_explanation})
     else:
-        logging.error("Failed to generate reflection explanation.")
+        log_with_session("Failed to generate reflection explanation.", level=logging.ERROR)
         return jsonify({"response": "Sorry, I couldn't generate a reflection response."})
 
-# updated with session to try and store the context for the chat conversation in an attempt to improve conversation flow - best so far.
 @app.route("/chat", methods=["POST"])
 def chat():
     user_message = request.form.get("message")
     task_id = request.form.get("task_id")
-    logging.info(f"User chat message: {user_message} for task ID: {task_id}")
+    log_with_session(f"User chat message: {user_message} for task ID: {task_id}")
 
     # Retrieve the conversation state
     context_provided = session.get(f"context_provided_{task_id}", False)
@@ -224,7 +234,7 @@ def chat():
             chat_context = correct_example.get("chat_context", "")
             # Create the initial prompt with context
             prompt = f"Context: {chat_context}\nUser's Question: '{user_message}'\nPlease help the user understand the task without giving out the solution to the problem."
-            logging.info(f"Initial chat prompt with context: {prompt}")
+            log_with_session(f"Initial chat prompt with context: {prompt}")
             # Mark that context has been provided
             session[f"context_provided_{task_id}"] = True
         else:
@@ -233,19 +243,19 @@ def chat():
 
         # Generate explanation using the refined prompt
         explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
-        logging.info(f"Generated chat explanation: {explanation}")
+        log_with_session(f"Generated chat explanation: {explanation}")
 
         # Format the explanation for display
         formatted_explanation = format_code_snippets(explanation)
-        logging.info(f"Formatted chat explanation: {formatted_explanation}")
+        log_with_session(f"Formatted chat explanation: {formatted_explanation}")
 
         return jsonify({"response": formatted_explanation})
     else:
-        logging.error(f"No matching task found for task ID: {task_id}")
+        log_with_session(f"No matching task found for task ID: {task_id}", level=logging.ERROR)
         return jsonify({"response": "Sorry, I couldn't find any information about this task."})
 
 def run_static_analysis(user_code):
-    logging.debug("Entered run_static_analysis function with user_code:\n%s", user_code)
+    log_with_session("Entered run_static_analysis function.")
     try:
         with tempfile.NamedTemporaryFile(delete=False, suffix=".py") as temp_file:
             temp_file.write(user_code.encode('utf-8'))
@@ -258,12 +268,12 @@ def run_static_analysis(user_code):
             check=False
         )
         filtered_output = parse_pylint_output(result.stdout)
-        logging.debug("Completed static analysis with stdout:\n%s", filtered_output)
-        logging.error("Static analysis error:\n%s", result.stderr)
+        log_with_session(f"Completed static analysis. Output:\n{filtered_output}")
+        log_with_session(f"Static analysis error:\n{result.stderr}", level=logging.ERROR)
 
         return filtered_output + result.stderr
     except subprocess.CalledProcessError as e:
-        logging.error("Static analysis failed with error:\n%s", e.stderr)
+        log_with_session(f"Static analysis failed with error:\n{e.stderr}", level=logging.ERROR)
         return e.stderr
     finally:
         if os.path.exists(temp_file_name):
@@ -322,11 +332,11 @@ def extract_programming_keywords(text):
         if lemma in programming_keywords:
             keywords.add(lemma)
     
-    logging.info(f"Extracted programming keywords: {keywords}")
+    log_with_session(f"Extracted programming keywords: {keywords}")
     return keywords
 
 def get_related_code_by_keywords(keywords, correct_code_examples):
-    logging.info(f"Matching keywords: {keywords}")
+    log_with_session(f"Matching keywords: {keywords}")
     
     matching_examples = []
     best_match_score = 0
@@ -352,13 +362,14 @@ def get_related_code_by_keywords(keywords, correct_code_examples):
                         matching_examples.extend(data["examples"])
         
     if not best_match_example:
-        logging.warning("No related code examples found.")
+        log_with_session("No related code examples found.", level=logging.WARNING)
         return {"incorrect_code": "No related code examples found.", "task_description": "", "description": "", "explanation": "", "task_id": "N/A"}
     
-    logging.info(f"Selected example based on highest match score: {best_match_example}")
+    log_with_session(f"Selected example based on highest match score: {best_match_example}")
     return best_match_example
 
 def find_correct_example(task_id, correct_code_examples):
+    log_with_session(f"Finding correct example for task ID: {task_id}")
     for category, data in correct_code_examples.items():
         logging.debug(f"Processing category: {category} with data: {data}")
 
@@ -369,14 +380,14 @@ def find_correct_example(task_id, correct_code_examples):
                 correct_example = next((ex for ex in examples if str(ex["task_id"]) == str(task_id)), None)
                 
                 if correct_example:
-                    logging.info(f"Found correct example for task ID {task_id}: {correct_example}")
+                    log_with_session(f"Found correct example for task ID {task_id}: {correct_example}")
                     return correct_example
             else:
                 logging.warning(f"'examples' in category '{category}' is not a list: {examples}")
         else:
             logging.warning(f"Data in category '{category}' is not a dictionary or lacks 'examples' key: {data}")
     
-    logging.error(f"No correct example found for task ID: {task_id}")
+    log_with_session(f"No correct example found for task ID: {task_id}", level=logging.ERROR)
     return None
 
 def format_code_snippets(response):
