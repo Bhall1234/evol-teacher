@@ -47,16 +47,6 @@
                 "chat_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
                 "reflection_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
                 "expected_output": "Hello, Guest!"
-            },
-            {
-                "task_id": 5,
-                "task_description": "This task requires you to write a simple Python function that takes two numbers as arguments, multiplies them, and returns the result. This exercise introduces the concept of functions in Python.",
-                "incorrect_code": "def multiply(a, b):\n    return a + b",
-                "correct_code": "def multiply(a, b):\n    return a * b",
-                "description": "Adding the numbers instead of multiplying them.",
-                "explanation": "The incorrect code uses the `+` operator, which adds the numbers instead of multiplying them. The correct code uses the `*` operator to perform multiplication.",
-                "chat_context": "The task involves defining a function in Python to perform multiplication. The issue here is using the wrong operator, which results in addition instead of multiplication. Focus on explaining the correct use of operators within functions.",
-                "expected_output": "Product of the two numbers"
             }
         ]
     },
@@ -405,23 +395,13 @@
             },
             {
                 "task_id": 34,
-                "task_description": "This task requires you to write a simple Python function that takes two numbers as arguments, multiplies them, and returns the result. This exercise introduces the concept of functions in Python.",
-                "incorrect_code": "def multiply(a, b):\n    return a + b",
-                "correct_code": "def multiply(a, b):\n    return a * b",
+                "task_description": "This task requires you to multiply two numbers and print the result. This exercise introduces basic arithmetic operations in Python.",
+                "incorrect_code": "a = 5\nb = 3\nresult = a + b\nprint(result)",
+                "correct_code": "a = 5\nb = 3\nresult = a * b\nprint(result)",
                 "description": "Adding the numbers instead of multiplying them.",
                 "explanation": "The incorrect code uses the `+` operator, which adds the numbers instead of multiplying them. The correct code uses the `*` operator to perform multiplication.",
-                "chat_context": "The task involves defining a function in Python to perform multiplication. The issue here is using the wrong operator, which results in addition instead of multiplication. Focus on explaining the correct use of operators within functions.",
-                "expected_output": "Product of the two numbers"
-            },
-            {
-                "task_id": 35,
-                "task_description": "This task requires you to write a Python program that attempts to divide one number by another, but includes error checking to handle division by zero. This exercise introduces error handling using `try` and `except` blocks.",
-                "incorrect_code": "num1 = 10\nnum2 = 0\nresult = num1 / num2\nprint(result)",
-                "correct_code": "num1 = 10\nnum2 = 0\ntry:\n    result = num1 / num2\n    print(result)\nexcept ZeroDivisionError:\n    print('Cannot divide by zero!')",
-                "description": "Attempting to divide by zero without handling the potential error.",
-                "explanation": "In Python, dividing by zero raises a `ZeroDivisionError`. The correct code includes a `try` block to attempt the division and an `except` block to handle the error if it occurs.",
-                "chat_context": "The task involves performing division in Python and handling potential errors like division by zero. The mistake here is not including error handling, which results in a runtime exception. Focus on explaining how to use `try` and `except` blocks to manage errors gracefully.",
-                "expected_output": "Cannot divide by zero!"
+                "chat_context": "The task involves performing multiplication in Python. The issue here is using the wrong operator, which results in addition instead of multiplication. Focus on explaining the correct use of arithmetic operators.",
+                "expected_output": "15"
             }
         ]
     },

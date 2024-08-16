@@ -160,9 +160,10 @@ def check_code():
 
             # Generate the reflection question immediately
             reflection_context = correct_example.get("reflection_context", "")
-            prompt = (f"Given the user's submitted code, ask a reflection question that encourages them to think about their solution more deeply. "
-                    f"Context: {reflection_context}\n"
+            prompt = (
+                    f"Context: {reflection_context}\n" # this may be adding unnecessary context to the prompt.
                     f"User's Submitted Code:\n{user_code}\n"
+                    f"Given the user's submitted code, ask a reflection question that probes the users understanding of the code they submitted."
                     f"Please focus on asking a concise, targeted question related to the correctness, efficiency, or design of the code.")
 
             initial_question = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
@@ -190,8 +191,8 @@ def reflection_chat():
     context_provided = session.get(f"context_provided_{task_id}_reflection", False)
 
     # Context is already provided, so this will handle follow-up reflections
-    prompt = (f"User's Message: '{user_message}'\n"
-              f"Please continue the conversation to support the user's reflection.")
+    prompt = (user_message)
+              #f"Please continue the conversation to support the user's reflection.")
 
     explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
     logging.info(f"Generated reflection explanation: {explanation}")

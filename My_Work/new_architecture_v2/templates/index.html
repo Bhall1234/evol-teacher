@@ -252,6 +252,7 @@
         <button onclick="sendReflectionMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
     </div>
 
+
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
             lineNumbers: true,
@@ -347,8 +348,6 @@
             });
         });
 
-
-
     function sendReflectionMessage() {
         var message = document.getElementById("reflection-chat-input").value;
         var chatbox = document.getElementById("reflection-chatbox");
@@ -369,7 +368,7 @@
             chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.response + "</p>";
             chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
         });
-    }
+    } 
 
     function sendMessage() {
         var message = document.getElementById("chat-input").value;
