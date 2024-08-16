@@ -139,6 +139,109 @@ def check_code():
         user_code = data["code"]
         task_id = data["task_id"]
         session['current_task_id'] = task_id
+        session['user_code'] = user_code  # Store user's code in session
+        log_with_session(f"Received task ID: {task_id}")
+        
+        correct_example = find_correct_example(task_id, correct_code_examples)
+        if not correct_example:
+            log_with_session("No matching task found.", level=logging.ERROR)
+            return jsonify({"result": "No matching task found."}), 404
+        
+        expected_output = correct_example["expected_output"]
+        log_with_session(f"Expected output: {expected_output}")
+        log_with_session(f"User code:\n{user_code}")
+        
+        try:
+            result = subprocess.run([sys.executable, "-c", user_code], capture_output=True, text=True, check=True)
+            user_output = result.stdout
+            log_with_session(f"User code output: {user_output}")
+        except subprocess.CalledProcessError as e:
+            user_output = e.stderr
+            log_with_session(f"User code execution error: {user_output}", level=logging.ERROR)
+        
+        result = "Correct" if user_output.strip() == expected_output.strip() else "Incorrect"
+        log_with_session(f"Code check result: {result}")
+        static_analysis_result = run_static_analysis(user_code)
+        
+        response = {
+            "result": result,
+            "static_analysis": static_analysis_result,
+        }
+        
+        if result == "Correct":
+            # Store reflection context in session
+            session[f"user_code_{task_id}"] = user_code
+            session[f"context_provided_{task_id}_reflection"] = False
+
+            # Generate the reflection question immediately
+            reflection_context = correct_example.get("reflection_context", "")
+            prompt = (
+                f"Context: {reflection_context}\n" 
+                f"User's Submitted Code:\n{user_code}\n"
+                f"Given the user's submitted code, ask a reflection question that probes the user's understanding of the code they submitted. What is a good question to ask them to deepen their understanding of this code? CONCISE."
+                f"Please focus on asking a concise, targeted question related to probing the user's understanding of the code. Do not pad the question with unnecessary information such as 'this is a reflection question or 'Reflection Question:'."
+            )
+
+            initial_question = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+            log_with_session(f"Generated initial reflection question: {initial_question}")
+
+            # Store initial reflection question in session
+            session[f"initial_reflection_question_{task_id}"] = initial_question.strip()
+
+            response["show_reflection_chat"] = True
+            response["initial_chat_message"] = initial_question.strip()
+
+        return jsonify(response)
+    except Exception as e:
+        log_with_session(f"Error in check_code: {e}", level=logging.ERROR)
+        return jsonify({"result": "An error occurred", "error": str(e)}), 500
+    
+@app.route("/reflection_chat", methods=["POST"])
+def reflection_chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    log_with_session(f"User reflection message: {user_message} for task ID: {task_id}")
+
+    # Retrieve the user's correct code and initial reflection question from the session
+    user_code = session.get(f"user_code_{task_id}", "")
+    initial_reflection_question = session.get(f"initial_reflection_question_{task_id}", "")
+    log_with_session(f"User's submitted code: {user_code}")
+    log_with_session(f"Initial reflection question: {initial_reflection_question}")
+
+    # Handle the follow-up reflections based on previous context
+    if initial_reflection_question:
+        prompt = (
+            f"User's Message: '{user_message}'\n"
+            #f"Given the context of the user's code submission and the initial reflection question, continue the conversation by asking a follow-up question that challenges the user's understanding. "
+            #f"Focus on probing deeper into the concepts or potential edge cases that the user might not have considered. Avoid simply rephrasing the user's response."
+            #f"User's Submitted Code:\n{user_code}\n"
+            #f"Initial Reflection Question:\n{initial_reflection_question}\n"
+            #f"Please provide a follow-up reflection question or statement that delves into a related but deeper aspect of the topic."
+        )
+    else:
+        # Fallback if the context is missing (shouldn't happen under normal circumstances)
+        prompt = f"User's Message: '{user_message}'\nPlease continue the conversation to support the user's reflection."
+
+    explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+    log_with_session(f"Generated reflection explanation: {explanation}")
+
+    if explanation:
+        # Format and return the response
+        formatted_explanation = format_code_snippets(explanation)
+        log_with_session(f"Formatted reflection explanation: {formatted_explanation}")
+        return jsonify({"response": formatted_explanation})
+    else:
+        log_with_session("Failed to generate reflection explanation.", level=logging.ERROR)
+        return jsonify({"response": "Sorry, I couldn't generate a reflection response."})
+
+"""
+@app.route("/check_code", methods=["POST"])
+def check_code():
+    try:
+        data = request.get_json()
+        user_code = data["code"]
+        task_id = data["task_id"]
+        session['current_task_id'] = task_id
         log_with_session(f"Received task ID: {task_id}")
         
         correct_example = find_correct_example(task_id, correct_code_examples)
@@ -179,8 +282,8 @@ def check_code():
             prompt = (
                     f"Context: {reflection_context}\n" 
                     f"User's Submitted Code:\n{user_code}\n"
-                    f"Given the user's submitted code, ask a reflection question that probes the users understanding of the code they submitted. CONCISE"
-                    f"Please focus on asking a concise, targeted question related to the correctness, efficiency, or design of the code.")
+                    f"Given the user's submitted code, ask a reflection question that probes the users understanding of the code they submitted. What is a good question to ask them to deepen their understanding of this code? CONCISE"
+                    f"Please focus on asking a concise, targeted question related to probing the users understanding of the code. Do not pad the question with unnecessary information such as 'this is a reflection question or 'Reflection Question:'.")
 
             initial_question = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
             log_with_session(f"Generated initial reflection question: {initial_question}")
@@ -216,6 +319,7 @@ def reflection_chat():
     else:
         log_with_session("Failed to generate reflection explanation.", level=logging.ERROR)
         return jsonify({"response": "Sorry, I couldn't generate a reflection response."})
+"""
 
 @app.route("/chat", methods=["POST"])
 def chat():
