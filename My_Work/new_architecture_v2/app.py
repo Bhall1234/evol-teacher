@@ -34,7 +34,10 @@ nlp = spacy.load("en_core_web_sm")
 phrase_matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
 
 # Add patterns to the matcher
-phrases = ["for loop", "while loop", "if statement", "if statements","hash table", "key-value", "conditional statement", "key value pair", "conditional statements"]
+phrases = ["for loop", "while loop", "if statement", "if statements","hash table", 
+           "key-value", "conditional statement", "key value pair", "conditional statements",
+           "error handling", "try except", "exception handling", "simple exercises", "simple problem", 
+           "simple problems", "simple task", "simple tasks", "comparison operators", "logical operators",]
 patterns = [nlp.make_doc(phrase) for phrase in phrases]
 phrase_matcher.add("PROGRAMMING_PHRASES", patterns)
 
@@ -304,7 +307,10 @@ def extract_programming_keywords(text):
         "if_statement", "if statement", "for_loop", "while_loop", "hash_table", "key-value",
         "addition", "subtraction", "multiplication", "division","+","*","/","%","//",
         "conditions", "conditional statement", "conditional statements", "`while`", "while_loop",
-        "if_statement", "if statements", "for_loop", "for loop",
+        "if_statement", "if statements", "for_loop", "for loop", "introductory", "simple exercises", 
+        "simple problem", "simple problems", "simple task", "simple tasks", "fundamentals", "basic", "starter", "introductory",
+        "exception handling", "error handling", "try except", "exception", "error", "handling", "except",
+        "boolean", "bool", "comparison", "comparison operators", "logical", "logical operators", "basics"
     }
 
     for token in doc:

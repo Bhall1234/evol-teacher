@@ -331,7 +331,7 @@
         ]
     },
     "simple_problems": {
-        "label": ["simple problems", "beginner", "basic", "fundamentals"],
+        "label": ["simple problems", "beginner", "basic", "basics", "fundamentals", "simple_problems", "simple_exercises", "simple exercises", "simple exercise", "simple task", "starter", "introductory", "simple_task"],
         "examples": [
             {
                 "task_id": 27,
@@ -355,14 +355,14 @@
             },
             {
                 "task_id": 29,
-                "task_description": "This task involves writing a Python program that takes a user's name as input and then prints a personalized greeting. This problem introduces the concept of user input and string formatting.",
-                "incorrect_code": "name = input('Enter your name: ')\nprint('Hello, ' + name + !)",
-                "correct_code": "name = input('Enter your name: ')\nprint('Hello, ' + name + '!')",
+                "task_description": "This task involves writing a Python program that assigns a user's name to a variable and then prints a personalized greeting. This problem introduces the concept of string formatting and concatenation.",
+                "incorrect_code": "name = 'Alice'\nprint('Hello, ' + name + !)",
+                "correct_code": "name = 'Alice'\nprint('Hello, ' + name + '!')",
                 "description": "Missing quotes around the exclamation mark.",
                 "explanation": "In Python, the exclamation mark `!` must be enclosed in quotes when concatenating it with other strings. The incorrect code leaves it outside, leading to a syntax error.",
-                "chat_context": "The task involves using user input and string concatenation in Python. The mistake here is not enclosing the exclamation mark in quotes. Focus on explaining how to correctly concatenate strings and special characters.",
-                "expected_output": "Hello, [User's Name]!"
-            },
+                "chat_context": "The task involves using string concatenation in Python. The mistake here is not enclosing the exclamation mark in quotes. Focus on explaining how to correctly concatenate strings and special characters.",
+                "expected_output": "Hello, Alice!"
+            },            
             {
                 "task_id": 30,
                 "task_description": "This task requires you to write a Python program that checks if a variable is set to `True` or `False` and prints an appropriate message. This exercise introduces Boolean types and conditional statements.",
@@ -436,7 +436,7 @@
         ]
     },
     "boolean types": {
-        "label": ["boolean types", "boolean", "bool"],
+        "label": ["boolean types","boolean_types", "boolean", "bool", "comparison operators", "logical", "logical operators", "comparison"],
         "examples": [
             {
                 "task_id": 37,
@@ -451,7 +451,7 @@
         ]
     },
     "error checking": {
-        "label": ["error checking", "error handling", "try except", "exception"],
+        "label": ["error checking", "error handling", "try except", "exception", "error_checking", "error_handling", "try_except"],
         "examples":[
             {
                 "task_id": 38,
