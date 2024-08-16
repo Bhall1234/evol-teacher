@@ -292,16 +292,6 @@
                 "explanation": "In Python, a single equals sign `=` is used for assignment, while a double equals sign `==` is used for comparison. The incorrect code uses `=` for comparison, which results in a syntax error. The correct code uses `==` to properly compare if `num % 2` is equal to `0`. The code is also missing the ':' after the if statement.",
                 "chat_context": "The task involves using if statements to check if a number is even or odd in Python. The common mistake here is using a single equals sign for comparison instead of a double equals sign, another mistake is that the colon is missing in the if statement. Focus on explaining the difference between assignment and comparison operators and how to correctly use them in if statements.",
                 "expected_output": "Even"
-            },
-            {
-                "task_id": 25,
-                "task_description": "In this task, you need to write code that checks if a number is positive, negative, or zero using if, elif, and else statements. The code is supposed to evaluate the number and print the corresponding message based on its value.",
-                "incorrect_code": "num = 3\nif num > 0\n    print('Positive')\nelif num < 0\n    print('Negative')\nelse\n    print('Zero')\n",
-                "correct_code": "num = 3\nif num > 0:\n    print('Positive')\nelif num < 0:\n    print('Negative')\nelse:\n    print('Zero')\n",
-                "description": "Forgetting to include the colon at the end of the if, elif, and else statements.",
-                "explanation": "In Python, each `if`, `elif`, and `else` statement must end with a colon (`:`). The incorrect code is missing colons, which results in a syntax error. The correct code includes colons at the end of each conditional statement.",
-                "chat_context": "The task involves using if statements to check if a number is positive, negative, or zero in Python. The common mistake here is forgetting to include the colon at the end of the if, elif, and else statements. Focus on explaining the importance of the colon in Python's syntax for conditional statements.",
-                "expected_output": "Positive"
             }
         ]
     },

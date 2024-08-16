@@ -163,8 +163,8 @@ def check_code():
             prompt = (
                     f"Context: {reflection_context}\n" # this may be adding unnecessary context to the prompt.
                     f"User's Submitted Code:\n{user_code}\n"
-                    f"Given the user's submitted code, ask a reflection question that probes the users understanding of the code they submitted."
-                    f"Please focus on asking a concise, targeted question related to the correctness, efficiency, or design of the code.")
+                    f"Given the user's submitted code, ask a reflection question that probes the users understanding of the code they submitted. CONCISE"
+                    f"Please focus on asking a concise, targeted question related to the correctness, efficiency, or design of the code. DO NOT INCLUDE PADDING LIKE 'Here is a possible reflection question:'")
 
             initial_question = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
             logging.info(f"Generated initial reflection question: {initial_question}")
