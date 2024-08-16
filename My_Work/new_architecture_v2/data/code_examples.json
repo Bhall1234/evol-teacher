@@ -21,6 +21,16 @@
                 "explanation": "Understanding `append` returns None.",
                 "chat_context": "The task is focusing on list modification using the `append` method within a `for` loop. The incorrect code assigns the result of `append` to the list variable, which is not the intended usage. Explain why this approach does not work and how to correct it.",
                 "expected_output": "[1, 2, 3]"
+            },
+            {
+                "task_id": 3,
+                "task_description": "This task involves writing a Python program that iterates through a list of numbers using a `for` loop and prints each number. This exercise introduces lists and loops in Python.",
+                "incorrect_code": "numbers = [1, 2, 3, 4, 5]\nfor i in numbers:\n    print(i + 1)",
+                "correct_code": "numbers = [1, 2, 3, 4, 5]\nfor i in numbers:\n    print(i)",
+                "description": "Adding 1 to each number before printing, which is not what the task asks for.",
+                "explanation": "The incorrect code adds 1 to each number before printing, while the task only requires printing the numbers as they are in the list.",
+                "chat_context": "The task involves iterating through a list and printing each element in Python. The mistake here is modifying the elements before printing, which is not necessary. Focus on explaining how to correctly use loops to iterate through lists.",
+                "expected_output": "1\n2\n3\n4\n5"
             }
         ]
     },
@@ -28,7 +38,7 @@
         "label": ["function", "default parameter", "`def`", "`function`", "parameters", "functions"],
         "examples": [
             {
-                "task_id": 3,
+                "task_id": 4,
                 "task_description": "You need to create a function in Python that greets a user by their name. If no name is provided when calling the function, it should default to 'Guest'. Your task is to modify the function to use a default parameter value, ensuring it works correctly when no argument is given. The output should be 'Hello, Guest!'",
                 "incorrect_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet()\n",
                 "correct_code": "# Solution 1\ndef greet(name='Guest'):\n    print(f'Hello, {name}!')\n\ngreet()\n\n # Solution 2\ndef greet(name):\n    print(f'Hello, {name}!')\n\nname='Guest'\ngreet(name)\n",
@@ -37,6 +47,16 @@
                 "chat_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
                 "reflection_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
                 "expected_output": "Hello, Guest!"
+            },
+            {
+                "task_id": 5,
+                "task_description": "This task requires you to write a simple Python function that takes two numbers as arguments, multiplies them, and returns the result. This exercise introduces the concept of functions in Python.",
+                "incorrect_code": "def multiply(a, b):\n    return a + b",
+                "correct_code": "def multiply(a, b):\n    return a * b",
+                "description": "Adding the numbers instead of multiplying them.",
+                "explanation": "The incorrect code uses the `+` operator, which adds the numbers instead of multiplying them. The correct code uses the `*` operator to perform multiplication.",
+                "chat_context": "The task involves defining a function in Python to perform multiplication. The issue here is using the wrong operator, which results in addition instead of multiplication. Focus on explaining the correct use of operators within functions.",
+                "expected_output": "Product of the two numbers"
             }
         ]
     },
@@ -44,13 +64,23 @@
         "label": ["dictionary", "key", "lookup", "`dict`", "error handling", "hash map", "key error", "hash", "hash table", "table"],
         "examples": [
             {
-                "task_id": 4,
+                "task_id": 6,
                 "task_description": "You are working with a Python dictionary that stores information about a person, such as their name and age. The goal is to print the value associated with a specific key in the dictionary. However, if the key does not exist, the program should output 'City not found'. The current code raises an error when the key is not found. Your task is to correct the code to handle this situation gracefully by using an appropriate method to avoid the error.",
                 "incorrect_code": "my_dict = {'name': 'Alice', 'age': 25}\nprint(my_dict['city'])\n",
                 "correct_code": "# Solution 1\nmy_dict = {'name': 'Alice', 'age': 25}\ncity = my_dict.get('city')\nif city:\n    print(city)\nelse:\n    print('City not found')\n",
                 "description": "The code raises a KeyError because the key 'city' does not exist in the dictionary.",
                 "explanation": "In Python, trying to access a dictionary key that does not exist will raise a KeyError. To avoid this, you can use the `get` method to safely retrieve a key's value. The `get` method returns `None` if the key is not found, which you can then check using an if statement.",
                 "chat_context": "The task involves working with dictionaries in Python and handling key errors when a key is not found in the dictionary. The issue is related to KeyError exceptions and how to handle them using the `get` method. Focus on explaining why the incorrect code raises an error and how the correct code addresses this issue.",
+                "expected_output": "City not found"
+            },
+            {
+                "task_id": 7,
+                "task_description": "This task requires you to write a Python program that retrieves the value associated with a specific key in a dictionary. If the key does not exist, it should print a default message. This problem introduces the use of dictionaries in Python.",
+                "incorrect_code": "my_dict = {'name': 'John', 'age': 30}\nprint(my_dict['city'])",
+                "correct_code": "my_dict = {'name': 'John', 'age': 30}\nprint(my_dict.get('city', 'City not found'))",
+                "description": "Trying to access a key that does not exist in the dictionary.",
+                "explanation": "In Python, trying to access a non-existent key in a dictionary raises a KeyError. Using the `get` method allows you to specify a default value to return if the key is not found, which prevents the error.",
+                "chat_context": "The task involves working with dictionaries in Python and safely retrieving values. The mistake here is trying to access a key that may not exist without handling the potential error. Focus on explaining how to use the `get` method to avoid KeyErrors.",
                 "expected_output": "City not found"
             }
         ]
@@ -59,7 +89,7 @@
         "label": ["string", "concatenation", "`str`", "type error", "concatenate", "combine"],
         "examples": [
             {
-                "task_id": 5,
+                "task_id": 8,
                 "task_description": "This task involves concatenating a string and a number in Python to form a complete sentence. The code should take a number representing age and combine it with a string to produce a message like 'I am 25 years old.' However, the current implementation results in an error. Your job is to fix the code so that it correctly joins the string and number to form the desired output.",
                 "incorrect_code": "age = 25\nmessage = 'I am ' + age + ' years old.'\nprint(message)\n",
                 "correct_code": "# Solution 1\nage = 25\nmessage = 'I am ' + str(age) + ' years old.'\nprint(message)\n# Solution 2\nage = 25\nmessage = f'I am {age} years old.'\nprint(message)\n",
@@ -67,6 +97,16 @@
                 "explanation": "You need to convert the integer to a string before concatenation or use an f-string for formatting.",
                 "chat_context": "The task is about concatenating a string and a number in Python. The issue is related to type conversion between integers and strings. Focus on explaining how type conversion works in Python and why the error occurs.",
                 "expected_output": "I am 25 years old."
+            },
+            {
+                "task_id": 9,
+                "task_description": "This task requires you to write a Python program that converts a string to uppercase and then prints it. This problem introduces string methods in Python.",
+                "incorrect_code": "message = 'hello world'\nprint(message.upper)",
+                "correct_code": "message = 'hello world'\nprint(message.upper())",
+                "description": "Missing parentheses when calling the `upper` method.",
+                "explanation": "In Python, string methods like `upper` need to be called with parentheses, even if they don't take any arguments. The incorrect code is missing these parentheses, resulting in a reference to the method itself rather than executing it.",
+                "chat_context": "The task involves using string methods to modify and print a string in Python. The issue here is forgetting to include parentheses when calling a method. Focus on explaining the correct usage of string methods.",
+                "expected_output": "HELLO WORLD"
             }
         ]
     },
@@ -74,7 +114,7 @@
         "label": ["for loop", "`for loop`", "`for`", "for_loop"],
         "examples": [
             {
-                "task_id": 6,
+                "task_id": 10,
                 "task_description": "The task requires you to write a `for` loop that iterates over each character in a string and prints it. The current code is supposed to print each character of the string 'hello'. Your job is to analyze the code, identify the mistake, and modify it so that it correctly prints each character of the string.",
                 "incorrect_code": "word = 'hello'\nfor i in range(0, len(word) + 1):\n    print(word[i])\n",
                 "correct_code": "word = 'hello'\nfor i in range(0, len(word)):\n    print(word[i])\n",
@@ -89,7 +129,7 @@
         "label": ["while loop", "`while loop`", "`while`", "while_loop"],
         "examples": [
             {
-                "task_id": 7,
+                "task_id": 11,
                 "task_description": "This task involves using a `while` loop to print numbers from 1 to 5. The code should iterate through the numbers, printing each one in sequence. Your task is to identify and fix the problem in the code so that the loop terminates correctly after printing the numbers 1 to 5.",
                 "incorrect_code": "i = 1\nwhile i <= 5:\n    print(i)\n",
                 "correct_code": "i = 1\nwhile i <= 5:\n    print(i)\n    i += 1\n",
@@ -104,7 +144,7 @@
         "label": ["multiplication", "*", "multiply", "product"],
         "examples": [
             {
-                "task_id": 8,
+                "task_id": 12,
                 "task_description": "In this task, you need to write a function that multiplies two numbers and returns the result. The code should take two input values, multiply them, and return the product. Your task is to correct the code so that it multiplies the numbers as intended.",
                 "incorrect_code": "def multiply(a, b):\n    return a + b\n\nresult = multiply(3, 4)\nprint(result)\n",
                 "correct_code": "def multiply(a, b):\n    return a * b\n\nresult = multiply(3, 4)\nprint(result)\n",
@@ -119,7 +159,7 @@
         "label": ["addition", "add", "+", "sum"],
         "examples": [
             {
-                "task_id": 9,
+                "task_id": 13,
                 "task_description": "This task requires you to write a function that adds two numbers and returns the result. The code is supposed to take two input values, add them, and return the sum. Your task is to identify and correct the error so that the function correctly adds the numbers.",
                 "incorrect_code": "def add(a, b):\n    return a * b\n\nresult = add(3, 4)\nprint(result)\n",
                 "correct_code": "def add(a, b):\n    return a + b\n\nresult = add(3, 4)\nprint(result)\n",
@@ -129,7 +169,7 @@
                 "expected_output": "7"
             },
             {
-                "task_id": 10,
+                "task_id": 14,
                 "task_description": "The task involves performing a simple arithmetic calculation that combines addition and multiplication. The goal is to ensure that addition is performed first, followed by multiplication. Your job is to modify the code to ensure that the calculation is performed in the correct sequence.",
                 "incorrect_code": "result = 10 + 5 * 2\nprint(result)\n",
                 "correct_code": "result = (10 + 5) * 2\nprint(result)\n",
@@ -144,7 +184,7 @@
         "label": ["subtraction", "-", "subtract", "difference"],
         "examples": [
             {
-                "task_id": 11,
+                "task_id": 15,
                 "task_description": "You are required to write a function that subtracts one number from another and returns the result. The code should take two input values, subtract the second value from the first, and return the difference. Your task is to correct the code so that it performs the subtraction as intended.",
                 "incorrect_code": "def subtract(a, b):\n    return a * b\n\nresult = subtract(7, 3)\nprint(result)\n",
                 "correct_code": "def subtract(a, b):\n    return a - b\n\nresult = subtract(7, 3)\nprint(result)\n",
@@ -159,7 +199,7 @@
         "label": ["division", "divide", "/", "quotient"],
         "examples": [
             {
-                "task_id": 12,
+                "task_id": 16,
                 "task_description": "In this task, you need to write a function that divides two numbers and returns the result. The code should take two input values, divide the first value by the second, and return the quotient. Your job is to fix the code so that it correctly divides the numbers and returns the expected result.",
                 "incorrect_code": "def divide(a, b):\n    return a + b\n\nresult = divide(10, 2)\nprint(result)\n",
                 "correct_code": "def divide(a, b):\n    return a / b\n\nresult = divide(10, 2)\nprint(result)\n",
@@ -174,7 +214,7 @@
         "label": ["modulus", "remainder", "%", "modulo"],
         "examples": [
             {
-                "task_id": 13,
+                "task_id": 17,
                 "task_description": "This task involves writing a function that calculates the remainder when one number is divided by another. The code should take two input values, find the remainder of their division, and return the result. Your task is to correct the code so that it uses the right operator to return the correct remainder.",
                 "incorrect_code": "def find_remainder(a, b):\n    return a / b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
                 "correct_code": "def find_remainder(a, b):\n    return a % b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
@@ -189,7 +229,7 @@
         "label": ["mathematics", "math", "calculation", "arithmetic"],
         "examples": [
             {
-                "task_id": 14,
+                "task_id": 18,
                 "task_description": "This task involves performing a simple arithmetic calculation that combines addition and multiplication. The goal is to ensure that addition is performed first, followed by multiplication. Your job is to modify the code to ensure that the calculation is performed in the correct sequence.",
                 "incorrect_code": "result = 10 + 5 * 2\nprint(result)\n",
                 "correct_code": "result = (10 + 5) * 2\nprint(result)\n",
@@ -199,7 +239,7 @@
                 "expected_output": "30"
             },
             {
-                "task_id": 15,
+                "task_id": 19,
                 "task_description": "You need to write a function that calculates the remainder when one number is divided by another. The code should take two input values, find the remainder of their division, and return the result. Your task is to correct the code so that it uses the modulus operator to return the correct remainder.",
                 "incorrect_code": "def find_remainder(a, b):\n    return a / b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
                 "correct_code": "def find_remainder(a, b):\n    return a % b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
@@ -209,7 +249,7 @@
                 "expected_output": "1"
             },
             {
-                "task_id": 16,
+                "task_id": 20,
                 "task_description": "In this task, you need to write a function that divides two numbers and returns the result. The code should take two input values, divide the first value by the second, and return the quotient. Your job is to fix the code so that it correctly divides the numbers and returns the expected result.",
                 "incorrect_code": "def divide(a, b):\n    return a + b\n\nresult = divide(10, 2)\nprint(result)\n",
                 "correct_code": "def divide(a, b):\n    return a / b\n\nresult = divide(10, 2)\nprint(result)\n",
@@ -219,7 +259,7 @@
                 "expected_output": "5.0"
             },
             {
-                "task_id": 17,
+                "task_id": 21,
                 "task_description": "You are required to write a function that subtracts one number from another and returns the result. The code should take two input values, subtract the second value from the first, and return the difference. Your task is to correct the code so that it performs the subtraction as intended.",
                 "incorrect_code": "def subtract(a, b):\n    return a * b\n\nresult = subtract(7, 3)\nprint(result)\n",
                 "correct_code": "def subtract(a, b):\n    return a - b\n\nresult = subtract(7, 3)\nprint(result)\n",
@@ -229,7 +269,7 @@
                 "expected_output": "4"
             },
             {
-                "task_id": 18,
+                "task_id": 22,
                 "task_description": "This task requires you to write a function that adds two numbers and returns the result. The code is supposed to take two input values, add them, and return the sum. Your task is to identify and correct the error so that the function correctly adds the numbers.",
                 "incorrect_code": "def add(a, b):\n    return a * b\n\nresult = add(3, 4)\nprint(result)\n",
                 "correct_code": "def add(a, b):\n    return a + b\n\nresult = add(3, 4)\nprint(result)\n",
@@ -239,7 +279,7 @@
                 "expected_output": "7"
             },
             {
-                "task_id": 19,
+                "task_id": 23,
                 "task_description": "In this task, you need to write a function that multiplies two numbers and returns the result. The code should take two input values, multiply them, and return the product. Your task is to correct the code so that it multiplies the numbers as intended.",
                 "incorrect_code": "def multiply(a, b):\n    return a + b\n\nresult = multiply(3, 4)\nprint(result)\n",
                 "correct_code": "def multiply(a, b):\n    return a * b\n\nresult = multiply(3, 4)\nprint(result)\n",
@@ -254,7 +294,7 @@
         "label": ["if", "if statement", "if_statement", "`if`", "if_statements"],
         "examples": [
             {
-                "task_id": 20,
+                "task_id": 24,
                 "task_description": "This task involves using an if statement to check whether a given number is even or odd. The code is supposed to evaluate the condition and print 'Even' if the number is even, and 'Odd' if the number is odd. Your task is to fix the code so that it correctly identifies and prints whether the number is even or odd. There could be multiple issues in the code.",
                 "incorrect_code": "num = 4\nif num % 2 = 0\n    print('Even')\nelse:\n    print('Odd')\n",
                 "correct_code": "num = 4\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
@@ -264,7 +304,7 @@
                 "expected_output": "Even"
             },
             {
-                "task_id": 21,
+                "task_id": 25,
                 "task_description": "In this task, you need to write code that checks if a number is positive, negative, or zero using if, elif, and else statements. The code is supposed to evaluate the number and print the corresponding message based on its value.",
                 "incorrect_code": "num = 3\nif num > 0\n    print('Positive')\nelif num < 0\n    print('Negative')\nelse\n    print('Zero')\n",
                 "correct_code": "num = 3\nif num > 0:\n    print('Positive')\nelif num < 0:\n    print('Negative')\nelse:\n    print('Zero')\n",
@@ -279,7 +319,7 @@
         "label": ["conditionals", "conditional", "condition", "conditional statement", "conditional_statement", "conditional_statements"],
         "examples": [
             {
-                "task_id": 22,
+                "task_id": 26,
                 "task_description": "This task involves using a conditional statement to determine if a number is even or odd in Python. The code is supposed to print 'Even' if the number is divisible by 2 and 'Odd' otherwise.",
                 "incorrect_code": "num = 5\nif num % 2 = 0:\n    print('Even')\nelse:\n    print('Odd')\n",
                 "correct_code": "num = 5\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
@@ -287,6 +327,141 @@
                 "explanation": "In Python, `=` is used for assignment, while `==` is used for comparison. The incorrect code attempts to assign 0 to `num % 2`, which is not allowed in an if statement. The correct code uses `==` to compare `num % 2` with 0, determining if the number is even.",
                 "chat_context": "The task involves using conditionals to check if a number is even or odd in Python. The common mistake here is using the assignment operator instead of the comparison operator. Focus on explaining the difference between these operators and how to correct the code.",
                 "expected_output": "Odd"
+            }
+        ]
+    },
+    "simple_problems": {
+        "label": ["simple problems", "beginner", "basic", "fundamentals"],
+        "examples": [
+            {
+                "task_id": 27,
+                "task_description": "This task requires you to write a simple Python program that prints 'Hello, World!' to the console. This is a classic beginner exercise and helps you understand how to use the `print` function in Python.",
+                "incorrect_code": "print(Hello World!)",
+                "correct_code": "print('Hello, World!')",
+                "description": "Missing quotes around the string.",
+                "explanation": "In Python, strings must be enclosed in quotes, either single or double. The incorrect code is missing these quotes, leading to a syntax error.",
+                "chat_context": "The task involves writing a basic Python program to print a message to the console. The common mistake here is forgetting to use quotes around the string. Focus on explaining the importance of quotes in defining strings in Python.",
+                "expected_output": "Hello, World!"
+            },
+            {
+                "task_id": 28,
+                "task_description": "In this task, you are required to write a Python program that adds two numbers and prints the result. This simple problem introduces the concept of arithmetic operations in Python.",
+                "incorrect_code": "num1 = 5\nnum2 = 10\nsum = num1 + num2\nprint(sum)",
+                "correct_code": "num1 = 5\nnum2 = 10\nresult = num1 + num2\nprint(result)",
+                "description": "Using 'sum' as a variable name, which is a built-in function in Python.",
+                "explanation": "In Python, `sum` is a built-in function used to sum items in an iterable. It is best practice to avoid using it as a variable name to prevent confusion or unexpected behavior.",
+                "chat_context": "The task is about performing a simple addition operation in Python. The issue here involves using `sum` as a variable name, which can cause problems since it’s a built-in function. Focus on explaining best practices for naming variables.",
+                "expected_output": "15"
+            },
+            {
+                "task_id": 29,
+                "task_description": "This task involves writing a Python program that takes a user's name as input and then prints a personalized greeting. This problem introduces the concept of user input and string formatting.",
+                "incorrect_code": "name = input('Enter your name: ')\nprint('Hello, ' + name + !)",
+                "correct_code": "name = input('Enter your name: ')\nprint('Hello, ' + name + '!')",
+                "description": "Missing quotes around the exclamation mark.",
+                "explanation": "In Python, the exclamation mark `!` must be enclosed in quotes when concatenating it with other strings. The incorrect code leaves it outside, leading to a syntax error.",
+                "chat_context": "The task involves using user input and string concatenation in Python. The mistake here is not enclosing the exclamation mark in quotes. Focus on explaining how to correctly concatenate strings and special characters.",
+                "expected_output": "Hello, [User's Name]!"
+            },
+            {
+                "task_id": 30,
+                "task_description": "This task requires you to write a Python program that checks if a variable is set to `True` or `False` and prints an appropriate message. This exercise introduces Boolean types and conditional statements.",
+                "incorrect_code": "is_active = True\nif is_active = True:\n    print('Active')\nelse:\n    print('Inactive')",
+                "correct_code": "is_active = True\nif is_active == True:\n    print('Active')\nelse:\n    print('Inactive')",
+                "description": "Using a single equals sign for comparison instead of a double equals sign.",
+                "explanation": "In Python, a single equals sign `=` is used for assignment, while a double equals sign `==` is used for comparison. The incorrect code uses `=` for comparison, which results in a syntax error.",
+                "chat_context": "The task involves using Boolean types and if statements to check a condition in Python. The common mistake here is using the assignment operator instead of the comparison operator. Focus on explaining the difference between these operators and how to correct the code.",
+                "expected_output": "Active"
+            },
+            {
+                "task_id": 31,
+                "task_description": "This task requires you to write a Python program that converts a string to uppercase and then prints it. This problem introduces string methods in Python.",
+                "incorrect_code": "message = 'hello world'\nprint(message.upper)",
+                "correct_code": "message = 'hello world'\nprint(message.upper())",
+                "description": "Missing parentheses when calling the `upper` method.",
+                "explanation": "In Python, string methods like `upper` need to be called with parentheses, even if they don't take any arguments. The incorrect code is missing these parentheses, resulting in a reference to the method itself rather than executing it.",
+                "chat_context": "The task involves using string methods to modify and print a string in Python. The issue here is forgetting to include parentheses when calling a method. Focus on explaining the correct usage of string methods.",
+                "expected_output": "HELLO WORLD"
+            },
+            {
+                "task_id": 32,
+                "task_description": "This task requires you to write a Python program that calculates the square of a number and prints the result. This problem introduces basic mathematical operations.",
+                "incorrect_code": "number = 4\nsquare = number ^ 2\nprint(square)",
+                "correct_code": "number = 4\nsquare = number ** 2\nprint(square)",
+                "description": "Using the bitwise XOR operator `^` instead of the exponentiation operator `**`.",
+                "explanation": "In Python, `**` is the operator used for exponentiation, while `^` is used for bitwise XOR. The incorrect code mistakenly uses `^`, which does not calculate the square of the number.",
+                "chat_context": "The task involves performing a simple mathematical operation in Python. The mistake here is using the wrong operator for exponentiation. Focus on explaining the correct use of mathematical operators in Python.",
+                "expected_output": "16"
+            },
+            {
+                "task_id": 33,
+                "task_description": "This task involves writing a Python program that iterates through a list of numbers using a `for` loop and prints each number. This exercise introduces lists and loops in Python.",
+                "incorrect_code": "numbers = [1, 2, 3, 4, 5]\nfor i in numbers:\n    print(i + 1)",
+                "correct_code": "numbers = [1, 2, 3, 4, 5]\nfor i in numbers:\n    print(i)",
+                "description": "Adding 1 to each number before printing, which is not what the task asks for.",
+                "explanation": "The incorrect code adds 1 to each number before printing, while the task only requires printing the numbers as they are in the list.",
+                "chat_context": "The task involves iterating through a list and printing each element in Python. The mistake here is modifying the elements before printing, which is not necessary. Focus on explaining how to correctly use loops to iterate through lists.",
+                "expected_output": "1\n2\n3\n4\n5"
+            },
+            {
+                "task_id": 34,
+                "task_description": "This task requires you to write a Python program that retrieves the value associated with a specific key in a dictionary. If the key does not exist, it should print a default message. This problem introduces the use of dictionaries in Python.",
+                "incorrect_code": "my_dict = {'name': 'John', 'age': 30}\nprint(my_dict['city'])",
+                "correct_code": "my_dict = {'name': 'John', 'age': 30}\nprint(my_dict.get('city', 'City not found'))",
+                "description": "Trying to access a key that does not exist in the dictionary.",
+                "explanation": "In Python, trying to access a non-existent key in a dictionary raises a KeyError. Using the `get` method allows you to specify a default value to return if the key is not found, which prevents the error.",
+                "chat_context": "The task involves working with dictionaries in Python and safely retrieving values. The mistake here is trying to access a key that may not exist without handling the potential error. Focus on explaining how to use the `get` method to avoid KeyErrors.",
+                "expected_output": "City not found"
+            },
+            {
+                "task_id": 35,
+                "task_description": "This task requires you to write a simple Python function that takes two numbers as arguments, multiplies them, and returns the result. This exercise introduces the concept of functions in Python.",
+                "incorrect_code": "def multiply(a, b):\n    return a + b",
+                "correct_code": "def multiply(a, b):\n    return a * b",
+                "description": "Adding the numbers instead of multiplying them.",
+                "explanation": "The incorrect code uses the `+` operator, which adds the numbers instead of multiplying them. The correct code uses the `*` operator to perform multiplication.",
+                "chat_context": "The task involves defining a function in Python to perform multiplication. The issue here is using the wrong operator, which results in addition instead of multiplication. Focus on explaining the correct use of operators within functions.",
+                "expected_output": "Product of the two numbers"
+            },
+            {
+                "task_id": 36,
+                "task_description": "This task requires you to write a Python program that attempts to divide one number by another, but includes error checking to handle division by zero. This exercise introduces error handling using `try` and `except` blocks.",
+                "incorrect_code": "num1 = 10\nnum2 = 0\nresult = num1 / num2\nprint(result)",
+                "correct_code": "num1 = 10\nnum2 = 0\ntry:\n    result = num1 / num2\n    print(result)\nexcept ZeroDivisionError:\n    print('Cannot divide by zero!')",
+                "description": "Attempting to divide by zero without handling the potential error.",
+                "explanation": "In Python, dividing by zero raises a `ZeroDivisionError`. The correct code includes a `try` block to attempt the division and an `except` block to handle the error if it occurs.",
+                "chat_context": "The task involves performing division in Python and handling potential errors like division by zero. The mistake here is not including error handling, which results in a runtime exception. Focus on explaining how to use `try` and `except` blocks to manage errors gracefully.",
+                "expected_output": "Cannot divide by zero!"
+            }
+        ]
+    },
+    "boolean types": {
+        "label": ["boolean types", "boolean", "bool"],
+        "examples": [
+            {
+                "task_id": 37,
+                "task_description": "This task requires you to write a Python program that checks if a variable is set to `True` or `False` and prints an appropriate message. This exercise introduces Boolean types and conditional statements.",
+                "incorrect_code": "is_active = True\nif is_active = True:\n    print('Active')\nelse:\n    print('Inactive')",
+                "correct_code": "is_active = True\nif is_active == True:\n    print('Active')\nelse:\n    print('Inactive')",
+                "description": "Using a single equals sign for comparison instead of a double equals sign.",
+                "explanation": "In Python, a single equals sign `=` is used for assignment, while a double equals sign `==` is used for comparison. The incorrect code uses `=` for comparison, which results in a syntax error.",
+                "chat_context": "The task involves using Boolean types and if statements to check a condition in Python. The common mistake here is using the assignment operator instead of the comparison operator. Focus on explaining the difference between these operators and how to correct the code.",
+                "expected_output": "Active"
+            }
+        ]
+    },
+    "error checking": {
+        "label": ["error checking", "error handling", "try except", "exception"],
+        "examples":[
+            {
+                "task_id": 38,
+                "task_description": "This task requires you to write a Python program that attempts to divide one number by another, but includes error checking to handle division by zero. This exercise introduces error handling using `try` and `except` blocks.",
+                "incorrect_code": "num1 = 10\nnum2 = 0\nresult = num1 / num2\nprint(result)",
+                "correct_code": "num1 = 10\nnum2 = 0\ntry:\n    result = num1 / num2\n    print(result)\nexcept ZeroDivisionError:\n    print('Cannot divide by zero!')",
+                "description": "Attempting to divide by zero without handling the potential error.",
+                "explanation": "In Python, dividing by zero raises a `ZeroDivisionError`. The correct code includes a `try` block to attempt the division and an `except` block to handle the error if it occurs.",
+                "chat_context": "The task involves performing division in Python and handling potential errors like division by zero. The mistake here is not including error handling, which results in a runtime exception. Focus on explaining how to use `try` and `except` blocks to manage errors gracefully.",
+                "expected_output": "Cannot divide by zero!"
             }
         ]
     }
