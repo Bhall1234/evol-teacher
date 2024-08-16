@@ -160,10 +160,11 @@ def check_code():
 
             # Generate the reflection question immediately
             reflection_context = correct_example.get("reflection_context", "")
-            prompt = (f"Ask the user about the submitted code, encourage the user to reflect on why their solution. Ask question that will help the user understand the concepts deeper.\n"
-                      f"Context: {reflection_context}\n" # messing around with this to see if it helps with the chat conversation. maybe provide the incorrect code as well?
-                      f"User's Submitted Code:\n{user_code}\n")
-            
+            prompt = (f"Given the user's submitted code, ask a reflection question that encourages them to think about their solution more deeply. "
+                    f"Context: {reflection_context}\n"
+                    f"User's Submitted Code:\n{user_code}\n"
+                    f"Please focus on asking a concise, targeted question related to the correctness, efficiency, or design of the code.")
+
             initial_question = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
             logging.info(f"Generated initial reflection question: {initial_question}")
 
@@ -310,7 +311,7 @@ def extract_programming_keywords(text):
         "if_statement", "if statements", "for_loop", "for loop", "introductory", "simple exercises", 
         "simple problem", "simple problems", "simple task", "simple tasks", "fundamentals", "basic", "starter", "introductory",
         "exception handling", "error handling", "try except", "exception", "error", "handling", "except",
-        "boolean", "bool", "comparison", "comparison operators", "logical", "logical operators", "basics"
+        "boolean", "bool", "comparison", "comparison operators", "logical", "logical operators", "basics", "introduction"
     }
 
     for token in doc:
