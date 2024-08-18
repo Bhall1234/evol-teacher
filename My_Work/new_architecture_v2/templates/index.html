@@ -318,7 +318,7 @@
             }
         }
 
-        function runCode() {
+        /*function runCode() {
             var code = editor.getValue();
             var outputElement = document.getElementById("output");
             outputElement.textContent = "Running code...\n";
@@ -333,6 +333,28 @@
             .then(response => response.json())
             .then(data => {
                 outputElement.textContent = data.output;
+            });
+        }*/
+
+        function runCode() {
+            var code = editor.getValue();
+            var outputElement = document.getElementById("output");
+            outputElement.textContent = "Running code...\n";
+
+            fetch("/run_code", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code: code })
+            })
+            .then(response => response.json())
+            .then(data => {
+                outputElement.textContent = data.output || "No output received.";
+            })
+            .catch(error => {
+                outputElement.textContent = "Error running code.";
+                console.error("Error:", error);
             });
         }
 

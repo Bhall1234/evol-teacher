@@ -128,29 +128,38 @@ def ask():
 @app.route("/interact", methods=["POST"])
 def interact():
     try:
+        # Log the received data
         data = request.get_json()
+        log_with_session(f"Received data: {data}")
+        
         user_message = data.get("message")
         task_id = data.get("task_id")
+        log_with_session(f"User message: {user_message}, Task ID: {task_id}")
         
         # Initialize or retrieve the conversation history from the session
         history = session.get(f"conversation_history_{task_id}", [])
+        log_with_session(f"Current conversation history: {history}")
         
         # Add the user's new message to the conversation history if it's not empty
         if user_message:
             history.append({"role": "user", "content": user_message})
+            log_with_session(f"Updated conversation history after user message: {history}")
         
         # If it's the initial code submission
         if "code" in data:
             user_code = data["code"]
             session['current_task_id'] = task_id
             session['user_code'] = user_code  # Store the user's code in session
-
+            log_with_session(f"User code submitted: {user_code}")
+            
             correct_example = find_correct_example(task_id, correct_code_examples)
             if not correct_example:
+                log_with_session("No matching task found.", level=logging.ERROR)
                 return jsonify({"result": "No matching task found."}), 404
 
             expected_output = correct_example["expected_output"]
             reflection_context = correct_example.get("reflection_context", "")
+            log_with_session(f"Expected output: {expected_output}, Reflection context: {reflection_context}")
 
             try:
                 # Run the user code and capture output
@@ -171,6 +180,7 @@ def interact():
                 log_with_session(f"Expected output: {expected_output}, but got: {user_output}")
             
             response = {"result": result}
+            log_with_session(f"Initial response: {response}")
 
             if result == "Correct":
                 # Generate a reflection question based on the user's code
@@ -182,6 +192,7 @@ def interact():
                     "role": "system",
                     "content": f"User's Submitted Code:\n{user_code}"
                 })
+                log_with_session(f"Updated conversation history with reflection context and code: {history}")
 
                 completion = client.chat.completions.create(
                     model="TheBloke/CodeLlama-13B-Instruct-GGUF",
@@ -189,38 +200,47 @@ def interact():
                     temperature=0.7,
                     stream=False
                 )
+                log_with_session(f"Completion response: {completion}")
 
                 # Add assistant's response to history
-                reflection_question = completion.choices[0]["message"]["content"].strip()
+                reflection_question = completion.choices[0].message.content.strip()
+                log_with_session(f"Generated reflection question: {reflection_question}")
                 history.append({"role": "assistant", "content": reflection_question})
 
                 # Store the updated conversation history
                 session[f"conversation_history_{task_id}"] = history
+                log_with_session(f"Stored updated conversation history: {history}")
 
                 response["show_reflection_chat"] = True
                 response["initial_chat_message"] = reflection_question
+                log_with_session(f"Final response with reflection chat: {response}")
 
             return jsonify(response)
         
         # Continuation of the conversation
         else:
+            log_with_session("Continuing the conversation.")
             completion = client.chat.completions.create(
                 model="TheBloke/CodeLlama-13B-Instruct-GGUF",
                 messages=history,
                 temperature=0.7,
                 stream=False
             )
+            log_with_session(f"Completion response: {completion}")
 
             # Add assistant's response to history
             assistant_response = completion.choices[0]["message"]["content"].strip()
+            log_with_session(f"Assistant's response: {assistant_response}")
             history.append({"role": "assistant", "content": assistant_response})
             
             # Store the updated conversation history
             session[f"conversation_history_{task_id}"] = history
+            log_with_session(f"Stored updated conversation history: {history}")
 
             return jsonify({"response": assistant_response})
 
     except Exception as e:
+        log_with_session(f"Exception occurred: {str(e)}", level=logging.ERROR)
         import traceback
         traceback.print_exc()  # Print the error to the logs
         return jsonify({"result": "An error occurred", "error": str(e)}), 500
@@ -286,6 +306,26 @@ def run_static_analysis(user_code):
     finally:
         if os.path.exists(temp_file_name):
             os.remove(temp_file_name)
+
+@app.route("/run_code", methods=["POST"])
+def run_code():
+    try:
+        data = request.get_json()
+        user_code = data.get("code", "")
+
+        if not user_code:
+            return jsonify({"output": "No code provided."}), 400
+
+        # Run the user code using subprocess
+        result = subprocess.run([sys.executable, "-c", user_code], capture_output=True, text=True, check=True, timeout=5)
+        user_output = result.stdout.strip()
+
+        return jsonify({"output": user_output}), 200
+
+    except subprocess.CalledProcessError as e:
+        return jsonify({"output": f"Error in code execution:\n{e.stderr.strip()}"}), 400
+    except Exception as e:
+        return jsonify({"output": f"Unexpected error:\n{str(e)}"}), 500
 
 def parse_pylint_output(output):
     lines = output.splitlines()
