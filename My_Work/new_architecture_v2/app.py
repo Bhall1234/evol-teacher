@@ -198,7 +198,7 @@ def interact():
                 completion = client.chat.completions.create(
                     model="TheBloke/CodeLlama-13B-Instruct-GGUF",
                     messages=history,
-                    temperature=0.7,
+                    temperature=0.8,
                     stream=False
                 )
                 log_with_session(f"Completion response: {completion}")

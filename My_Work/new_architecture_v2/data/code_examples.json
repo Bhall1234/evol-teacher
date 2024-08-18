@@ -10,7 +10,7 @@
                 "description": "Misunderstanding the `append` method's return value.",
                 "explanation": "The `append` method modifies the list in place and returns `None`. You should not assign its result to a new variable.",
                 "chat_context": "The task is about list modification in Python, specifically using the `append` method within a `for` loop. The issue is related to understanding the return value of the `append` method and how it modifies the list in place. Focus on explaining why the incorrect code does not work as expected and how to fix it.",
-                "reflection_context": "Reflect on the behavior of list methods like `append` that modify the list in place and why assigning their return values can lead to errors.",
+                "reflection_context": "Reflect on the behavior of list methods like `append` that modify the list in place and why assigning their return values can lead to errors. Based on this context, ask the user a reflective question.",
                 "expected_output": "[1, 2, 3, 4]"
             },
             {
@@ -21,7 +21,7 @@
                 "description": "The same mistake with `append` method.",
                 "explanation": "Understanding `append` returns None.",
                 "chat_context": "The task is focusing on list modification using the `append` method within a `for` loop. The incorrect code assigns the result of `append` to the list variable, which is not the intended usage. Explain why this approach does not work and how to correct it.",
-                "reflection_context": "Reflect on the importance of understanding how list methods like `append` modify lists in place and why assigning their return values can lead to errors.",
+                "reflection_context": "Reflect on the importance of understanding how list methods like `append` modify lists in place and why assigning their return values can lead to errors. Based on this context, ask the user a reflective question.",
                 "expected_output": "[1, 2, 3]"
             },
             {
@@ -32,7 +32,7 @@
                 "description": "Adding 1 to each number before printing, which is not what the task asks for.",
                 "explanation": "The incorrect code adds 1 to each number before printing, while the task only requires printing the numbers as they are in the list.",
                 "chat_context": "The task involves iterating through a list and printing each element in Python. The mistake here is modifying the elements before printing, which is not necessary. Focus on explaining how to correctly use loops to iterate through lists.",
-                "reflection_context": "Reflect on the importance of following task requirements precisely and avoiding unnecessary modifications to the data.",
+                "reflection_context": "Reflect on the importance of following task requirements precisely and avoiding unnecessary modifications to the data. Based on this context, ask the user a reflective question.",
                 "expected_output": "1\n2\n3\n4\n5"
             }
         ]
@@ -48,7 +48,7 @@
                 "description": "Missing default parameter value.",
                 "explanation": "To handle cases where no argument is provided, use a default parameter value like `name='Guest'`.",
                 "chat_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
-                "reflection_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
+                "reflection_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context. Based on this context, ask the user a reflective question.",
                 "expected_output": "Hello, Guest!"
             }
         ]
@@ -64,7 +64,7 @@
                 "description": "The code raises a KeyError because the key 'city' does not exist in the dictionary.",
                 "explanation": "In Python, trying to access a dictionary key that does not exist will raise a KeyError. To avoid this, you can use the `get` method to safely retrieve a key's value. The `get` method returns `None` if the key is not found, which you can then check using an if statement.",
                 "chat_context": "The task involves working with dictionaries in Python and handling key errors when a key is not found in the dictionary. The issue is related to KeyError exceptions and how to handle them using the `get` method. Focus on explaining why the incorrect code raises an error and how the correct code addresses this issue.",
-                "reflection_context": "Reflect on the importance of error handling when working with dictionaries in Python and how the `get` method can help prevent KeyError exceptions.",
+                "reflection_context": "Reflect on the importance of error handling when working with dictionaries in Python and how the `get` method can help prevent KeyError exceptions. Based on this context, ask the user a reflective question.",
                 "expected_output": "City not found"
             },
             {
@@ -75,7 +75,7 @@
                 "description": "Trying to access a key that does not exist in the dictionary.",
                 "explanation": "In Python, trying to access a non-existent key in a dictionary raises a KeyError. Using the `get` method allows you to specify a default value to return if the key is not found, which prevents the error.",
                 "chat_context": "The task involves working with dictionaries in Python and safely retrieving values. The mistake here is trying to access a key that may not exist without handling the potential error. Focus on explaining how to use the `get` method to avoid KeyErrors.",
-                "reflection_context": "Reflect on the importance of error handling when working with dictionaries in Python and how the `get` method can help prevent KeyError exceptions.",
+                "reflection_context": "Reflect on the importance of error handling when working with dictionaries in Python and how the `get` method can help prevent KeyError exceptions. Based on this context, ask the user a reflective question.",
                 "expected_output": "City not found"
             }
         ]
@@ -91,7 +91,7 @@
                 "description": "TypeError: cannot concatenate 'str' and 'int' objects.",
                 "explanation": "You need to convert the integer to a string before concatenation or use an f-string for formatting.",
                 "chat_context": "The task is about concatenating a string and a number in Python. The issue is related to type conversion between integers and strings. Focus on explaining how type conversion works in Python and why the error occurs.",
-                "reflection_context": "Reflect on the importance of data type compatibility when working with strings and numbers in Python.",
+                "reflection_context": "Reflect on the importance of data type compatibility when working with strings and numbers in Python. Based on this context, ask the user a reflective question.",
                 "expected_output": "I am 25 years old."
             },
             {
@@ -102,7 +102,7 @@
                 "description": "Missing parentheses when calling the `upper` method.",
                 "explanation": "In Python, string methods like `upper` need to be called with parentheses, even if they don't take any arguments. The incorrect code is missing these parentheses, resulting in a reference to the method itself rather than executing it.",
                 "chat_context": "The task involves using string methods to modify and print a string in Python. The issue here is forgetting to include parentheses when calling a method. Focus on explaining the correct usage of string methods.",
-                "reflection_context": "Reflect on the importance of method invocation syntax in Python and how missing parentheses can lead to unexpected behavior.",
+                "reflection_context": "Reflect on the importance of method invocation syntax in Python and how missing parentheses can lead to unexpected behavior. Based on this context, ask the user a reflective question.",
                 "expected_output": "HELLO WORLD"
             }
         ]
@@ -118,7 +118,7 @@
                 "description": "IndexError: string index out of range.",
                 "explanation": "The range should stop at `len(word)`, not `len(word) + 1`, because indexing is zero-based.",
                 "chat_context": "The task involves iterating over the characters of a string using a for loop in Python. The issue is related to the range used for iteration and how it relates to string indexing. Focus on explaining why the incorrect code raises an error and how to fix it.",
-                "reflection_context": "Reflect on the importance of understanding zero-based indexing when working with sequences like strings in Python.",
+                "reflection_context": "Reflect on the importance of understanding zero-based indexing when working with sequences like strings in Python. Based on this context, ask the user a reflective question.",
                 "expected_output": "h\ne\nl\nl\no"
             }
         ]
@@ -134,7 +134,7 @@
                 "description": "The loop condition is correct, but the loop becomes an infinite loop because the increment step is missing.",
                 "explanation": "In the incorrect code, the value of `i` is not being incremented inside the loop, causing an infinite loop. To fix this, you need to increment `i` by 1 after each iteration.",
                 "chat_context": "The task involves using a while loop to print numbers from 1 to 5 in Python. The issue is related to the loop becoming an infinite loop due to a missing increment step. Focus on explaining why the incorrect code does not terminate and how to correct it.",
-                "reflection_context": "Reflect on the importance of updating loop control variables to ensure the loop progresses towards its termination condition.",
+                "reflection_context": "Reflect on the importance of updating loop control variables to ensure the loop progresses towards its termination condition. Based on this context, ask the user a reflective question.",
                 "expected_output": "1\n2\n3\n4\n5"
             }
         ]
@@ -150,7 +150,7 @@
                 "description": "The code is performing addition instead of multiplication.",
                 "explanation": "The `+` operator is used for addition, while the `*` operator is used for multiplication.",
                 "chat_context": "The task involves multiplying two numbers in Python. The issue is related to using the addition operator instead of the multiplication operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "12"
             }
         ]
@@ -166,7 +166,7 @@
                 "description": "The code is attempting to add an integer and a string, which will result in a TypeError. Python cannot directly add these two different types together.",
                 "explanation": "To perform the addition correctly, you need to convert the string `y` into an integer using the `int()` function. Once both `x` and `y` are integers, the addition will work as expected.",
                 "chat_context": "The problem involves fixing code that tries to add an integer and a string. The error occurs because Python cannot directly add these two types. The solution involves converting the string to an integer before performing the addition.",
-                "reflection_context": "Reflect on why Python does not allow the addition of a string and an integer.",
+                "reflection_context": "Reflect on why Python does not allow the addition of a string and an integer. Based on this context, ask the user a reflective question.",
                 "expected_output": "15"
             }
         ]
@@ -182,7 +182,7 @@
                 "description": "The code is performing multiplication instead of subtraction.",
                 "explanation": "The `*` operator is used for multiplication, while the `-` operator is used for subtraction.",
                 "chat_context": "The task involves subtracting two numbers in Python. The issue is related to using the multiplication operator instead of the subtraction operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "4"
             }
         ]
@@ -198,7 +198,7 @@
                 "description": "The code is performing addition instead of division.",
                 "explanation": "The `+` operator is used for addition, while the `/` operator is used for division.",
                 "chat_context": "The task involves dividing two numbers in Python. The issue is related to using the addition operator instead of the division operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "5.0"
             }
         ]
@@ -214,7 +214,7 @@
                 "description": "The code is performing division instead of finding the remainder.",
                 "explanation": "The `/` operator is used for division, while the `%` operator is used to find the remainder of division.",
                 "chat_context": "The task involves finding the remainder of dividing two numbers in Python. The issue is related to using the division operator instead of the modulus operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "1"
             }
         ]
@@ -230,7 +230,7 @@
                 "description": "The code is not following the correct order of operations.",
                 "explanation": "In Python, multiplication and division have higher precedence than addition and subtraction. To ensure the addition is performed first, use parentheses to group the addition operation.",
                 "chat_context": "The task involves a simple arithmetic calculation in Python. The issue is related to the order of operations and how to ensure the addition is performed before multiplication. Focus on explaining why the incorrect code produces the wrong result and how to correct it. The code is in a function.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "30"
             },
             {
@@ -241,7 +241,7 @@
                 "description": "The code is performing division instead of finding the remainder.",
                 "explanation": "The `/` operator is used for division, while the `%` operator is used to find the remainder of division.",
                 "chat_context": "The task involves finding the remainder of dividing two numbers in Python. The issue is related to using the division operator instead of the modulus operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "1"
             },
             {
@@ -252,7 +252,7 @@
                 "description": "The code is performing addition instead of division.",
                 "explanation": "The `+` operator is used for addition, while the `/` operator is used for division.",
                 "chat_context": "The task involves dividing two numbers in Python. The issue is related to using the addition operator instead of the division operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "5.0"
             },
             {
@@ -263,7 +263,7 @@
                 "description": "The code is performing multiplication instead of subtraction.",
                 "explanation": "The `*` operator is used for multiplication, while the `-` operator is used for subtraction.",
                 "chat_context": "The task involves subtracting two numbers in Python. The issue is related to using the multiplication operator instead of the subtraction operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "4"
             },
             {
@@ -274,7 +274,7 @@
                 "description": "The code is performing multiplication instead of addition.",
                 "explanation": "The `*` operator is used for multiplication, while the `+` operator is used for addition.",
                 "chat_context": "The task involves adding two numbers in Python. The issue is related to using the multiplication operator instead of the addition operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "7"
             },
             {
@@ -285,7 +285,7 @@
                 "description": "The code is performing addition instead of multiplication.",
                 "explanation": "The `+` operator is used for addition, while the `*` operator is used for multiplication.",
                 "chat_context": "The task involves multiplying two numbers in Python. The issue is related to using the addition operator instead of the multiplication operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
-                "reflection_context": "Reflect on the importance of using the correct operators for arithmetic operations in Python.",
+                "reflection_context": "Reflect on the importance of using the correct operators for arithmetic operations in Python. Based on this context, ask the user a reflective question.",
                 "expected_output": "12"
             }
         ]
@@ -301,7 +301,7 @@
                 "description": "Using a single equals sign for comparison instead of a double equals sign.",
                 "explanation": "In Python, a single equals sign `=` is used for assignment, while a double equals sign `==` is used for comparison. The incorrect code uses `=` for comparison, which results in a syntax error. The correct code uses `==` to properly compare if `num % 2` is equal to `0`. The code is also missing the ':' after the if statement.",
                 "chat_context": "The task involves using if statements to check if a number is even or odd in Python. The common mistake here is using a single equals sign for comparison instead of a double equals sign, another mistake is that the colon is missing in the if statement. Focus on explaining the difference between assignment and comparison operators and how to correctly use them in if statements.",
-                "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements to check conditions accurately.",
+                "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements to check conditions accurately. Based on this context, ask the user a reflective question.",
                 "expected_output": "Even"
             }
         ]
@@ -317,7 +317,7 @@
                 "description": "Using the assignment operator `=` instead of the comparison operator `==` results in a syntax error.",
                 "explanation": "In Python, `=` is used for assignment, while `==` is used for comparison. The incorrect code attempts to assign 0 to `num % 2`, which is not allowed in an if statement. The correct code uses `==` to compare `num % 2` with 0, determining if the number is even.",
                 "chat_context": "The task involves using conditionals to check if a number is even or odd in Python. The common mistake here is using the assignment operator instead of the comparison operator. Focus on explaining the difference between these operators and how to correct the code.",
-                "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements to check conditions accurately.",
+                "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements to check conditions accurately. Based on this context, ask the user a reflective question.",
                 "expected_output": "Odd"
             }
         ]
@@ -333,7 +333,7 @@
                 "description": "Missing quotes around the string.",
                 "explanation": "In Python, strings must be enclosed in quotes, either single or double. The incorrect code is missing these quotes, leading to a syntax error.",
                 "chat_context": "The task involves writing a basic Python program to print a message to the console. The common mistake here is forgetting to use quotes around the string. Focus on explaining the importance of quotes in defining strings in Python.",
-                "reflection_context": "Reflect on the significance of the 'Hello, World!' program as a starting point for learning programming languages.",
+                "reflection_context": "Reflect on the significance of the 'Hello, World!' program as a starting point for learning programming languages. Based on this context, ask the user a reflective question.",
                 "expected_output": "Hello, World!"
             },
             {
@@ -343,8 +343,8 @@
                 "correct_code": "num1 = 5\nnum2 = 10\nresult = num1 + num2\nprint(result)",
                 "description": "Using 'sum' as a variable name, which is a built-in function in Python.",
                 "explanation": "In Python, `sum` is a built-in function used to sum items in an iterable. It is best practice to avoid using it as a variable name to prevent confusion or unexpected behavior.",
-                "chat_context": "The task is about performing a simple addition operation in Python. The issue here involves using `sum` as a variable name, which can cause problems since it’s a built-in function. Focus on explaining best practices for naming variables.",
-                "reflection_context": "Reflect on the importance of choosing appropriate variable names to avoid conflicts with built-in functions or keywords in Python.",
+                "chat_context": "The task is about performing a simple addition operation in Python. The issue here involves using `sum` as a variable name, which can cause problems since it's a built-in function. Focus on explaining best practices for naming variables.",
+                "reflection_context": "Reflect on the importance of choosing appropriate variable names to avoid conflicts with built-in functions or keywords in Python. Based on this context, ask the user a reflective question.",
                 "expected_output": "15"
             },
             {
@@ -355,7 +355,7 @@
                 "description": "Missing quotes around the exclamation mark.",
                 "explanation": "In Python, the exclamation mark `!` must be enclosed in quotes when concatenating it with other strings. The incorrect code leaves it outside, leading to a syntax error.",
                 "chat_context": "The task involves using string concatenation in Python. The mistake here is not enclosing the exclamation mark in quotes. Focus on explaining how to correctly concatenate strings and special characters.",
-                "reflection_context": "Reflect on the importance of string formatting and concatenation in creating personalized messages in Python.",
+                "reflection_context": "Reflect on the importance of string formatting and concatenation in creating personalized messages in Python. Based on this context, ask the user a reflective question.",
                 "expected_output": "Hello, Alice!"
             },            
             {
@@ -366,7 +366,7 @@
                 "description": "Using a single equals sign for comparison instead of a double equals sign.",
                 "explanation": "In Python, a single equals sign `=` is used for assignment, while a double equals sign `==` is used for comparison. The incorrect code uses `=` for comparison, which results in a syntax error.",
                 "chat_context": "The task involves using Boolean types and if statements to check a condition in Python. The common mistake here is using the assignment operator instead of the comparison operator. Focus on explaining the difference between these operators and how to correct the code.",
-                "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements to check conditions accurately.",
+                "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements to check conditions accurately. Based on this context, ask the user a reflective question.",
                 "expected_output": "Active"
             },
             {
@@ -377,7 +377,7 @@
                 "description": "Missing parentheses when calling the `upper` method.",
                 "explanation": "In Python, string methods like `upper` need to be called with parentheses, even if they don't take any arguments. The incorrect code is missing these parentheses, resulting in a reference to the method itself rather than executing it.",
                 "chat_context": "The task involves using string methods to modify and print a string in Python. The issue here is forgetting to include parentheses when calling a method. Focus on explaining the correct usage of string methods.",
-                "reflection_context": "Reflect on converting a string to uppercase and the importance of method invocation in Python.",
+                "reflection_context": "Reflect on converting a string to uppercase and the importance of method invocation in Python. Based on this context, ask the user a reflective question.",
                 "expected_output": "HELLO WORLD"
             },
             {
@@ -388,7 +388,7 @@
                 "description": "Using the bitwise XOR operator `^` instead of the exponentiation operator `**`.",
                 "explanation": "In Python, `**` is the operator used for exponentiation, while `^` is used for bitwise XOR. The incorrect code mistakenly uses `^`, which does not calculate the square of the number.",
                 "chat_context": "The task involves performing a simple mathematical operation in Python. The mistake here is using the wrong operator for exponentiation. Focus on explaining the correct use of mathematical operators in Python.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "16"
             },
             {
@@ -399,7 +399,7 @@
                 "description": "Adding 1 to each number before printing, which is not what the task asks for.",
                 "explanation": "The incorrect code adds 1 to each number before printing, while the task only requires printing the numbers as they are in the list.",
                 "chat_context": "The task involves iterating through a list and printing each element in Python. The mistake here is modifying the elements before printing, which is not necessary. Focus on explaining how to correctly use loops to iterate through lists.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "1\n2\n3\n4\n5"
             },
             {
@@ -410,7 +410,7 @@
                 "description": "Adding the numbers instead of multiplying them.",
                 "explanation": "The incorrect code uses the `+` operator, which adds the numbers instead of multiplying them. The correct code uses the `*` operator to perform multiplication.",
                 "chat_context": "The task involves performing multiplication in Python. The issue here is using the wrong operator, which results in addition instead of multiplication. Focus on explaining the correct use of arithmetic operators.",
-                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "15"
             }
         ]
@@ -426,7 +426,7 @@
                 "description": "Using a single equals sign for comparison instead of a double equals sign.",
                 "explanation": "In Python, a single equals sign `=` is used for assignment, while a double equals sign `==` is used for comparison. The incorrect code uses `=` for comparison, which results in a syntax error.",
                 "chat_context": "The task involves using Boolean types and if statements to check a condition in Python. The common mistake here is using the assignment operator instead of the comparison operator. Focus on explaining the difference between these operators and how to correct the code.",
-                "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements and how it affects program logic.",
+                "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements and how it affects program logic. Based on this context, ask the user a reflective question.",
                 "expected_output": "Active"
             }
         ]
@@ -442,7 +442,7 @@
                 "description": "Attempting to divide by zero without handling the potential error.",
                 "explanation": "In Python, dividing by zero raises a `ZeroDivisionError`. The correct code includes a `try` block to attempt the division and an `except` block to handle the error if it occurs.",
                 "chat_context": "The task involves performing division in Python and handling potential errors like division by zero. The mistake here is not including error handling, which results in a runtime exception. Focus on explaining how to use `try` and `except` blocks to manage errors gracefully.",
-                "reflection_context": "Reflect on the importance of error handling in programming and how it helps prevent unexpected crashes.",
+                "reflection_context": "Reflect on the importance of error handling in programming and how it helps prevent unexpected crashes. Based on this context, ask the user a reflective question.",
                 "expected_output": "Cannot divide by zero!"
             }
         ]
@@ -474,7 +474,7 @@
                 "description": "The code contains several issues: incorrect variable names due to case sensitivity, attempting to add a string to an integer, using undefined variables, and logical operations on incompatible types.",
                 "explanation": "1. Variable names are case-sensitive, so 'Hello' and 'hello' are different.\n2. To perform arithmetic operations, convert the string to the appropriate data type (e.g., int or float).\n3. Ensure the correct variable names are used throughout the code, matching the definition.\n4. Logical operations should be performed between compatible types; using a string in a logical expression with a boolean requires caution.\n5. Undefined variables will result in a NameError; ensure all variables are defined before use.",
                 "chat_context": "The task involves working with variables of different data types in Python and correcting errors related to variable naming, data type conversion, and logical operations. Emphasize the importance of case sensitivity, data type compatibility, and ensuring variables are properly defined and used.",
-                "reflection_context": "Reflect on the importance of variable naming conventions and data type compatibility",
+                "reflection_context": "Reflect on the importance of variable naming conventions and data type compatibility. Based on this context, ask the user a reflective question.",
                 "expected_output": "Hello\n15\n3.14\nFalse\n10"
             }
         ]
