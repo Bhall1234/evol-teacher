@@ -246,7 +246,7 @@ def interact():
         traceback.print_exc()  # Print the error to the logs
         return jsonify({"result": "An error occurred", "error": str(e)}), 500
 
-@app.route("/chat", methods=["POST"])
+"""@app.route("/chat", methods=["POST"])
 def chat():
     user_message = request.form.get("message")
     task_id = request.form.get("task_id")
@@ -279,6 +279,55 @@ def chat():
         log_with_session(f"Formatted chat explanation: {formatted_explanation}")
 
         return jsonify({"response": formatted_explanation})
+    else:
+        log_with_session(f"No matching task found for task ID: {task_id}", level=logging.ERROR)
+        return jsonify({"response": "Sorry, I couldn't find any information about this task."})"""
+
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    log_with_session(f"User chat message: {user_message} for task ID: {task_id}")
+
+    # Retrieve the conversation history for /chat
+    chat_history = session.get(f"chat_history_{task_id}", [])
+    
+    # Add the user's message to the chat history
+    if user_message:
+        chat_history.append({"role": "user", "content": user_message})
+        log_with_session(f"Updated chat history after user message: {chat_history}")
+
+    # Retrieve or generate context based on the task ID
+    context_provided = session.get(f"context_provided_{task_id}", False)
+    correct_example = find_correct_example(task_id, correct_code_examples)
+
+    if correct_example:
+        if not context_provided:
+            chat_context = correct_example.get("chat_context", "")
+            # Create the initial prompt with context
+            chat_history.insert(0, {"role": "system", "content": f"Context: {chat_context}"})
+            log_with_session(f"Initial chat context provided: {chat_context}")
+            # Mark that context has been provided
+            session[f"context_provided_{task_id}"] = True
+
+        # Generate the completion using the accumulated chat history
+        completion = client.chat.completions.create(
+            model="TheBloke/CodeLlama-13B-Instruct-GGUF",
+            messages=chat_history,
+            temperature=0.8,
+            stream=False
+        )
+        log_with_session(f"Completion response: {completion}")
+
+        # Get the assistant's response and update the chat history
+        assistant_response = completion.choices[0].message.content.strip()
+        chat_history.append({"role": "assistant", "content": assistant_response})
+        log_with_session(f"Assistant's chat response: {assistant_response}")
+
+        # Store the updated chat history back in the session
+        session[f"chat_history_{task_id}"] = chat_history
+
+        return jsonify({"response": assistant_response})
     else:
         log_with_session(f"No matching task found for task ID: {task_id}", level=logging.ERROR)
         return jsonify({"response": "Sorry, I couldn't find any information about this task."})
