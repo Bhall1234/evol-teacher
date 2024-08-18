@@ -160,7 +160,7 @@
         "examples": [
             {
                 "task_id": 5,
-                "task_description": "You need to correct the code that attempts to add two variables together. The first variable `x` is an integer, and the second variable `y` is a string representing a number. The task is to ensure that the code correctly adds these two values and prints the result.",
+                "task_description": "You need to correct the code that attempts to add two variables together. The task is to ensure that the code correctly adds these two values and prints the result.",
                 "incorrect_code": "x = 5\ny = \"10\"\nprint(x + y)",
                 "correct_code": "#Solution 1:\nx = 5\ny = 10\nprint(x + y)\n\n#Solution 2:\nx = 5\ny = int(\"10\")\nprint(x + y)\n\n#Solution 3:\nx = 5\ny = \"10\"\nprint(x + int(y))",
                 "description": "The code is attempting to add an integer and a string, which will result in a TypeError. Python cannot directly add these two different types together.",
