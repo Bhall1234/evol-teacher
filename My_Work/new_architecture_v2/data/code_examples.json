@@ -458,7 +458,7 @@
                 "description": "The code contains an issue with variable naming due to case sensitivity. 'myVariable' and 'MyVariable' are considered different variables in Python.",
                 "explanation": "In Python, variable names are case-sensitive, meaning 'myVariable' and 'MyVariable' are treated as different variables. The incorrect code attempts to print 'MyVariable', which is not defined. The correct approach is to use 'myVariable' consistently when defining and printing the variable.",
                 "chat_context": "The task is centered around understanding how variables work in Python, particularly the case sensitivity of variable names. Emphasize the importance of using the correct case when referring to variables.",
-                "reflection_context": "Reflect on why Python treats 'myVariable' and 'MyVariable' as different variables and the importance of consistent variable naming in programming.",
+                "reflection_context": "Reflect on why Python treats 'myVariable' and 'MyVariable' as different variables and the importance of consistent variable naming in programming. Based on this context, ask the user a reflective question.",
                 "expected_output": "10"
             }
         ]

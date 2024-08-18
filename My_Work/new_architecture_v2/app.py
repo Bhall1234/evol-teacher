@@ -194,6 +194,7 @@ def interact():
                 })
                 log_with_session(f"Updated conversation history with reflection context and code: {history}")
 
+                # Generate the completion using the correct object attribute access
                 completion = client.chat.completions.create(
                     model="TheBloke/CodeLlama-13B-Instruct-GGUF",
                     messages=history,
@@ -228,8 +229,8 @@ def interact():
             )
             log_with_session(f"Completion response: {completion}")
 
-            # Add assistant's response to history
-            assistant_response = completion.choices[0]["message"]["content"].strip()
+            # Fixing the access to the content field
+            assistant_response = completion.choices[0].message.content.strip()
             log_with_session(f"Assistant's response: {assistant_response}")
             history.append({"role": "assistant", "content": assistant_response})
             
