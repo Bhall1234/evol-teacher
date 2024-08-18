@@ -58,7 +58,6 @@ phrase_matcher.add("PROGRAMMING_PHRASES", patterns)
 # Synonyms for better keyword matching
 synonyms = {
     "append": ["add", "insert", "push"],
-    "variable": ["var", "name", "identifier"],
     "list": ["array", "vector"],
     "dictionary": ["dict", "map", "hash map", "hash table", "key-value"],
     "tuple": ["pair", "ordered pair"],

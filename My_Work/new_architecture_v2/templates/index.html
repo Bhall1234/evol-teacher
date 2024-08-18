@@ -183,7 +183,7 @@
             <form method="POST" action="/ask">
                 <label for="question">Ask a question about Python:</label><br>
                 <!-- Drop-down menu for predefined questions -->
-                <select id="predefined-question" name="predefined_question">
+                <select id="predefined-question" name="predefined_question" onchange="toggleTextInput()">
                     <option value="">--Select a question--</option>
                     <option value="What are some of the basic concepts in Python that I should know about?">What are some of the basic concepts in Python that I should know about?</option>
                     <option value="What is a variable in Python?">What is a variable in Python?</option>
@@ -192,7 +192,7 @@
                 <!-- OR separator -->
                 <p>OR</p>
                 <!-- Text input for custom question -->
-                <input type="text" id="question" name="question" placeholder="Type your own question here..." required>
+                <input type="text" id="question" name="question" placeholder="Type your own question here...">
                 <input type="submit" value="Submit">
             </form>
             <br>
@@ -262,6 +262,20 @@
         <button onclick="sendReflectionMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
     </div>
 
+    <script>
+        function toggleTextInput() {
+            var predefinedQuestion = document.getElementById("predefined-question").value;
+            var questionInput = document.getElementById("question");
+    
+            // If a predefined question is selected, disable the text input
+            if (predefinedQuestion) {
+                questionInput.disabled = true;
+                questionInput.value = "";  // Clear the input if a predefined question is chosen
+            } else {
+                questionInput.disabled = false;
+            }
+        }
+    </script>
 
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
