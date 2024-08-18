@@ -424,5 +424,20 @@
                 "expected_output": "Cannot divide by zero!"
             }
         ]
+    },
+    "variables":{
+        "label": ["variables", "variable", "naming", "naming conventions", "naming_variables"],
+        "examples": [
+            {
+                "task_id": 38,
+                "task_description": "This task involves assigning a value to a variable and printing it. The code is supposed to assign the string 'Hello' to a variable and then print the variable's value. Your task is to identify and correct the error in the code.",
+                "incorrect_code": "hello = 'Hello'\nprint(Hello)",
+                "correct_code": "hello = 'Hello'\nprint(hello)",
+                "description": "Using the variable name 'Hello' instead of 'hello'.",
+                "explanation": "In Python, variable names are case-sensitive, so 'Hello' and 'hello' are considered different variables. The incorrect code attempts to print the variable 'Hello', which is not defined.",
+                "chat_context": "The task involves assigning values to variables and printing them in Python. The mistake here is using the wrong variable name due to case sensitivity. Focus on explaining the importance of variable naming conventions and case sensitivity.",
+                "expected_output": "Hello"
+            }
+        ]
     }
 }

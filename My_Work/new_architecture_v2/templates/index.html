@@ -182,7 +182,17 @@
             <h1>Interactive Python Learning Environment</h1>
             <form method="POST" action="/ask">
                 <label for="question">Ask a question about Python:</label><br>
-                <input type="text" id="question" name="question" required>
+                <!-- Drop-down menu for predefined questions -->
+                <select id="predefined-question" name="predefined_question">
+                    <option value="">--Select a question--</option>
+                    <option value="What are some of the basic concepts in Python that I should know about?">What are some of the basic concepts in Python that I should know about?</option>
+                    <option value="What is a variable in Python?">What is a variable in Python?</option>
+                    <option value="How do I add numbers together in Python?">How do I add numbers together in Python?</option>
+                </select>
+                <!-- OR separator -->
+                <p>OR</p>
+                <!-- Text input for custom question -->
+                <input type="text" id="question" name="question" placeholder="Type your own question here..." required>
                 <input type="submit" value="Submit">
             </form>
             <br>
