@@ -164,6 +164,35 @@
             border-radius: 5px;
             font-size: 1em;
         }
+        /* Loading Overlay Styles */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Ensures the overlay is on top */
+        }
+
+        /* Spinner Styles */
+        .spinner {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Animation for the Spinner */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -176,11 +205,13 @@
             <button onclick="closePopup()">I Understand</button>
         </div>
     </div>
-
+    <div id="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+    </div>
     <div class="container" id="content-container">
         <div class="column">
             <h1>Interactive Python Learning Environment</h1>
-            <form method="POST" action="/ask">
+            <form method="POST" action="/ask" id="ask-form">
                 <label for="question">Ask a question about Python:</label><br>
                 <!-- Drop-down menu for predefined questions -->
                 <select id="predefined-question" name="predefined_question" onchange="toggleTextInput()">
@@ -342,6 +373,9 @@
             
             var userCode = editor.getValue();
             var taskId = document.getElementById("task-id").value;
+
+            // Show the loading overlay
+            document.getElementById("loading-overlay").style.display = "flex";
             
             fetch("/interact", {
                 method: "POST",
@@ -379,53 +413,74 @@
 
                 var staticAnalysisElement = document.getElementById("static-analysis-result");
                 staticAnalysisElement.textContent = data.static_analysis;
+
+                // Hide the loading overlay
+                document.getElementById("loading-overlay").style.display = "none";
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                // Hide the loading overlay in case of an error
+                document.getElementById("loading-overlay").style.display = "none";
             });
         });
 
+        function sendMessage() {
+            var message = document.getElementById("chat-input").value;
+            var chatbox = document.getElementById("chatbox");
+            var taskId = document.getElementById("task-id").value;
 
-    function sendReflectionMessage() {
-        var message = document.getElementById("reflection-chat-input").value;
-        var chatbox = document.getElementById("reflection-chatbox");
-        var taskId = document.getElementById("task-id").value;
+            // Add the user's message to the chatbox
+            chatbox.innerHTML += "<p><strong>You:</strong> " + message + "</p>";
+            document.getElementById("chat-input").value = ""; // Clear the input box
 
-        chatbox.innerHTML += "<p><strong>You:</strong> " + message + "</p>";
-        document.getElementById("reflection-chat-input").value = ""; // Clear the input box
+            // Show the loading overlay
+            document.getElementById("loading-overlay").style.display = "flex";
 
-        fetch("/interact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ message: message, task_id: taskId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.response + "</p>";
-            chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
-        });
-    }
+            fetch("/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "message=" + encodeURIComponent(message) + "&task_id=" + taskId
+            })
+            .then(response => response.json())
+            .then(data => {
+                chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.response + "</p>";
+                chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
 
-    function sendMessage() {
-        var message = document.getElementById("chat-input").value;
-        var chatbox = document.getElementById("chatbox");
-        var taskId = document.getElementById("task-id").value;
+                // Hide the loading overlay
+                document.getElementById("loading-overlay").style.display = "none";
+            });
+        }
 
-        chatbox.innerHTML += "<p><strong>You:</strong> " + message + "</p>";
-        document.getElementById("chat-input").value = ""; // Clear the input box
+        function sendReflectionMessage() {
+            var message = document.getElementById("reflection-chat-input").value;
+            var chatbox = document.getElementById("reflection-chatbox");
+            var taskId = document.getElementById("task-id").value;
 
-        fetch("/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: "message=" + encodeURIComponent(message) + "&task_id=" + taskId
-        })
-        .then(response => response.json())
-        .then(data => {
-            chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.response + "</p>";
-            chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
-        });
-    }
+            // Add the user's message to the chatbox
+            chatbox.innerHTML += "<p><strong>You:</strong> " + message + "</p>";
+            document.getElementById("reflection-chat-input").value = ""; // Clear the input box
+
+            // Show the loading overlay
+            document.getElementById("loading-overlay").style.display = "flex";
+
+            fetch("/interact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: message, task_id: taskId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.response + "</p>";
+                chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
+
+                // Hide the loading overlay
+                document.getElementById("loading-overlay").style.display = "none";
+            });
+        }
 
         // Function to close the popup and store a cookie
         function closePopup() {
