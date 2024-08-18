@@ -51,7 +51,8 @@ phrase_matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
 phrases = ["for loop", "while loop", "if statement", "if statements","hash table", 
            "key-value", "conditional statement", "key value pair", "conditional statements",
            "error handling", "try except", "exception handling", "simple exercises", "simple problem", 
-           "simple problems", "simple task", "simple tasks", "comparison operators", "logical operators",]
+           "simple problems", "simple task", "simple tasks", "comparison operators", "logical operators",
+           "data types", "types of data"]
 patterns = [nlp.make_doc(phrase) for phrase in phrases]
 phrase_matcher.add("PROGRAMMING_PHRASES", patterns)
 
@@ -135,7 +136,114 @@ def run_code():
         log_with_session(f"Code execution error: {output}", level=logging.ERROR)
     return jsonify({"output": output})
 
-@app.route("/check_code", methods=["POST"])
+# NEW INTERACT FUNCTION
+@app.route("/interact", methods=["POST"])
+def interact():
+    try:
+        data = request.get_json()
+        user_message = data.get("message")
+        task_id = data.get("task_id")
+        
+        # Initial code submission handling
+        if "code" in data:
+            user_code = data["code"]
+            session['current_task_id'] = task_id
+            session['user_code'] = user_code  # Store the user's code in session
+            
+            # Check the code and generate reflection question if correct
+            correct_example = find_correct_example(task_id, correct_code_examples)
+            if not correct_example:
+                return jsonify({"result": "No matching task found."}), 404
+            
+            expected_output = correct_example["expected_output"]
+            reflection_context = correct_example.get("reflection_context", "")
+            
+            try:
+                result = subprocess.run([sys.executable, "-c", user_code], capture_output=True, text=True, check=True)
+                user_output = result.stdout
+            except subprocess.CalledProcessError as e:
+                user_output = e.stderr
+            
+            result = "Correct" if user_output.strip() == expected_output.strip() else "Incorrect"
+            
+            response = {"result": result}
+            
+            if result == "Correct":
+                # Generate concise reflection question
+                prompt = (
+                    f"User's Submitted Code:\n{user_code}\n"
+                    f"Reflection Context to help you create the question:\n{reflection_context}\n"
+                    f"Generate a concise reflection question asking the user to explain a key decision they made in their code."
+                )
+
+                initial_question = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+
+                # Store the reflection question in session
+                session[f"initial_reflection_question_{task_id}"] = initial_question.strip()
+
+                response["show_reflection_chat"] = True
+                response["initial_chat_message"] = initial_question.strip()
+
+            return jsonify(response)
+        
+        # Continuation of the conversation
+        else:
+            user_code = session.get(f"user_code_{task_id}", "")
+            initial_reflection_question = session.get(f"initial_reflection_question_{task_id}", "")
+
+            prompt = (
+                f"User's Message: '{user_message}'\n"
+                f"User's Submitted Code: '{user_code}'\n"
+                f"initial_reflection_question: '{initial_reflection_question}'\n"
+                f"Generate a short follow-up question based on the user's response that keeps the conversation flowing and deepens their understanding."
+            )
+
+            continuation_response = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+
+            return jsonify({"response": continuation_response})
+
+    except Exception as e:
+        return jsonify({"result": "An error occurred", "error": str(e)}), 500
+
+# ORIGINAL
+"""@app.route("/check_code", methods=["POST"])
+def reflection_chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    log_with_session(f"User reflection message: {user_message} for task ID: {task_id}")
+
+    # Retrieve the user's correct code and initial reflection question from the session
+    user_code = session.get(f"user_code_{task_id}", "")
+    initial_reflection_question = session.get(f"initial_reflection_question_{task_id}", "")
+    log_with_session(f"User's submitted code: {user_code}")
+    log_with_session(f"Initial reflection question: {initial_reflection_question}")
+
+    # Ensure we're generating a follow-up, not a new initial reflection question
+    if initial_reflection_question:
+        prompt = (
+            f"User's Message: '{user_message}'\n"
+            f"Initial Reflection Question:\n{initial_reflection_question}\n"
+            f"Given the user's message and the context of the initial reflection question, provide a follow-up that either helps clarify the user's understanding or probes deeper into their comprehension of the concept. "
+            f"Ensure the follow-up ties directly to the user's response and the initial reflection question."
+        )
+    else:
+        # Fallback if the context is missing (shouldn't happen under normal circumstances)
+        prompt = f"User's Message: '{user_message}'\nPlease continue the conversation to support the user's reflection."
+
+    explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+    log_with_session(f"Generated reflection explanation: {explanation}")
+
+    if explanation:
+        # Format and return the response
+        formatted_explanation = format_code_snippets(explanation)
+        log_with_session(f"Formatted reflection explanation: {formatted_explanation}")
+        return jsonify({"response": formatted_explanation})
+    else:
+        log_with_session("Failed to generate reflection explanation.", level=logging.ERROR)
+        return jsonify({"response": "Sorry, I couldn't generate a reflection response."})"""
+
+# NOT ORIGINAL
+"""@app.route("/check_code", methods=["POST"])
 def check_code():
     try:
         data = request.get_json()
@@ -181,8 +289,10 @@ def check_code():
             prompt = (
                 f"Context: {reflection_context}\n" 
                 f"User's Submitted Code:\n{user_code}\n"
-                f"Given the user's submitted code, ask a reflection question that probes the user's understanding of the code they submitted. What is a good question to ask them to deepen their understanding of this code? CONCISE."
+                f"Given the user's submitted code, ask a reflection question that probes the user's understanding of the code they submitted in the context given. What is a good question to ask them to deepen their understanding of this code? CONCISE."
                 f"Please focus on asking a concise, targeted question related to probing the user's understanding of the code. Do not pad the question with unnecessary information such as 'this is a reflection question or 'Reflection Question:'."
+                f"YOU ARE ASKING A QUESTION NOT EXPLAINING THE CONCEPT BEHING THE CODE OR THE CONTEXT. USE THESE TO HELP YOU FORMULATE A QUESTION."
+                f"DO NOT REPEAT THE USERS CODE OR THE CONTEXT IN THE QUESTION!!!"
             )
 
             initial_question = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
@@ -197,9 +307,10 @@ def check_code():
         return jsonify(response)
     except Exception as e:
         log_with_session(f"Error in check_code: {e}", level=logging.ERROR)
-        return jsonify({"result": "An error occurred", "error": str(e)}), 500
+        return jsonify({"result": "An error occurred", "error": str(e)}), 500"""
     
-@app.route("/reflection_chat", methods=["POST"])
+# ORIGINAL
+"""@app.route("/reflection_chat", methods=["POST"])
 def reflection_chat():
     user_message = request.form.get("message")
     task_id = request.form.get("task_id")
@@ -236,7 +347,56 @@ def reflection_chat():
         return jsonify({"response": formatted_explanation})
     else:
         log_with_session("Failed to generate reflection explanation.", level=logging.ERROR)
-        return jsonify({"response": "Sorry, I couldn't generate a reflection response."})
+        return jsonify({"response": "Sorry, I couldn't generate a reflection response."})"""
+
+# GARBAGE DOESNT WORK NOT ORIGINAL
+"""@app.route("/reflection_chat", methods=["POST"])
+def reflection_chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    log_with_session(f"User reflection message: {user_message} for task ID: {task_id}")
+
+    # Retrieve the user's correct code and initial reflection question from the session
+    user_code = session.get(f"user_code_{task_id}", "")
+    initial_reflection_question = session.get(f"initial_reflection_question_{task_id}", "")
+    log_with_session(f"User's submitted code: {user_code}")
+    log_with_session(f"Initial reflection question: {initial_reflection_question}")
+
+    # Ensure we're generating a follow-up, not a new initial reflection question
+    if initial_reflection_question:
+        #prompt = (
+            #f"User's Message: '{user_message}'\n"
+            #f"Initial Reflection Question:\n{initial_reflection_question}\n"
+            #f"Provide a follow-up question that deepens the user's understanding of the concept. "
+            #f"Do not repeat the user's response or include unnecessary formalities. Focus on the technical aspects."
+        #)
+        #prompt = (
+            #f"User's Message: '{user_message}'\n"
+            #f"Initial Reflection Question:\n{initial_reflection_question}\n"
+            #f"Given the user's understanding, provide a follow-up question that builds on their response. Avoid simply restating the concept of case sensitivity. Instead, focus on introducing new aspects of the topic, such as potential pitfalls, best practices, or real-world applications.")
+        prompt = f"User's Message: '{user_message}'\nPlease continue the conversation to support the user's reflection."
+        #prompt = (
+            #f"User's Message: '{user_message}'CONTEXT FOR YOU\n"
+            #f"Initial Reflection Question:\n{initial_reflection_question} CONTEXT FOR YOU. THIS WAS GENERATED EARILER, YOU ARE TO CONTINUE THE CONVERSATION WITH THE USER.\n"
+            #f"Provide a follow-up question that challenges the user to apply their understanding to real-world scenarios, potential pitfalls, or related concepts. "
+            #f"Avoid repeating the same theme, and focus on pushing the user's thinking further."
+            #f"Do not repeat the user's response or the initial reflection question."
+        #)
+    else:
+        # Fallback if the context is missing (shouldn't happen under normal circumstances)
+        prompt = f"User's Message: '{user_message}'\nPlease continue the conversation to support the user's reflection."
+
+    explanation = generate_explanation(prompt, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+    log_with_session(f"Generated reflection explanation: {explanation}")
+
+    if explanation:
+        # Format and return the response
+        formatted_explanation = format_code_snippets(explanation)
+        log_with_session(f"Formatted reflection explanation: {formatted_explanation}")
+        return jsonify({"response": formatted_explanation})
+    else:
+        log_with_session("Failed to generate reflection explanation.", level=logging.ERROR)
+        return jsonify({"response": "Sorry, I couldn't generate a reflection response."})"""
 
 @app.route("/chat", methods=["POST"])
 def chat():
@@ -344,7 +504,7 @@ def extract_programming_keywords(text):
         "simple problem", "simple problems", "simple task", "simple tasks", "fundamentals", "basic", "starter", "introductory",
         "exception handling", "error handling", "try except", "exception", "error", "handling", "except",
         "boolean", "bool", "comparison", "comparison operators", "logical", "logical operators", "basics", "introduction",
-        "variables", "variable"
+        "variables", "variable", "data types", "data type", "data","data_type", "types_of_data", "data_types"
     }
 
     for token in doc:

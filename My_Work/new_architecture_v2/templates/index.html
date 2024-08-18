@@ -187,6 +187,7 @@
                     <option value="">--Select a question--</option>
                     <option value="What are some of the basic concepts in Python that I should know about?">What are some of the basic concepts in Python that I should know about?</option>
                     <option value="What is a variable in Python?">What is a variable in Python?</option>
+                    <option value="What are the different types of data in Python?">What are the different types of data in Python?</option>
                     <option value="How do I add numbers together in Python?">How do I add numbers together in Python?</option>
                 </select>
                 <!-- OR separator -->
@@ -254,14 +255,20 @@
         <input type="text" id="chat-input" placeholder="Ask about the code..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
         <button onclick="sendMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
     </div>
-    <!-- New column for the reflection chat interaction -->
+    <!-- New column for the reflection chat interaction 
+    <div class="column" id="reflection-chat-column" style="display: none;">
+        <h2>Reflect on Your Solution</h2>
+        <div id="reflection-chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
+        <input type="text" id="reflection-chat-input" placeholder="Explain why your solution works..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
+        <button onclick="sendReflectionMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
+    </div>-->
     <div class="column" id="reflection-chat-column" style="display: none;">
         <h2>Reflect on Your Solution</h2>
         <div id="reflection-chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
         <input type="text" id="reflection-chat-input" placeholder="Explain why your solution works..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
         <button onclick="sendReflectionMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
     </div>
-
+    
     <script>
         function toggleTextInput() {
             var predefinedQuestion = document.getElementById("predefined-question").value;
@@ -339,6 +346,74 @@
             var userCode = editor.getValue();
             var taskId = document.getElementById("task-id").value;
             
+            fetch("/interact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code: userCode, task_id: taskId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultElement = document.getElementById("check-result");
+                var reflectionChatColumn = document.getElementById("reflection-chat-column");
+
+                if (data.result === "Correct") {
+                    resultElement.innerText = "Great job! Your code is correct.";
+                    resultElement.style.color = "green";
+
+                    // Show the reflection chat column
+                    reflectionChatColumn.style.display = "block";
+                    
+                    // Add the reflection question to the reflection chatbox
+                    var chatbox = document.getElementById("reflection-chatbox");
+
+                    // Ensure you're accessing the correct key from the JSON response
+                    if (data.initial_chat_message) {
+                        chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.initial_chat_message + "</p>";
+                    } else {
+                        chatbox.innerHTML += "<p><strong>Assistant:</strong> Error: No reflection question generated.</p>";
+                    }
+
+                } else {
+                    resultElement.innerText = "Oops! There seems to be an error in your code.";
+                    resultElement.style.color = "red";
+                }
+
+                var staticAnalysisElement = document.getElementById("static-analysis-result");
+                staticAnalysisElement.textContent = data.static_analysis;
+            });
+        });
+
+
+    function sendReflectionMessage() {
+        var message = document.getElementById("reflection-chat-input").value;
+        var chatbox = document.getElementById("reflection-chatbox");
+        var taskId = document.getElementById("task-id").value;
+
+        chatbox.innerHTML += "<p><strong>You:</strong> " + message + "</p>";
+        document.getElementById("reflection-chat-input").value = ""; // Clear the input box
+
+        fetch("/interact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message: message, task_id: taskId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.response + "</p>";
+            chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
+        });
+    }
+
+        /*document.getElementById("check-code-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var userCode = editor.getValue();
+            var taskId = document.getElementById("task-id").value;
+            
             fetch("/check_code", {
                 method: "POST",
                 headers: {
@@ -392,7 +467,7 @@
             chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.response + "</p>";
             chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
         });
-    } 
+    } */
 
     function sendMessage() {
         var message = document.getElementById("chat-input").value;

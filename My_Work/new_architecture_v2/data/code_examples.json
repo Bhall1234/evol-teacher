@@ -452,9 +452,25 @@
         "examples": [
             {
                 "task_id": 38,
+                "task_description": "This task involves assigning values to variables and printing them. The code provided has a mistake in the variable naming. Your task is to identify and correct the error so that the code prints the correct output.",
+                "incorrect_code": "myVariable = 10\nprint(MyVariable)",
+                "correct_code": "# Correcting variable case sensitivity\nmyVariable = 10\nprint(myVariable)",
+                "description": "The code contains an issue with variable naming due to case sensitivity. 'myVariable' and 'MyVariable' are considered different variables in Python.",
+                "explanation": "In Python, variable names are case-sensitive, meaning 'myVariable' and 'MyVariable' are treated as different variables. The incorrect code attempts to print 'MyVariable', which is not defined. The correct approach is to use 'myVariable' consistently when defining and printing the variable.",
+                "chat_context": "The task is centered around understanding how variables work in Python, particularly the case sensitivity of variable names. Emphasize the importance of using the correct case when referring to variables.",
+                "reflection_context": "Reflect on why Python treats 'myVariable' and 'MyVariable' as different variables and the importance of consistent variable naming in programming.",
+                "expected_output": "10"
+            }
+        ]
+    },
+    "data types":{
+        "label": ["data types", "data type", "data", "data_types", "types_of_data", "data_types"],
+        "examples": [
+            {
+                "task_id": 39,
                 "task_description": "This task involves correcting errors in assigning values to variables of different data types and printing them. The code provided has several mistakes, including case sensitivity issues and incorrect data type usage. Your task is to identify and correct the errors.",
                 "incorrect_code": "hello = 'Hello'\nprint(Hello)\n\nnumber = '5'\nprint(number + 10)\n\nfloating_point = '3.14'\nprint(floating_Point)\n\nboolean_value = True\nprint(boolean_value and 'False')",
-                "correct_code": "# Correcting variable case sensitivity\nhello = 'Hello'\nprint(hello)\n\n# Converting string to integer before addition\nnumber = '5'\nprint(int(number) + 10)\n\n# Correcting variable name and using the correct variable\nfloating_point = '3.14'\nprint(floating_point)\n\n# Correcting the logical operation and type mismatch\nboolean_value = True\nprint(boolean_value and False)",
+                "correct_code": "# Correcting variable case sensitivity\nhello = 'Hello'\nprint(hello)\n\n# Converting string to integer before addition\nnumber = '5'\nprint(int(number) + 10)\n#Solution 2:\nx = 5\ny = int(\"10\")\nprint(x + y)\n#Solution 3:\nx = 5\ny = 10\nprint(x+y)\n\n# Correcting variable name and using the correct variable\nfloating_point = '3.14'\nprint(floating_point)\n\n# Correcting the logical operation and type mismatch\nboolean_value = True\nprint(boolean_value and False)",
                 "description": "The code contains several issues: incorrect variable names due to case sensitivity, attempting to add a string to an integer, using undefined variables, and logical operations on incompatible types.",
                 "explanation": "1. Variable names are case-sensitive, so 'Hello' and 'hello' are different.\n2. To perform arithmetic operations, convert the string to the appropriate data type (e.g., int or float).\n3. Ensure the correct variable names are used throughout the code, matching the definition.\n4. Logical operations should be performed between compatible types; using a string in a logical expression with a boolean requires caution.\n5. Undefined variables will result in a NameError; ensure all variables are defined before use.",
                 "chat_context": "The task involves working with variables of different data types in Python and correcting errors related to variable naming, data type conversion, and logical operations. Emphasize the importance of case sensitivity, data type compatibility, and ensuring variables are properly defined and used.",
