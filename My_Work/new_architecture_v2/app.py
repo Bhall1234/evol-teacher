@@ -214,7 +214,13 @@ def reflection_chat():
     # Handle the follow-up reflections based on previous context
     if initial_reflection_question:
         prompt = (
-            f"User's Message: '{user_message}'\n")
+            f"User's Message: '{user_message}'\n"
+            f"Given the context of the user's code submission and the initial reflection question, continue the conversation by asking a follow-up question that challenges the user's understanding. "
+            f"Focus on probing deeper into the concepts or potential edge cases that the user might not have considered. Avoid simply rephrasing the user's response."
+            f"User's Submitted Code:\n{user_code}\n"
+            f"Initial Reflection Question:\n{initial_reflection_question}\n"
+            f"Please provide a follow-up reflection question or statement that delves into a related but deeper aspect of the topic."
+        )
     else:
         # Fallback if the context is missing (shouldn't happen under normal circumstances)
         prompt = f"User's Message: '{user_message}'\nPlease continue the conversation to support the user's reflection."

@@ -149,24 +149,15 @@
         "label": ["addition", "add", "+", "sum"],
         "examples": [
             {
-                "task_id": 13,
-                "task_description": "This task requires you to write a function that adds two numbers and returns the result. The code is supposed to take two input values, add them, and return the sum. Your task is to identify and correct the error so that the function correctly adds the numbers.",
-                "incorrect_code": "def add(a, b):\n    return a * b\n\nresult = add(3, 4)\nprint(result)\n",
-                "correct_code": "def add(a, b):\n    return a + b\n\nresult = add(3, 4)\nprint(result)\n",
-                "description": "The code is performing multiplication instead of addition.",
-                "explanation": "The `*` operator is used for multiplication, while the `+` operator is used for addition.",
-                "chat_context": "The task involves adding two numbers in Python. The issue is related to using the multiplication operator instead of the addition operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
-                "expected_output": "7"
-            },
-            {
-                "task_id": 14,
-                "task_description": "The task involves performing a simple arithmetic calculation that combines addition and multiplication. The goal is to ensure that addition is performed first, followed by multiplication. Your job is to modify the code to ensure that the calculation is performed in the correct sequence.",
-                "incorrect_code": "result = 10 + 5 * 2\nprint(result)\n",
-                "correct_code": "result = (10 + 5) * 2\nprint(result)\n",
-                "description": "The code is not following the correct order of operations.",
-                "explanation": "In Python, multiplication and division have higher precedence than addition and subtraction. To ensure the addition is performed first, use parentheses to group the addition operation.",
-                "chat_context": "The task involves a simple arithmetic calculation in Python. The issue is related to the order of operations and how to ensure the addition is performed before multiplication. Focus on explaining why the incorrect code produces the wrong result and how to correct it. The code is in a function.",
-                "expected_output": "30"
+                "task_id": 5,
+                "task_description": "You need to correct the code that attempts to add two variables together. The first variable `x` is an integer, and the second variable `y` is a string representing a number. The task is to ensure that the code correctly adds these two values and prints the result.",
+                "incorrect_code": "x = 5\ny = \"10\"\nprint(x + y)",
+                "correct_code": "x = 5\ny = 10\nprint(x + y)",
+                "description": "The code is attempting to add an integer and a string, which will result in a TypeError. Python cannot directly add these two different types together.",
+                "explanation": "To perform the addition correctly, you need to convert the string `y` into an integer using the `int()` function. Once both `x` and `y` are integers, the addition will work as expected.",
+                "chat_context": "The problem involves fixing code that tries to add an integer and a string. The error occurs because Python cannot directly add these two types. The solution involves converting the string to an integer before performing the addition.",
+                "reflection_context": "Reflect on why Python does not allow the addition of a string and an integer.",
+                "expected_output": "15"
             }
         ]
     },
