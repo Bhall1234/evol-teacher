@@ -23,13 +23,26 @@
             pointer-events: none; /* Disable interaction with content while popup is active */
             max-height: none;
             overflow: auto;
+            padding: 20px;
         }
         .column {
             flex: 1;
             padding: 10px;
             box-sizing: border-box;
-            background-color: #f8f8f8;
             border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .ask-section {
+            background-color: #ffe4e1; /* Light pink */
+        }
+        .fix-code-section {
+            background-color: #e0ffe4; /* Light green */
+        }
+        .chat-column {
+            background-color: #e1e4ff; /* Light blue */
+        }
+        .reflection-chat-column {
+            background-color: #fff7e1; /* Light yellow */
         }
         .code-block {
             background-color: #f8f8f8;
@@ -193,6 +206,40 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+
+    #guide-content {
+        position: fixed;
+        right: -300px; /* Keep the guide box hidden off-screen initially */
+        top: 20%;
+        width: 300px;
+        height: 60%;
+        background-color: #eaf4fc;
+        border: 2px solid #3498db;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 9998;
+    }
+    
+    #guide-tab {
+        position: fixed; /* Position relative to the guide-content box */
+        top: 10%; 
+        right: 0px; /* Position the tab to the left of the guide-content */
+        width: 40px;
+        height: 100px;
+        padding: 10px;
+        background-color: #3498db;
+        color: white;
+        text-align: center;
+        cursor: pointer;
+        transform: rotate(-90deg);
+        transform-origin: 0 0;
+        z-index: 9999;
+    }
+
+
+
     </style>
 </head>
 <body>
@@ -209,8 +256,9 @@
         <div class="spinner"></div>
     </div>
     <div class="container" id="content-container">
-        <div class="column">
+        <div class="column ask-section">
             <h1>Interactive Python Learning Environment</h1>
+            <p>Welcome! This environment is designed to help you learn Python by interacting with various sections. If you're unsure how to proceed, check the guide on the right side of the screen.</p>
             <form method="POST" action="/ask" id="ask-form">
                 <label for="question">Ask a question about Python:</label><br>
                 <!-- Drop-down menu for predefined questions -->
@@ -241,7 +289,7 @@
             </div>
             {% endif %}
         </div>
-        <div class="column">
+        <div class="column fix-code-section">
             {% if incorrect_code %}
             <h2>Incorrect Code:</h2>
             <p><strong>Task Description:</strong> {{ task_description }}</p>
@@ -280,17 +328,25 @@
         </div>
     </div>
     <!-- New column for chat interaction -->
-    <div class="column" id="chat-column">
+    <div class="column chat-column" id="chat-column">
         <h2>Chat with Assistant</h2>
-        <div id="chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
         <input type="text" id="chat-input" placeholder="Ask about the code..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
+        <div id="chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
         <button onclick="sendMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
     </div>
-    <div class="column" id="reflection-chat-column" style="display: none;">
+    <div class="column reflection-chat-column" id="reflection-chat-column" style="display: none;">
         <h2>Reflect on Your Solution</h2>
-        <div id="reflection-chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
         <input type="text" id="reflection-chat-input" placeholder="Explain why your solution works..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
+        <div id="reflection-chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
         <button onclick="sendReflectionMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
+    </div>
+    <div id="guide-tab">Help</div>
+    <div id="guide-content">
+        <h3>Interactive Python Learning Guide</h3>
+        <p><strong>Ask a Question:</strong> Use the light pink section to ask a question about Python.</p>
+        <p><strong>Fix the Code:</strong> Use the light green section to fix any incorrect code.</p>
+        <p><strong>Chat with Assistant:</strong> Use the light blue section to ask the assistant for help.</p>
+        <p><strong>Reflect on Solution:</strong> Use the light yellow section to reflect on your solution after fixing the code.</p>
     </div>
     
     <script>
@@ -406,13 +462,15 @@
                     // Add the reflection question to the reflection chatbox
                     var chatbox = document.getElementById("reflection-chatbox");
 
-                    // Ensure you're accessing the correct key from the JSON response
                     if (data.initial_chat_message) {
                         chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.initial_chat_message + "</p>";
                     } else {
                         chatbox.innerHTML += "<p><strong>Assistant:</strong> Error: No reflection question generated.</p>";
                     }
 
+                    // Show a prompt to scroll down
+                    resultElement.innerHTML += "<br><br><strong>Please scroll down to reflect on your solution.</strong>";
+                    resultElement.style.fontWeight = "bold";
                 } else {
                     resultElement.innerText = "Oops! There seems to be an error in your code.";
                     resultElement.style.color = "red";
@@ -426,10 +484,10 @@
             })
             .catch(error => {
                 console.error("Error:", error);
-                // Hide the loading overlay in case of an error
                 document.getElementById("loading-overlay").style.display = "none";
             });
         });
+
 
         function sendMessage() {
             var message = document.getElementById("chat-input").value;
@@ -535,6 +593,17 @@
                 document.body.style.overflow = "auto"; // Re-enable scrolling
             }
         };
+
+        // Toggle the guide content visibility
+        document.getElementById("guide-tab").addEventListener("click", function() {
+            var guideContent = document.getElementById("guide-content");
+            if (guideContent.style.right === "0px") {
+                guideContent.style.right = "-300px"; /* Hide the guide off-screen */
+            } else {
+                guideContent.style.right = "0px"; /* Show the guide */
+            }
+        });
+
     </script>
 </body>
 </html>
