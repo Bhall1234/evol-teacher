@@ -255,13 +255,6 @@
         <input type="text" id="chat-input" placeholder="Ask about the code..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
         <button onclick="sendMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
     </div>
-    <!-- New column for the reflection chat interaction 
-    <div class="column" id="reflection-chat-column" style="display: none;">
-        <h2>Reflect on Your Solution</h2>
-        <div id="reflection-chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
-        <input type="text" id="reflection-chat-input" placeholder="Explain why your solution works..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
-        <button onclick="sendReflectionMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
-    </div>-->
     <div class="column" id="reflection-chat-column" style="display: none;">
         <h2>Reflect on Your Solution</h2>
         <div id="reflection-chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
@@ -317,24 +310,6 @@
                 solution.style.display = "none";
             }
         }
-
-        /*function runCode() {
-            var code = editor.getValue();
-            var outputElement = document.getElementById("output");
-            outputElement.textContent = "Running code...\n";
-
-            fetch("/run_code", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ code: code })
-            })
-            .then(response => response.json())
-            .then(data => {
-                outputElement.textContent = data.output;
-            });
-        }*/
 
         function runCode() {
             var code = editor.getValue();
@@ -430,67 +405,6 @@
         });
     }
 
-        /*document.getElementById("check-code-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            var userCode = editor.getValue();
-            var taskId = document.getElementById("task-id").value;
-            
-            fetch("/check_code", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ code: userCode, task_id: taskId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                var resultElement = document.getElementById("check-result");
-                if (data.result === "Correct") {
-                    resultElement.innerText = "Great job! Your code is correct.";
-                    resultElement.style.color = "green";
-
-                    // Check if the reflection chat should be shown
-                    if (data.show_reflection_chat) {
-                        // Show the reflection chat column
-                        document.getElementById("reflection-chat-column").style.display = "block";
-                        
-                        // Add the initial reflection question to the chatbox
-                        var chatbox = document.getElementById("reflection-chatbox");
-                        chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.initial_chat_message + "</p>";
-                    }
-                } else {
-                    resultElement.innerText = "Oops! There seems to be an error in your code.";
-                    resultElement.style.color = "red";
-                }
-
-                var staticAnalysisElement = document.getElementById("static-analysis-result");
-                staticAnalysisElement.textContent = data.static_analysis;
-            });
-        });
-
-    function sendReflectionMessage() {
-        var message = document.getElementById("reflection-chat-input").value;
-        var chatbox = document.getElementById("reflection-chatbox");
-        var taskId = document.getElementById("task-id").value;
-
-        chatbox.innerHTML += "<p><strong>You:</strong> " + message + "</p>";
-        document.getElementById("reflection-chat-input").value = ""; // Clear the input box
-
-        fetch("/reflection_chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: "message=" + encodeURIComponent(message) + "&task_id=" + taskId
-        })
-        .then(response => response.json())
-        .then(data => {
-            chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.response + "</p>";
-            chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
-        });
-    } */
-
     function sendMessage() {
         var message = document.getElementById("chat-input").value;
         var chatbox = document.getElementById("chatbox");
@@ -512,7 +426,6 @@
             chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
         });
     }
-
 
         // Function to close the popup and store a cookie
         function closePopup() {
