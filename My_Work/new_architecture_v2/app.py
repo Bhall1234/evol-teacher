@@ -385,7 +385,7 @@ def interact():
         log_with_session(f"Current interaction count: {interaction_count}")
         
         # Define the maximum number of interactions allowed
-        max_interactions = 3
+        max_interactions = 4
         
         # Add the user's new message to the conversation history if it's not empty
         if user_message:
@@ -417,6 +417,7 @@ def interact():
 
             expected_output = correct_example["expected_output"]
             reflection_context = correct_example.get("reflection_context", "")
+            reflection_question = correct_example.get("reflection_question", "")
             log_with_session(f"Expected output: {expected_output}, Reflection context: {reflection_context}")
 
             try:
@@ -449,6 +450,10 @@ def interact():
                 history.append({
                     "role": "system",
                     "content": f"User's Submitted Code:\n{user_code}"
+                })
+                history.append({ # TRIAL OF ADDING EXAMPLE QUESTION
+                    "role": "system",
+                    "content": f"Example Reflection Question:\n{reflection_question}"
                 })
                 log_with_session(f"Updated conversation history with reflection context and code: {history}")
 
@@ -629,7 +634,7 @@ def extract_programming_keywords(text):
         "simple problem", "simple problems", "simple task", "simple tasks", "fundamentals", "basic", "starter", "introductory",
         "exception handling", "error handling", "try except", "exception", "error", "handling", "except",
         "boolean", "bool", "comparison", "comparison operators", "logical", "logical operators", "basics", "introduction",
-        "variables", "variable", "data types", "data type", "data","data_type", "types_of_data", "data_types"
+        "variables", "variable", "data types", "data type", "data","data_type", "types_of_data", "data_types", "mathematical",
     }
 
     for token in doc:

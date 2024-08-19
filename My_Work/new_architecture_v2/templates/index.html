@@ -274,7 +274,7 @@
                     <option value="What are some of the basic concepts in Python that I should know about?">1. What are some of the basic concepts in Python that I should know about?</option>
                     <option value="What is a variable in Python?">2. What is a variable in Python?</option>
                     <option value="What are the different types of data in Python?">3. What are the different types of data in Python?</option>
-                    <option value="How do I add numbers together in Python?">4. How do I add numbers together in Python?</option>
+                    <option value="What mathematical operations can I perform in Python">4. What mathematical operations can I perform in Python?</option>
                 </select>
                 <!-- OR separator 
                 <p>OR</p>-->
@@ -313,21 +313,12 @@
             <div class="buttons">
                 <button class="run-button" onclick="runCode()">Run Code</button>
                 <button class="reset-button" onclick="resetCode()">Reset Code</button>
-                <!--<button class="hint-button" onclick="toggleHint()">Show Hint</button>
-                <button class="explanation-button" onclick="toggleExplanation()">Show Explanation</button>
-                <button class="solution-button" onclick="toggleSolution()">Show Solution</button>-->
             </div>
             <form id="check-code-form">
                 <input type="hidden" id="task-id" name="task_id" value="{{ task_id }}">
                 <button type="submit" class="check-button">Check Code</button>
             </form>
             <div id="check-result"></div>
-
-            <!-- Static Analysis and Code Completion Sections 
-            <div id="static-analysis" style="margin-top: 10px;">
-                <h3>Code Analysis Results:</h3>
-                <pre id="static-analysis-result"></pre>
-            </div>-->
 
             {% if correct_code %}
             <div id="solution" style="display: none;">
@@ -346,7 +337,7 @@
     </div>
     <div class="column reflection-chat-column" id="reflection-chat-column" style="display: none;">
         <h2>Reflect on Your Solution</h2>
-        <input type="text" id="reflection-chat-input" placeholder="Explain why your solution works..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
+        <input type="text" id="reflection-chat-input" placeholder="Reflect on the solution..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
         <div id="reflection-chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
         <button onclick="sendReflectionMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
     </div>
