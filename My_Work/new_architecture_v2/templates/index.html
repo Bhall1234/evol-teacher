@@ -299,27 +299,6 @@
             </div>
             {% endif %}
         </div>
-        <!--
-        <div class="column fix-code-section">
-            {% if incorrect_code %}
-            <h2>Incorrect Code:</h2>
-            <p><strong>Task Description:</strong> {{ task_description }}</p>
-            <div class="code-block">{{ incorrect_code | safe }}</div>
-            <p id="hint" style="display: none;"><strong>Hint:</strong> {{ hint }}</p>
-            <p id="explanation" style="display: none;"><strong>Explanation:</strong> {{ detailed_explanation }}</p>
-            {% endif %}
-            <h2>Try to Fix the Incorrect Code:</h2>
-            <textarea id="editor"></textarea>
-            <pre id="output"></pre>
-            <div class="buttons">
-                <button class="run-button" onclick="runCode()">Run Code</button>
-                <button class="reset-button" onclick="resetCode()">Reset Code</button>
-            </div>
-            <form id="check-code-form">
-                <input type="hidden" id="task-id" name="task_id" value="{{ task_id }}">
-                <button type="submit" class="check-button">Check Code</button>
-            </form>
-            <div id="check-result"></div>-->
             <div class="column fix-code-section">
                 {% if incorrect_code %}
                 <h2>Incorrect Code:</h2>
