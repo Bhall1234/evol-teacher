@@ -274,7 +274,7 @@
             {
                 "task_id": 30,
                 "task_description": "This task is designed to introduce you to both Python and the learning environment you're using. Your goal is to write a simple Python program that prints 'Hello, World!' to the console. This will help you get familiar with writing and running code in this system. The output should be Hello, World!",
-                "incorrect_code": "Print(Hello, World!)",
+                "incorrect_code": "\n#Dont forget to ask the assistant for help if you get stuck!\nPrint(Hello, World!)",
                 "correct_code": "print('Hello, World!')",
                 "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes. The incorrect code example uses incorrect capitalization for the function name and is missing quotes around the string, leading to a syntax error.",
                 "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
@@ -323,7 +323,7 @@
             {
                 "task_id": 38,
                 "task_description": "This task involves assigning values to multiple variables and printing them. The code provided has mistakes in variable naming due to case sensitivity. Your task is to identify and correct these errors so that the code prints the correct outputs. The expected outputs are 10, 20, and 30.",
-                "incorrect_code": "myVariable1 = 10\nMyVariable2 = 20\nmyVariable_3 = 30\nprint(myvariable1)\nprint(myVariable2)\nprint(Myvariable_3)",
+                "incorrect_code": "\n#These contain mistakes, dont forget to ask the assistant for help if you get stuck!\n\nmyVariable1 = 10\nMyVariable2 = 20\nmyVariable_3 = 30\nprint(myvariable1)\nprint(myVariable2)\nprint(Myvariable_3)",
                 "correct_code": "# Correcting variable case sensitivity\nmyVariable1 = 10\nmyVariable2 = 20\nmyVariable_3 = 30\nprint(myVariable1)\nprint(myVariable2)\nprint(myVariable_3)",
                 "description": "The code contains multiple issues with variable naming due to case sensitivity. 'myVariable1', 'MyVariable2', and 'myVariable_3' are treated as different variables in Python. The incorrect code attempts to print variables with incorrect cases, leading to NameErrors. The correct approach is to use consistent naming conventions throughout the code.",
                 "explanation": "In Python, variable names are case-sensitive, meaning 'myVariable1' and 'myvariable1' are treated as different variables. Similarly, 'MyVariable2' and 'myVariable2' are distinct. The incorrect code attempts to print variables with incorrect cases, leading to errors. The correct approach is to consistently use the intended variable names when defining and printing them.",
@@ -340,7 +340,7 @@
             {
                 "task_id": 39,
                 "task_description": "This task involves correcting errors in assigning values to variables of different data types and printing them. The code provided has several mistakes, including case sensitivity issues and incorrect data type usage. Your task is to identify and correct the errors. The output should be Hello, 15, <class 'float'>, and False",
-                "incorrect_code": "hello = 'Hello'\nprint(Hello)\n\nnumber = '5'\nprint(number + 10)\n\nfloating_point = '3.14'\nprint(type(floating_Point))\n\nboolean_value = True\nprint(boolean_value and 'False')",
+                "incorrect_code": "#These contain mistakes, dont forget to ask the assistant for help if you get stuck!\n\nhello = 'Hello'\nprint(Hello)\n\nnumber = '5'\nprint(number + 10)\n\nfloating_point = '3.14'\nprint(type(floating_Point))\n\nboolean_value = True\nprint(boolean_value and 'False')",
                 "correct_code": "# Correcting variable case sensitivity\nhello = 'Hello'\nprint(hello)\n\n# Converting string to integer before addition\nnumber = '5'\nprint(int(number) + 10)\n#Solution 2:\nx = 5\ny = int(\"10\")\nprint(x + y)\n#Solution 3:\nx = 5\ny = 10\nprint(x+y)\n\n# Correcting variable name and using the correct variable\nfloating_point = '3.14'\nprint(floating_point)\n\n# Correcting the logical operation and type mismatch\nboolean_value = True\nprint(boolean_value and False)",
                 "description": "The code contains several issues: incorrect variable names due to case sensitivity, attempting to add a string to an integer, using undefined variables, and logical operations on incompatible types.",
                 "explanation": "1. Variable names are case-sensitive, so 'Hello' and 'hello' are different.\n2. To perform arithmetic operations, convert the string to the appropriate data type (e.g., int or float).\n3. Ensure the correct variable names are used throughout the code, matching the definition.\n4. Logical operations should be performed between compatible types; using a string in a logical expression with a boolean requires caution.\n5. Undefined variables will result in a NameError; ensure all variables are defined before use.",
