@@ -265,7 +265,7 @@
     <div class="container" id="content-container">
         <div class="column ask-section">
             <h1>Interactive Python Learning Environment</h1>
-            <p>Welcome! This environment is designed to help you learn Python by interacting with various sections. If you're unsure how to proceed, check the guide on the right side of the screen.</p>
+            <p>Welcome! This environment is designed to help you learn Python by interacting with various sections. If you're unsure how to proceed, check the guide on the right side of the screen. The questions are numbered 1 to 4. Please select questions in this order.</p>
             <form method="POST" action="/ask" id="ask-form">
                 <label for="question">Select a question:</label><br>
                 <!-- Drop-down menu for predefined questions -->
@@ -483,7 +483,7 @@
                     }
 
                     // Show a prompt to scroll down
-                    resultElement.innerHTML += "<br><br><strong>Please scroll down to reflect on your solution.</strong>";
+                    resultElement.innerHTML += "<br><br><strong>Please scroll down to the yellow section to reflect on your solution.</strong>";
                     resultElement.style.fontWeight = "bold";
                 } else {
                     resultElement.innerText = "Oops! There seems to be an error in your code.";
