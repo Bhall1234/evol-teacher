@@ -79,7 +79,8 @@ def home():
     log_with_session("Accessed the home page.")
     return render_template("index.html")
 
-@app.route("/ask", methods=["POST"])
+# WITH EXPLANATION KEYWORDS BEING EXTRACTED.
+"""@app.route("/ask", methods=["POST"])
 def ask():
     predefined_question = request.form.get("predefined_question")
     custom_question = request.form.get("question")
@@ -123,8 +124,55 @@ def ask():
                            task_description=incorrect_code_data.get("task_description", "No task description found."),
                            hint=incorrect_code_data.get("description", "No hint found."), 
                            detailed_explanation=incorrect_code_data.get("explanation", "No detailed explanation found."),
+                           task_id=incorrect_code_data.get("task_id", "No task ID found."))"""
+
+@app.route("/ask", methods=["POST"])
+def ask():
+    predefined_question = request.form.get("predefined_question")
+    custom_question = request.form.get("question")
+
+    # Use the predefined question if selected; otherwise, use the custom question
+    user_question = predefined_question if predefined_question else custom_question
+    log_with_session(f"User question received: {user_question}")
+
+    # Reset the context for the chat conversation when a new question is asked.
+    session.clear()
+
+    if "python" not in user_question.lower():
+        user_question += " (programming Language: python)"
+        log_with_session(f"Modified user question: {user_question}")
+    
+    # Generate explanation based on the user question
+    explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")
+    log_with_session(f"Generated explanation: {explanation}")
+    
+    # Only extract keywords from the user's input question
+    user_keywords = extract_programming_keywords(user_question)
+    log_with_session(f"Extracted user keywords: {user_keywords}")
+    
+    # Find the incorrect code example based only on the user's input keywords
+    incorrect_code_data = get_related_code_by_keywords(user_keywords, correct_code_examples)
+    log_with_session(f"Selected incorrect code example: {incorrect_code_data}")
+    
+    # Set the current task ID in session
+    session['current_task_id'] = incorrect_code_data.get('task_id', 'No task ID found')
+    log_with_session(f"Task ID set to: {session['current_task_id']}")
+    
+    # Format the explanation and code snippets for rendering
+    formatted_explanation = format_code_snippets(explanation)
+    formatted_incorrect_code = highlight(incorrect_code_data.get("incorrect_code", "No incorrect code found."), PythonLexer(), HtmlFormatter(noclasses=True))
+    formatted_correct_code = highlight(incorrect_code_data.get("correct_code", "No correct code found."), PythonLexer(), HtmlFormatter(noclasses=True))
+    
+    # Render the template with the necessary data
+    return render_template("index.html", question=user_question, explanation=formatted_explanation, 
+                           incorrect_code=formatted_incorrect_code, correct_code=formatted_correct_code,
+                           task_description=incorrect_code_data.get("task_description", "No task description found."),
+                           hint=incorrect_code_data.get("description", "No hint found."), 
+                           detailed_explanation=incorrect_code_data.get("explanation", "No detailed explanation found."),
                            task_id=incorrect_code_data.get("task_id", "No task ID found."))
 
+# NO CODE FORMATTING
+"""
 @app.route("/interact", methods=["POST"])
 def interact():
     try:
@@ -318,7 +366,189 @@ def run_static_analysis(user_code):
         return e.stderr
     finally:
         if os.path.exists(temp_file_name):
-            os.remove(temp_file_name)
+            os.remove(temp_file_name)"""
+
+@app.route("/interact", methods=["POST"])
+def interact():
+    try:
+        # Log the received data
+        data = request.get_json()
+        log_with_session(f"Received data: {data}")
+        
+        user_message = data.get("message")
+        task_id = data.get("task_id")
+        log_with_session(f"User message: {user_message}, Task ID: {task_id}")
+        
+        # Initialize or retrieve the conversation history from the session
+        history = session.get(f"conversation_history_{task_id}", [])
+        log_with_session(f"Current conversation history: {history}")
+        
+        # Add the user's new message to the conversation history if it's not empty
+        if user_message:
+            history.append({"role": "user", "content": user_message})
+            log_with_session(f"Updated conversation history after user message: {history}")
+        
+        # If it's the initial code submission
+        if "code" in data:
+            user_code = data["code"]
+            session['current_task_id'] = task_id
+            session['user_code'] = user_code  # Store the user's code in session
+            log_with_session(f"User code submitted: {user_code}")
+            
+            correct_example = find_correct_example(task_id, correct_code_examples)
+            if not correct_example:
+                log_with_session("No matching task found.", level=logging.ERROR)
+                return jsonify({"result": "No matching task found."}), 404
+
+            expected_output = correct_example["expected_output"]
+            reflection_context = correct_example.get("reflection_context", "")
+            log_with_session(f"Expected output: {expected_output}, Reflection context: {reflection_context}")
+
+            try:
+                # Run the user code and capture output
+                result = subprocess.run([sys.executable, "-c", user_code], capture_output=True, text=True, check=True)
+                user_output = result.stdout.strip()  # Ensure any extra whitespace is removed
+                log_with_session(f"User output: {user_output}")
+            except subprocess.CalledProcessError as e:
+                user_output = e.stderr.strip()
+                log_with_session(f"Error in user code execution: {user_output}", level=logging.ERROR)
+                return jsonify({"result": "Incorrect", "error": user_output}), 200
+
+            # Compare the actual output with the expected output
+            if user_output == expected_output.strip():
+                result = "Correct"
+                log_with_session("User code is correct.")
+            else:
+                result = "Incorrect"
+                log_with_session(f"Expected output: {expected_output}, but got: {user_output}")
+            
+            response = {"result": result}
+            log_with_session(f"Initial response: {response}")
+
+            if result == "Correct":
+                # Generate a reflection question based on the user's code
+                history.append({
+                    "role": "system", 
+                    "content": f"Reflection Context to help you create the question:\n{reflection_context}"
+                })
+                history.append({
+                    "role": "system",
+                    "content": f"User's Submitted Code:\n{user_code}"
+                })
+                log_with_session(f"Updated conversation history with reflection context and code: {history}")
+
+                # Generate the completion using the correct object attribute access
+                completion = client.chat.completions.create(
+                    model="TheBloke/CodeLlama-13B-Instruct-GGUF",
+                    messages=history,
+                    temperature=0.8,
+                    stream=False
+                )
+                log_with_session(f"Completion response: {completion}")
+
+                # Add assistant's response to history
+                reflection_question = completion.choices[0].message.content.strip()
+                
+                # Format the reflection question to ensure any code is properly displayed
+                formatted_reflection_question = format_code_snippets(reflection_question)
+                log_with_session(f"Generated reflection question: {formatted_reflection_question}")
+                
+                history.append({"role": "assistant", "content": formatted_reflection_question})
+
+                # Store the updated conversation history
+                session[f"conversation_history_{task_id}"] = history
+                log_with_session(f"Stored updated conversation history: {history}")
+
+                response["show_reflection_chat"] = True
+                response["initial_chat_message"] = formatted_reflection_question
+                log_with_session(f"Final response with reflection chat: {response}")
+
+            return jsonify(response)
+        
+        # Continuation of the conversation
+        else:
+            log_with_session("Continuing the conversation.")
+            completion = client.chat.completions.create(
+                model="TheBloke/CodeLlama-13B-Instruct-GGUF",
+                messages=history,
+                temperature=0.7,
+                stream=False
+            )
+            log_with_session(f"Completion response: {completion}")
+
+            # Fixing the access to the content field
+            assistant_response = completion.choices[0].message.content.strip()
+
+            # Format the assistant's response to ensure any code is properly displayed
+            formatted_assistant_response = format_code_snippets(assistant_response)
+            log_with_session(f"Assistant's response: {formatted_assistant_response}")
+
+            history.append({"role": "assistant", "content": formatted_assistant_response})
+            
+            # Store the updated conversation history
+            session[f"conversation_history_{task_id}"] = history
+            log_with_session(f"Stored updated conversation history: {history}")
+
+            return jsonify({"response": formatted_assistant_response})
+
+    except Exception as e:
+        log_with_session(f"Exception occurred: {str(e)}", level=logging.ERROR)
+        import traceback
+        traceback.print_exc()  # Print the error to the logs
+        return jsonify({"result": "An error occurred", "error": str(e)}), 500
+
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.form.get("message")
+    task_id = request.form.get("task_id")
+    log_with_session(f"User chat message: {user_message} for task ID: {task_id}")
+
+    # Retrieve the conversation history for /chat
+    chat_history = session.get(f"chat_history_{task_id}", [])
+    
+    # Add the user's message to the chat history
+    if user_message:
+        chat_history.append({"role": "user", "content": user_message})
+        log_with_session(f"Updated chat history after user message: {chat_history}")
+
+    # Retrieve or generate context based on the task ID
+    context_provided = session.get(f"context_provided_{task_id}", False)
+    correct_example = find_correct_example(task_id, correct_code_examples)
+
+    if correct_example:
+        if not context_provided:
+            chat_context = correct_example.get("chat_context", "")
+            # Create the initial prompt with context
+            chat_history.insert(0, {"role": "system", "content": f"Context: {chat_context}"})
+            log_with_session(f"Initial chat context provided: {chat_context}")
+            # Mark that context has been provided
+            session[f"context_provided_{task_id}"] = True
+
+        # Generate the completion using the accumulated chat history
+        completion = client.chat.completions.create(
+            model="TheBloke/CodeLlama-13B-Instruct-GGUF",
+            messages=chat_history,
+            temperature=0.8,
+            stream=False
+        )
+        log_with_session(f"Completion response: {completion}")
+
+        # Get the assistant's response and update the chat history
+        assistant_response = completion.choices[0].message.content.strip()
+
+        # Format the assistant's response to ensure any code is properly displayed
+        formatted_assistant_response = format_code_snippets(assistant_response)
+        log_with_session(f"Assistant's chat response: {formatted_assistant_response}")
+
+        chat_history.append({"role": "assistant", "content": formatted_assistant_response})
+
+        # Store the updated chat history back in the session
+        session[f"chat_history_{task_id}"] = chat_history
+
+        return jsonify({"response": formatted_assistant_response})
+    else:
+        log_with_session(f"No matching task found for task ID: {task_id}", level=logging.ERROR)
+        return jsonify({"response": "Sorry, I couldn't find any information about this task."})
 
 @app.route("/run_code", methods=["POST"])
 def run_code():
