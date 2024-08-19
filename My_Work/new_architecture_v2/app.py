@@ -379,15 +379,30 @@ def interact():
         task_id = data.get("task_id")
         log_with_session(f"User message: {user_message}, Task ID: {task_id}")
         
-        # Initialize or retrieve the conversation history from the session
+        # Initialize or retrieve the conversation history and interaction count from the session
         history = session.get(f"conversation_history_{task_id}", [])
-        log_with_session(f"Current conversation history: {history}")
+        interaction_count = session.get(f"interaction_count_{task_id}", 0)
+        log_with_session(f"Current interaction count: {interaction_count}")
+        
+        # Define the maximum number of interactions allowed
+        max_interactions = 3
         
         # Add the user's new message to the conversation history if it's not empty
         if user_message:
             history.append({"role": "user", "content": user_message})
+            interaction_count += 1
+            session[f"interaction_count_{task_id}"] = interaction_count
             log_with_session(f"Updated conversation history after user message: {history}")
+            log_with_session(f"Updated interaction count: {interaction_count}")
         
+        # If the maximum number of interactions is reached
+        if interaction_count >= max_interactions:
+            log_with_session(f"Maximum interactions reached for task ID: {task_id}. Prompting user to move on.")
+            return jsonify({
+                "response": "You have completed the reflection for this task. Please select a new question to continue.",
+                "end_reflection": True
+            })
+
         # If it's the initial code submission
         if "code" in data:
             user_code = data["code"]

@@ -326,38 +326,16 @@
         "label": ["simple problems", "beginner", "basic", "basics", "fundamentals", "simple_problems", "simple_exercises", "simple exercises", "simple exercise", "simple task", "starter", "introductory", "simple_task", "introduction"],
         "examples": [
             {
-                "task_id": 27,
-                "task_description": "This task requires you to write a simple Python program that prints 'Hello, World!' to the console. This is a classic beginner exercise and helps you understand how to use the `print` function in Python. The output should be Hello, World!",
-                "incorrect_code": "Print(Hello, World!)",
-                "correct_code": "print('Hello, World!')",
-                "description": "Missing quotes around the string.",
-                "explanation": "In Python, strings must be enclosed in quotes, either single or double. The incorrect code is missing these quotes, leading to a syntax error.",
-                "chat_context": "The task involves writing a basic Python program to print a message to the console. The common mistake here is forgetting to use quotes around the string. Focus on explaining the importance of quotes in defining strings in Python.",
-                "reflection_context": "Ask the user to think about the role of the `print` function in Python and how mastering simple print statements can help in debugging and displaying information in more complex programs.",
-                "expected_output": "Hello, World!"
-            },
-            {
-                "task_id": 28,
-                "task_description": "In this task, you are required to write a Python program that adds two numbers and prints the result. This simple problem introduces the concept of arithmetic operations in Python. Lookout for any other mistakes in the code. The output should be 15.",
-                "incorrect_code": "num1 = 5\nnum2 = 10\ncalculation = num1 plus num2\nprint(Calculation)",
-                "correct_code": "num1 = 5\nnum2 = 10\ncalculation = num1 + num2\nprint(calculation)",
-                "description": "Using 'plus' instead of the addition operator '+' for arithmetic addition.",
-                "explanation": "In Python, the addition operator `+` is used for arithmetic addition. The incorrect code uses the word 'plus' instead, which is not a valid operator, leading to a syntax error.",
-                "chat_context": "The task involves performing arithmetic addition in Python. The mistake here is using an invalid operator 'plus' instead of the addition operator '+'. Focus on explaining the correct usage of arithmetic operators in Python.",
-                "reflection_context": "Prompt the user to reflect on the importance of using the correct arithmetic operators for performing calculations in Python. Ask the user to consider how these operations are fundamental in everyday programming tasks and to think about a scenario where using the wrong operator could lead to significant errors.",
-                "expected_output": "15"
-            },
-            {
-                "task_id": 29,
-                "task_description": "This task involves writing a Python program that assigns a user's name to a variable and then prints a personalized greeting. This problem introduces the concept of string formatting and concatenation. The output should be Hello, Alice!",
-                "incorrect_code": "name = 'Alice'\nprint('Hello, ' + name + !)",
-                "correct_code": "name = 'Alice'\nprint('Hello, ' + name + '!')",
-                "description": "Missing quotes around the exclamation mark.",
-                "explanation": "In Python, the exclamation mark `!` must be enclosed in quotes when concatenating it with other strings. The incorrect code leaves it outside, leading to a syntax error.",
-                "chat_context": "The task involves using string concatenation in Python. The mistake here is not enclosing the exclamation mark in quotes. Focus on explaining how to correctly concatenate strings and special characters.",
-                "reflection_context": "Prompt the user to think about how string formatting and concatenation are essential in programming, especially for creating personalized outputs like greetings. Encourage the user to consider how small errors, such as missing quotes, can impact the correctness of the output.",
-                "expected_output": "Hello, Alice!"
-            }         
+                "task_id": 30,
+                "task_description": "This task combines multiple basic Python concepts. You need to write a Python program that performs the following steps: 1) Prints a greeting message. 2) Adds two numbers together and prints the result. 3) Prints a personalized farewell message. This task will help you practice using the `print` function, performing arithmetic operations, and concatenating strings. The final output should look like this:\n\nHello, World!\nThe sum of 5 and 10 is: 15\nGoodbye, Alice!",
+                "incorrect_code": "name = 'Alice'\nnum1 = 5\nnum2 = 10\ncalculation = num1 plus num2\n\nPrint(Hello, World!)\nprint('The sum of', num1, 'and', num2, 'is:', Calculation)\nprint('Goodbye, ' + name + !)",
+                "correct_code": "name = 'Alice'\nnum1 = 5\nnum2 = 10\ncalculation = num1 + num2\nprint('Hello, World!')\nprint('The sum of', num1, 'and', num2, 'is:', calculation)\nprint('Goodbye, ' + name + '!')",
+                "description": "This code contains several common beginner mistakes, such as using an incorrect operator, forgetting to use quotes around strings, and using incorrect capitalization in function names.",
+                "explanation": "The provided code has several issues:\n1) The `Print` function should be lowercase (`print`).\n2) The addition operation should use the `+` operator, not the word 'plus'.\n3) The exclamation mark `!` should be enclosed in quotes when concatenating with other strings.\nCorrecting these will produce the desired output.",
+                "chat_context": "This multi-step task combines basic concepts like printing, arithmetic operations, and string concatenation. The mistakes involve incorrect syntax for printing, arithmetic, and string handling. Focus on explaining each concept clearly and how they fit together in a larger program.",
+                "reflection_context": "Ask the user to reflect on how the different elements of python programming such as variable assignment, the use of basic functions like print, and the importance of syntax in ensuring the correct execution of a program. The goal is to assess whether the user has grasped these fundamental ideas and can articulate their significance. Avoid generating ANY extended reflections or explanations.",
+                "expected_output": "Hello, World!\nThe sum of 5 and 10 is: 15\nGoodbye, Alice!"
+            }                 
         ]
     },
     "boolean types": {
