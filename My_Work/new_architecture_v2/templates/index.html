@@ -103,7 +103,7 @@
         <select id="task-select" onchange="loadTask()" style="margin-bottom: 20px; width: 100%; padding: 10px;">
             <option value="">--Select a Task--</option>
             {% for task in tasks %}
-            <option value="{{ task.task_id }}">{{ task.task_description }}</option>
+            <option value="{{ task.task_id }}">{{ task.task_name }}</option>
             {% endfor %}
         </select>
 

@@ -1,44 +1,48 @@
 {
     "tasks": [
         {
-            "task_id": 20,
-            "task_description": "This task introduces you to various mathematical operations you can perform in Python. You'll write a Python program that demonstrates addition, subtraction, multiplication, division, and exponentiation. The output should show the results of these operations.",
-            "incorrect_code": "num1 = 10\nnum2 = 5\naddition = num1 plus num2\nsubtraction = num1 minus num2\nmultiplication = num1 times num2\ndivision = num1 divided by num2\nexponentiation = num1 to the power of num2\nprint(addition, subtraction, multiplication, division, exponentiation)",
-            "correct_code": "num1 = 10\nnum2 = 5\naddition = num1 + num2\nsubtraction = num1 - num2\nmultiplication = num1 * num2\ndivision = num1 / num2\nexponentiation = num1 ** num2\nprint(addition, subtraction, multiplication, division, exponentiation)",
-            "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus', 'minus', 'times', 'divided by', and 'to the power of'. Python uses specific symbols for these operations: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
-            "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
-            "expected_output": "15 5 50 2.0 100000",
-            "reflection_question": "Why do you think it's important to use the correct mathematical operators in Python, and how could using the wrong operator affect the outcome of your code?"
+            "task_id": 1,
+            "task_name": "Task 1: Display User Info",
+            "task_description": "This task requires you to display a user's name and age in a sentence. You'll write a Python program that constructs and prints a message that says 'My name is [name] and I am [age] years old.'.",
+            "incorrect_code": "name = John\nage = 25\nprint(My name is name and I am age years old)",
+            "correct_code": "name = 'John'\nage = 25\nprint(f'My name is {name} and I am {age} years old.')",
+            "description": "The incorrect code lacks proper string formatting and does not enclose the string literals in quotes.",
+            "explanation": "In Python, strings must be enclosed in quotes, and variables can be included in strings using f-strings or the `.format()` method.",
+            "expected_output": "My name is John and I am 25 years old.",
+            "reflection_question": "Why is it important to correctly format strings in Python, and how does using f-strings or the `.format()` method improve your code?"
         },
         {
-            "task_id": 30,
-            "task_description": "This task is designed to introduce you to both Python and the learning environment you're using. Your goal is to write a simple Python program that prints 'Hello, World!' to the console.",
-            "incorrect_code": "Print(Hello, World!)",
-            "correct_code": "print('Hello, World!')",
-            "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes.",
-            "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
-            "expected_output": "Hello, World!",
-            "reflection_question": "Now that you've solved the task, why do you think it's necessary for function names like 'print' to be case-sensitive in Python, and why is it important to enclose strings in quotes?"
+            "task_id": 2,
+            "task_name": "Task 2: Circle Area Calculation",
+            "task_description": "This task introduces you to basic math operations in Python by calculating the area of a circle. You'll write a Python program that computes and prints the area of a circle given a radius.",
+            "incorrect_code": "radius = 7\narea = 3.14 * radius ^ 2\nprint('The area of the circle is' + area)",
+            "correct_code": "radius = 7\narea = 3.14 * radius ** 2\nprint(f'The area of the circle is {area}')",
+            "description": "The incorrect code uses the `^` operator instead of `**` for exponentiation and concatenates a string with a number directly, which is not allowed in Python.",
+            "explanation": "In Python, exponentiation is done using `**`, and numbers should be converted to strings or formatted correctly before being concatenated with strings.",
+            "expected_output": "The area of the circle is 153.86",
+            "reflection_question": "What mistakes might occur when calculating mathematical expressions in Python, and why is correct operator usage important?"
         },
         {
-            "task_id": 38,
-            "task_description": "This task involves assigning values to multiple variables and printing them. The code provided has mistakes in variable naming due to case sensitivity.",
-            "incorrect_code": "myVariable1 = 10\nMyVariable2 = 20\nmyVariable_3 = 30\nprint(myvariable1)\nprint(myVariable2)\nprint(Myvariable_3)",
-            "correct_code": "myVariable1 = 10\nmyVariable2 = 20\nmyVariable_3 = 30\nprint(myVariable1)\nprint(myVariable2)\nprint(myVariable_3)",
-            "description": "The code contains multiple issues with variable naming due to case sensitivity. The incorrect code attempts to print variables with incorrect cases, leading to errors.",
-            "explanation": "In Python, variable names are case-sensitive. The correct approach is to consistently use the intended variable names when defining and printing them.",
-            "expected_output": "10\n20\n30",
-            "reflection_question": "Why is case sensitivity in variable names important in Python? How can this affect the readability and maintainability of your code?"
+            "task_id": 3,
+            "task_name": "Task 3: Temperature Converter",
+            "task_description": "This task involves writing a program that converts a temperature from Fahrenheit to Celsius. You'll write a Python program that takes a Fahrenheit temperature, converts it to Celsius, and prints the result.",
+            "incorrect_code": "fahrenheit = 95\ncelsius = (fahrenheit - 32) * 5 / 9\nprint('Temperature in Celsius: ' + celsius)",
+            "correct_code": "fahrenheit = 95\ncelsius = (fahrenheit - 32) * 5 / 9\nprint(f'Temperature in Celsius: {celsius}')",
+            "description": "The incorrect code tries to concatenate a string with a float directly, which is not allowed. It also does not format the output properly.",
+            "explanation": "In Python, to combine strings and numbers in a print statement, you should use f-strings, the `str()` function, or `.format()` method.",
+            "expected_output": "Temperature in Celsius: 35.0",
+            "reflection_question": "Why is it important to correctly handle data types in Python, especially when performing arithmetic operations and printing results?"
         },
         {
-            "task_id": 39,
-            "task_description": "This task involves correcting errors in assigning values to variables of different data types and printing them. The code provided has several mistakes, including case sensitivity issues and incorrect data type usage.",
-            "incorrect_code": "hello = 'Hello'\nprint(Hello)\nnumber = '5'\nprint(number + 10)\nfloating_point = '3.14'\nprint(type(floating_Point))\nboolean_value = True\nprint(boolean_value and 'False')",
-            "correct_code": "hello = 'Hello'\nprint(hello)\nnumber = '5'\nprint(int(number) + 10)\nfloating_point = '3.14'\nprint(floating_point)\nboolean_value = True\nprint(boolean_value and False)",
-            "description": "The code contains several issues: incorrect variable names due to case sensitivity, attempting to add a string to an integer, using undefined variables, and logical operations on incompatible types.",
-            "explanation": "The correct code includes proper case usage for variables, appropriate type conversions, and logical operations.",
-            "expected_output": "Hello\n15\n<class 'float'>\nFalse",
-            "reflection_question": "What challenges might arise from incorrect variable names, data type mismatches, or case sensitivity issues in Python? How can you ensure that these types of errors are avoided in your code?"
+            "task_id": 4,
+            "task_name": "Task 4: List Operations",
+            "task_description": "This task introduces you to basic operations with lists in Python. You'll write a Python program that performs several operations on a list of numbers and prints the results.",
+            "incorrect_code": "numbers = [1, 2, 3, 4, 5]\nadd = numbers plus [6]\nremove = numbers remove 1\nreverse = numbers reverse\nprint(add, remove, reverse)",
+            "correct_code": "numbers = [1, 2, 3, 4, 5]\nnumbers.append(6)\nnumbers.remove(1)\nnumbers.reverse()\nprint(numbers)",
+            "description": "The incorrect code uses non-Pythonic syntax for list operations like addition, removal, and reversal.",
+            "explanation": "In Python, list operations are performed using methods like `append()`, `remove()`, and `reverse()`. These methods modify the list in place.",
+            "expected_output": "[6, 5, 4, 3, 2]",
+            "reflection_question": "How does understanding list operations in Python help you manipulate and manage data efficiently in your programs?"
         }
     ]
 }
