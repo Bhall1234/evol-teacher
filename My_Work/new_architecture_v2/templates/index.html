@@ -42,6 +42,15 @@
             height: auto;
             width: 100%;
         }
+        .CodeMirror-gutters {
+            background-color: #f7f7f7;
+            border-right: 1px solid #ddd;
+            width: 50px; /* Ensures gutter is wide enough */
+            padding-right: 5px; /* Space between line numbers and code */
+        }
+        .CodeMirror-linenumbers {
+            padding-right: 5px; /* Extra space between line numbers and code */
+        }
         .buttons {
             margin-top: 20px;
             display: flex;
@@ -99,7 +108,7 @@
 
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-            lineNumbers: true,
+            lineNumbers: false,
             mode: "python",
             theme: "default"
         });
