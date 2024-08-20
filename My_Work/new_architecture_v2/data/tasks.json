@@ -7,7 +7,8 @@
             "correct_code": "num1 = 10\nnum2 = 5\naddition = num1 + num2\nsubtraction = num1 - num2\nmultiplication = num1 * num2\ndivision = num1 / num2\nexponentiation = num1 ** num2\nprint(addition, subtraction, multiplication, division, exponentiation)",
             "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus', 'minus', 'times', 'divided by', and 'to the power of'. Python uses specific symbols for these operations: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
             "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
-            "expected_output": "15 5 50 2.0 100000"
+            "expected_output": "15 5 50 2.0 100000",
+            "reflection_question": "Why do you think it's important to use the correct mathematical operators in Python, and how could using the wrong operator affect the outcome of your code?"
         },
         {
             "task_id": 30,
@@ -16,7 +17,8 @@
             "correct_code": "print('Hello, World!')",
             "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes.",
             "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
-            "expected_output": "Hello, World!"
+            "expected_output": "Hello, World!",
+            "reflection_question": "Now that you've solved the task, why do you think it's necessary for function names like 'print' to be case-sensitive in Python, and why is it important to enclose strings in quotes?"
         },
         {
             "task_id": 38,
@@ -25,7 +27,8 @@
             "correct_code": "myVariable1 = 10\nmyVariable2 = 20\nmyVariable_3 = 30\nprint(myVariable1)\nprint(myVariable2)\nprint(myVariable_3)",
             "description": "The code contains multiple issues with variable naming due to case sensitivity. The incorrect code attempts to print variables with incorrect cases, leading to errors.",
             "explanation": "In Python, variable names are case-sensitive. The correct approach is to consistently use the intended variable names when defining and printing them.",
-            "expected_output": "10\n20\n30\n"
+            "expected_output": "10\n20\n30",
+            "reflection_question": "Why is case sensitivity in variable names important in Python? How can this affect the readability and maintainability of your code?"
         },
         {
             "task_id": 39,
@@ -34,7 +37,8 @@
             "correct_code": "hello = 'Hello'\nprint(hello)\nnumber = '5'\nprint(int(number) + 10)\nfloating_point = '3.14'\nprint(floating_point)\nboolean_value = True\nprint(boolean_value and False)",
             "description": "The code contains several issues: incorrect variable names due to case sensitivity, attempting to add a string to an integer, using undefined variables, and logical operations on incompatible types.",
             "explanation": "The correct code includes proper case usage for variables, appropriate type conversions, and logical operations.",
-            "expected_output": "Hello\n15\n<class 'float'>\nFalse"
+            "expected_output": "Hello\n15\n<class 'float'>\nFalse",
+            "reflection_question": "What challenges might arise from incorrect variable names, data type mismatches, or case sensitivity issues in Python? How can you ensure that these types of errors are avoided in your code?"
         }
     ]
 }

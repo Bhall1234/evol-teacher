@@ -75,7 +75,11 @@ def check_code():
         # Check against expected output
         if user_output == task["expected_output"]:
             logging.info("Code execution correct")
-            reflection_question = f"Now that you've solved the task, why do you think {task['description']} is important?"
+
+            # Log user's code and mark it as correct
+            logging.info(f"User's correct code for task {task_id}:\n{user_code}")
+
+            reflection_question = task.get("reflection_question", "")
             return jsonify({
                 "output": user_output,
                 "result": "Correct",
@@ -94,6 +98,17 @@ def check_code():
         logging.error(f"Error in code execution: {e.stderr.strip()}")
         return jsonify({"output": f"Error in code execution:\n{e.stderr.strip()}"}), 400
 
+@app.route("/submit_reflection", methods=["POST"])
+def submit_reflection():
+    data = request.get_json()
+    reflection_response = data.get("reflection_response", "")
+    task_id = data.get("task_id", "")
+
+    logging.info(f"Reflection submitted for task_id: {task_id}")
+    logging.info(f"User's reflection: {reflection_response}")
+
+    return jsonify({"message": "Reflection submitted successfully."})
+
 @app.route("/get_task", methods=["GET"])
 def get_task():
     task_id = request.args.get("task_id", "")
@@ -104,6 +119,15 @@ def get_task():
     else:
         logging.warning("Task not found")
         return jsonify({"error": "Task not found"}), 404
+    
+@app.route("/cant_figure_it_out", methods=["POST"])
+def cant_figure_it_out():
+    data = request.get_json()
+    task_id = data.get("task_id", "")
+
+    logging.info(f"User couldn't figure out task {task_id} and decided to move on.")
+
+    return jsonify({"message": "It's okay! You've moved on to the next task."})
 
 if __name__ == "__main__":
     logging.info("Starting Flask application")
