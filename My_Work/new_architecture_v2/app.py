@@ -38,6 +38,41 @@ def run_code():
     except subprocess.CalledProcessError as e:
         return jsonify({"output": f"Error in code execution:\n{e.stderr.strip()}"}), 400
 
+@app.route("/check_code", methods=["POST"])
+def check_code():
+    data = request.get_json()
+    user_code = data.get("code", "")
+    task_id = data.get("task_id", "")
+
+    # Find the task
+    task = next((t for t in tasks if t['task_id'] == int(task_id)), None)
+
+    if not user_code or not task:
+        return jsonify({"output": "Invalid code or task."}), 400
+
+    try:
+        result = subprocess.run([sys.executable, "-c", user_code], capture_output=True, text=True, check=True)
+        user_output = result.stdout.strip()
+
+        # Check against expected output
+        if user_output == task["expected_output"]:
+            reflection_question = f"Now that you've solved the task, why do you think {task['description']} is important?"
+            return jsonify({
+                "output": user_output,
+                "result": "Correct",
+                "reflection_question": reflection_question
+            })
+        else:
+            return jsonify({
+                "output": user_output,
+                "result": "Incorrect",
+                "expected_output": task["expected_output"],
+                "reflection_question": ""
+            })
+
+    except subprocess.CalledProcessError as e:
+        return jsonify({"output": f"Error in code execution:\n{e.stderr.strip()}"}), 400
+
 @app.route("/get_task", methods=["GET"])
 def get_task():
     task_id = request.args.get("task_id", "")

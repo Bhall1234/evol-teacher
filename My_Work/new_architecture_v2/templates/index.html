@@ -71,6 +71,26 @@
             background-color: #008CBA;
             color: white;
         }
+        .reflection-container {
+            margin-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            resize: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .submit-reflection-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -103,6 +123,13 @@
             </div>
 
             <div class="result" id="output"></div>
+
+            <div id="reflection-question" class="reflection-container" style="display: none;">
+                <h3>Reflection Question:</h3>
+                <p id="reflection-question-text"></p>
+                <textarea id="reflection-answer" placeholder="Enter your reflection here..."></textarea>
+                <button class="submit-reflection-button" onclick="submitReflection()">Submit Reflection</button>
+            </div>
         </div>
     </div>
 
@@ -164,7 +191,7 @@
             var userCode = editor.getValue();
             var taskId = document.getElementById("task-select").value;
 
-            fetch("/interact", {
+            fetch("/check_code", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -174,10 +201,16 @@
             .then(response => response.json())
             .then(data => {
                 var resultElement = document.getElementById("output");
+                var reflectionElement = document.getElementById("reflection-question");
 
                 if (data.result === "Correct") {
                     resultElement.innerText = "Great job! Your code is correct.";
                     resultElement.style.color = "green";
+                    
+                    if (data.reflection_question) {
+                        document.getElementById("reflection-question-text").textContent = data.reflection_question;
+                        reflectionElement.style.display = "block";
+                    }
                 } else if (data.result === "Incorrect") {
                     resultElement.innerText = "Oops! There seems to be an error in your code.";
                     resultElement.style.color = "red";
@@ -186,6 +219,12 @@
                     resultElement.style.color = "black";
                 }
             });
+        }
+
+        function submitReflection() {
+            var reflectionAnswer = document.getElementById("reflection-answer").value;
+            alert("Reflection Submitted: " + reflectionAnswer);
+            // You can handle submission as required (e.g., send to the server)
         }
     </script>
 </body>
