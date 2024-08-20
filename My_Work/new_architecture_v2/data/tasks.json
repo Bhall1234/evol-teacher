@@ -25,7 +25,7 @@
             "correct_code": "myVariable1 = 10\nmyVariable2 = 20\nmyVariable_3 = 30\nprint(myVariable1)\nprint(myVariable2)\nprint(myVariable_3)",
             "description": "The code contains multiple issues with variable naming due to case sensitivity. The incorrect code attempts to print variables with incorrect cases, leading to errors.",
             "explanation": "In Python, variable names are case-sensitive. The correct approach is to consistently use the intended variable names when defining and printing them.",
-            "expected_output": "10 20 30"
+            "expected_output": "10\n20\n30\n"
         },
         {
             "task_id": 39,

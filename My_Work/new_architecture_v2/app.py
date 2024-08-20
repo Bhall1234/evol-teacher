@@ -1,9 +1,17 @@
 import json
 import subprocess
 import sys
+import os
+import logging
 from flask import Flask, request, render_template, jsonify
 
 app = Flask(__name__)
+
+# Set up logging in OneDrive
+log_path = os.path.join('C:\\Users\\benha\\OneDrive - The University of Nottingham\\Project\\Chat_Logs\\Participant', 'user_interactions.log')
+os.makedirs(os.path.dirname(log_path), exist_ok=True)
+logging.basicConfig(filename=log_path, level=logging.INFO, 
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Load tasks from JSON
 with open('My_Work/new_architecture_v2/data/tasks.json') as f:
@@ -11,6 +19,7 @@ with open('My_Work/new_architecture_v2/data/tasks.json') as f:
 
 @app.route("/")
 def home():
+    logging.info("Home page accessed")
     return render_template("index.html", tasks=tasks)
 
 @app.route("/run_code", methods=["POST"])
@@ -19,10 +28,13 @@ def run_code():
     user_code = data.get("code", "")
     task_id = data.get("task_id", "")
 
+    logging.info(f"Run code requested for task_id: {task_id}")
+
     # Find the task
     task = next((t for t in tasks if t['task_id'] == int(task_id)), None)
 
     if not user_code or not task:
+        logging.warning("Invalid code or task")
         return jsonify({"output": "Invalid code or task."}), 400
 
     try:
@@ -31,11 +43,14 @@ def run_code():
 
         # Check against expected output
         if user_output == task["expected_output"]:
+            logging.info("Code execution correct")
             return jsonify({"output": user_output, "result": "Correct"})
         else:
+            logging.info("Code execution incorrect")
             return jsonify({"output": user_output, "result": "Incorrect", "expected_output": task["expected_output"]})
 
     except subprocess.CalledProcessError as e:
+        logging.error(f"Error in code execution: {e.stderr.strip()}")
         return jsonify({"output": f"Error in code execution:\n{e.stderr.strip()}"}), 400
 
 @app.route("/check_code", methods=["POST"])
@@ -44,10 +59,13 @@ def check_code():
     user_code = data.get("code", "")
     task_id = data.get("task_id", "")
 
+    logging.info(f"Check code requested for task_id: {task_id}")
+
     # Find the task
     task = next((t for t in tasks if t['task_id'] == int(task_id)), None)
 
     if not user_code or not task:
+        logging.warning("Invalid code or task")
         return jsonify({"output": "Invalid code or task."}), 400
 
     try:
@@ -56,6 +74,7 @@ def check_code():
 
         # Check against expected output
         if user_output == task["expected_output"]:
+            logging.info("Code execution correct")
             reflection_question = f"Now that you've solved the task, why do you think {task['description']} is important?"
             return jsonify({
                 "output": user_output,
@@ -63,6 +82,7 @@ def check_code():
                 "reflection_question": reflection_question
             })
         else:
+            logging.info("Code execution incorrect")
             return jsonify({
                 "output": user_output,
                 "result": "Incorrect",
@@ -71,16 +91,20 @@ def check_code():
             })
 
     except subprocess.CalledProcessError as e:
+        logging.error(f"Error in code execution: {e.stderr.strip()}")
         return jsonify({"output": f"Error in code execution:\n{e.stderr.strip()}"}), 400
 
 @app.route("/get_task", methods=["GET"])
 def get_task():
     task_id = request.args.get("task_id", "")
+    logging.info(f"Get task requested for task_id: {task_id}")
     task = next((t for t in tasks if t['task_id'] == int(task_id)), None)
     if task:
         return jsonify(task)
     else:
+        logging.warning("Task not found")
         return jsonify({"error": "Task not found"}), 404
 
 if __name__ == "__main__":
+    logging.info("Starting Flask application")
     app.run(debug=True)
