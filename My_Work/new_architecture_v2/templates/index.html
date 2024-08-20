@@ -11,13 +11,15 @@
         body { 
             font-family: Arial, sans-serif; 
             padding: 20px; 
+            background-color: #f4f4f4;
         }
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px auto;
             max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
         }
 
         #task-desc, #output {
@@ -29,22 +31,71 @@
             margin-bottom: 20px;
         }
 
+        .code-block {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
         #editor {
-            width: 100%;
             height: 300px;
         }
+
         .CodeMirror {
-            border: 1px solid #ddd;
-            height: auto;
+            height: 100%;
             width: 100%;
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px; /* Added padding inside the editor */
+        }
+
+        .CodeMirror-gutters {
+            background-color: #f7f7f7;
+            border-right: 1px solid #ddd;
+            width: 50px; /* Ensures gutter is wide enough */
+            padding-right: 5px; /* Space between line numbers and code */
+        }
+
+        .CodeMirror-linenumbers {
+            padding-right: 5px; /* Extra space between line numbers and code */
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .run-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .check-button {
+            background-color: #008CBA;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Python Code Task Runner</h1>
+
         <label for="task-select">Select a Task:</label>
-        <select id="task-select" onchange="loadTask()">
+        <select id="task-select" onchange="loadTask()" style="margin-bottom: 20px; width: 100%; padding: 10px;">
             <option value="">--Select a Task--</option>
             {% for task in tasks %}
             <option value="{{ task.task_id }}">{{ task.task_description }}</option>
@@ -56,9 +107,17 @@
             <p id="task-desc"></p>
 
             <h3>Incorrect Code:</h3>
-            <textarea id="editor" class="code-editor"></textarea>
+            <div id="incorrect-code-block" class="code-block"></div>
 
-            <button onclick="runCode()">Run Code</button>
+            <button onclick="copyCodeToEditor()" class="run-button">Copy Code to Editor</button>
+
+            <h3>Your Code:</h3>
+            <textarea id="editor"></textarea>
+
+            <div class="buttons">
+                <button class="run-button" onclick="runCode()">Run Code</button>
+                <button class="check-button" onclick="checkCode()">Check Code</button>
+            </div>
 
             <div class="result" id="output"></div>
         </div>
@@ -71,7 +130,6 @@
             theme: "default",
             matchBrackets: true,
             autoCloseBrackets: true,
-            styleActiveLine: true,
             lineWrapping: true,
             indentWithTabs: true,
             tabSize: 4
@@ -84,12 +142,17 @@
                     .then(response => response.json())
                     .then(data => {
                         document.getElementById("task-desc").textContent = data.task_description;
-                        editor.setValue(data.incorrect_code);
+                        document.getElementById("incorrect-code-block").textContent = data.incorrect_code;
                         document.getElementById("task-details").style.display = "block";
                     });
             } else {
                 document.getElementById("task-details").style.display = "none";
             }
+        }
+
+        function copyCodeToEditor() {
+            var incorrectCode = document.getElementById("incorrect-code-block").textContent;
+            editor.setValue(incorrectCode);
         }
 
         function runCode() {
@@ -115,6 +178,34 @@
                 } else {
                     outputElement.textContent = data.output;
                     outputElement.style.color = "black";
+                }
+            });
+        }
+
+        function checkCode() {
+            var userCode = editor.getValue();
+            var taskId = document.getElementById("task-select").value;
+
+            fetch("/interact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code: userCode, task_id: taskId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultElement = document.getElementById("output");
+
+                if (data.result === "Correct") {
+                    resultElement.innerText = "Great job! Your code is correct.";
+                    resultElement.style.color = "green";
+                } else if (data.result === "Incorrect") {
+                    resultElement.innerText = "Oops! There seems to be an error in your code.";
+                    resultElement.style.color = "red";
+                } else {
+                    resultElement.textContent = data.output;
+                    resultElement.style.color = "black";
                 }
             });
         }
