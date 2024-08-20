@@ -36,7 +36,13 @@ def log_with_session(message, level=logging.INFO):
     logging.log(level, f"Session ID: {session_id}, Task ID: {task_id} - {message}")
 
 # Set up logging
-log_path = os.path.join(os.getcwd(), 'My_Work', 'new_architecture_v2', 'src', 'logs', 'user_interactions.log')
+"""log_path = os.path.join(os.getcwd(), 'My_Work', 'new_architecture_v2', 'src', 'logs', 'user_interactions.log')
+os.makedirs(os.path.dirname(log_path), exist_ok=True)
+logging.basicConfig(filename=log_path, level=logging.INFO, 
+                    format='%(asctime)s - %(levelname)s - %(message)s')"""
+
+# Set up logging in OneDrive
+log_path = os.path.join('C:\\Users\\benha\\OneDrive - The University of Nottingham\\Project\\Chat_Logs\\Participant', 'user_interactions.log')
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 logging.basicConfig(filename=log_path, level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s')

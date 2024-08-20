@@ -12330,3 +12330,9 @@ These are just a few examples of the many mathematical operations that you can p
 2024-08-20 09:13:04,148 - INFO - Session ID: 1a457418-c290-47e6-b988-904f57263cff, Task ID: 20 - Accessed the home page.
 2024-08-20 09:13:04,175 - INFO - 127.0.0.1 - - [20/Aug/2024 09:13:04] "GET / HTTP/1.1" 200 -
 2024-08-20 09:13:04,452 - INFO - 127.0.0.1 - - [20/Aug/2024 09:13:04] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-08-20 10:12:31,934 - INFO -  * Detected change in 'C:\\Users\\benha\\Documents\\GitHub\\evol-teacher\\My_Work\\new_architecture_v2\\app.py', reloading
+2024-08-20 10:12:32,210 - INFO -  * Restarting with stat
+2024-08-20 10:12:38,069 - WARNING -  * Debugger is active!
+2024-08-20 10:12:38,072 - INFO -  * Debugger PIN: 133-941-815
+2024-08-20 10:14:17,896 - INFO -  * Detected change in 'C:\\Users\\benha\\Documents\\GitHub\\evol-teacher\\My_Work\\new_architecture_v2\\app.py', reloading
+2024-08-20 10:14:18,161 - INFO -  * Restarting with stat
