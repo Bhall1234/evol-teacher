@@ -1,0 +1,40 @@
+{
+    "tasks": [
+        {
+            "task_id": 20,
+            "task_description": "This task introduces you to various mathematical operations you can perform in Python. You'll write a Python program that demonstrates addition, subtraction, multiplication, division, and exponentiation. The output should show the results of these operations.",
+            "incorrect_code": "num1 = 10\nnum2 = 5\naddition = num1 plus num2\nsubtraction = num1 minus num2\nmultiplication = num1 times num2\ndivision = num1 divided by num2\nexponentiation = num1 to the power of num2\nprint(addition, subtraction, multiplication, division, exponentiation)",
+            "correct_code": "num1 = 10\nnum2 = 5\naddition = num1 + num2\nsubtraction = num1 - num2\nmultiplication = num1 * num2\ndivision = num1 / num2\nexponentiation = num1 ** num2\nprint(addition, subtraction, multiplication, division, exponentiation)",
+            "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus', 'minus', 'times', 'divided by', and 'to the power of'. Python uses specific symbols for these operations: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
+            "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
+            "expected_output": "15 5 50 2.0 100000"
+        },
+        {
+            "task_id": 30,
+            "task_description": "This task is designed to introduce you to both Python and the learning environment you're using. Your goal is to write a simple Python program that prints 'Hello, World!' to the console.",
+            "incorrect_code": "Print(Hello, World!)",
+            "correct_code": "print('Hello, World!')",
+            "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes.",
+            "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
+            "expected_output": "Hello, World!"
+        },
+        {
+            "task_id": 38,
+            "task_description": "This task involves assigning values to multiple variables and printing them. The code provided has mistakes in variable naming due to case sensitivity.",
+            "incorrect_code": "myVariable1 = 10\nMyVariable2 = 20\nmyVariable_3 = 30\nprint(myvariable1)\nprint(myVariable2)\nprint(Myvariable_3)",
+            "correct_code": "myVariable1 = 10\nmyVariable2 = 20\nmyVariable_3 = 30\nprint(myVariable1)\nprint(myVariable2)\nprint(myVariable_3)",
+            "description": "The code contains multiple issues with variable naming due to case sensitivity. The incorrect code attempts to print variables with incorrect cases, leading to errors.",
+            "explanation": "In Python, variable names are case-sensitive. The correct approach is to consistently use the intended variable names when defining and printing them.",
+            "expected_output": "10 20 30"
+        },
+        {
+            "task_id": 39,
+            "task_description": "This task involves correcting errors in assigning values to variables of different data types and printing them. The code provided has several mistakes, including case sensitivity issues and incorrect data type usage.",
+            "incorrect_code": "hello = 'Hello'\nprint(Hello)\nnumber = '5'\nprint(number + 10)\nfloating_point = '3.14'\nprint(type(floating_Point))\nboolean_value = True\nprint(boolean_value and 'False')",
+            "correct_code": "hello = 'Hello'\nprint(hello)\nnumber = '5'\nprint(int(number) + 10)\nfloating_point = '3.14'\nprint(floating_point)\nboolean_value = True\nprint(boolean_value and False)",
+            "description": "The code contains several issues: incorrect variable names due to case sensitivity, attempting to add a string to an integer, using undefined variables, and logical operations on incompatible types.",
+            "explanation": "The correct code includes proper case usage for variables, appropriate type conversions, and logical operations.",
+            "expected_output": "Hello\n15\n<class 'float'>\nFalse"
+        }
+    ]
+}

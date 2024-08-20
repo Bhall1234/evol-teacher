@@ -3,458 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Learning Chatbot</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <title>Python Code Task Runner</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            overflow: hidden; /* Prevent scrolling when popup is active */
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
         }
         .container {
             display: flex;
-            max-width: 1200px;
-            margin: auto;
-            gap: 20px;
-            opacity: 0.2; /* Make content dim while popup is active */
-            pointer-events: none; /* Disable interaction with content while popup is active */
-            max-height: none;
-            overflow: auto;
-            padding: 20px;
-        }
-        .column {
-            flex: 1;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .ask-section {
-            background-color: #ffe4e1; /* Light pink */
-        }
-        .fix-code-section {
-            background-color: #e0ffe4; /* Light green */
-        }
-        .chat-column {
-            background-color: #e1e4ff; /* Light blue */
-        }
-        .reflection-chat-column {
-            background-color: #fff7e1; /* Light yellow */
-        }
-        .code-block {
-            background-color: #f8f8f8;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 10px 0;
-            overflow-x: auto;
-        }
-        .CodeMirror {
-            border: 1px solid #ddd;
-            height: auto;
-            width: 100%;
-        }
-        .response {
-            white-space: pre-wrap;
-            margin: 0;
-            padding: 0;
-        }
-        p, h2 {
-            margin: 0;
-            padding: 0;
-        }
-        .buttons {
-            margin-top: 10px;
-        }
-        button {
-            padding: 10px 20px;
-            margin-right: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .run-button {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .run-button:hover {
-            background-color: #45a049;
-        }
-        .reset-button {
-            background-color: #f44336;
-            color: white;
-        }
-        .reset-button:hover {
-            background-color: #e53935;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .submit-button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            margin-top: 10px;
-        }
-        .hint-button, .explanation-button, .check-button, .solution-button {
-            background-color: #008CBA;
-            color: white;
-            padding: 10px 20px;
-            margin-top: 10px;
-        }
-        .hint-button:hover, .explanation-button:hover, .check-button:hover, .solution-button:hover {
-            background-color: #007bb5;
-        }
-        .check-button {
-            margin-top: 10px;
-        }
-        pre {
-            background-color: #f8f8f8;
-            border: 1px solid #ddd;
-            padding: 10px;
-            white-space: pre-wrap;
-            margin: 0;
-            overflow: auto;
-        }
-        code {
-            white-space: pre-wrap;
-        }
-        .highlight pre {
-            margin: 0;
-            padding: 10px;
-            white-space: pre-wrap;
-        }
-        form {
-            display: flex;
             flex-direction: column;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-        }
-        input[type="submit"] {
-            width: fit-content;
-            padding: 10px 20px;
-            align-self: flex-start;
-        }
-        #check-result {
-            font-size: 1.2em;
-            margin-top: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            background-color: #f8f8f8;
+            align-items: center;
+            margin: 20px auto;
+            max-width: 800px;
         }
 
-        /* Popup Styling */
-        .popup {
-            position: fixed;
-            top: 0;
-            left: 0;
+        #task-desc, #output {
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-        .popup-content {
-            background: white;
-            padding: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            text-align: center;
-            max-width: 500px;
-            box-sizing: border-box;
-        }
-        .popup-content h2 {
-            margin-bottom: 10px;
-        }
-        .popup-content p {
+            background-color: #f9f9f9;
             margin-bottom: 20px;
         }
-        .popup-content button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-        /* Loading Overlay Styles */
-        #loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+
+        #editor {
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999; /* Ensures the overlay is on top */
+            height: 300px;
+        }
+        .CodeMirror {
+            height: auto;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            line-height: 1.2;
+            padding: 0; /* Ensure there's no padding that could cut off the text */
+            margin: 0;
         }
 
-        /* Spinner Styles */
-        .spinner {
-            border: 8px solid #f3f3f3; /* Light grey */
-            border-top: 8px solid #3498db; /* Blue */
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
+        .CodeMirror-gutters {
+            background-color: #f7f7f7;
+            border-right: 1px solid #ddd;
+            width: auto; /* Make the gutter width auto to avoid overlap */
         }
 
-        /* Animation for the Spinner */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .CodeMirror-linenumbers {
+            padding-right: 10px; /* Add padding to the line numbers */
         }
-        #guide-content {
-            position: fixed;
-            right: -400px; /* Keep the guide box hidden off-screen initially */
-            top:10%;
-            width: 300px;
-            height: 75%;
-            background-color: #d7e0db;
-            border: 2px solid #3498db;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
-            z-index: 9998;
-        }
-        
-        #guide-tab {
-            position: fixed; /* Position relative to the guide-content box */
-            top: 10%; 
-            right: 0px; /* Position the tab to the left of the guide-content */
-            width: 40px;
-            height: 100px;
-            padding: 10px;
-            background-color: #3498db;
-            color: white;
-            text-align: center;
-            cursor: pointer;
-            transform: rotate(-90deg);
-            transform-origin: 0 0;
-            z-index: 9999;
-        }
-</style>
 
+        .CodeMirror-scroll {
+            overflow: auto;
+            max-height: 300px;
+        }
+
+        .CodeMirror-line {
+            padding-left: 4px;
+        }
+
+        .CodeMirror-code {
+            line-height: 1.5; /* Adjust line height to provide more space between lines */
+        }
+    </style>
 </head>
 <body>
-    <!-- Disclaimer Popup -->
-    <div class="popup" id="disclaimer-popup">
-        <div class="popup-content">
-            <h2>Disclaimer</h2>
-            <p>Please note that the content presented by this chatbot does not represent my views or the views of the University of Nottingham.</p>
-            <p>By continuing, you acknowledge that the information provided is for educational purposes only.</p>
-            <button onclick="closePopup()">I Understand</button>
-        </div>
-    </div>
-    <div id="loading-overlay" style="display: none;">
-        <div class="spinner"></div>
-    </div>
-    <div class="container" id="content-container">
-        <div class="column ask-section">
-            <h1>Interactive Python Learning Environment</h1>
-            <p>Welcome! This environment is designed to help you learn Python by interacting with various sections. If you're unsure how to proceed, check the guide on the right side of the screen. The questions are numbered 1 to 4. Please select questions in this order.</p>
-            <form method="POST" action="/ask" id="ask-form">
-                <label for="question">Select a question:</label><br>
-                <!-- Drop-down menu for predefined questions -->
-                <select id="predefined-question" name="predefined_question" onchange="toggleTextInput()">
-                    <option value="">--Select a question--</option>
-                    <option value="What are some of the basic concepts in Python that I should know about?">1. What are some of the basic concepts in Python that I should know about?</option>
-                    <option value="What is a variable in Python?">2. What is a variable in Python?</option>
-                    <option value="What are the different types of data in Python?">3. What are the different types of data in Python?</option>
-                    <option value="What mathematical operations can I perform in Python">4. What mathematical operations can I perform in Python?</option>
-                </select>
-                <!-- OR separator 
-                <p>OR</p>-->
-                <!-- Text input for custom question
-                <input type="text" id="question" name="question" placeholder="Type your own question here...">-->
+    <div class="container">
+        <h1>Python Code Task Runner</h1>
+        <label for="task-select">Select a Task:</label>
+        <select id="task-select" onchange="loadTask()">
+            <option value="">--Select a Task--</option>
+            {% for task in tasks %}
+            <option value="{{ task.task_id }}">{{ task.task_description }}</option>
+            {% endfor %}
+        </select>
 
-                <div class="button-container">
-                    <button class="submit-button">Submit</button>
-                </div>
-            </form>
-            <br>
-            {% if question %}
-            <h2>Your Question:</h2>
-            <p>{{ question }}</p>
-            <h2>Response:</h2>
-            <div id="response" class="response">
-                {% if explanation %}
-                {{ explanation | safe }}
-                {% else %}
-                <p class="loading">Processing your question...</p>
-                {% endif %}
-            </div>
-            {% endif %}
-        </div>
-            <div class="column fix-code-section">
-                {% if incorrect_code %}
-                <h2>Incorrect Code:</h2>
-                <p><strong>Task Description:</strong> {{ task_description }}</p>
-                <div class="code-block" id="incorrect-code-block">{{ incorrect_code | safe }}</div>
-                <button onclick="copyCodeToEditor()" style="margin-top: 10px; background-color: #4CAF50; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">
-                    Copy Code to Editor
-                </button>
-                <p id="hint" style="display: none;"><strong>Hint:</strong> {{ hint }}</p>
-                <p id="explanation" style="display: none;"><strong>Explanation:</strong> {{ detailed_explanation }}</p>
-                {% endif %}
-                <h2>Try to Fix the Incorrect Code:</h2>
-                <textarea id="editor"></textarea>
-                <pre id="output"></pre>
-                <div class="buttons">
-                    <button class="run-button" onclick="runCode()">Run Code</button>
-                    <button class="reset-button" onclick="resetCode()">Reset Code</button>
-                </div>
-                <form id="check-code-form">
-                    <input type="hidden" id="task-id" name="task_id" value="{{ task_id }}">
-                    <button type="submit" class="check-button">Check Code</button>
-                </form>
-                <div id="check-result"></div>
-            </div>
-            
-            {% if correct_code %}
-            <div id="solution" style="display: none;">
-                <h2>Correct Code:</h2>
-                <div class="code-block">{{ correct_code | safe }}</div>
-            </div>
-            {% endif %}
+        <div id="task-details" style="display: none;">
+            <h3>Task Description:</h3>
+            <p id="task-desc"></p>
+
+            <h3>Incorrect Code:</h3>
+            <textarea id="editor" class="code-editor"></textarea>
+
+            <button onclick="runCode()">Run Code</button>
+
+            <div class="result" id="output"></div>
         </div>
     </div>
-    <!-- New column for chat interaction -->
-    <div class="column chat-column" id="chat-column">
-        <h2>Chat with Assistant</h2>
-        <input type="text" id="chat-input" placeholder="Ask about the code..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
-        <div id="chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
-        <button onclick="sendMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
-    </div>
-    <div class="column reflection-chat-column" id="reflection-chat-column" style="display: none;">
-        <h2>Reflect on Your Solution</h2>
-        <input type="text" id="reflection-chat-input" placeholder="Reflect on the solution..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">
-        <div id="reflection-chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
-        <button onclick="sendReflectionMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
-    </div>
-    <div id="guide-tab">Help</div>
-    <div id="guide-content">
-        <h3>Interactive Python Learning Guide</h3>
-        <p><strong>Ask a Question:</strong> <span style="background-color: #ffe4e1;">Use the <strong>LIGHT PINK</strong> section to choose a question about Python. This section provides a primer or introduction to the topic. For more specific task help use the light blue chat assistant section.</span></p>
-        <p><strong>Fix the Code:</strong> <span style="background-color: #e0ffe4;">Use the <strong>LIGHT GREEN</strong> section to fix any incorrect code. You can use this area to run code. You are encouraged to copy and paste the code from the task into this area. When you think you are done you can press "Check Code", this will let you know if you have made a mistake.</span></p>
-        <p><strong>Chat with Assistant:</strong> <span style="background-color: #e1e4ff;">Use the <strong>LIGHT BLUE</strong> section if you get stuck on the task or have a question about the task. You can ask about anything you dont understand in relation to Python features and the task specifically.</span></p>
-        <p><strong>Reflect on Solution:</strong> <span style="background-color: #fff7e1;">Use the <strong>LIGHT YELLOW</strong> section to reflect on your solution after fixing the code. Please try your best to answer the question(s), this is just to see how much you have understood the topic. If the question doesnt make sense you can ask for clarification. Dont worry if you dont understand the question.</span></p>
-    </div>
-    
-    <script>
-        function toggleTextInput() {
-            var predefinedQuestion = document.getElementById("predefined-question").value;
-            var questionInput = document.getElementById("question");
-    
-            // If a predefined question is selected, disable the text input
-            if (predefinedQuestion) {
-                questionInput.disabled = true;
-                questionInput.value = "";  // Clear the input if a predefined question is chosen
-            } else {
-                questionInput.disabled = false;
-            }
-        }
-    </script>
 
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
             lineNumbers: true,
             mode: "python",
-            theme: "default"
+            theme: "default",
+            matchBrackets: true,
+            autoCloseBrackets: true,
+            styleActiveLine: true,
+            lineWrapping: true,
+            indentWithTabs: true,
+            tabSize: 4
         });
-        
-        // Set the initial code in the editor
 
-        function copyCodeToEditor() {
-            // Retrieve the code block content
-            var incorrectCode = document.getElementById("incorrect-code-block").textContent;
-            // Set the value of the CodeMirror editor
-            editor.setValue(incorrectCode);
-        }
-
-        function toggleHint() {
-            var hint = document.getElementById("hint");
-            if (hint.style.display === "none") {
-                hint.style.display = "block";
+        function loadTask() {
+            var taskId = document.getElementById("task-select").value;
+            if (taskId) {
+                fetch(`/get_task?task_id=${taskId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("task-desc").textContent = data.task_description;
+                        editor.setValue(data.incorrect_code);
+                        document.getElementById("task-details").style.display = "block";
+                    });
             } else {
-                hint.style.display = "none";
-            }
-        }
-
-        function toggleExplanation() {
-            var explanation = document.getElementById("explanation");
-            if (explanation.style.display === "none") {
-                explanation.style.display = "block";
-            } else {
-                explanation.style.display = "none";
-            }
-        }
-
-        function toggleSolution() {
-            var solution = document.getElementById("solution");
-            if (solution.style.display === "none") {
-                solution.style.display = "block";
-            } else {
-                solution.style.display = "none";
+                document.getElementById("task-details").style.display = "none";
             }
         }
 
         function runCode() {
-            var code = editor.getValue();
-            var outputElement = document.getElementById("output");
-            outputElement.textContent = "Running code...\n";
+            var userCode = editor.getValue();
+            var taskId = document.getElementById("task-select").value;
 
             fetch("/run_code", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ code: code })
-            })
-            .then(response => response.json())
-            .then(data => {
-                outputElement.textContent = data.output || "No output received.";
-            })
-            .catch(error => {
-                outputElement.textContent = "Error running code.";
-                console.error("Error:", error);
-            });
-        }
-
-        function resetCode() {
-            editor.setValue("");
-        }
-
-        // For the predefined questions dropdown, display the loading overlay when the user submits a question.
-        document.getElementById("ask-form").addEventListener("submit", function(event) {
-            // Show the loading overlay when the user submits the question
-            document.getElementById("loading-overlay").style.display = "flex";
-        });
-
-
-        document.getElementById("check-code-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            var userCode = editor.getValue();
-            var taskId = document.getElementById("task-id").value;
-
-            // Show the loading overlay
-            document.getElementById("loading-overlay").style.display = "flex";
-            
-            fetch("/interact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -463,161 +132,19 @@
             })
             .then(response => response.json())
             .then(data => {
-                var resultElement = document.getElementById("check-result");
-                var reflectionChatColumn = document.getElementById("reflection-chat-column");
-
+                var outputElement = document.getElementById("output");
                 if (data.result === "Correct") {
-                    resultElement.innerText = "Great job! Your code is correct.";
-                    resultElement.style.color = "green";
-
-                    // Show the reflection chat column
-                    reflectionChatColumn.style.display = "block";
-                    
-                    // Add the reflection question to the reflection chatbox
-                    var chatbox = document.getElementById("reflection-chatbox");
-
-                    if (data.initial_chat_message) {
-                        chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.initial_chat_message + "</p>";
-                    } else {
-                        chatbox.innerHTML += "<p><strong>Assistant:</strong> Error: No reflection question generated.</p>";
-                    }
-
-                    // Show a prompt to scroll down
-                    resultElement.innerHTML += "<br><br><strong>Please scroll down to the yellow section to reflect on your solution.</strong>";
-                    resultElement.style.fontWeight = "bold";
+                    outputElement.textContent = "Correct Output: " + data.output;
+                    outputElement.style.color = "green";
+                } else if (data.result === "Incorrect") {
+                    outputElement.textContent = "Incorrect Output: " + data.output + "\nExpected: " + data.expected_output;
+                    outputElement.style.color = "red";
                 } else {
-                    resultElement.innerText = "Oops! There seems to be an error in your code.";
-                    resultElement.style.color = "red";
+                    outputElement.textContent = data.output;
+                    outputElement.style.color = "black";
                 }
-
-                var staticAnalysisElement = document.getElementById("static-analysis-result");
-                staticAnalysisElement.textContent = data.static_analysis;
-
-                // Hide the loading overlay
-                document.getElementById("loading-overlay").style.display = "none";
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                document.getElementById("loading-overlay").style.display = "none";
-            });
-        });
-
-
-        function sendMessage() {
-            var message = document.getElementById("chat-input").value;
-            var chatbox = document.getElementById("chatbox");
-            var taskId = document.getElementById("task-id").value;
-
-            // Add the user's message to the chatbox
-            chatbox.innerHTML += "<p><strong>You:</strong> " + message + "</p>";
-            document.getElementById("chat-input").value = ""; // Clear the input box
-
-            // Show the loading overlay
-            document.getElementById("loading-overlay").style.display = "flex";
-
-            fetch("/chat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: "message=" + encodeURIComponent(message) + "&task_id=" + taskId
-            })
-            .then(response => response.json())
-            .then(data => {
-                chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.response + "</p>";
-                chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
-
-                // Hide the loading overlay
-                document.getElementById("loading-overlay").style.display = "none";
             });
         }
-
-        function sendReflectionMessage() {
-            var message = document.getElementById("reflection-chat-input").value;
-            var chatbox = document.getElementById("reflection-chatbox");
-            var taskId = document.getElementById("task-id").value;
-
-            // Add the user's message to the chatbox
-            chatbox.innerHTML += "<p><strong>You:</strong> " + message + "</p>";
-            document.getElementById("reflection-chat-input").value = ""; // Clear the input box
-
-            // Show the loading overlay
-            document.getElementById("loading-overlay").style.display = "flex";
-
-            fetch("/interact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ message: message, task_id: taskId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                chatbox.innerHTML += "<p><strong>Assistant:</strong> " + data.response + "</p>";
-                chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
-
-                // Hide the loading overlay
-                document.getElementById("loading-overlay").style.display = "none";
-            });
-        }
-
-        // Function to close the popup and store a cookie
-        function closePopup() {
-            setCookie('disclaimer_acknowledged', 'true', 30); // Store cookie for 30 days
-            var popup = document.getElementById("disclaimer-popup");
-            var content = document.getElementById("content-container");
-            popup.style.display = "none";
-            content.style.opacity = "1";
-            content.style.pointerEvents = "auto";
-            document.body.style.overflow = "auto"; // Re-enable scrolling
-        }
-
-        // Function to set a cookie
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        // Function to get a cookie
-        function getCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
-        // Check if the user has already acknowledged the disclaimer
-        window.onload = function() {
-            var disclaimerAcknowledged = getCookie('disclaimer_acknowledged');
-            if (disclaimerAcknowledged) {
-                var popup = document.getElementById("disclaimer-popup");
-                var content = document.getElementById("content-container");
-                popup.style.display = "none";
-                content.style.opacity = "1";
-                content.style.pointerEvents = "auto";
-                document.body.style.overflow = "auto"; // Re-enable scrolling
-            }
-        };
-
-        // Toggle the guide content visibility
-        document.getElementById("guide-tab").addEventListener("click", function() {
-            var guideContent = document.getElementById("guide-content");
-            if (guideContent.style.right === "0px") {
-                guideContent.style.right = "-400px"; /* Hide the guide off-screen */
-            } else {
-                guideContent.style.right = "0px"; /* Show the guide */
-            }
-        });
-
     </script>
 </body>
 </html>
