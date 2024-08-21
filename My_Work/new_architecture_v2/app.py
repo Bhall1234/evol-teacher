@@ -374,6 +374,17 @@ def run_code():
         return jsonify({"output": f"Error in code execution:\n{e.stderr.strip()}"}), 400
     except Exception as e:
         return jsonify({"output": f"Unexpected error:\n{str(e)}"}), 500
+    
+@app.route('/idk', methods=['POST'])
+def idk():
+    data = request.json
+    task_id = data.get('task_id')
+    
+    # Log the "I don't know" event with the task ID
+    logging.info(f"User selected 'I don't know' for task ID: {task_id}")
+
+    # Respond to the frontend with a success message
+    return jsonify({"success": True, "message": "Your response has been recorded."})
 
 def parse_pylint_output(output):
     lines = output.splitlines()
@@ -391,6 +402,7 @@ def parse_pylint_output(output):
 def extract_initial_explanation(explanation):
     sentences = re.split(r'[.:]\s*', explanation)
     return '. '.join(sentences[:2])
+
 
 def extract_programming_keywords(text):
     doc = nlp(text)
