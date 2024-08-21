@@ -472,6 +472,7 @@
         function runCode() {
             var code = editor.getValue();
             var outputElement = document.getElementById("output");
+            var expectedOutput = "{{ expected_output|safe }}"; // Use the actual expected output from the backend
 
             outputElement.textContent = "Running code...\n";
 
@@ -480,14 +481,13 @@
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ code: code, expected_output: "expected output here" })  // Replace with actual expected output
+                body: JSON.stringify({ code: code, expected_output: expectedOutput })  // Pass actual expected output
             })
             .then(response => response.json())
             .then(data => {
                 if (data.result === "Correct") {
                     outputElement.textContent = "Correct Output: " + data.output;
                     outputElement.style.color = "green";
-                    // Do not show the follow-up challenge here
                 } else if (data.result === "Incorrect") {
                     outputElement.innerHTML = `
                         <p><strong>Incorrect Output:</strong></p>
@@ -506,7 +506,6 @@
                 console.error("Error:", error);
             });
         }
-
 
         function resetCode() {
             editor.setValue("");

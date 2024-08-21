@@ -353,6 +353,7 @@ def run_code():
     try:
         data = request.get_json()
         user_code = data.get("code", "")
+        expected_output = data.get("expected_output", "").strip()  # Ensure we get the expected output
 
         if not user_code:
             return jsonify({"output": "No code provided."}), 400
@@ -361,25 +362,15 @@ def run_code():
         result = subprocess.run([sys.executable, "-c", user_code], capture_output=True, text=True, check=True, timeout=5)
         user_output = result.stdout.strip()
 
-        # Check if expected_output is available, otherwise handle undefined case
-        if "expected_output" in data:
-            expected_output = data.get("expected_output", "").strip()
-
-            # Handle undefined expected output
-            if expected_output == "undefined":
-                return jsonify({"output": user_output, "result": "Correct"}), 200
-
-            # Compare the actual output with the expected output
-            if user_output == expected_output:
-                return jsonify({"output": user_output, "result": "Correct"}), 200
-            else:
-                return jsonify({
-                    "output": user_output,
-                    "result": "Incorrect",
-                    "expected_output": expected_output
-                }), 200
+        # Compare the actual output with the expected output
+        if user_output == expected_output:
+            return jsonify({"output": user_output, "result": "Correct"}), 200
         else:
-            return jsonify({"output": user_output, "result": "Output received"}), 200
+            return jsonify({
+                "output": user_output,
+                "result": "Incorrect",
+                "expected_output": expected_output
+            }), 200
 
     except subprocess.CalledProcessError as e:
         return jsonify({"output": f"Error in code execution:\n{e.stderr.strip()}"}), 400
