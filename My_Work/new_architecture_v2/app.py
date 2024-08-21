@@ -35,12 +35,6 @@ def log_with_session(message, level=logging.INFO):
     task_id = session.get('current_task_id', 'UnknownTask')
     logging.log(level, f"Session ID: {session_id}, Task ID: {task_id} - {message}")
 
-# Set up logging
-"""log_path = os.path.join(os.getcwd(), 'My_Work', 'new_architecture_v2', 'src', 'logs', 'user_interactions.log')
-os.makedirs(os.path.dirname(log_path), exist_ok=True)
-logging.basicConfig(filename=log_path, level=logging.INFO, 
-                    format='%(asctime)s - %(levelname)s - %(message)s')"""
-
 # Set up logging in OneDrive
 log_path = os.path.join('C:\\Users\\benha\\OneDrive - The University of Nottingham\\Project\\Chat_Logs\\Participant', 'user_interactions.log')
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
@@ -213,7 +207,7 @@ def interact():
                     "role": "system",
                     "content": f"User's Submitted Code:\n{user_code}"
                 })
-                history.append({ # TRIAL OF ADDING EXAMPLE QUESTION
+                history.append({ 
                     "role": "system",
                     "content": f"Example Reflection Question:\n{reflection_question}"
                 })
@@ -243,9 +237,16 @@ def interact():
 
                 response["show_reflection_chat"] = True
                 response["initial_chat_message"] = formatted_reflection_question
-                log_with_session(f"Final response with reflection chat: {response}")
 
-            return jsonify(response)
+                # Include follow-up challenge details
+                response["follow_up_challenge"] = {
+                    "description": correct_example.get("follow_up_challenge", "No follow-up challenge available."),
+                    "initial_code": correct_example.get("follow_up_initial_code", ""),  
+                    "expected_output": correct_example.get("follow_up_expected_output", "Not provided")
+                }
+                log_with_session(f"Final response with reflection chat and follow-up challenge: {response}")
+
+                return jsonify(response)
         
         # Continuation of the conversation
         else:
@@ -331,6 +332,21 @@ def chat():
     else:
         log_with_session(f"No matching task found for task ID: {task_id}", level=logging.ERROR)
         return jsonify({"response": "Sorry, I couldn't find any information about this task."})
+    
+@app.route("/log_follow_up_code", methods=["POST"])
+def log_follow_up_code():
+    try:
+        data = request.get_json()
+        follow_up_code = data.get("code", "")
+        task_id = data.get("task_id", "UnknownTask")
+
+        # Log the follow-up code submission
+        log_with_session(f"Follow-Up Code Submitted for Task ID {task_id}: \n{follow_up_code}")
+
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        log_with_session(f"Failed to log Follow-Up Code: {str(e)}", level=logging.ERROR)
+        return jsonify({"success": False, "error": str(e)}), 500
 
 @app.route("/run_code", methods=["POST"])
 def run_code():
@@ -345,7 +361,25 @@ def run_code():
         result = subprocess.run([sys.executable, "-c", user_code], capture_output=True, text=True, check=True, timeout=5)
         user_output = result.stdout.strip()
 
-        return jsonify({"output": user_output}), 200
+        # Check if expected_output is available, otherwise handle undefined case
+        if "expected_output" in data:
+            expected_output = data.get("expected_output", "").strip()
+
+            # Handle undefined expected output
+            if expected_output == "undefined":
+                return jsonify({"output": user_output, "result": "Correct"}), 200
+
+            # Compare the actual output with the expected output
+            if user_output == expected_output:
+                return jsonify({"output": user_output, "result": "Correct"}), 200
+            else:
+                return jsonify({
+                    "output": user_output,
+                    "result": "Incorrect",
+                    "expected_output": expected_output
+                }), 200
+        else:
+            return jsonify({"output": user_output, "result": "Output received"}), 200
 
     except subprocess.CalledProcessError as e:
         return jsonify({"output": f"Error in code execution:\n{e.stderr.strip()}"}), 400

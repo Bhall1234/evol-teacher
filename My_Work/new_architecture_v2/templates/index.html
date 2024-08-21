@@ -246,6 +246,13 @@
             transform-origin: 0 0;
             z-index: 9999;
         }
+        .follow-up-challenge {
+            background-color: #f4f9f4;
+            border: 1px solid #4CAF50;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
 </style>
 
 </head>
@@ -345,6 +352,19 @@
         <div id="reflection-chatbox" style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; background-color: #f8f8f8;"></div>
         <button onclick="sendReflectionMessage()" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; margin-top: 10px;">Send</button>
     </div>
+    <div class="follow-up-challenge" id="follow-up-challenge-section" style="display:none;">
+        <h2>Follow-Up Challenge</h2>
+        <p id="follow-up-description"></p>
+        <textarea id="follow-up-editor"></textarea>
+        <div class="buttons">
+            <button class="run-button" onclick="runFollowUpCode()">Run Follow-Up Code</button>
+            <button class="reset-button" onclick="resetFollowUpCode()">Reset Follow-Up Code</button>
+            <button class="copy-code-button" onclick="copyCodeToFollowUp()">Copy Code to Follow-Up Challenge</button>
+            <button class="submit-followup-button" onclick="submitFollowUpCode()">Submit Follow-Up Code</button>
+        </div>
+        <pre id="follow-up-output"></pre>
+        <pre id="follow-up-expected-output"></pre>
+    </div>
     <div id="guide-tab">Help</div>
     <div id="guide-content">
         <h3>Interactive Python Learning Guide</h3>
@@ -375,6 +395,12 @@
             mode: "python",
             theme: "default"
         });
+
+        var followUpEditor = CodeMirror.fromTextArea(document.getElementById("follow-up-editor"), {
+            lineNumbers: false,
+            mode: "python",
+            theme: "default"
+        });
         
         // Set the initial code in the editor
 
@@ -383,6 +409,37 @@
             var incorrectCode = document.getElementById("incorrect-code-block").textContent;
             // Set the value of the CodeMirror editor
             editor.setValue(incorrectCode);
+        }
+
+        function submitFollowUpCode() {
+            var code = followUpEditor.getValue();
+            var taskId = document.getElementById("task-id").value;
+
+            // Send the follow-up code to the backend for logging
+            fetch("/log_follow_up_code", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code: code, task_id: taskId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Follow-Up Code Submitted and Logged!");
+                } else {
+                    alert("Failed to log Follow-Up Code.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Error submitting Follow-Up Code.");
+            });
+        }
+
+        function copyCodeToFollowUp() {
+            var mainCode = editor.getValue();
+            followUpEditor.setValue(mainCode);
         }
 
         function toggleHint() {
@@ -415,7 +472,51 @@
         function runCode() {
             var code = editor.getValue();
             var outputElement = document.getElementById("output");
+
             outputElement.textContent = "Running code...\n";
+
+            fetch("/run_code", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code: code, expected_output: "expected output here" })  // Replace with actual expected output
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === "Correct") {
+                    outputElement.textContent = "Correct Output: " + data.output;
+                    outputElement.style.color = "green";
+                    // Do not show the follow-up challenge here
+                } else if (data.result === "Incorrect") {
+                    outputElement.innerHTML = `
+                        <p><strong>Incorrect Output:</strong></p>
+                        <pre>${data.output}</pre>
+                        <p><strong>Expected:</strong></p>
+                        <pre>${data.expected_output}</pre>
+                    `;
+                    outputElement.style.color = "red";
+                } else {
+                    outputElement.textContent = data.output;
+                    outputElement.style.color = "black";
+                }
+            })
+            .catch(error => {
+                outputElement.textContent = "Error running code.";
+                console.error("Error:", error);
+            });
+        }
+
+
+        function resetCode() {
+            editor.setValue("");
+        }
+
+        function runFollowUpCode() {
+            var code = followUpEditor.getValue();
+            var outputElement = document.getElementById("follow-up-output");
+
+            outputElement.textContent = "Running follow-up code...\n";
 
             fetch("/run_code", {
                 method: "POST",
@@ -426,7 +527,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                outputElement.textContent = data.output || "No output received.";
+                outputElement.textContent = "Output: " + data.output;
             })
             .catch(error => {
                 outputElement.textContent = "Error running code.";
@@ -434,8 +535,17 @@
             });
         }
 
-        function resetCode() {
-            editor.setValue("");
+        function resetFollowUpCode() {
+            followUpEditor.setValue("");
+        }
+
+        function showFollowUpChallenge(challengeData) {
+            if (challengeData) {
+                document.getElementById("follow-up-description").textContent = challengeData.description || "No description provided.";
+                followUpEditor.setValue(challengeData.initial_code || "");
+                document.getElementById("follow-up-expected-output").textContent = "Expected Output: " + (challengeData.expected_output || "Not provided");
+                document.getElementById("follow-up-challenge-section").style.display = "block";
+            }
         }
 
         // For the predefined questions dropdown, display the loading overlay when the user submits a question.
@@ -445,13 +555,14 @@
         });
 
 
+        // Update the "Check Code" event listener to include follow-up challenge handling
+        // Update the "Check Code" event listener to include follow-up challenge handling
         document.getElementById("check-code-form").addEventListener("submit", function(event) {
             event.preventDefault();
             
             var userCode = editor.getValue();
             var taskId = document.getElementById("task-id").value;
 
-            // Show the loading overlay
             document.getElementById("loading-overlay").style.display = "flex";
             
             fetch("/interact", {
@@ -470,10 +581,8 @@
                     resultElement.innerText = "Great job! Your code is correct.";
                     resultElement.style.color = "green";
 
-                    // Show the reflection chat column
                     reflectionChatColumn.style.display = "block";
                     
-                    // Add the reflection question to the reflection chatbox
                     var chatbox = document.getElementById("reflection-chatbox");
 
                     if (data.initial_chat_message) {
@@ -482,18 +591,15 @@
                         chatbox.innerHTML += "<p><strong>Assistant:</strong> Error: No reflection question generated.</p>";
                     }
 
-                    // Show a prompt to scroll down
-                    resultElement.innerHTML += "<br><br><strong>Please scroll down to the yellow section to reflect on your solution.</strong>";
-                    resultElement.style.fontWeight = "bold";
+                    if (data.follow_up_challenge) {
+                        showFollowUpChallenge(data.follow_up_challenge); // Only show follow-up challenge here
+                    }
+
                 } else {
                     resultElement.innerText = "Oops! There seems to be an error in your code.";
                     resultElement.style.color = "red";
                 }
 
-                var staticAnalysisElement = document.getElementById("static-analysis-result");
-                staticAnalysisElement.textContent = data.static_analysis;
-
-                // Hide the loading overlay
                 document.getElementById("loading-overlay").style.display = "none";
             })
             .catch(error => {
@@ -501,7 +607,6 @@
                 document.getElementById("loading-overlay").style.display = "none";
             });
         });
-
 
         function sendMessage() {
             var message = document.getElementById("chat-input").value;
