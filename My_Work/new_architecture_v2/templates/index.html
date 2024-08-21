@@ -240,7 +240,7 @@
                     outputElement.textContent = "Correct Output: " + data.output;
                     outputElement.style.color = "green";
                 } else if (data.result === "Incorrect") {
-                    outputElement.textContent = "Incorrect Output: " + data.output + "\nExpected: " + data.expected_output;
+                    outputElement.textContent = "Incorrect Output: " + data.output + "\n|" + "\nExpected: " + data.expected_output;
                     outputElement.style.color = "red";
                 } else {
                     outputElement.textContent = data.output;

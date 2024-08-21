@@ -2,51 +2,51 @@
     "tasks": [
         {
             "task_id": 1,
-            "task_name": "Task 1: Hello, World!",
-            "task_description": "This task is designed to introduce you to both Python and the learning environment you're using. Your goal is to write a simple Python program that prints 'Hello, World!' to the console.",
-            "incorrect_code": "Print(Hello, World!)",
-            "correct_code": "print('Hello, World!')",
+            "task_name": "Task 1: Greeting the User",
+            "task_description": "This task introduces you to printing messages in Python. You'll write a Python program that prints 'Greetings, User!' to the console.",
+            "incorrect_code": "Print('Greetings, User!')",
+            "correct_code": "print('Greetings, User!')",
             "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes.",
-            "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
-            "expected_output": "Hello, World!",
-            "follow_up_challenge": "Now, try modifying the program to print 'Hello, Python!' instead. This will confirm that you understand how to manipulate strings and use the print function correctly.",
-            "reflection_question": "Why do you think Python enforces case sensitivity for function names like 'print'? How might this influence the way you write and debug your code?"        
+            "explanation": "In Python, functions are case-sensitive, and strings must be properly enclosed in quotes for the code to run correctly.",
+            "expected_output": "Greetings, User!",
+            "follow_up_challenge": "Modify the program to print 'Welcome, User!' instead. This will ensure you understand how to modify strings within the print function.",
+            "reflection_question": "Why do you think Python distinguishes between uppercase and lowercase in function names? How might this affect your programming practice?"
         },
         {
             "task_id": 2,
-            "task_name": "Task 2: Basic Math Operations",
-            "task_description": "This task introduces you to various mathematical operations you can perform in Python. You'll write a Python program that demonstrates addition, subtraction, multiplication, division, and exponentiation. The output should show the results of these operations.",
-            "incorrect_code": "num1 = 10\nnum2 = 5\naddition = num1 plus num2\nsubtraction = num1 minus num2\nmultiplication = num1 times num2\ndivision = num1 divided by num2\nexponentiation = num1 to the power of num2\nprint(addition, subtraction, multiplication, division, exponentiation)",
-            "correct_code": "num1 = 10\nnum2 = 5\naddition = num1 + num2\nsubtraction = num1 - num2\nmultiplication = num1 * num2\ndivision = num1 / num2\nexponentiation = num1 ** num2\nprint(addition, subtraction, multiplication, division, exponentiation)",
-            "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus', 'minus', 'times', 'divided by', and 'to the power of'. Python uses specific symbols for these operations: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
-            "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
-            "expected_output": "15 5 50 2.0 100000",
-            "follow_up_challenge": "Try modifying the program to include a modulus operation (finding the remainder of division). What happens when you find the modulus of 10 and 3?",
-            "reflection_question": "Why is it important to use the correct mathematical operators in Python? How could using the wrong operator lead to unexpected results in your program?"        
+            "task_name": "Task 2: Basic Arithmetic Operations",
+            "task_description": "This task involves performing arithmetic operations in Python. You'll write a Python program that calculates and prints the results of addition, subtraction, and multiplication of two numbers.",
+            "incorrect_code": "a = 12\nb = 8\nadd = a plus b\nsubtract = a minus b\nmultiply = a times b\nprint(add, subtract, multiply)",
+            "correct_code": "a = 12\nb = 8\nadd = a + b\nsubtract = a - b\nmultiply = a * b\nprint(add, subtract, multiply)",
+            "description": "The incorrect code uses non-Pythonic syntax for arithmetic operations. Python uses specific symbols: '+' for addition, '-' for subtraction, and '*' for multiplication.",
+            "explanation": "Python requires the use of specific operators for arithmetic operations. Using the wrong syntax will result in errors.",
+            "expected_output": "20 4 96",
+            "follow_up_challenge": "Extend the program to also perform division and modulus operations. What results do you get when you divide 12 by 8 and find the modulus?",
+            "reflection_question": "What might happen if you used the wrong operator in an arithmetic operation? How important is it to ensure the correct operator is used in mathematical calculations?"
         },
         {
             "task_id": 3,
-            "task_name": "Task 3: Variable Naming and Printing",
-            "task_description": "This task involves assigning values to multiple variables and printing them. The code provided has mistakes in variable naming due to case sensitivity.",
-            "incorrect_code": "myVariable1 = 10\nMyVariable2 = 20\nmyVariable_3 = 30\nprint(myvariable1)\nprint(myVariable2)\nprint(Myvariable_3)",
-            "correct_code": "myVariable1 = 10\nmyVariable2 = 20\nmyVariable_3 = 30\nprint(myVariable1)\nprint(myVariable2)\nprint(myVariable_3)",
-            "description": "The code contains multiple issues with variable naming due to case sensitivity. The incorrect code attempts to print variables with incorrect cases, leading to errors.",
-            "explanation": "In Python, variable names are case-sensitive. The correct approach is to consistently use the intended variable names when defining and printing them.",
-            "expected_output": "10 20 30",
-            "follow_up_challenge": "Try creating a new variable with a different case style (e.g., camelCase, snake_case) and see how it behaves when you try to print it.",
-            "reflection_question": "How does case sensitivity in variable names impact code readability and debugging in Python? Why is it important to maintain consistent naming conventions?"
+            "task_name": "Task 3: Assigning and Printing Variables",
+            "task_description": "In this task, you'll work with variable assignment and output. You'll write a Python program that assigns values to three variables and prints them.",
+            "incorrect_code": "varOne = 7\nVarTwo = 14\nvar_three = 21\nprint(varone)\nprint(varTwo)\nprint(var_Three)",
+            "correct_code": "varOne = 7\nvarTwo = 14\nvar_three = 21\nprint(varOne)\nprint(varTwo)\nprint(var_three)",
+            "description": "The incorrect code has mistakes in variable names due to case sensitivity, leading to errors when trying to print the variables.",
+            "explanation": "In Python, variable names are case-sensitive, meaning 'varOne' and 'varone' are considered different variables.",
+            "expected_output": "7 14 21",
+            "follow_up_challenge": "Create a new variable using a different case style and print it. Does the naming style affect the output?",
+            "reflection_question": "How does Python's case sensitivity in variable names help or hinder your coding? Why is it important to be consistent in your naming conventions?"
         },
         {
             "task_id": 4,
-            "task_name": "Task 4: Data Types",
-            "task_description": "This task involves correcting errors in assigning values to variables of different data types and printing them. The code provided has several mistakes, including case sensitivity issues and incorrect data type usage.",
-            "incorrect_code": "hello = 'Hello'\nprint(Hello)\nnumber = '5'\nprint(number + 10)\nfloating_point = '3.14'\nprint(type(floating_Point))\nboolean_value = True\nprint(boolean_value and 'False')",
-            "correct_code": "hello = 'Hello'\nprint(hello)\nnumber = '5'\nprint(int(number) + 10)\nfloating_point = '3.14'\nprint(floating_point)\nboolean_value = True\nprint(boolean_value and False)",
-            "description": "The code contains several issues: incorrect variable names due to case sensitivity, attempting to add a string to an integer, using undefined variables, and logical operations on incompatible types.",
-            "explanation": "The correct code includes proper case usage for variables, appropriate type conversions, and logical operations.",
-            "expected_output": "Hello 15 <class 'float'> False",
-            "follow_up_challenge": "Try changing the data type of the variable 'number' to a float before adding it to 10. What output do you get?",
-            "reflection_question": "What challenges might arise from incorrect variable names, data type mismatches, or case sensitivity issues in Python? How can you ensure that these types of errors are avoided in your code?"
+            "task_name": "Task 4: Working with Different Data Types",
+            "task_description": "This task involves using different data types in Python and performing operations on them. You'll fix errors in a program that handles strings, integers, and booleans.",
+            "incorrect_code": "greeting = 'Hi'\nprint(Greeting)\nvalue = '42'\nprint(value + 5)\nnumber = '3.5'\nprint(type(Number))\nis_active = True\nprint(is_active and 'false')",
+            "correct_code": "greeting = 'Hi'\nprint(greeting)\nvalue = '42'\nprint(int(value) + 5)\nnumber = '3.5'\nprint(type(number))\nis_active = True\nprint(is_active and False)",
+            "description": "The incorrect code has multiple issues, such as incorrect variable names due to case sensitivity, adding a string to an integer, and mismatched data types.",
+            "explanation": "Correcting these errors involves proper use of variable names, type conversions, and understanding the logic of boolean operations.",
+            "expected_output": "Hi 47 <class 'str'> False",
+            "follow_up_challenge": "Change the string '42' to an integer directly during assignment. What impact does this have on your ability to perform arithmetic operations?",
+            "reflection_question": "What difficulties can arise from mishandling data types in Python? How can understanding data types improve your coding accuracy?"
         }
     ]
 }
