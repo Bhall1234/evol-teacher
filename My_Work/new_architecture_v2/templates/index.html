@@ -472,7 +472,7 @@
         function runCode() {
             var code = editor.getValue();
             var outputElement = document.getElementById("output");
-            var expectedOutput = "{{ expected_output|safe }}"; // Use the actual expected output from the backend
+            var expectedOutput = "{{ expected_output|safe }}";  // Ensure the expected output is passed safely
 
             outputElement.textContent = "Running code...\n";
 
@@ -506,6 +506,7 @@
                 console.error("Error:", error);
             });
         }
+
 
         function resetCode() {
             editor.setValue("");
@@ -577,7 +578,7 @@
                 var reflectionChatColumn = document.getElementById("reflection-chat-column");
 
                 if (data.result === "Correct") {
-                    resultElement.innerText = "Great job! Your code is correct.";
+                    resultElement.innerText = "Great job! Your code is correct. Please scroll down to the yellow section to reflect on your solution and then answer the follow-up challenge!";
                     resultElement.style.color = "green";
 
                     reflectionChatColumn.style.display = "block";

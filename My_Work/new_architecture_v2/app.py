@@ -84,45 +84,44 @@ def ask():
     predefined_question = request.form.get("predefined_question")
     custom_question = request.form.get("question")
 
-    # Use the predefined question if selected; otherwise, use the custom question
     user_question = predefined_question if predefined_question else custom_question
     log_with_session(f"User question received: {user_question}")
 
-    # Reset the context for the chat conversation when a new question is asked.
     session.clear()
 
     if "python" not in user_question.lower():
         user_question += " (programming Language: python)"
         log_with_session(f"Modified user question: {user_question}")
-    
-    # Generate explanation based on the user question
+
     explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")
     log_with_session(f"Generated explanation: {explanation}")
-    
-    # Only extract keywords from the user's input question
+
     user_keywords = extract_programming_keywords(user_question)
     log_with_session(f"Extracted user keywords: {user_keywords}")
-    
-    # Find the incorrect code example based only on the user's input keywords
+
     incorrect_code_data = get_related_code_by_keywords(user_keywords, correct_code_examples)
     log_with_session(f"Selected incorrect code example: {incorrect_code_data}")
-    
-    # Set the current task ID in session
+
     session['current_task_id'] = incorrect_code_data.get('task_id', 'No task ID found')
     log_with_session(f"Task ID set to: {session['current_task_id']}")
-    
-    # Format the explanation and code snippets for rendering
+
+    # Pass the expected_output from the task to the template
+    expected_output = incorrect_code_data.get("expected_output", "").strip()
+
     formatted_explanation = format_code_snippets(explanation)
     formatted_incorrect_code = highlight(incorrect_code_data.get("incorrect_code", "No incorrect code found."), PythonLexer(), HtmlFormatter(noclasses=True))
     formatted_correct_code = highlight(incorrect_code_data.get("correct_code", "No correct code found."), PythonLexer(), HtmlFormatter(noclasses=True))
-    
-    # Render the template with the necessary data
-    return render_template("index.html", question=user_question, explanation=formatted_explanation, 
-                           incorrect_code=formatted_incorrect_code, correct_code=formatted_correct_code,
+
+    return render_template("index.html",
+                           question=user_question,
+                           explanation=formatted_explanation,
+                           incorrect_code=formatted_incorrect_code,
+                           correct_code=formatted_correct_code,
                            task_description=incorrect_code_data.get("task_description", "No task description found."),
-                           hint=incorrect_code_data.get("description", "No hint found."), 
+                           hint=incorrect_code_data.get("description", "No hint found."),
                            detailed_explanation=incorrect_code_data.get("explanation", "No detailed explanation found."),
-                           task_id=incorrect_code_data.get("task_id", "No task ID found."))
+                           task_id=incorrect_code_data.get("task_id", "No task ID found."),
+                           expected_output=expected_output)  # Pass expected_output to the template
 
 @app.route("/interact", methods=["POST"])
 def interact():
