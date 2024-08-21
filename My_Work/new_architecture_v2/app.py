@@ -9,7 +9,6 @@ import uuid
 from flask import Flask, request, render_template, jsonify, session
 from src.utils import load_dataset
 from src.explanation_generation import generate_explanation
-#from src.assistant_generation import generate_explanation
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter

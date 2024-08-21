@@ -12,15 +12,15 @@
             font-family: Arial, sans-serif;
             margin: 20px;
             padding: 0;
-            overflow: hidden; /* Prevent scrolling when popup is active */
+            overflow: auto; /* Prevent scrolling when popup is active */
         }
         .container {
             display: flex;
             max-width: 1200px;
             margin: auto;
             gap: 20px;
-            opacity: 0.2; /* Make content dim while popup is active */
-            pointer-events: none; /* Disable interaction with content while popup is active */
+            /*opacity: 0.2; /* Make content dim while popup is active */
+            /*pointer-events: none; /* Disable interaction with content while popup is active */
             max-height: none;
             overflow: auto;
             padding: 20px;
@@ -257,18 +257,12 @@
 
 </head>
 <body>
-    <!-- Disclaimer Popup -->
-    <div class="popup" id="disclaimer-popup">
-        <div class="popup-content">
-            <h2>Disclaimer</h2>
-            <p>Please note that the content presented by this chatbot does not represent my views or the views of the University of Nottingham.</p>
-            <p>By continuing, you acknowledge that the information provided is for educational purposes only.</p>
-            <button onclick="closePopup()">I Understand</button>
-        </div>
-    </div>
     <div id="loading-overlay" style="display: none;">
         <div class="spinner"></div>
     </div>
+    <div id="disclaimer-banner" style="background-color: #ffcc00; padding: 10px; text-align: center; font-size: 16px;">
+        <strong>Disclaimer:</strong> The content presented by this chatbot does not represent my views or the views of the University of Nottingham. The information provided is for educational purposes only.
+    </div>    
     <div class="container" id="content-container">
         <div class="column ask-section">
             <h1>Interactive Python Learning Environment</h1>
@@ -371,7 +365,7 @@
         <p><strong>Ask a Question:</strong> <span style="background-color: #ffe4e1;">Use the <strong>LIGHT PINK</strong> section to choose a question about Python. This section provides a primer or introduction to the topic. For more specific task help use the light blue chat assistant section.</span></p>
         <p><strong>Fix the Code:</strong> <span style="background-color: #e0ffe4;">Use the <strong>LIGHT GREEN</strong> section to fix any incorrect code. You can use this area to run code. You are encouraged to copy and paste the code from the task into this area. When you think you are done you can press "Check Code", this will let you know if you have made a mistake.</span></p>
         <p><strong>Chat with Assistant:</strong> <span style="background-color: #e1e4ff;">Use the <strong>LIGHT BLUE</strong> section if you get stuck on the task or have a question about the task. You can ask about anything you dont understand in relation to Python features and the task specifically.</span></p>
-        <p><strong>Reflect on Solution:</strong> <span style="background-color: #fff7e1;">Use the <strong>LIGHT YELLOW</strong> section to reflect on your solution after fixing the code. Please try your best to answer the question(s), this is just to see how much you have understood the topic. If the question doesnt make sense you can ask for clarification. Dont worry if you dont understand the question.</span></p>
+        <p><strong>Reflect on Solution and Follow Up Challenge:</strong> <span style="background-color: #fff7e1;">Use the <strong>LIGHT YELLOW</strong> section to reflect on your solution after fixing the code. Please try your best to answer the question(s), this is just to see how much you have understood the topic. If the question doesnt make sense you can ask for clarification. Dont worry if you dont understand the question or can't complete the follow up challenge.</span></p>
     </div>
     
     <script>
@@ -665,53 +659,6 @@
                 document.getElementById("loading-overlay").style.display = "none";
             });
         }
-
-        // Function to close the popup and store a cookie
-        function closePopup() {
-            setCookie('disclaimer_acknowledged', 'true', 30); // Store cookie for 30 days
-            var popup = document.getElementById("disclaimer-popup");
-            var content = document.getElementById("content-container");
-            popup.style.display = "none";
-            content.style.opacity = "1";
-            content.style.pointerEvents = "auto";
-            document.body.style.overflow = "auto"; // Re-enable scrolling
-        }
-
-        // Function to set a cookie
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        // Function to get a cookie
-        function getCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
-        // Check if the user has already acknowledged the disclaimer
-        window.onload = function() {
-            var disclaimerAcknowledged = getCookie('disclaimer_acknowledged');
-            if (disclaimerAcknowledged) {
-                var popup = document.getElementById("disclaimer-popup");
-                var content = document.getElementById("content-container");
-                popup.style.display = "none";
-                content.style.opacity = "1";
-                content.style.pointerEvents = "auto";
-                document.body.style.overflow = "auto"; // Re-enable scrolling
-            }
-        };
 
         // Toggle the guide content visibility
         document.getElementById("guide-tab").addEventListener("click", function() {
