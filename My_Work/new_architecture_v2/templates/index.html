@@ -73,6 +73,10 @@
             background-color: #008CBA;
             color: white;
         }
+        .skip-button {
+            background-color: #f39c12;
+            color: white;
+        }
         .reflection-container {
             margin-top: 20px;
         }
@@ -92,6 +96,9 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
+        }
+        #follow-up-challenge {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -131,8 +138,16 @@
                 <h3>Reflection Question:</h3>
                 <p id="reflection-question-text"></p>
                 <textarea id="reflection-input" placeholder="Enter your reflection..."></textarea>
-                <button onclick="submitReflection()">Submit Reflection</button>                
+                <button onclick="submitReflection()" class="submit-reflection-button">Submit Reflection</button>
             </div>
+
+            <div id="follow-up-challenge" style="display: none;">
+                <h3>Follow-Up Challenge:</h3>
+                <p id="challenge-text"></p>
+                <textarea id="challenge-editor"></textarea>
+                <button class="run-button" onclick="submitFollowUp()">Submit Follow-Up</button>
+                <div id="follow-up-output"></div>
+            </div>            
         </div>
     </div>
 
@@ -142,6 +157,13 @@
             mode: "python",
             theme: "default"
         });
+
+        var challengeEditor = CodeMirror.fromTextArea(document.getElementById("challenge-editor"), {
+            lineNumbers: false,
+            mode: "python",
+            theme: "default"
+        });
+
         function cantFigureItOut() {
             var taskId = document.getElementById("task-select").value;
             
@@ -169,6 +191,19 @@
 
         function loadTask() {
             var taskId = document.getElementById("task-select").value;
+
+            // Reset and hide previous task-related elements
+            document.getElementById("task-desc").textContent = "";
+            document.getElementById("incorrect-code-block").textContent = "";
+            editor.setValue("");
+            challengeEditor.setValue("");
+            document.getElementById("output").textContent = "";
+            document.getElementById("reflection-question").style.display = "none";
+            document.getElementById("reflection-input").value = "";
+            document.getElementById("follow-up-challenge").style.display = "none";
+            document.getElementById("challenge-text").textContent = "";
+            document.getElementById("follow-up-output").textContent = "";
+
             if (taskId) {
                 fetch(`/get_task?task_id=${taskId}`)
                     .then(response => response.json())
@@ -238,12 +273,47 @@
                         document.getElementById("reflection-question-text").textContent = data.reflection_question;
                         reflectionElement.style.display = "block";
                     }
+                    if (data.follow_up_challenge) {
+                        showFollowUpChallenge(data.follow_up_challenge);
+                    }
                 } else if (data.result === "Incorrect") {
                     resultElement.innerText = "Oops! There seems to be an error in your code.";
                     resultElement.style.color = "red";
                 } else {
                     resultElement.textContent = data.output;
                     resultElement.style.color = "black";
+                }
+            });
+        }
+
+        function showFollowUpChallenge(challengeText) {
+            document.getElementById("follow-up-challenge").style.display = "block";
+            document.getElementById("challenge-text").textContent = challengeText;
+        }
+
+        function runFollowUpCode() {
+            var userCode = challengeEditor.getValue();
+            var taskId = document.getElementById("task-select").value;
+
+            fetch("/run_code", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code: userCode, task_id: taskId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                var outputElement = document.getElementById("follow-up-output");
+                if (data.result === "Correct") {
+                    outputElement.textContent = "Correct Output: " + data.output;
+                    outputElement.style.color = "green";
+                } else if (data.result === "Incorrect") {
+                    outputElement.textContent = "Incorrect Output: " + data.output + "\nExpected: " + data.expected_output;
+                    outputElement.style.color = "red";
+                } else {
+                    outputElement.textContent = data.output;
+                    outputElement.style.color = "black";
                 }
             });
         }
@@ -262,6 +332,29 @@
             .then(response => response.json())
             .then(data => {
                 alert(data.message);
+            });
+        }
+
+        function showFollowUpChallenge(challengeText) {
+        document.getElementById("follow-up-challenge").style.display = "block";
+        document.getElementById("challenge-text").textContent = challengeText;
+    }
+
+    function submitFollowUp() {
+            var followUpResponse = challengeEditor.getValue();
+            var taskId = document.getElementById("task-select").value;
+
+            fetch("/submit_follow_up", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ follow_up_response: followUpResponse, task_id: taskId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Confirm submission to the user
+                document.getElementById("follow-up-output").textContent = "Your follow-up has been submitted.";
             });
         }
     </script>

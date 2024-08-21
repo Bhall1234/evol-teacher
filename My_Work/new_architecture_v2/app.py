@@ -80,10 +80,13 @@ def check_code():
             logging.info(f"User's correct code for task {task_id}:\n{user_code}")
 
             reflection_question = task.get("reflection_question", "")
+            follow_up_challenge = task.get("follow_up_challenge", "")
+
             return jsonify({
                 "output": user_output,
                 "result": "Correct",
-                "reflection_question": reflection_question
+                "reflection_question": reflection_question,
+                "follow_up_challenge": follow_up_challenge
             })
         else:
             logging.info("Code execution incorrect")
@@ -91,7 +94,8 @@ def check_code():
                 "output": user_output,
                 "result": "Incorrect",
                 "expected_output": task["expected_output"],
-                "reflection_question": ""
+                "reflection_question": "",
+                "follow_up_challenge": ""
             })
 
     except subprocess.CalledProcessError as e:
@@ -108,6 +112,17 @@ def submit_reflection():
     logging.info(f"User's reflection: {reflection_response}")
 
     return jsonify({"message": "Reflection submitted successfully."})
+
+@app.route("/submit_follow_up", methods=["POST"])
+def submit_follow_up():
+    data = request.get_json()
+    follow_up_response = data.get("follow_up_response", "")
+    task_id = data.get("task_id", "")
+
+    logging.info(f"Follow-up challenge submitted for task_id: {task_id}")
+    logging.info(f"User's follow-up response: {follow_up_response}")
+
+    return jsonify({"message": "Your follow-up response has been submitted successfully."})
 
 @app.route("/get_task", methods=["GET"])
 def get_task():
