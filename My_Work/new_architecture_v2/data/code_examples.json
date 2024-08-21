@@ -219,23 +219,6 @@
             }
         ]
     },
-    "mathematics":{
-        "label": ["mathematics", "math", "calculation", "arithmetic", "mathematical"],
-        "examples": [
-            {
-                "task_id": 20,
-                "task_description": "This task introduces you to various mathematical operations you can perform in Python. You'll write a Python program that demonstrates addition, subtraction, multiplication, division, and exponentiation. The output should show the results of these operations.",
-                "incorrect_code": "num1 = 10\nnum2 = 5\n\n#These contain mistakes, dont forget to ask the assistant for help if you get stuck!\naddition = num1 plus num2\nsubtraction = num1 minus num2\nmultiplication = num1 times num2\ndivision = num1 divided by num2\nexponentiation = num1 to the power of num2\n\nprint(addition, subtraction, multiplication, division, exponentiation)",
-                "correct_code": "num1 = 10\nnum2 = 5\naddition = num1 + num2\nsubtraction = num1 - num2\nmultiplication = num1 * num2\ndivision = num1 / num2\nexponentiation = num1 ** num2\nprint(addition, subtraction, multiplication, division, exponentiation)",
-                "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus', 'minus', 'times', 'divided by', and 'to the power of'. Python uses specific symbols for these operations: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
-                "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation. The incorrect code uses plain English terms which are not recognized as valid operators in Python.",
-                "chat_context": "The task involves performing basic mathematical operations in Python. Common mistakes include using incorrect symbols or terms for these operations. Focus on explaining the correct operators and how they work in Python.",
-                "reflection_context": "Ask the user how basic mathematical operations are used in Python. Avoid generating ANY extended reflections or explanations. Ask the user to think about how understanding these operators can help them solve more complex problems. Encourage them to consider scenarios where using the wrong operator could lead to significant errors. After the user responds, confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary.",
-                "reflection_question": "Now that you've explored basic math operations in Python, can you explain how each operator works? Why is it important to use the correct operator, and how can understanding these basics help you when working on more complex tasks?",
-                "expected_output": "15 5 50 2.0 100000"
-            }  
-        ]
-    },
     "if statements":{
         "label": ["if", "if statement", "if_statement", "`if`", "if_statements"],
         "examples": [
@@ -266,23 +249,6 @@
                 "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements to check conditions accurately. Based on this context, ask the user a reflective question.",
                 "expected_output": "Odd"
             }
-        ]
-    },
-    "simple_problems": {
-        "label": ["simple problems", "beginner", "basic", "basics", "fundamentals", "simple_problems", "simple_exercises", "simple exercises", "simple exercise", "simple task", "starter", "introductory", "simple_task", "introduction"],
-        "examples": [
-            {
-                "task_id": 30,
-                "task_description": "This task is designed to introduce you to both Python and the learning environment you're using. Your goal is to write a simple Python program that prints 'Hello, World!' to the console. This will help you get familiar with writing and running code in this system. The output should be Hello, World!",
-                "incorrect_code": "\n#Dont forget to ask the assistant for help if you get stuck!\nPrint(Hello, World!)",
-                "correct_code": "print('Hello, World!')",
-                "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes. The incorrect code example uses incorrect capitalization for the function name and is missing quotes around the string, leading to a syntax error.",
-                "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
-                "chat_context": "The task involves writing a basic Python program to print a message to the console. The common mistake here is forgetting to use quotes around the string and incorrectly capitalizing the function name. Focus on explaining the importance of correct syntax in Python.",
-                "reflection_context": "ASK the user a direct question on their understanding of how print statements work. ALLOW THE USER TO ANSWER THE QUESTION, DO NOT ANSWER IT YOURSELF. The aim is to ensure they understand the basic steps of writing a Python program, the importance of correct syntax, and how to use this system to develop and run Python programs. Confirm whether their answer is correct or not before asking the next question.",
-                "reflection_question": "Why doesn't a print statement work in Python if the word print starts with a capital P?",
-                "expected_output": "Hello, World!"
-            }                 
         ]
     },
     "boolean types": {
@@ -349,6 +315,40 @@
                 "reflection_question": "Why do you think data type compatibility is important in Python, and how does it affect the way you write and debug code?",
                 "expected_output": "Hello\n15\n<class 'float'>\nFalse"
             }
+        ]
+    },
+    "simple_problems": {
+        "label": ["simple problems", "beginner", "basic", "basics", "fundamentals", "simple_problems", "simple_exercises", "simple exercises", "simple exercise", "simple task", "starter", "introductory", "simple_task", "introduction"],
+        "examples": [
+            {
+                "task_id": 30,
+                "task_description": "This task is designed to introduce you to both Python and the learning environment you're using. Your goal is to write a simple Python program that prints 'Hello, World!' to the console. This will help you get familiar with writing and running code in this system. The output should be Hello, World!",
+                "incorrect_code": "\n#Dont forget to ask the assistant for help if you get stuck!\nPrint(Hello, World!)",
+                "correct_code": "print('Hello, World!')",
+                "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes. The incorrect code example uses incorrect capitalization for the function name and is missing quotes around the string, leading to a syntax error.",
+                "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
+                "chat_context": "The task involves writing a basic Python program to print a message to the console. The common mistake here is forgetting to use quotes around the string and incorrectly capitalizing the function name. Focus on explaining the importance of correct syntax in Python.",
+                "reflection_context": "ASK the user a direct question on their understanding of how print statements work. ALLOW THE USER TO ANSWER THE QUESTION, DO NOT ANSWER IT YOURSELF. The aim is to ensure they understand the basic steps of writing a Python program, the importance of correct syntax, and how to use this system to develop and run Python programs. Confirm whether their answer is correct or not before asking the next question.",
+                "reflection_question": "Why doesn't a print statement work in Python if the word print starts with a capital P?",
+                "expected_output": "Hello, World!"
+            }                 
+        ]
+    },
+    "mathematics":{
+        "label": ["mathematics", "math", "calculation", "arithmetic", "mathematical"],
+        "examples": [
+            {
+                "task_id": 20,
+                "task_description": "This task introduces you to various mathematical operations you can perform in Python. You'll write a Python program that demonstrates addition, subtraction, multiplication, division, and exponentiation. The output should show the results of these operations.",
+                "incorrect_code": "num1 = 10\nnum2 = 5\n\n#These contain mistakes, dont forget to ask the assistant for help if you get stuck!\naddition = num1 plus num2\nsubtraction = num1 minus num2\nmultiplication = num1 times num2\ndivision = num1 divided by num2\nexponentiation = num1 to the power of num2\n\nprint(addition, subtraction, multiplication, division, exponentiation)",
+                "correct_code": "num1 = 10\nnum2 = 5\naddition = num1 + num2\nsubtraction = num1 - num2\nmultiplication = num1 * num2\ndivision = num1 / num2\nexponentiation = num1 ** num2\nprint(addition, subtraction, multiplication, division, exponentiation)",
+                "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus', 'minus', 'times', 'divided by', and 'to the power of'. Python uses specific symbols for these operations: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
+                "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation. The incorrect code uses plain English terms which are not recognized as valid operators in Python.",
+                "chat_context": "The task involves performing basic mathematical operations in Python. Common mistakes include using incorrect symbols or terms for these operations. Focus on explaining the correct operators and how they work in Python.",
+                "reflection_context": "Ask the user how basic mathematical operations are used in Python. Avoid generating ANY extended reflections or explanations. Ask the user to think about how understanding these operators can help them solve more complex problems. Encourage them to consider scenarios where using the wrong operator could lead to significant errors. After the user responds, confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary.",
+                "reflection_question": "Now that you've explored basic math operations in Python, can you explain how each operator works? Why is it important to use the correct operator, and how can understanding these basics help you when working on more complex tasks?",
+                "expected_output": "15 5 50 2.0 100000"
+            }  
         ]
     }
 }
