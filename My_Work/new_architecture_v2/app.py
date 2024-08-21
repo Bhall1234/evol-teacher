@@ -8,7 +8,7 @@ from flask import Flask, request, render_template, jsonify
 app = Flask(__name__)
 
 # Set up logging in OneDrive
-log_path = os.path.join('C:\\Users\\benha\\OneDrive - The University of Nottingham\\Project\\Chat_Logs\\Participant', 'user_interactions.log')
+log_path = os.path.join('C:\\Users\\benha\\OneDrive - The University of Nottingham\\Project\\Chat_Logs\\Participant', 'user_interactions_no_chatbot.log')
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 logging.basicConfig(filename=log_path, level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s')

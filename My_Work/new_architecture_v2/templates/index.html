@@ -14,15 +14,14 @@
             background-color: #f4f4f4;
         }
         .container {
-            max-width: 1000px; /* Increase the maximum width */
-            margin: 20px auto; /* Adjust the margin for better centering */
-            padding: 30px; /* Increase padding for more space inside the container */
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 30px;
             border: 1px solid #ddd; 
             border-radius: 5px;
             background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         #task-desc, #output {
             width: 100%;
             padding: 10px;
@@ -47,11 +46,11 @@
         .CodeMirror-gutters {
             background-color: #f7f7f7;
             border-right: 1px solid #ddd;
-            width: 50px; /* Ensures gutter is wide enough */
-            padding-right: 5px; /* Space between line numbers and code */
+            width: 50px;
+            padding-right: 5px;
         }
         .CodeMirror-linenumbers {
-            padding-right: 5px; /* Extra space between line numbers and code */
+            padding-right: 5px;
         }
         .buttons {
             margin-top: 20px;
@@ -64,6 +63,10 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+        }
+        .copy-button {
+            background-color: #f39c12;
+            color: white;
         }
         .run-button {
             background-color: #4CAF50;
@@ -99,6 +102,38 @@
         }
         #follow-up-challenge {
             margin-top: 20px;
+        }
+
+        /* Guide Tab Styling */
+        #guide-tab {
+            position: fixed;
+            top: 10%;
+            right: 0px;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 100px;
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transform: rotate(-90deg);
+            transform-origin: 0 0;
+            z-index: 9999;
+        }
+
+        #guide-content {
+            position: fixed;
+            right: -400px;
+            top: 10%;
+            width: 300px;
+            height: 80%;
+            background-color: #d7e0db;
+            border: 2px solid #3498db;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 9998;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -146,11 +181,28 @@
                 <p id="challenge-text"></p>
                 <textarea id="challenge-editor"></textarea>
                 <button class="run-button" onclick="runFollowUpCode()">Run Follow-Up Code</button>
-                <button class="run-button" onclick="copyCodeToFollowUp()">Copy Code to Follow-Up</button> <!-- New Button -->
+                <button class="copy-button" onclick="copyCodeToFollowUp()">Copy Code to Follow-Up</button>
                 <button class="submit-reflection-button" onclick="submitFollowUp()">Submit Follow-Up</button>
                 <div id="follow-up-output"></div>
             </div>            
         </div>
+    </div>
+
+    <!-- Guide Tab -->
+    <div id="guide-tab">Guide</div>
+    <div id="guide-content">
+        <h3>How to Use the Python Code Task Runner</h3>
+        <p><strong>Select a Task:</strong> Use the dropdown menu to select a coding task. Each task is designed to help you learn specific Python concepts.</p>
+        <p><strong>Task Description:</strong> Once a task is selected, the task description will appear. Read it carefully to understand what the task requires.</p>
+        <p><strong>Incorrect Code:</strong> You will be shown an example of incorrect code related to the task. Your goal is to identify and fix the errors.</p>
+        <p><strong>Copy Code to Editor:</strong> Click the "Copy Code to Editor" button to load the incorrect code into the editor. You can then start editing the code to fix the errors.</p>
+        <p><strong>Run Code:</strong> After fixing the code, click "Run Code" to execute it and see if it produces the correct output.</p>
+        <p><strong>Check Code:</strong> Once you think your code is correct, click "Check Code" to verify if your solution is correct. If it is, you'll receive a follow-up challenge and a reflection question.</p>
+        <p><strong>Can't Figure It Out:</strong> If you're stuck, you can click "Can't Figure It Out" to move on to the next task. Your attempt will be logged.</p>
+        <p><strong>Reflection Question:</strong> If your solution is correct, you'll be presented with a reflection question. This is to help you think about what you learned. Answer it in the provided text area.</p>
+        <p><strong>Follow-Up Challenge:</strong> You may also receive a follow-up challenge that extends the task. You can copy your current code to the follow-up editor and make the necessary modifications.</p>
+        <p><strong>Submit:</strong> Don't forget to submit your reflections and follow-up code using the provided buttons.</p>
+        <p><strong>Next Question:</strong> Choose the next question in the drop down menu.</p>
     </div>
 
     <script>
@@ -180,21 +232,18 @@
                 .then(response => response.json())
                 .then(data => {
                     alert(data.message);
-                    // Optionally, automatically load the next task
                     loadNextTask();
                 });
             }
         }
 
         function loadNextTask() {
-            // Logic to load the next task, depending on how tasks are organized
-            // For example, you might increment the task ID and call loadTask()
+            // Logic to load the next task
         }
 
         function loadTask() {
             var taskId = document.getElementById("task-select").value;
 
-            // Reset and hide previous task-related elements
             document.getElementById("task-desc").textContent = "";
             document.getElementById("incorrect-code-block").textContent = "";
             editor.setValue("");
@@ -224,7 +273,7 @@
             editor.setValue(incorrectCode);
         }
 
-        function copyCodeToFollowUp() {  // New Function
+        function copyCodeToFollowUp() {
             var userCode = editor.getValue();
             challengeEditor.setValue(userCode);
         }
@@ -247,7 +296,7 @@
                     outputElement.textContent = "Correct Output: " + data.output;
                     outputElement.style.color = "green";
                 } else if (data.result === "Incorrect") {
-                    outputElement.textContent = "Incorrect Output: " + data.output + "\n|" + "\nExpected: " + data.expected_output;
+                    outputElement.textContent = "Incorrect Output: " + data.output + "\n|\nExpected: " + data.expected_output;
                     outputElement.style.color = "red";
                 } else {
                     outputElement.textContent = data.output;
@@ -312,7 +361,6 @@
             .then(response => response.json())
             .then(data => {
                 var outputElement = document.getElementById("follow-up-output");
-                // Just display the output without checking for correctness
                 outputElement.textContent = "Output: " + data.output;
                 outputElement.style.color = "black";
             });
@@ -348,10 +396,19 @@
             })
             .then(response => response.json())
             .then(data => {
-                alert(data.message); // Confirm submission to the user
+                alert(data.message);
                 document.getElementById("follow-up-output").textContent = "Your follow-up has been submitted. Please select the next task in the list.";
             });
         }
+
+        document.getElementById("guide-tab").addEventListener("click", function() {
+            var guideContent = document.getElementById("guide-content");
+            if (guideContent.style.right === "0px") {
+                guideContent.style.right = "-400px";
+            } else {
+                guideContent.style.right = "0px";
+            }
+        });
     </script>
 </body>
 </html>
