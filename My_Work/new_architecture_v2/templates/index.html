@@ -145,7 +145,9 @@
                 <h3>Follow-Up Challenge:</h3>
                 <p id="challenge-text"></p>
                 <textarea id="challenge-editor"></textarea>
-                <button class="run-button" onclick="submitFollowUp()">Submit Follow-Up</button>
+                <button class="run-button" onclick="runFollowUpCode()">Run Follow-Up Code</button>
+                <button class="run-button" onclick="copyCodeToFollowUp()">Copy Code to Follow-Up</button> <!-- New Button -->
+                <button class="submit-reflection-button" onclick="submitFollowUp()">Submit Follow-Up</button>
                 <div id="follow-up-output"></div>
             </div>            
         </div>
@@ -220,6 +222,11 @@
         function copyCodeToEditor() {
             var incorrectCode = document.getElementById("incorrect-code-block").textContent;
             editor.setValue(incorrectCode);
+        }
+
+        function copyCodeToFollowUp() {  // New Function
+            var userCode = editor.getValue();
+            challengeEditor.setValue(userCode);
         }
 
         function runCode() {
@@ -305,16 +312,9 @@
             .then(response => response.json())
             .then(data => {
                 var outputElement = document.getElementById("follow-up-output");
-                if (data.result === "Correct") {
-                    outputElement.textContent = "Correct Output: " + data.output;
-                    outputElement.style.color = "green";
-                } else if (data.result === "Incorrect") {
-                    outputElement.textContent = "Incorrect Output: " + data.output + "\nExpected: " + data.expected_output;
-                    outputElement.style.color = "red";
-                } else {
-                    outputElement.textContent = data.output;
-                    outputElement.style.color = "black";
-                }
+                // Just display the output without checking for correctness
+                outputElement.textContent = "Output: " + data.output;
+                outputElement.style.color = "black";
             });
         }
 
@@ -335,12 +335,7 @@
             });
         }
 
-        function showFollowUpChallenge(challengeText) {
-        document.getElementById("follow-up-challenge").style.display = "block";
-        document.getElementById("challenge-text").textContent = challengeText;
-    }
-
-    function submitFollowUp() {
+        function submitFollowUp() {
             var followUpResponse = challengeEditor.getValue();
             var taskId = document.getElementById("task-select").value;
 
@@ -354,7 +349,7 @@
             .then(response => response.json())
             .then(data => {
                 alert(data.message); // Confirm submission to the user
-                document.getElementById("follow-up-output").textContent = "Your follow-up has been submitted.";
+                document.getElementById("follow-up-output").textContent = "Your follow-up has been submitted. Please select the next task in the list.";
             });
         }
     </script>

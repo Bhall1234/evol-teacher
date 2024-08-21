@@ -2,51 +2,51 @@
     "tasks": [
         {
             "task_id": 1,
-            "task_name": "Task 1: Greeting the User",
-            "task_description": "This task introduces you to printing messages in Python. You'll write a Python program that prints 'Greetings, User!' to the console.",
-            "incorrect_code": "Print('Greetings, User!')",
-            "correct_code": "print('Greetings, User!')",
-            "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes.",
-            "explanation": "In Python, functions are case-sensitive, and strings must be properly enclosed in quotes for the code to run correctly.",
-            "expected_output": "Greetings, User!",
-            "follow_up_challenge": "Modify the program to print 'Welcome, User!' instead. This will ensure you understand how to modify strings within the print function.",
-            "reflection_question": "Why do you think Python distinguishes between uppercase and lowercase in function names? How might this affect your programming practice?"
+            "task_name": "Task 1: Customized Greeting",
+            "task_description": "This task introduces you to string concatenation in Python. You'll write a Python program that prints a customized greeting, such as 'Hello, Alice!' where 'Alice' is the user's name.",
+            "incorrect_code": "user_name = Alice\nprint('Hello,' user_name)",
+            "correct_code": "user_name = 'Alice'\nprint('Hello, ' + user_name)",
+            "description": "The incorrect code misses the quotation marks around the user's name and does not properly concatenate the string.",
+            "explanation": "In Python, strings must be enclosed in quotes, and you can concatenate strings using the '+' operator.",
+            "expected_output": "Hello, Alice!",
+            "follow_up_challenge": "Modify the program to print 'Welcome, Alice!' instead. This will ensure you understand how to modify strings within the print function.",
+            "reflection_question": "Why is it important to use quotation marks for strings in Python? How does string concatenation help in creating dynamic output?"
         },
         {
             "task_id": 2,
-            "task_name": "Task 2: Basic Arithmetic Operations",
-            "task_description": "This task involves performing arithmetic operations in Python. You'll write a Python program that calculates and prints the results of addition, subtraction, and multiplication of two numbers.",
-            "incorrect_code": "a = 12\nb = 8\nadd = a plus b\nsubtract = a minus b\nmultiply = a times b\nprint(add, subtract, multiply)",
-            "correct_code": "a = 12\nb = 8\nadd = a + b\nsubtract = a - b\nmultiply = a * b\nprint(add, subtract, multiply)",
-            "description": "The incorrect code uses non-Pythonic syntax for arithmetic operations. Python uses specific symbols: '+' for addition, '-' for subtraction, and '*' for multiplication.",
-            "explanation": "Python requires the use of specific operators for arithmetic operations. Using the wrong syntax will result in errors.",
-            "expected_output": "20 4 96",
-            "follow_up_challenge": "Extend the program to also perform division and modulus operations. What results do you get when you divide 12 by 8 and find the modulus?",
-            "reflection_question": "What might happen if you used the wrong operator in an arithmetic operation? How important is it to ensure the correct operator is used in mathematical calculations?"
+            "task_name": "Task 2: Writing a Simple Function",
+            "task_description": "This task introduces you to writing functions in Python. You'll write a Python function that takes two numbers as arguments, adds them, and returns the result.",
+            "incorrect_code": "def add_numbers(a, b):\nresult = a plus b\nreturn result\n\nprint(add_numbers(3, 5))",
+            "correct_code": "def add_numbers(a, b):\nresult = a + b\nreturn result",
+            "description": "The incorrect code uses non-Pythonic syntax for the addition operation within a function.",
+            "explanation": "In Python, functions allow you to encapsulate code for reuse. The correct syntax for addition is '+', not 'plus'.",
+            "expected_output": "8",
+            "follow_up_challenge": "Modify the function to subtract the second number from the first instead of adding them.",
+            "reflection_question": "Why do you think functions might useful in programming? How do you think functions might help you organise and reuse your code effectively?"
         },
         {
             "task_id": 3,
-            "task_name": "Task 3: Assigning and Printing Variables",
-            "task_description": "In this task, you'll work with variable assignment and output. You'll write a Python program that assigns values to three variables and prints them.",
-            "incorrect_code": "varOne = 7\nVarTwo = 14\nvar_three = 21\nprint(varone)\nprint(varTwo)\nprint(var_Three)",
-            "correct_code": "varOne = 7\nvarTwo = 14\nvar_three = 21\nprint(varOne)\nprint(varTwo)\nprint(var_three)",
-            "description": "The incorrect code has mistakes in variable names due to case sensitivity, leading to errors when trying to print the variables.",
-            "explanation": "In Python, variable names are case-sensitive, meaning 'varOne' and 'varone' are considered different variables.",
-            "expected_output": "7 14 21",
-            "follow_up_challenge": "Create a new variable using a different case style and print it. Does the naming style affect the output?",
-            "reflection_question": "How does Python's case sensitivity in variable names help or hinder your coding? Why is it important to be consistent in your naming conventions?"
+            "task_name": "Task 3: Variable Manipulation",
+            "task_description": "In this task, you'll work with variables and perform operations on them. You'll write a Python program that assigns values to variables and performs arithmetic operations, then prints the results.",
+            "incorrect_code": "a = 8\nb = 2\nsum = A + b\nproduct = a * B\nprint(sum, Product)",
+            "correct_code": "a = 8\nb = 2\nsum = a + b\nproduct = a * b\nprint(sum, product)",
+            "description": "The incorrect code has case sensitivity issues and uses undeclared variables.",
+            "explanation": "In Python, variable names are case-sensitive, meaning 'A' and 'a' are different. Always ensure you are using the correct variable names.",
+            "expected_output": "10 16",
+            "follow_up_challenge": "Create a new variable that stores the difference between the two numbers and print it.",
+            "reflection_question": "How does Python's case sensitivity in variable names impact the correctness of your code? Why do you think its important to consistently use the correct variable names?"
         },
         {
             "task_id": 4,
-            "task_name": "Task 4: Working with Different Data Types",
-            "task_description": "This task involves using different data types in Python and performing operations on them. You'll fix errors in a program that handles strings, integers, and booleans.",
-            "incorrect_code": "greeting = 'Hi'\nprint(Greeting)\nvalue = '42'\nprint(value + 5)\nnumber = '3.5'\nprint(type(Number))\nis_active = True\nprint(is_active and 'false')",
-            "correct_code": "greeting = 'Hi'\nprint(greeting)\nvalue = '42'\nprint(int(value) + 5)\nnumber = '3.5'\nprint(type(number))\nis_active = True\nprint(is_active and False)",
-            "description": "The incorrect code has multiple issues, such as incorrect variable names due to case sensitivity, adding a string to an integer, and mismatched data types.",
-            "explanation": "Correcting these errors involves proper use of variable names, type conversions, and understanding the logic of boolean operations.",
-            "expected_output": "Hi 47 <class 'str'> False",
-            "follow_up_challenge": "Change the string '42' to an integer directly during assignment. What impact does this have on your ability to perform arithmetic operations?",
-            "reflection_question": "What difficulties can arise from mishandling data types in Python? How can understanding data types improve your coding accuracy?"
+            "task_name": "Task 4: Using Loops",
+            "task_description": "This task introduces you to loops in Python. You'll write a Python program that uses a for loop to print the numbers from 1 to 5.",
+            "incorrect_code": "for i in range(1, 5):\nprint i",
+            "correct_code": "for i in range(1, 6):\n    print(i)",
+            "description": "The incorrect code uses outdated print syntax and has an off-by-one error in the loop range.",
+            "explanation": "In Python, print is a function and requires parentheses. Also, to include the number 5, the range should end at 6, since the end value is exclusive.",
+            "expected_output": "1\n2\n3\n4\n5",
+            "follow_up_challenge": "Modify the loop to print only even numbers from 1 to 10.",
+            "reflection_question": "How do you think loops help automate repetitive tasks in programming? What are some potential problems you might need to watch out for when using loops?"
         }
     ]
 }
