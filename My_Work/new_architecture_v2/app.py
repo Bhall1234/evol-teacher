@@ -207,12 +207,12 @@ def interact():
                 # Generate a reflection question based on the user's code
                 history.append({
                     "role": "system", 
-                    "content": f"Reflection Context to help you create the question:\n{reflection_context}"
+                    "content": f"Reflection Context to help you create the question, please try and stick with this context:\n{reflection_context}"
                 })
-                history.append({
-                    "role": "system",
-                    "content": f"User's Submitted Code:\n{user_code}"
-                })
+                #history.append({ TRIALLING TO SEE IF WE ARE BETTER WITHOUT THIS PART.
+                    #"role": "system",
+                    #"content": f"User's Submitted Code:\n{user_code}"
+                #})
                 history.append({ # TRIAL OF ADDING EXAMPLE QUESTION
                     "role": "system",
                     "content": f"Example Reflection Question:\n{reflection_question}"
