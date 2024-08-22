@@ -1,0 +1,52 @@
+{
+    "tasks": [
+        {
+            "task_id": 1,
+            "task_name": "Task 1: Simple Multiplication",
+            "task_description": "This task introduces you to performing multiplication in Python. You'll fix a Python program that multiplies two numbers and prints the result.",
+            "incorrect_code": "number1 = 5\nnumber2 = 10\nprint(number1 x number2)",
+            "correct_code": "number1 = 5\nnumber2 = 10\nprint(number1 * number2)",
+            "description": "The incorrect code adds two numbers and prints the result. This is a basic operation, but it's important to ensure that the correct variables are used and that the operation produces the expected output.",
+            "explanation": "In Python, performing addition and printing the result is straightforward. The correct code successfully adds the two numbers and displays the result using the `print()` function.",
+            "expected_output": "50",
+            "follow_up_challenge": "Now, modify the program to multiply a third number (e.g., `number3 = 20`) to the result, and print the new total. This will help reinforce your understanding of how to handle multiple variables in an addition operation.",
+            "reflection_question": "Why do you think it's important to use the correct operator (`*`) for addition in Python? What might happen if you use an incorrect operator?"
+        },               
+        {
+            "task_id": 2,
+            "task_name": "Task 2: Greeting Function",
+            "task_description": "This task introduces you to writing functions in Python. You'll fix a Python function that is supposed to take a name as an argument and print a greeting. However, there's a mistake in how the function is called. The function should print 'Hello, Alice!' as the output, but currently, it doesn't. Your task is to identify and correct the issue.",
+            "incorrect_code": "def greet(name):\n    print(name)\n\nname = 'Alice'\ngreet()",
+            "correct_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet('Alice')",
+            "description": "The incorrect code defines a function that expects a name to be passed as an argument, but it calls the function without providing the required argument, leading to an error.",
+            "explanation": "In Python, if a function expects an argument, you must provide it when calling the function. The incorrect code does not pass the name to the function, which causes an error. The correct code provides a name as an argument when calling the function.",
+            "expected_output": "Alice",
+            "follow_up_challenge": "Try modifying the function to take a second name, this can be any name. Then, call the function with both arguments.",
+            "reflection_question": "Why do you think the function didn't work when you didn't pass a name? What did you change to make it work?"
+        },        
+        {
+            "task_id": 3,
+            "task_name": "Task 3: Appending to a List",
+            "task_description": "In this task, you'll work with a list and perform a simple operation of appending a new number to the list. Your goal is to fix the provided Python program so that it correctly adds a new number to the list and prints the updated list.",
+            "incorrect_code": "numbers = [1, 2, 3] #This is a list of numbers.\nnumbers.add(4)\nprint(numbers)",
+            "correct_code": "numbers = [1, 2, 3]\nnumbers.append(4)\nprint(numbers)",
+            "description": "The incorrect code uses square brackets instead of parentheses in the append method, which results in a syntax error.",
+            "explanation": "In Python, list methods such as 'append' require parentheses to pass the argument correctly. Using square brackets instead of parentheses is a common mistake that leads to syntax errors.",
+            "expected_output": "[1, 2, 3, 4]",
+            "follow_up_challenge": "Try appending another number to the list, such as '5'. What does the list look like after appending multiple numbers?",
+            "reflection_question": "What is the correct syntax for appending an item to a list in Python, and why is it important to use the correct syntax?"
+        },         
+        {
+            "task_id": 4,
+            "task_name": "Task 4: Using Loops",
+            "task_description": "This task introduces you to loops in Python. You'll fix a Python program that uses a for loop to print the numbers from 1 to 5.",
+            "incorrect_code": "for i in range(1, 5):\nprint i",
+            "correct_code": "for i in range(1, 6):\n    print(i)",
+            "description": "The incorrect code uses outdated print syntax and has an off-by-one error in the loop range.",
+            "explanation": "In Python, print is a function and requires parentheses. Also, to include the number 5, the range should end at 6, since the end value is exclusive.",
+            "expected_output": "1\n2\n3\n4\n5",
+            "follow_up_challenge": "Modify the loop to print only even numbers from 1 to 10.",
+            "reflection_question": "How do you think loops help automate repetitive tasks in programming?"
+        }
+    ]
+}
