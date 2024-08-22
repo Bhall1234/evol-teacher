@@ -175,16 +175,6 @@
                 <textarea id="reflection-input" placeholder="Enter your reflection..."></textarea>
                 <button onclick="submitReflection()" class="submit-reflection-button">Submit Reflection</button>
             </div>
-
-            <div id="follow-up-challenge" style="display: none;">
-                <h3>Follow-Up Challenge:</h3>
-                <p id="challenge-text"></p>
-                <textarea id="challenge-editor"></textarea>
-                <button class="run-button" onclick="runFollowUpCode()">Run Follow-Up Code</button>
-                <button class="copy-button" onclick="copyCodeToFollowUp()">Copy Code to Follow-Up</button>
-                <button class="submit-reflection-button" onclick="submitFollowUp()">Submit Follow-Up</button>
-                <div id="follow-up-output"></div>
-            </div>            
         </div>
     </div>
 
@@ -201,19 +191,11 @@
         <p><strong>Check Code:</strong> Once you think your code is correct, click "Check Code" to verify if your solution is correct. If it is, you'll receive a follow-up challenge and a reflection question.</p>
         <p><strong>Can't Figure It Out:</strong> If you're stuck, you can click "Can't Figure It Out" to move on to the next task. Your attempt will be logged.</p>
         <p><strong>Reflection Question:</strong> If your solution is correct, you'll be presented with a reflection question. This is to help you think about what you learned. Answer it in the provided text area.</p>
-        <p><strong>Follow-Up Challenge:</strong> You may also receive a follow-up challenge that extends the task. You can copy your current code to the follow-up editor and make the necessary modifications.</p>
-        <p><strong>Submit:</strong> Don't forget to submit your reflections and follow-up code using the provided buttons.</p>
         <p><strong>Next Question:</strong> Choose the next question in the drop down menu.</p>
     </div>
 
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-            lineNumbers: false,
-            mode: "python",
-            theme: "default"
-        });
-
-        var challengeEditor = CodeMirror.fromTextArea(document.getElementById("challenge-editor"), {
             lineNumbers: false,
             mode: "python",
             theme: "default"
@@ -248,13 +230,9 @@
             document.getElementById("task-desc").textContent = "";
             document.getElementById("incorrect-code-block").textContent = "";
             editor.setValue("");
-            challengeEditor.setValue("");
             document.getElementById("output").textContent = "";
             document.getElementById("reflection-question").style.display = "none";
             document.getElementById("reflection-input").value = "";
-            document.getElementById("follow-up-challenge").style.display = "none";
-            document.getElementById("challenge-text").textContent = "";
-            document.getElementById("follow-up-output").textContent = "";
 
             if (taskId) {
                 fetch(`/get_task?task_id=${taskId}`)
@@ -272,11 +250,6 @@
         function copyCodeToEditor() {
             var incorrectCode = document.getElementById("incorrect-code-block").textContent;
             editor.setValue(incorrectCode);
-        }
-
-        function copyCodeToFollowUp() {
-            var userCode = editor.getValue();
-            challengeEditor.setValue(userCode);
         }
 
         function runCode() {
@@ -330,9 +303,6 @@
                         document.getElementById("reflection-question-text").textContent = data.reflection_question;
                         reflectionElement.style.display = "block";
                     }
-                    if (data.follow_up_challenge) {
-                        showFollowUpChallenge(data.follow_up_challenge);
-                    }
                 } else if (data.result === "Incorrect") {
                     resultElement.innerText = "Oops! There seems to be an error in your code.";
                     resultElement.style.color = "red";
@@ -340,30 +310,6 @@
                     resultElement.textContent = data.output;
                     resultElement.style.color = "black";
                 }
-            });
-        }
-
-        function showFollowUpChallenge(challengeText) {
-            document.getElementById("follow-up-challenge").style.display = "block";
-            document.getElementById("challenge-text").textContent = challengeText;
-        }
-
-        function runFollowUpCode() {
-            var userCode = challengeEditor.getValue();
-            var taskId = document.getElementById("task-select").value;
-
-            fetch("/run_code", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ code: userCode, task_id: taskId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                var outputElement = document.getElementById("follow-up-output");
-                outputElement.textContent = "Output: " + data.output;
-                outputElement.style.color = "black";
             });
         }
 
@@ -381,24 +327,6 @@
             .then(response => response.json())
             .then(data => {
                 alert(data.message);
-            });
-        }
-
-        function submitFollowUp() {
-            var followUpResponse = challengeEditor.getValue();
-            var taskId = document.getElementById("task-select").value;
-
-            fetch("/submit_follow_up", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ follow_up_response: followUpResponse, task_id: taskId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-                document.getElementById("follow-up-output").textContent = "Your follow-up has been submitted. Please select the next task in the list.";
             });
         }
 

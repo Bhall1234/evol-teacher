@@ -32,7 +32,7 @@
             "correct_code": "numbers = [1, 2, 3]\nnumbers.append(4)\nprint(numbers)",
             "description": "The incorrect code uses square brackets instead of parentheses in the append method, which results in a syntax error.",
             "explanation": "In Python, list methods such as 'append' require parentheses to pass the argument correctly. Using square brackets instead of parentheses is a common mistake that leads to syntax errors.",
-            "expected_output": "1, 2, 3, 4",
+            "expected_output": "[1, 2, 3, 4]",
             "follow_up_challenge": "Try appending another number to the list, such as '5'. What does the list look like after appending multiple numbers?",
             "reflection_question": "What is the correct syntax for appending an item to a list in Python, and why is it important to use the correct syntax?"
         },         
