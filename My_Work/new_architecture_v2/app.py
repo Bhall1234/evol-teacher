@@ -369,6 +369,23 @@ def extract_initial_explanation(explanation):
     sentences = re.split(r'[.:]\s*', explanation)
     return '. '.join(sentences[:2])
 
+@app.route("/dont_know", methods=["POST"])
+def dont_know():
+    try:
+        data = request.get_json()
+        task_id = data.get("task_id")
+        
+        # Log the "I don't know" action
+        log_with_session(f"User pressed 'I don't know' for task ID: {task_id}")
+
+        # Optionally, you can also store this in the session or a database if needed.
+        # session[f"dont_know_{task_id}"] = True
+
+        return jsonify({"status": "success"}), 200
+    except Exception as e:
+        log_with_session(f"Error logging 'I don't know' action: {str(e)}", level=logging.ERROR)
+        return jsonify({"status": "error", "message": str(e)}), 500
+
 def extract_programming_keywords(text):
     doc = nlp(text)
     keywords = set()

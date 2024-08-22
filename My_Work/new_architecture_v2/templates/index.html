@@ -316,6 +316,7 @@
                 <div class="buttons">
                     <button class="run-button" onclick="runCode()">Run Code</button>
                     <button class="reset-button" onclick="resetCode()">Reset Code</button>
+                    <button class="dont-know-button" onclick="handleIDontKnow()">I Don't Know</button> <!-- Add this button -->
                 </div>
                 <form id="check-code-form">
                     <input type="hidden" id="task-id" name="task_id" value="{{ task_id }}">
@@ -401,6 +402,26 @@
             } else {
                 explanation.style.display = "none";
             }
+        }
+
+        function handleIDontKnow() {
+            var taskId = document.getElementById("task-id").value;
+
+            // Log the "I don't know" action to the server
+            fetch("/dont_know", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ task_id: taskId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Your response has been recorded. Please try a different question.");
+            })
+            .catch(error => {
+                console.error("Error logging 'I don't know':", error);
+            });
         }
 
         function toggleSolution() {
