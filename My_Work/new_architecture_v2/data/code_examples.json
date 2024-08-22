@@ -268,23 +268,6 @@
             }
         ]
     },
-    "simple_problems": {
-        "label": ["simple problems", "beginner", "basic", "basics", "fundamentals", "simple_problems", "simple_exercises", "simple exercises", "simple exercise", "simple task", "starter", "introductory", "simple_task", "introduction"],
-        "examples": [
-            {
-                "task_id": 30,
-                "task_description": "This task is designed to introduce you to both Python and the learning environment you're using. Your goal is to write a simple Python program that prints 'Hello, World!' to the console. This will help you get familiar with writing and running code in this system. The output should be Hello, World!",
-                "incorrect_code": "\n#Dont forget to ask the assistant for help if you get stuck!\nPrint(Hello, World!)",
-                "correct_code": "print('Hello, World!')",
-                "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes. The incorrect code example uses incorrect capitalization for the function name and is missing quotes around the string, leading to a syntax error.",
-                "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
-                "chat_context": "The task involves writing a basic Python program to print a message to the console. The common mistake here is forgetting to use quotes around the string and incorrectly capitalizing the function name. Focus on explaining the importance of correct syntax in Python.",
-                "reflection_context": "ASK the user a direct question on their understanding of how print statements work. ALLOW THE USER TO ANSWER THE QUESTION, DO NOT ANSWER IT YOURSELF. The aim is to ensure they understand the basic steps of writing a Python program, the importance of correct syntax, and how to use this system to develop and run Python programs. Confirm whether their answer is correct or not before asking the next question.",
-                "reflection_question": "Why doesn't a print statement work in Python if the word print starts with a capital P?",
-                "expected_output": "Hello, World!"
-            }                 
-        ]
-    },
     "boolean types": {
         "label": ["boolean types","boolean_types", "boolean", "bool", "comparison operators", "logical", "logical operators", "comparison"],
         "examples": [
@@ -349,6 +332,23 @@
                 "reflection_question": "Why do you think data type compatibility is important in Python, and how does it affect the way you write and debug code?",
                 "expected_output": "Hello\n15\n<class 'float'>\nFalse"
             }
+        ]
+    },
+    "simple_problems": {
+        "label": ["simple problems", "beginner", "basic", "basics", "fundamentals", "simple_problems", "simple_exercises", "simple exercises", "simple exercise", "simple task", "starter", "introductory", "simple_task", "introduction"],
+        "examples": [
+            {
+                "task_id": 30,
+                "task_description": "This task is designed to introduce you to both Python and the learning environment you're using. Your goal is to write a simple Python program that prints 'Hello, World!' to the console. This will help you get familiar with writing and running code in this system. The output should be Hello, World!",
+                "incorrect_code": "\n#Dont forget to ask the assistant for help if you get stuck!\nPrint(Hello, World!)",
+                "correct_code": "print('Hello, World!')",
+                "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes. The incorrect code example uses incorrect capitalization for the function name and is missing quotes around the string, leading to a syntax error.",
+                "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
+                "chat_context": "The task involves writing a basic Python program to print a message to the console. The common mistake here is forgetting to use quotes around the string and incorrectly capitalizing the function name. Focus on explaining the importance of correct syntax in Python.",
+                "reflection_context": "ASK the user a direct question on their understanding of how print statements work. ALLOW THE USER TO ANSWER THE QUESTION, DO NOT ANSWER IT YOURSELF. The aim is to ensure they understand the basic steps of writing a Python program, the importance of correct syntax, and how to use this system to develop and run Python programs. Confirm whether their answer is correct or not before asking the next question.",
+                "reflection_question": "Why doesn't a print statement work in Python if the word print starts with a capital P?",
+                "expected_output": "Hello, World!"
+            }                 
         ]
     }
 }

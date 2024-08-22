@@ -2,7 +2,7 @@
     "tasks": [
         {
             "task_id": 1,
-            "task_name": "Task 1: Customized Greeting Using f-Strings",
+            "task_name": "Task 1: Customised Greeting Using f-Strings",
             "task_description": "This task introduces you to f-strings in Python, which is a more modern and efficient way to format strings. You'll fix a Python program that prints a customised greeting, such as 'Hello, Alice!' where 'Alice' is the user's name.",
             "incorrect_code": "user_name = Alice\nprint(f'Hello, {user_name}') #What do you think the brackets {} are for?", 
             "correct_code": "user_name = 'Alice'\nprint(f'Hello, {user_name}')",
@@ -32,7 +32,7 @@
             "correct_code": "numbers = [1, 2, 3]\nnumbers.append(4)\nprint(numbers)\nlength = len(numbers)\nprint(length)",
             "description": "The incorrect code attempts to use methods and functions incorrectly, particularly in the syntax for appending to a list and calculating the length of the list.",
             "explanation": "In Python, lists use parentheses for method calls, not square brackets. The 'append' method and 'len' function require correct syntax to function properly.",
-            "expected_output": "[1, 2, 3, 4]\n4",
+            "expected_output": "[1, 2, 3, 4]\n Length: 4",
             "follow_up_challenge": "Remove the number '2' from the list and print the updated list and its new length.",
             "reflection_question": "How does Python's list syntax help in managing collections of items? Why is it important to understand the difference between methods like 'append()' and functions like 'len()'?"
         },        
