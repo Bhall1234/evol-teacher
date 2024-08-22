@@ -219,23 +219,6 @@
             }
         ]
     },
-    "mathematics":{
-        "label": ["mathematics", "math", "calculation", "arithmetic", "mathematical"],
-        "examples": [
-            {
-                "task_id": 20,
-                "task_description": "This task introduces you to various mathematical operations you can perform in Python. You'll write a Python program that demonstrates addition, subtraction, multiplication, division, and exponentiation. The output should show the results of these operations.",
-                "incorrect_code": "num1 = 10\nnum2 = 5\n\n#These contain mistakes, dont forget to ask the assistant for help if you get stuck!\naddition = num1 plus num2\nsubtraction = num1 minus num2\nmultiplication = num1 times num2\ndivision = num1 divided by num2\nexponentiation = num1 to the power of num2\n\nprint(addition, subtraction, multiplication, division, exponentiation)",
-                "correct_code": "num1 = 10\nnum2 = 5\naddition = num1 + num2\nsubtraction = num1 - num2\nmultiplication = num1 * num2\ndivision = num1 / num2\nexponentiation = num1 ** num2\nprint(addition, subtraction, multiplication, division, exponentiation)",
-                "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus', 'minus', 'times', 'divided by', and 'to the power of'. Python uses specific symbols for these operations: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
-                "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation. The incorrect code uses plain English terms which are not recognized as valid operators in Python.",
-                "chat_context": "The task involves performing basic mathematical operations in Python. Common mistakes include using incorrect symbols or terms for these operations. Focus on explaining the correct operators and how they work in Python.",
-                "reflection_context": "Ask the user how basic mathematical operations are used in Python. Avoid generating ANY extended reflections or explanations. Ask the user to think about how understanding these operators can help them solve more complex problems. Encourage them to consider scenarios where using the wrong operator could lead to significant errors. After the user responds, confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary.",
-                "reflection_question": "Now that you've explored basic math operations in Python, can you explain how each operator works? Why is it important to use the correct operator, and how can understanding these basics help you when working on more complex tasks?",
-                "expected_output": "15 5 50 2.0 100000"
-            }  
-        ]
-    },
     "if statements":{
         "label": ["if", "if statement", "if_statement", "`if`", "if_statements"],
         "examples": [
@@ -266,23 +249,6 @@
                 "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements to check conditions accurately. Based on this context, ask the user a reflective question.",
                 "expected_output": "Odd"
             }
-        ]
-    },
-    "simple_problems": {
-        "label": ["simple problems", "beginner", "basic", "basics", "fundamentals", "simple_problems", "simple_exercises", "simple exercises", "simple exercise", "simple task", "starter", "introductory", "simple_task", "introduction"],
-        "examples": [
-            {
-                "task_id": 30,
-                "task_description": "This task is designed to introduce you to both Python and the learning environment you're using. Your goal is to write a simple Python program that prints 'Hello, World!' to the console. This will help you get familiar with writing and running code in this system. The output should be Hello, World!",
-                "incorrect_code": "\n#Dont forget to ask the assistant for help if you get stuck!\nPrint(Hello, World!)",
-                "correct_code": "print('Hello, World!')",
-                "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes. The incorrect code example uses incorrect capitalization for the function name and is missing quotes around the string, leading to a syntax error.",
-                "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
-                "chat_context": "The task involves writing a basic Python program to print a message to the console. The common mistake here is forgetting to use quotes around the string and incorrectly capitalizing the function name. Focus on explaining the importance of correct syntax in Python.",
-                "reflection_context": "ASK the user a direct question on their understanding of how print statements work. ALLOW THE USER TO ANSWER THE QUESTION, DO NOT ANSWER IT YOURSELF. The aim is to ensure they understand the basic steps of writing a Python program, the importance of correct syntax, and how to use this system to develop and run Python programs. Confirm whether their answer is correct or not before asking the next question.",
-                "reflection_question": "Why doesn't a print statement work in Python if the word print starts with a capital P?",
-                "expected_output": "Hello, World!"
-            }                 
         ]
     },
     "boolean types": {
@@ -317,38 +283,76 @@
             }
         ]
     },
-    "variables":{
+    "variables": {
         "label": ["variables", "variable", "naming", "naming conventions", "naming_variables"],
         "examples": [
             {
                 "task_id": 38,
                 "task_description": "This task involves assigning values to multiple variables and printing them. The code provided has mistakes in variable naming due to case sensitivity. Your task is to identify and correct these errors so that the code prints the correct outputs. The expected outputs are 10, 20, and 30.",
-                "incorrect_code": "\n#These contain mistakes, dont forget to ask the assistant for help if you get stuck!\n\nmyVariable1 = 10\nMyVariable2 = 20\nmyVariable_3 = 30\nprint(myvariable1)\nprint(myVariable2)\nprint(Myvariable_3)",
+                "incorrect_code": "#These contain mistakes, don't forget to ask the assistant for help if you get stuck!\n\nmyVariable1 = 10\nMyVariable2 = 20\nmyVariable_3 = 30\nprint(myvariable1)\nprint(myVariable2)\nprint(Myvariable_3)",
                 "correct_code": "# Correcting variable case sensitivity\nmyVariable1 = 10\nmyVariable2 = 20\nmyVariable_3 = 30\nprint(myVariable1)\nprint(myVariable2)\nprint(myVariable_3)",
                 "description": "The code contains multiple issues with variable naming due to case sensitivity. 'myVariable1', 'MyVariable2', and 'myVariable_3' are treated as different variables in Python. The incorrect code attempts to print variables with incorrect cases, leading to NameErrors. The correct approach is to use consistent naming conventions throughout the code.",
                 "explanation": "In Python, variable names are case-sensitive, meaning 'myVariable1' and 'myvariable1' are treated as different variables. Similarly, 'MyVariable2' and 'myVariable2' are distinct. The incorrect code attempts to print variables with incorrect cases, leading to errors. The correct approach is to consistently use the intended variable names when defining and printing them.",
-                "chat_context": "The task is centred around understanding how variables work in Python, particularly the case sensitivity of variable names. Emphasize the importance of using consistent variable names and cases throughout the code to avoid errors.",
+                "chat_context": "The task is centered around understanding how variables work in Python, particularly the case sensitivity of variable names. Emphasize the importance of using consistent variable names and cases throughout the code to avoid errors.",
                 "reflection_context": "Ask the user a brief, direct question about why Python enforces case sensitivity for variable names. Avoid generating ANY extended reflections or explanations. Confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary. DO NOT ANSWER THE QUESTION YOURSELF.",
                 "reflection_question": "Why do you think Python enforces case sensitivity for variable names, and what impact does this have on debugging and code maintenance? How might you ensure consistency in your own coding practices?",
+                "follow_up_challenge": "Now that you've corrected the variable names, try creating three new variables using different naming conventions (e.g., snake_case, camelCase, PascalCase). Assign values to these variables and print them. What do you notice about the readability and ease of use of these different naming styles?",
                 "expected_output": "10\n20\n30"
-            }            
+            }
         ]
     },
-    "data types":{
+    "data types": {
         "label": ["data types", "data type", "data", "data_types", "types_of_data", "data_types"],
         "examples": [
             {
                 "task_id": 39,
-                "task_description": "This task involves correcting errors in assigning values to variables of different data types and printing them. The code provided has several mistakes, including case sensitivity issues and incorrect data type usage. Your task is to identify and correct the errors. The output should be Hello, 15, <class 'float'>, and False",
-                "incorrect_code": "#These contain mistakes, dont forget to ask the assistant for help if you get stuck!\n\nhello = 'Hello'\nprint(Hello)\n\nnumber = '5'\nprint(number + 10)\n\nfloating_point = '3.14'\nprint(type(floating_Point))\n\nboolean_value = True\nprint(boolean_value and 'False')",
+                "task_description": "This task involves correcting errors in assigning values to variables of different data types and printing them. The code provided has several mistakes, including case sensitivity issues and incorrect data type usage. Your task is to identify and correct the errors. The output should be Hello, 15, <class 'float'>, and False.",
+                "incorrect_code": "#These contain mistakes, don't forget to ask the assistant for help if you get stuck!\n\nhello = 'Hello'\nprint(Hello)\n\nnumber = '5'\nprint(number + 10)\n\nfloating_point = '3.14'\nprint(type(floating_Point))\n\nboolean_value = True\nprint(boolean_value and 'False')",
                 "correct_code": "# Correcting variable case sensitivity\nhello = 'Hello'\nprint(hello)\n\n# Converting string to integer before addition\nnumber = '5'\nprint(int(number) + 10)\n#Solution 2:\nx = 5\ny = int(\"10\")\nprint(x + y)\n#Solution 3:\nx = 5\ny = 10\nprint(x+y)\n\n# Correcting variable name and using the correct variable\nfloating_point = '3.14'\nprint(floating_point)\n\n# Correcting the logical operation and type mismatch\nboolean_value = True\nprint(boolean_value and False)",
                 "description": "The code contains several issues: incorrect variable names due to case sensitivity, attempting to add a string to an integer, using undefined variables, and logical operations on incompatible types.",
                 "explanation": "1. Variable names are case-sensitive, so 'Hello' and 'hello' are different.\n2. To perform arithmetic operations, convert the string to the appropriate data type (e.g., int or float).\n3. Ensure the correct variable names are used throughout the code, matching the definition.\n4. Logical operations should be performed between compatible types; using a string in a logical expression with a boolean requires caution.\n5. Undefined variables will result in a NameError; ensure all variables are defined before use.",
                 "chat_context": "The task involves working with variables of different data types in Python and correcting errors related to variable naming, data type conversion, and logical operations. Emphasize the importance of case sensitivity, data type compatibility, and ensuring variables are properly defined and used.",
                 "reflection_context": "Ask the user a brief, direct question about the importance of data type compatibility in Python. Avoid generating ANY extended reflections or explanations. After the user responds, confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary.",
                 "reflection_question": "Why do you think data type compatibility is important in Python, and how does it affect the way you write and debug code?",
+                "follow_up_challenge": "Try changing the data type of the variable 'floating_point' from a string to a float during assignment. Then, use this variable in an arithmetic operation, such as multiplication by 2. What output do you get, and how does this affect the type of the resulting variable?",
                 "expected_output": "Hello\n15\n<class 'float'>\nFalse"
             }
+        ]
+    },
+    "simple_problems": {
+        "label": ["simple problems", "beginner", "basic", "basics", "fundamentals", "simple_problems", "simple_exercises", "simple exercises", "simple exercise", "simple task", "starter", "introductory", "simple_task", "introduction"],
+        "examples": [
+            {
+                "task_id": 30,
+                "task_description": "This task is designed to introduce you to both Python and the learning environment you're using. Your goal is to write a simple Python program that prints 'Hello, World!' to the console. This will help you get familiar with writing and running code in this system. The output should be Hello, World!",
+                "incorrect_code": "#Don't forget to ask the assistant for help if you get stuck!\nPrint(Hello, World!)",
+                "correct_code": "print('Hello, World!')",
+                "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes. The incorrect code example uses incorrect capitalization for the function name and is missing quotes around the string, leading to a syntax error.",
+                "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
+                "chat_context": "The task involves writing a basic Python program to print a message to the console. The common mistake here is forgetting to use quotes around the string and incorrectly capitalizing the function name. Focus on explaining the importance of correct syntax in Python.",
+                "reflection_context": "Ask the user a direct question on their understanding of how print statements work. Allow the user to answer the question, do not answer it yourself. The aim is to ensure they understand the basic steps of writing a Python program, the importance of correct syntax, and how to use this system to develop and run Python programs. Confirm whether their answer is correct or not before asking the next question.",
+                "reflection_question": "Why doesn't a print statement work in Python if the word print starts with a capital P?",
+                "follow_up_challenge": "Modify your program to print 'Hello, Python!' instead of 'Hello, World!'. Then, add a second print statement that prints 'Welcome to Python programming!'. What do you notice about how the print function handles multiple statements?",
+                "expected_output": "Hello, World!"
+            }
+        ]
+    },
+    "mathematics": {
+        "label": ["mathematics", "math", "calculation", "arithmetic", "mathematical"],
+        "examples": [
+            {
+                "task_id": 20,
+                "task_description": "This task introduces you to basic mathematical operations in Python. You'll write a Python program that demonstrates addition and subtraction. The output should show the results of these operations.",
+                "incorrect_code": "num1 = 10\nnum2 = 5\n\n#These contain mistakes, don't forget to ask the assistant for help if you get stuck!\naddition = num1 plus num2\nsubtraction = num1 minus num2\n\nprint(addition, subtraction)",
+                "correct_code": "num1 = 10\nnum2 = 5\naddition = num1 + num2\nsubtraction = num1 - num2\n\nprint(addition, subtraction)",
+                "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus' and 'minus'. Python uses specific symbols for these operations: '+' for addition and '-' for subtraction.",
+                "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition and '-' for subtraction. The incorrect code uses plain English terms which are not recognized as valid operators in Python.",
+                "chat_context": "The task involves performing basic mathematical operations in Python. Common mistakes include using incorrect symbols or terms for these operations. Focus on explaining the correct operators and how they work in Python.",
+                "reflection_context": "Ask the user how basic mathematical operations are used in Python. Avoid generating any extended reflections or explanations. Ask the user to think about how understanding these operators can help them solve more complex problems. Encourage them to consider scenarios where using the wrong operator could lead to significant errors. After the user responds, confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary.",
+                "reflection_question": "Why do you think Python uses symbols like + and - for addition and subtraction instead of words like 'plus' and 'minus'?",
+                "follow_up_challenge": "Now, modify the program to add the subtraction result to the addition result and store it in a new variable.",
+                "expected_output": "15\n5"
+            }            
         ]
     }
 }
