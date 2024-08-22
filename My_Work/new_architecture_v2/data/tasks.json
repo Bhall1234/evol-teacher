@@ -2,7 +2,7 @@
     "tasks": [
         {
             "task_id": 1,
-            "task_name": "Task 2: Simple Addition",
+            "task_name": "Task 1: Simple Addition",
             "task_description": "This task introduces you to performing a simple addition in Python. You'll fix a Python program that adds two numbers and prints the result.",
             "incorrect_code": "number1 = 5\nnumber2 = 10\nprint(number1 + number2)",
             "correct_code": "number1 = 5\nnumber2 = 10\nprint(number1 + number2)",
