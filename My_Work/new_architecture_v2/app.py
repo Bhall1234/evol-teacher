@@ -88,6 +88,8 @@ def check_code():
             })
         else:
             logging.info("Code execution incorrect")
+            # Log user's incorrect code
+            logging.info(f"User's incorrect code for task {task_id}:\n{user_code}")
             return jsonify({
                 "output": user_output,
                 "result": "Incorrect",
