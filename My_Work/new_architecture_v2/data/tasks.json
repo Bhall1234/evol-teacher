@@ -2,15 +2,15 @@
     "tasks": [
         {
             "task_id": 1,
-            "task_name": "Task 1: Simple Addition",
-            "task_description": "This task introduces you to performing a simple addition in Python. You'll fix a Python program that adds two numbers and prints the result.",
-            "incorrect_code": "number1 = 5\nnumber2 = 10\nprint(number1 + number2)",
-            "correct_code": "number1 = 5\nnumber2 = 10\nprint(number1 + number2)",
-            "description": "The incorrect code adds two numbers and prints the result. This is a basic operation, but it’s important to ensure that the correct variables are used and that the operation produces the expected output.",
+            "task_name": "Task 1: Simple Multiplication",
+            "task_description": "This task introduces you to performing multiplication in Python. You'll fix a Python program that multiplies two numbers and prints the result.",
+            "incorrect_code": "number1 = 5\nnumber2 = 10\nprint(number1 x number2)",
+            "correct_code": "number1 = 5\nnumber2 = 10\nprint(number1 * number2)",
+            "description": "The incorrect code adds two numbers and prints the result. This is a basic operation, but it's important to ensure that the correct variables are used and that the operation produces the expected output.",
             "explanation": "In Python, performing addition and printing the result is straightforward. The correct code successfully adds the two numbers and displays the result using the `print()` function.",
-            "expected_output": "15",
-            "follow_up_challenge": "Now, modify the program to add a third number (e.g., `number3 = 20`) to the result, and print the new total. This will help reinforce your understanding of how to handle multiple variables in an addition operation.",
-            "reflection_question": "Why do you think it's important to use the correct operator (`+`) for addition in Python? What might happen if you use an incorrect operator?"
+            "expected_output": "50",
+            "follow_up_challenge": "Now, modify the program to multiply a third number (e.g., `number3 = 20`) to the result, and print the new total. This will help reinforce your understanding of how to handle multiple variables in an addition operation.",
+            "reflection_question": "Why do you think it's important to use the correct operator (`*`) for addition in Python? What might happen if you use an incorrect operator?"
         },               
         {
             "task_id": 2,
