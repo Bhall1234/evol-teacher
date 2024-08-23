@@ -16,7 +16,7 @@
             "task_id": 2,
             "task_name": "Task 2: Greeting Function",
             "task_description": "This task introduces you to writing functions in Python. You'll fix a Python function that is supposed to take a name as an argument and print a greeting. However, there's a mistake in how the function is called. The function should print 'Hello, Alice!' as the output, but currently, it doesn't. Your task is to identify and correct the issue.",
-            "incorrect_code": "def greet(name):\n    print(name)\n\nname = 'Alice'\ngreet()# The function is called here, but it doesn't work as expected.",
+            "incorrect_code": "def greet(name) # Area of interest...\n    print(name)\n\nname = 'Alice'\ngreet()# The function is called here, but it doesn't work as expected.",
             "correct_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet('Alice')",
             "description": "The incorrect code defines a function that expects a name to be passed as an argument, but it calls the function without providing the required argument, leading to an error.",
             "explanation": "In Python, if a function expects an argument, you must provide it when calling the function. The incorrect code does not pass the name to the function, which causes an error. The correct code provides a name as an argument when calling the function.",
