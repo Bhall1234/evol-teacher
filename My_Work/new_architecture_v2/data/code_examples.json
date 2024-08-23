@@ -42,15 +42,17 @@
         "examples": [
             {
                 "task_id": 4,
-                "task_description": "You need to create a function in Python that greets a user by their name. If no name is provided when calling the function, it should default to 'Guest'. Your task is to modify the function to use a default parameter value, ensuring it works correctly when no argument is given. The output should be 'Hello, Guest!'",
-                "incorrect_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet()\n",
-                "correct_code": "# Solution 1\ndef greet(name='Guest'):\n    print(f'Hello, {name}!')\n\ngreet()\n\n # Solution 2\ndef greet(name):\n    print(f'Hello, {name}!')\n\nname='Guest'\ngreet(name)\n",
-                "description": "Missing default parameter value.",
-                "explanation": "To handle cases where no argument is provided, use a default parameter value like `name='Guest'`.",
-                "chat_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
-                "reflection_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context. Based on this context, ask the user a reflective question.",
-                "expected_output": "Hello, Guest!"
-            }
+                "task_description": "This task introduces you to writing functions in Python. You'll fix a Python function that is supposed to take a name as an argument and print a greeting. However, there's a mistake in how the function is called. The function should print 'Hello, Alice!' as the output, but currently, it doesn't. Your task is to identify and correct the issue.",
+                "incorrect_code": "def greet(name) # Area of interest...\n    print(name)\n\nname = 'Alice'\ngreet()# The function is called here, but it doesn't work as expected.",
+                "correct_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet('Alice')",
+                "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus' and 'minus'. Python uses specific symbols for these operations: '+' for addition and '-' for subtraction.",
+                "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition and '-' for subtraction. The incorrect code uses plain English terms which are not recognized as valid operators in Python.",
+                "chat_context": "The task involves fixing a function that should print a greeting message in Python. The issue is related to how the function is called without providing the required argument. The function is also missing its ':' from the end of 'greet_name(name)' Focus on explaining the importance of passing arguments to functions and how it affects their behavior.",
+                "reflection_context": " Ask the user a reflective question about why the function didn't work when called without an argument and what changes were made to make it work. Encourage the user to think about the role of function arguments in Python and how they influence the function's output.",
+                "follow_up_challenge": "Try modifying the function to take a second name, this can be any name. Then, call the function with both arguments.",
+                "reflection_question": "Why do you think the function didn't work when you didn't pass a name? What did you change to make it work?",
+                "expected_output": "Alice"
+            }   
         ]
     },
     "dictionaries": {
@@ -351,24 +353,6 @@
                 "reflection_context": "Ask the user how basic mathematical operations are used in Python. Avoid generating any extended reflections or explanations. Ask the user to think about how understanding these operators can help them solve more complex problems. Encourage them to consider scenarios where using the wrong operator could lead to significant errors. After the user responds, confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary.",
                 "reflection_question": "Why do you think Python uses symbols like + and - for addition and subtraction instead of words like 'plus' and 'minus'?",
                 "follow_up_challenge": "Now, modify the program to add the subtraction result to the addition result and store it in a new variable.",
-                "expected_output": "15 5"
-            }            
-        ]
-    },
-    "difficult": {
-        "label": ["difficult"],
-        "examples": [
-            {
-                "task_id": 50,
-                "task_description": "This task introduces you to writing functions in Python. You'll fix a Python function that is supposed to take a name as an argument and print a greeting. However, there's a mistake in how the function is called. The function should print 'Hello, Alice!' as the output, but currently, it doesn't. Your task is to identify and correct the issue.",
-                "incorrect_code": "def greet(name) # Area of interest...\n    print(name)\n\nname = 'Alice'\ngreet()# The function is called here, but it doesn't work as expected.",
-                "correct_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet('Alice')",
-                "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus' and 'minus'. Python uses specific symbols for these operations: '+' for addition and '-' for subtraction.",
-                "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition and '-' for subtraction. The incorrect code uses plain English terms which are not recognized as valid operators in Python.",
-                "chat_context": "The task involves fixing a function that should print a greeting message in Python. The issue is related to how the function is called without providing the required argument. Focus on explaining the importance of passing arguments to functions and how it affects their behavior.",
-                "reflection_context": " Ask the user a reflective question about why the function didn't work when called without an argument and what changes were made to make it work. Encourage the user to think about the role of function arguments in Python and how they influence the function's output.",
-                "follow_up_challenge": "Try modifying the function to take a second name, this can be any name. Then, call the function with both arguments.",
-                "reflection_question": "Why do you think the function didn't work when you didn't pass a name? What did you change to make it work?",
                 "expected_output": "15 5"
             }            
         ]
