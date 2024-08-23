@@ -354,5 +354,35 @@
                 "expected_output": "15 5"
             }            
         ]
+    },
+    "difficult": {
+        "label": ["difficult"],
+        "examples": [
+            {
+                "task_id": 50,
+                "task_description": "This task introduces you to writing functions in Python. You'll fix a Python function that is supposed to take a name as an argument and print a greeting. However, there's a mistake in how the function is called. The function should print 'Hello, Alice!' as the output, but currently, it doesn't. Your task is to identify and correct the issue.",
+                "incorrect_code": "def greet(name):\n    print(name)\n\nname = 'Alice'\ngreet()",
+                "correct_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet('Alice')",
+                "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus' and 'minus'. Python uses specific symbols for these operations: '+' for addition and '-' for subtraction.",
+                "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition and '-' for subtraction. The incorrect code uses plain English terms which are not recognized as valid operators in Python.",
+                "chat_context": "The task involves performing basic mathematical operations in Python. Common mistakes include using incorrect symbols or terms for these operations. Focus on explaining the correct operators and how they work in Python.",
+                "reflection_context": "Ask the user how basic mathematical operations are used in Python. Avoid generating any extended reflections or explanations. Ask the user to think about how understanding these operators can help them solve more complex problems. Encourage them to consider scenarios where using the wrong operator could lead to significant errors. After the user responds, confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary.",
+                "reflection_question": "Why do you think Python uses symbols like + and - for addition and subtraction instead of words like 'plus' and 'minus'?",
+                "follow_up_challenge": "Now, modify the program to add the subtraction result to the addition result and store it in a new variable.",
+                "expected_output": "15 5"
+            }            
+        ]
     }
 }
+
+
+"task_id": 2,
+"task_name": "Task 2: Greeting Function",
+"task_description": "This task introduces you to writing functions in Python. You'll fix a Python function that is supposed to take a name as an argument and print a greeting. However, there's a mistake in how the function is called. The function should print 'Hello, Alice!' as the output, but currently, it doesn't. Your task is to identify and correct the issue.",
+"incorrect_code": "def greet(name):\n    print(name)\n\nname = 'Alice'\ngreet()",
+"correct_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet('Alice')",
+"description": "The incorrect code defines a function that expects a name to be passed as an argument, but it calls the function without providing the required argument, leading to an error.",
+"explanation": "In Python, if a function expects an argument, you must provide it when calling the function. The incorrect code does not pass the name to the function, which causes an error. The correct code provides a name as an argument when calling the function.",
+"expected_output": "Alice",
+"follow_up_challenge": "Try modifying the function to take a second name, this can be any name. Then, call the function with both arguments.",
+"reflection_question": "Why do you think the function didn't work when you didn't pass a name? What did you change to make it work?"

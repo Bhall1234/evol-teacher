@@ -397,7 +397,7 @@ def extract_programming_keywords(text):
 
     # Existing keywords and synonyms logic
     programming_keywords = {
-        "def", "function", "return", "functions",
+        "def", "function", "return", "functions", "difficult",
         "else", "elif", "class", "import", "try", "except",
         "concatenate", "append", "add", "subtract", "multiply", "divide",
         "variable", "list", "dictionary", "set",
