@@ -1,0 +1,354 @@
+{
+    "lists": {
+        "label": ["list", "append", "method"],
+        "examples": [
+            {
+                "task_id": 1,
+                "task_description": "You are given a list containing elements, and the goal is to add new elements to this list using a `for` loop. The code is intended to append these new elements to the existing list and then print the updated list. However, it is not working as expected and fails to produce the correct output. Analyze the code to identify the issue and correct it so that the new elements are properly added to the list.",
+                "incorrect_code": "my_list = [1, 2, 3]\nfor i in range(4, 5):\n    new_list = my_list.append(i)\nprint(new_list)\n",
+                "correct_code": "my_list = [1, 2, 3]\nfor i in range(4, 5):\n    my_list.append(i)\nprint(my_list)\n",
+                "description": "Misunderstanding the `append` method's return value.",
+                "explanation": "The `append` method modifies the list in place and returns `None`. You should not assign its result to a new variable.",
+                "chat_context": "The task is about list modification in Python, specifically using the `append` method within a `for` loop. The issue is related to understanding the return value of the `append` method and how it modifies the list in place. Focus on explaining why the incorrect code does not work as expected and how to fix it.",
+                "reflection_context": "Reflect on the behavior of list methods like `append` that modify the list in place and why assigning their return values can lead to errors. Based on this context, ask the user a reflective question.",
+                "expected_output": "[1, 2, 3, 4]"
+            },
+            {
+                "task_id": 2,
+                "task_description": "This task requires you to add a number to a list using a `for` loop. The code should iterate over a specified range and append each element to the list, then print the final updated list. However, the current code does not perform as intended and does not add the elements correctly. Your job is to identify the error and fix the code so that it properly appends the numbers to the list.",
+                "incorrect_code": "my_list = [1, 2]\nfor i in range(3, 4):\n    my_list = my_list.append(i)\nprint(my_list)",
+                "correct_code": "my_list = [1, 2]\nfor i in range(3, 4):\n    my_list.append(i)\nprint(my_list)",
+                "description": "The same mistake with `append` method.",
+                "explanation": "Understanding `append` returns None.",
+                "chat_context": "The task is focusing on list modification using the `append` method within a `for` loop. The incorrect code assigns the result of `append` to the list variable, which is not the intended usage. Explain why this approach does not work and how to correct it.",
+                "reflection_context": "Reflect on the importance of understanding how list methods like `append` modify lists in place and why assigning their return values can lead to errors. Based on this context, ask the user a reflective question.",
+                "expected_output": "[1, 2, 3]"
+            },
+            {
+                "task_id": 3,
+                "task_description": "This task involves writing a Python program that iterates through a list of numbers using a `for` loop and prints each number. This exercise introduces lists and loops in Python.",
+                "incorrect_code": "numbers = [1, 2, 3, 4, 5]\nfor i in numbers:\n    print(i + 1)",
+                "correct_code": "numbers = [1, 2, 3, 4, 5]\nfor i in numbers:\n    print(i)",
+                "description": "Adding 1 to each number before printing, which is not what the task asks for.",
+                "explanation": "The incorrect code adds 1 to each number before printing, while the task only requires printing the numbers as they are in the list.",
+                "chat_context": "The task involves iterating through a list and printing each element in Python. The mistake here is modifying the elements before printing, which is not necessary. Focus on explaining how to correctly use loops to iterate through lists.",
+                "reflection_context": "Reflect on the importance of following task requirements precisely and avoiding unnecessary modifications to the data. Based on this context, ask the user a reflective question.",
+                "expected_output": "1\n2\n3\n4\n5"
+            }
+        ]
+    },
+    "functions": {
+        "label": ["function", "default parameter", "`def`", "`function`", "parameters", "functions"],
+        "examples": [
+            {
+                "task_id": 4,
+                "task_description": "You need to create a function in Python that greets a user by their name. If no name is provided when calling the function, it should default to 'Guest'. Your task is to modify the function to use a default parameter value, ensuring it works correctly when no argument is given. The output should be 'Hello, Guest!'",
+                "incorrect_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet()\n",
+                "correct_code": "# Solution 1\ndef greet(name='Guest'):\n    print(f'Hello, {name}!')\n\ngreet()\n\n # Solution 2\ndef greet(name):\n    print(f'Hello, {name}!')\n\nname='Guest'\ngreet(name)\n",
+                "description": "Missing default parameter value.",
+                "explanation": "To handle cases where no argument is provided, use a default parameter value like `name='Guest'`.",
+                "chat_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context.",
+                "reflection_context": "The task involves defining a function in Python that greets a user with their name. The issue is related to handling cases where no name is provided to the function. Focus on explaining how default parameters work in Python functions and why they are useful in this context. Based on this context, ask the user a reflective question.",
+                "expected_output": "Hello, Guest!"
+            }
+        ]
+    },
+    "dictionaries": {
+        "label": ["dictionary", "key", "lookup", "`dict`", "hash map", "hash", "hash table", "table"],
+        "examples": [
+            {
+                "task_id": 6,
+                "task_description": "You are working with a Python dictionary that stores information about a person, such as their name and age. The goal is to print the value associated with a specific key in the dictionary. However, if the key does not exist, the program should output 'City not found'. The current code raises an error when the key is not found. Your task is to correct the code to handle this situation gracefully by using an appropriate method to avoid the error.",
+                "incorrect_code": "my_dict = {'name': 'Alice', 'age': 25}\nprint(my_dict['city'])\n",
+                "correct_code": "# Solution 1\nmy_dict = {'name': 'Alice', 'age': 25}\ncity = my_dict.get('city')\nif city:\n    print(city)\nelse:\n    print('City not found')\n",
+                "description": "The code raises a KeyError because the key 'city' does not exist in the dictionary.",
+                "explanation": "In Python, trying to access a dictionary key that does not exist will raise a KeyError. To avoid this, you can use the `get` method to safely retrieve a key's value. The `get` method returns `None` if the key is not found, which you can then check using an if statement.",
+                "chat_context": "The task involves working with dictionaries in Python and handling key errors when a key is not found in the dictionary. The issue is related to KeyError exceptions and how to handle them using the `get` method. Focus on explaining why the incorrect code raises an error and how the correct code addresses this issue.",
+                "reflection_context": "Reflect on the importance of error handling when working with dictionaries in Python and how the `get` method can help prevent KeyError exceptions. Based on this context, ask the user a reflective question.",
+                "expected_output": "City not found"
+            },
+            {
+                "task_id": 7,
+                "task_description": "This task requires you to write a Python program that retrieves the value associated with a specific key in a dictionary. If the key does not exist, it should print a default message. This problem introduces the use of dictionaries in Python.",
+                "incorrect_code": "my_dict = {'name': 'John', 'age': 30}\nprint(my_dict['city'])",
+                "correct_code": "my_dict = {'name': 'John', 'age': 30}\nprint(my_dict.get('city', 'City not found'))",
+                "description": "Trying to access a key that does not exist in the dictionary.",
+                "explanation": "In Python, trying to access a non-existent key in a dictionary raises a KeyError. Using the `get` method allows you to specify a default value to return if the key is not found, which prevents the error.",
+                "chat_context": "The task involves working with dictionaries in Python and safely retrieving values. The mistake here is trying to access a key that may not exist without handling the potential error. Focus on explaining how to use the `get` method to avoid KeyErrors.",
+                "reflection_context": "Reflect on the importance of error handling when working with dictionaries in Python and how the `get` method can help prevent KeyError exceptions. Based on this context, ask the user a reflective question.",
+                "expected_output": "City not found"
+            }
+        ]
+    },
+    "strings":{
+        "label": ["string", "concatenation", "`str`", "concatenate", "combine"],
+        "examples": [
+            {
+                "task_id": 8,
+                "task_description": "This task involves concatenating a string and a number in Python to form a complete sentence. The code should take a number representing age and combine it with a string to produce a message like 'I am 25 years old.' However, the current implementation results in an error. Your job is to fix the code so that it correctly joins the string and number to form the desired output.",
+                "incorrect_code": "age = 25\nmessage = 'I am ' + age + ' years old.'\nprint(message)\n",
+                "correct_code": "# Solution 1\nage = 25\nmessage = 'I am ' + str(age) + ' years old.'\nprint(message)\n# Solution 2\nage = 25\nmessage = f'I am {age} years old.'\nprint(message)\n",
+                "description": "TypeError: cannot concatenate 'str' and 'int' objects.",
+                "explanation": "You need to convert the integer to a string before concatenation or use an f-string for formatting.",
+                "chat_context": "The task is about concatenating a string and a number in Python. The issue is related to type conversion between integers and strings. Focus on explaining how type conversion works in Python and why the error occurs.",
+                "reflection_context": "Reflect on the importance of data type compatibility when working with strings and numbers in Python. Based on this context, ask the user a reflective question.",
+                "expected_output": "I am 25 years old."
+            },
+            {
+                "task_id": 9,
+                "task_description": "This task requires you to write a Python program that converts a string to uppercase and then prints it. This problem introduces string methods in Python.",
+                "incorrect_code": "message = 'hello world'\nprint(message.upper)",
+                "correct_code": "message = 'hello world'\nprint(message.upper())",
+                "description": "Missing parentheses when calling the `upper` method.",
+                "explanation": "In Python, string methods like `upper` need to be called with parentheses, even if they don't take any arguments. The incorrect code is missing these parentheses, resulting in a reference to the method itself rather than executing it.",
+                "chat_context": "The task involves using string methods to modify and print a string in Python. The issue here is forgetting to include parentheses when calling a method. Focus on explaining the correct usage of string methods.",
+                "reflection_context": "Reflect on the importance of method invocation syntax in Python and how missing parentheses can lead to unexpected behavior. Based on this context, ask the user a reflective question.",
+                "expected_output": "HELLO WORLD"
+            }
+        ]
+    },
+    "for loops":{
+        "label": ["for loop", "`for loop`", "`for`", "for_loop"],
+        "examples": [
+            {
+                "task_id": 10,
+                "task_description": "The task requires you to write a `for` loop that iterates over each character in a string and prints it. The current code is supposed to print each character of the string 'hello'. Your job is to analyze the code, identify the mistake, and modify it so that it correctly prints each character of the string.",
+                "incorrect_code": "word = 'hello'\nfor i in range(0, len(word) + 1):\n    print(word[i])\n",
+                "correct_code": "word = 'hello'\nfor i in range(0, len(word)):\n    print(word[i])\n",
+                "description": "IndexError: string index out of range.",
+                "explanation": "The range should stop at `len(word)`, not `len(word) + 1`, because indexing is zero-based.",
+                "chat_context": "The task involves iterating over the characters of a string using a for loop in Python. The issue is related to the range used for iteration and how it relates to string indexing. Focus on explaining why the incorrect code raises an error and how to fix it.",
+                "reflection_context": "Reflect on the importance of understanding zero-based indexing when working with sequences like strings in Python. Based on this context, ask the user a reflective question.",
+                "expected_output": "h\ne\nl\nl\no"
+            }
+        ]
+    },
+    "while loops":{
+        "label": ["while loop", "`while loop`", "`while`", "while_loop"],
+        "examples": [
+            {
+                "task_id": 11,
+                "task_description": "This task involves using a `while` loop to print numbers from 1 to 5. The code should iterate through the numbers, printing each one in sequence. Your task is to identify and fix the problem in the code so that the loop terminates correctly after printing the numbers 1 to 5.",
+                "incorrect_code": "i = 1\nwhile i <= 5:\n    print(i)\n",
+                "correct_code": "i = 1\nwhile i <= 5:\n    print(i)\n    i += 1\n",
+                "description": "The loop condition is correct, but the loop becomes an infinite loop because the increment step is missing.",
+                "explanation": "In the incorrect code, the value of `i` is not being incremented inside the loop, causing an infinite loop. To fix this, you need to increment `i` by 1 after each iteration.",
+                "chat_context": "The task involves using a while loop to print numbers from 1 to 5 in Python. The issue is related to the loop becoming an infinite loop due to a missing increment step. Focus on explaining why the incorrect code does not terminate and how to correct it.",
+                "reflection_context": "Reflect on the importance of updating loop control variables to ensure the loop progresses towards its termination condition. Based on this context, ask the user a reflective question.",
+                "expected_output": "1\n2\n3\n4\n5"
+            }
+        ]
+    },
+    "multiplication":{
+        "label": ["multiplication", "*", "multiply", "product"],
+        "examples": [
+            {
+                "task_id": 12,
+                "task_description": "In this task, you need to write a function that multiplies two numbers and returns the result. The code should take two input values, multiply them, and return the product. Your task is to correct the code so that it multiplies the numbers as intended.",
+                "incorrect_code": "def multiply(a, b):\n    return a + b\n\nresult = multiply(3, 4)\nprint(result)\n",
+                "correct_code": "def multiply(a, b):\n    return a * b\n\nresult = multiply(3, 4)\nprint(result)\n",
+                "description": "The code is performing addition instead of multiplication.",
+                "explanation": "The `+` operator is used for addition, while the `*` operator is used for multiplication.",
+                "chat_context": "The task involves multiplying two numbers in Python. The issue is related to using the addition operator instead of the multiplication operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
+                "expected_output": "12"
+            }
+        ]
+    },
+    "addition":{
+        "label": ["addition", "add", "+", "sum"],
+        "examples": [
+            {
+                "task_id": 5,
+                "task_description": "You need to correct the code that attempts to add two variables together. The task is to ensure that the code correctly adds these two values and prints the result. The expected output is the sum of the two variables.",
+                "incorrect_code": "x = 5\ny = \"10\"\nprint(x + y)",
+                "correct_code": "#Solution 1:\nx = 5\ny = 10\nprint(x + y)\n\n#Solution 2:\nx = 5\ny = int(\"10\")\nprint(x + y)\n\n#Solution 3:\nx = 5\ny = \"10\"\nprint(x + int(y))",
+                "description": "The code is attempting to add an integer and a string, which will result in a TypeError. Python cannot directly add these two different types together.",
+                "explanation": "To perform the addition correctly, you need to convert the string `y` into an integer using the `int()` function. Once both `x` and `y` are integers, the addition will work as expected.",
+                "chat_context": "The problem involves fixing code that tries to add an integer and a string. The error occurs because Python cannot directly add these two types. The solution involves converting the string to an integer before performing the addition.",
+                "reflection_context": "Ask the user a brief, direct question about why Python does not allow the addition of a string and an integer. Do NOT generate any explanation or reflection. After the user responds, confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary.",
+                "expected_output": "15"
+            }
+        ]
+    },
+    "subtraction":{
+        "label": ["subtraction", "-", "subtract", "difference"],
+        "examples": [
+            {
+                "task_id": 15,
+                "task_description": "You are required to write a function that subtracts one number from another and returns the result. The code should take two input values, subtract the second value from the first, and return the difference. Your task is to correct the code so that it performs the subtraction as intended.",
+                "incorrect_code": "def subtract(a, b):\n    return a * b\n\nresult = subtract(7, 3)\nprint(result)\n",
+                "correct_code": "def subtract(a, b):\n    return a - b\n\nresult = subtract(7, 3)\nprint(result)\n",
+                "description": "The code is performing multiplication instead of subtraction.",
+                "explanation": "The `*` operator is used for multiplication, while the `-` operator is used for subtraction.",
+                "chat_context": "The task involves subtracting two numbers in Python. The issue is related to using the multiplication operator instead of the subtraction operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
+                "expected_output": "4"
+            }
+        ]
+    },
+    "division":{
+        "label": ["division", "divide", "/", "quotient"],
+        "examples": [
+            {
+                "task_id": 16,
+                "task_description": "In this task, you need to write a function that divides two numbers and returns the result. The code should take two input values, divide the first value by the second, and return the quotient. Your job is to fix the code so that it correctly divides the numbers and returns the expected result.",
+                "incorrect_code": "def divide(a, b):\n    return a + b\n\nresult = divide(10, 2)\nprint(result)\n",
+                "correct_code": "def divide(a, b):\n    return a / b\n\nresult = divide(10, 2)\nprint(result)\n",
+                "description": "The code is performing addition instead of division.",
+                "explanation": "The `+` operator is used for addition, while the `/` operator is used for division.",
+                "chat_context": "The task involves dividing two numbers in Python. The issue is related to using the addition operator instead of the division operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
+                "expected_output": "5.0"
+            }
+        ]
+    },
+    "modulus":{
+        "label": ["modulus", "remainder", "%", "modulo"],
+        "examples": [
+            {
+                "task_id": 17,
+                "task_description": "This task involves writing a function that calculates the remainder when one number is divided by another. The code should take two input values, find the remainder of their division, and return the result. Your task is to correct the code so that it uses the right operator to return the correct remainder.",
+                "incorrect_code": "def find_remainder(a, b):\n    return a / b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
+                "correct_code": "def find_remainder(a, b):\n    return a % b\n\nresult = find_remainder(10, 3)\nprint(result)\n",
+                "description": "The code is performing division instead of finding the remainder.",
+                "explanation": "The `/` operator is used for division, while the `%` operator is used to find the remainder of division.",
+                "chat_context": "The task involves finding the remainder of dividing two numbers in Python. The issue is related to using the division operator instead of the modulus operator. Focus on explaining why the incorrect code produces the wrong result and how to fix it. The code is in a function.",
+                "reflection_context": "Reflect on the importance of using the correct arithmetic operators to achieve the desired results in programming. Based on this context, ask the user a reflective question.",
+                "expected_output": "1"
+            }
+        ]
+    },
+    "mathematics":{
+        "label": ["mathematics", "math", "calculation", "arithmetic", "mathematical"],
+        "examples": [
+            {
+                "task_id": 20,
+                "task_description": "This task introduces you to various mathematical operations you can perform in Python. You'll write a Python program that demonstrates addition, subtraction, multiplication, division, and exponentiation. The output should show the results of these operations.",
+                "incorrect_code": "num1 = 10\nnum2 = 5\n\n#These contain mistakes, dont forget to ask the assistant for help if you get stuck!\naddition = num1 plus num2\nsubtraction = num1 minus num2\nmultiplication = num1 times num2\ndivision = num1 divided by num2\nexponentiation = num1 to the power of num2\n\nprint(addition, subtraction, multiplication, division, exponentiation)",
+                "correct_code": "num1 = 10\nnum2 = 5\naddition = num1 + num2\nsubtraction = num1 - num2\nmultiplication = num1 * num2\ndivision = num1 / num2\nexponentiation = num1 ** num2\nprint(addition, subtraction, multiplication, division, exponentiation)",
+                "description": "The incorrect code uses non-Pythonic syntax for math operations, such as 'plus', 'minus', 'times', 'divided by', and 'to the power of'. Python uses specific symbols for these operations: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation.",
+                "explanation": "In Python, mathematical operations are performed using specific operators. The correct symbols are: '+' for addition, '-' for subtraction, '*' for multiplication, '/' for division, and '**' for exponentiation. The incorrect code uses plain English terms which are not recognized as valid operators in Python.",
+                "chat_context": "The task involves performing basic mathematical operations in Python. Common mistakes include using incorrect symbols or terms for these operations. Focus on explaining the correct operators and how they work in Python.",
+                "reflection_context": "Ask the user how basic mathematical operations are used in Python. Avoid generating ANY extended reflections or explanations. Ask the user to think about how understanding these operators can help them solve more complex problems. Encourage them to consider scenarios where using the wrong operator could lead to significant errors. After the user responds, confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary.",
+                "reflection_question": "Now that you've explored basic math operations in Python, can you explain how each operator works? Why is it important to use the correct operator, and how can understanding these basics help you when working on more complex tasks?",
+                "expected_output": "15 5 50 2.0 100000"
+            }  
+        ]
+    },
+    "if statements":{
+        "label": ["if", "if statement", "if_statement", "`if`", "if_statements"],
+        "examples": [
+            {
+                "task_id": 24,
+                "task_description": "This task involves using an if statement to check whether a given number is even or odd. The code is supposed to evaluate the condition and print 'Even' if the number is even, and 'Odd' if the number is odd. Your task is to fix the code so that it correctly identifies and prints whether the number is even or odd. There could be multiple issues in the code.",
+                "incorrect_code": "num = 4\nif num % 2 = 0\n    print('Even')\nelse:\n    print('Odd')\n",
+                "correct_code": "num = 4\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
+                "description": "Using a single equals sign for comparison instead of a double equals sign.",
+                "explanation": "In Python, a single equals sign `=` is used for assignment, while a double equals sign `==` is used for comparison. The incorrect code uses `=` for comparison, which results in a syntax error. The correct code uses `==` to properly compare if `num % 2` is equal to `0`. The code is also missing the ':' after the if statement.",
+                "chat_context": "The task involves using if statements to check if a number is even or odd in Python. The common mistake here is using a single equals sign for comparison instead of a double equals sign, another mistake is that the colon is missing in the if statement. Focus on explaining the difference between assignment and comparison operators and how to correctly use them in if statements.",
+                "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements to check conditions accurately. Based on this context, ask the user a reflective question.",
+                "expected_output": "Even"
+            }
+        ]
+    },
+    "conditionals": {
+        "label": ["conditionals", "conditional", "condition", "conditional statement", "conditional_statement", "conditional_statements"],
+        "examples": [
+            {
+                "task_id": 26,
+                "task_description": "This task involves using a conditional statement to determine if a number is even or odd in Python. The code is supposed to print 'Even' if the number is divisible by 2 and 'Odd' otherwise.",
+                "incorrect_code": "num = 5\nif num % 2 = 0:\n    print('Even')\nelse:\n    print('Odd')\n",
+                "correct_code": "num = 5\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
+                "description": "Using the assignment operator `=` instead of the comparison operator `==` results in a syntax error.",
+                "explanation": "In Python, `=` is used for assignment, while `==` is used for comparison. The incorrect code attempts to assign 0 to `num % 2`, which is not allowed in an if statement. The correct code uses `==` to compare `num % 2` with 0, determining if the number is even.",
+                "chat_context": "The task involves using conditionals to check if a number is even or odd in Python. The common mistake here is using the assignment operator instead of the comparison operator. Focus on explaining the difference between these operators and how to correct the code.",
+                "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements to check conditions accurately. Based on this context, ask the user a reflective question.",
+                "expected_output": "Odd"
+            }
+        ]
+    },
+    "boolean types": {
+        "label": ["boolean types","boolean_types", "boolean", "bool", "comparison operators", "logical", "logical operators", "comparison"],
+        "examples": [
+            {
+                "task_id": 36,
+                "task_description": "This task requires you to write a Python program that checks if a variable is set to `True` or `False` and prints an appropriate message. This exercise introduces Boolean types and conditional statements.",
+                "incorrect_code": "is_active = True\nif is_active = True:\n    print('Active')\nelse:\n    print('Inactive')",
+                "correct_code": "is_active = True\nif is_active == True:\n    print('Active')\nelse:\n    print('Inactive')",
+                "description": "Using a single equals sign for comparison instead of a double equals sign.",
+                "explanation": "In Python, a single equals sign `=` is used for assignment, while a double equals sign `==` is used for comparison. The incorrect code uses `=` for comparison, which results in a syntax error.",
+                "chat_context": "The task involves using Boolean types and if statements to check a condition in Python. The common mistake here is using the assignment operator instead of the comparison operator. Focus on explaining the difference between these operators and how to correct the code.",
+                "reflection_context": "Reflect on the importance of using the correct comparison operator in conditional statements and how it affects program logic. Based on this context, ask the user a reflective question.",
+                "expected_output": "Active"
+            }
+        ]
+    },
+    "error checking": {
+        "label": ["error checking", "error handling", "try except", "exception", "error_checking", "error_handling", "try_except"],
+        "examples":[
+            {
+                "task_id": 37,
+                "task_description": "This task requires you to write a Python program that attempts to divide one number by another, but includes error checking to handle division by zero. This exercise introduces error handling using `try` and `except` blocks.",
+                "incorrect_code": "num1 = 10\nnum2 = 0\nresult = num1 / num2\nprint(result)",
+                "correct_code": "num1 = 10\nnum2 = 0\ntry:\n    result = num1 / num2\n    print(result)\nexcept ZeroDivisionError:\n    print('Cannot divide by zero!')",
+                "description": "Attempting to divide by zero without handling the potential error.",
+                "explanation": "In Python, dividing by zero raises a `ZeroDivisionError`. The correct code includes a `try` block to attempt the division and an `except` block to handle the error if it occurs.",
+                "chat_context": "The task involves performing division in Python and handling potential errors like division by zero. The mistake here is not including error handling, which results in a runtime exception. Focus on explaining how to use `try` and `except` blocks to manage errors gracefully.",
+                "reflection_context": "Reflect on the importance of error handling in programming and how it helps prevent unexpected crashes. Based on this context, ask the user a reflective question.",
+                "expected_output": "Cannot divide by zero!"
+            }
+        ]
+    },
+    "variables":{
+        "label": ["variables", "variable", "naming", "naming conventions", "naming_variables"],
+        "examples": [
+            {
+                "task_id": 38,
+                "task_description": "This task involves assigning values to multiple variables and printing them. The code provided has mistakes in variable naming due to case sensitivity. Your task is to identify and correct these errors so that the code prints the correct outputs. The expected outputs are 10, 20, and 30.",
+                "incorrect_code": "\n#These contain mistakes, dont forget to ask the assistant for help if you get stuck!\n\nmyVariable1 = 10\nMyVariable2 = 20\nmyVariable_3 = 30\nprint(myvariable1)\nprint(myVariable2)\nprint(Myvariable_3)",
+                "correct_code": "# Correcting variable case sensitivity\nmyVariable1 = 10\nmyVariable2 = 20\nmyVariable_3 = 30\nprint(myVariable1)\nprint(myVariable2)\nprint(myVariable_3)",
+                "description": "The code contains multiple issues with variable naming due to case sensitivity. 'myVariable1', 'MyVariable2', and 'myVariable_3' are treated as different variables in Python. The incorrect code attempts to print variables with incorrect cases, leading to NameErrors. The correct approach is to use consistent naming conventions throughout the code.",
+                "explanation": "In Python, variable names are case-sensitive, meaning 'myVariable1' and 'myvariable1' are treated as different variables. Similarly, 'MyVariable2' and 'myVariable2' are distinct. The incorrect code attempts to print variables with incorrect cases, leading to errors. The correct approach is to consistently use the intended variable names when defining and printing them.",
+                "chat_context": "The task is centred around understanding how variables work in Python, particularly the case sensitivity of variable names. Emphasize the importance of using consistent variable names and cases throughout the code to avoid errors.",
+                "reflection_context": "Ask the user a brief, direct question about why Python enforces case sensitivity for variable names. Avoid generating ANY extended reflections or explanations. Confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary. DO NOT ANSWER THE QUESTION YOURSELF.",
+                "reflection_question": "Why do you think Python enforces case sensitivity for variable names, and what impact does this have on debugging and code maintenance? How might you ensure consistency in your own coding practices?",
+                "expected_output": "10\n20\n30"
+            }            
+        ]
+    },
+    "data types":{
+        "label": ["data types", "data type", "data", "data_types", "types_of_data", "data_types"],
+        "examples": [
+            {
+                "task_id": 39,
+                "task_description": "This task involves correcting errors in assigning values to variables of different data types and printing them. The code provided has several mistakes, including case sensitivity issues and incorrect data type usage. Your task is to identify and correct the errors. The output should be Hello, 15, <class 'float'>, and False",
+                "incorrect_code": "#These contain mistakes, dont forget to ask the assistant for help if you get stuck!\n\nhello = 'Hello'\nprint(Hello)\n\nnumber = '5'\nprint(number + 10)\n\nfloating_point = '3.14'\nprint(type(floating_Point))\n\nboolean_value = True\nprint(boolean_value and 'False')",
+                "correct_code": "# Correcting variable case sensitivity\nhello = 'Hello'\nprint(hello)\n\n# Converting string to integer before addition\nnumber = '5'\nprint(int(number) + 10)\n#Solution 2:\nx = 5\ny = int(\"10\")\nprint(x + y)\n#Solution 3:\nx = 5\ny = 10\nprint(x+y)\n\n# Correcting variable name and using the correct variable\nfloating_point = '3.14'\nprint(floating_point)\n\n# Correcting the logical operation and type mismatch\nboolean_value = True\nprint(boolean_value and False)",
+                "description": "The code contains several issues: incorrect variable names due to case sensitivity, attempting to add a string to an integer, using undefined variables, and logical operations on incompatible types.",
+                "explanation": "1. Variable names are case-sensitive, so 'Hello' and 'hello' are different.\n2. To perform arithmetic operations, convert the string to the appropriate data type (e.g., int or float).\n3. Ensure the correct variable names are used throughout the code, matching the definition.\n4. Logical operations should be performed between compatible types; using a string in a logical expression with a boolean requires caution.\n5. Undefined variables will result in a NameError; ensure all variables are defined before use.",
+                "chat_context": "The task involves working with variables of different data types in Python and correcting errors related to variable naming, data type conversion, and logical operations. Emphasize the importance of case sensitivity, data type compatibility, and ensuring variables are properly defined and used.",
+                "reflection_context": "Ask the user a brief, direct question about the importance of data type compatibility in Python. Avoid generating ANY extended reflections or explanations. After the user responds, confirm whether their answer is correct or not before asking the next question. Ensure that your confirmation is clear and informative, providing the correct answer if necessary.",
+                "reflection_question": "Why do you think data type compatibility is important in Python, and how does it affect the way you write and debug code?",
+                "expected_output": "Hello\n15\n<class 'float'>\nFalse"
+            }
+        ]
+    },
+    "simple_problems": {
+        "label": ["simple problems", "beginner", "basic", "basics", "fundamentals", "simple_problems", "simple_exercises", "simple exercises", "simple exercise", "simple task", "starter", "introductory", "simple_task", "introduction"],
+        "examples": [
+            {
+                "task_id": 30,
+                "task_description": "This task is designed to introduce you to both Python and the learning environment you're using. Your goal is to write a simple Python program that prints 'Hello, World!' to the console. This will help you get familiar with writing and running code in this system. The output should be Hello, World!",
+                "incorrect_code": "\n#Dont forget to ask the assistant for help if you get stuck!\nPrint(Hello, World!)",
+                "correct_code": "print('Hello, World!')",
+                "description": "In Python, functions like `print` must be written in lowercase, and strings must be enclosed in quotes. The incorrect code example uses incorrect capitalization for the function name and is missing quotes around the string, leading to a syntax error.",
+                "explanation": "In Python, functions are case-sensitive, and the correct syntax must be followed for the code to run properly. Here, 'print' should be lowercase, and 'Hello, World!' should be enclosed in quotes.",
+                "chat_context": "The task involves writing a basic Python program to print a message to the console. The common mistake here is forgetting to use quotes around the string and incorrectly capitalizing the function name. Focus on explaining the importance of correct syntax in Python.",
+                "reflection_context": "ASK the user a direct question on their understanding of how print statements work. ALLOW THE USER TO ANSWER THE QUESTION, DO NOT ANSWER IT YOURSELF. The aim is to ensure they understand the basic steps of writing a Python program, the importance of correct syntax, and how to use this system to develop and run Python programs. Confirm whether their answer is correct or not before asking the next question.",
+                "reflection_question": "Why doesn't a print statement work in Python if the word print starts with a capital P?",
+                "expected_output": "Hello, World!"
+            }                 
+        ]
+    }
+}

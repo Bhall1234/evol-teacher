@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Learning Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .code-block {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .loading {
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python Learning Chatbot</h1>
+        <form method="POST" action="/ask">
+            <label for="question">Ask a question about Python:</label><br>
+            <input type="text" id="question" name="question" required style="width: 100%; padding: 8px;"><br><br>
+            <input type="submit" value="Submit" style="padding: 10px 20px;">
+        </form>
+        <br>
+        {% if question %}
+        <h2>Your Question:</h2>
+        <p>{{ question }}</p>
+        <h2>Response:</h2>
+        <div id="response">
+            {% if response %}
+            {{ response | safe }}
+            {% else %}
+            <p class="loading">Processing your question...</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

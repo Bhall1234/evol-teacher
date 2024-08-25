@@ -1,0 +1,139 @@
+{
+    "examples": [
+        {
+            "task_id": 1,
+            "label": ["while", "while loop", "`while loop`", "`while`"],
+            "task_description": "This code is supposed to print numbers from 1 to 5, but it's not working correctly.",
+            "incorrect_code": "i = 0\nwhile i < 6:\n    print(i)\n    i += 1\n",
+            "correct_code": "i = 1\nwhile i <= 5:\n    print(i)\n    i += 1\n",
+            "description": "Off-by-one error in the loop condition.",
+            "explanation": "This loop runs from 0 to 5. If you want to print from 1 to 5, you should initialize i to 1 and use while i <= 5."
+        },
+        {
+            "task_id": 2,
+            "label": ["for", "for loop", "`for loop`", "`for`"],
+            "task_description": "This code is supposed to print the squares of numbers from 1 to 5, but it's not working correctly.",
+            "incorrect_code": "for i in range(1, 5):\n    print(i * i)\n",
+            "correct_code": "for i in range(1, 6):\n    print(i * i)\n",
+            "description": "Range function does not include the end value.",
+            "explanation": "The range function in Python does not include the end value. To include 5, you should use range(1, 6)."
+        },
+        {
+            "task_id": 3,
+            "label": ["if", "else", "condition"],
+            "task_description": "This code is supposed to check if a number is even or odd, but it's not working correctly.",
+            "incorrect_code": "num = 4\nif num % 2 = 0:\n    print('Even')\nelse:\n    print('Odd')\n",
+            "correct_code": "num = 4\nif num % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')\n",
+            "description": "Incorrect comparison operator in the if condition.",
+            "explanation": "The comparison operator in Python is '==', not '='. Use '==' to compare values."
+        },
+        {
+            "task_id": 4,
+            "label": ["function", "parameters", "return", "scope", "`def`", "`function`"],
+            "task_description": "This code is supposed to calculate the area of a rectangle, but it's not working correctly.",
+            "incorrect_code": "def calculate_area(width, height):\n    return width * height\n\nwidth = 5\nheight = 10\nresult = calculate_area()\nprint(result)\n",
+            "correct_code": "def calculate_area(width, height):\n    return width * height\n\nwidth = 5\nheight = 10\nresult = calculate_area(width, height)\nprint(result)\n",
+            "description": "The function `calculate_area()` is called without passing the required positional arguments `width` and `height`, resulting in a `TypeError`.",
+            "explanation": "In the incorrect code, the function `calculate_area()` is defined with two parameters, `width` and `height`, but it is called without passing any arguments. This leads to a `TypeError` because Python requires the arguments to be passed when the function is called. The correct approach is to call the function with the required arguments, like `calculate_area(width, height)`."
+        },           
+        {
+            "task_id": 5,
+            "label": ["list", "append", "method"],
+            "task_description": "This code is supposed to add an element to a list, but it's not working correctly.",
+            "incorrect_code": "my_list = [1, 2, 3]\nmy_list.add(4)\nprint(my_list)\n",
+            "correct_code": "my_list = [1, 2, 3]\nmy_list.append(4)\nprint(my_list)\n",
+            "description": "Incorrect method to add an element to a list.",
+            "explanation": "The correct method to add an element to a list in Python is 'append', not 'add'. Use my_list.append(4)."
+        },
+        {
+            "task_id": 6,
+            "label": ["while", "while loop", "`while loop`", "`while`"],
+            "task_description": "This code is supposed to count down from 5 to 1, but it's not working correctly.",
+            "incorrect_code": "i = 5\nwhile i > 1:\n    print(i)\n    i -= 1\n",
+            "correct_code": "i = 5\nwhile i >= 1:\n    print(i)\n    i -= 1\n",
+            "description": "Incorrect loop condition.",
+            "explanation": "The loop condition should be `i >= 1` to include the number 1 in the output."
+        },
+        {
+            "task_id": 7,
+            "label": ["for", "for loop", "`for loop`", "`for`"],
+            "task_description": "This code is supposed to print each letter in the word 'Python', but it's not working correctly.",
+            "incorrect_code": "word = 'Python'\nfor letter in word:\n    print(word)\n",
+            "correct_code": "word = 'Python'\nfor letter in word:\n    print(letter)\n",
+            "description": "Incorrect variable used inside the loop.",
+            "explanation": "The loop should print each `letter`, not the whole `word` in each iteration. Use `print(letter)`."
+        },
+        {
+            "task_id": 8,
+            "label": ["if", "else", "elif", "condition"],
+            "task_description": "This code is supposed to print whether a number is positive, negative, or zero, but it's not working correctly.",
+            "incorrect_code": "num = 0\nif num > 0:\n    print('Positive')\nelif num < 0:\n    print('Negative')\nelse num == 0:\n    print('Zero')\n",
+            "correct_code": "num = 0\nif num > 0:\n    print('Positive')\nelif num < 0:\n    print('Negative')\nelse:\n    print('Zero')\n",
+            "description": "Incorrect syntax in the else statement.",
+            "explanation": "The `else` statement does not need a condition in Python. Simply use `else:`."
+        },
+        {
+            "task_id": 9,
+            "label": ["function", "return", "syntax", "`def`", "`function`", "parameters"],
+            "task_description": "This code is supposed to greet a user, but it's not working correctly when no name is provided.",
+            "incorrect_code": "def greet(name):\n    print(f'Hello, {name}!')\n\ngreet()\n",
+            "correct_code": "def greet(name='Guest'):\n    print(f'Hello, {name}!')\n\ngreet()\n",
+            "description": "Missing default parameter value.",
+            "explanation": "To handle cases where no argument is provided, use a default parameter value like `name='Guest'`."
+        },
+        {
+            "task_id": 10,
+            "label": ["list", "indexing", "out of range"],
+            "task_description": "This code is supposed to print the third element of the list, but it's not working correctly.",
+            "incorrect_code": "my_list = [1, 2]\nprint(my_list[2])\n",
+            "correct_code": "my_list = [1, 2]\nprint(my_list[1])\n",
+            "description": "IndexError due to incorrect indexing.",
+            "explanation": "Python lists are zero-indexed, meaning the first element is at index 0. Index 2 is out of range for a list with 2 elements."
+        },
+        {
+            "task_id": 11,
+            "label": ["string", "concatenation", "TypeError"],
+            "task_description": "This code is supposed to concatenate a string with a number, but it's not working correctly.",
+            "incorrect_code": "age = 25\nmessage = 'I am ' + age + ' years old.'\nprint(message)\n",
+            "correct_code": "age = 25\nmessage = 'I am ' + str(age) + ' years old.'\nprint(message)\n",
+            "description": "TypeError due to concatenating a string with an integer.",
+            "explanation": "In Python, you cannot directly concatenate a string with an integer. Convert the integer to a string using `str(age)`."
+        },
+        {
+            "task_id": 12,
+            "label": ["dictionary", "key", "TypeError"],
+            "task_description": "This code is supposed to access the value associated with a key in a dictionary, but it's not working correctly.",
+            "incorrect_code": "my_dict = {'name': 'Alice', 'age': 25}\nprint(my_dict['address'])\n",
+            "correct_code": "my_dict = {'name': 'Alice', 'age': 25}\nprint(my_dict.get('address', 'Address not found'))\n",
+            "description": "KeyError due to accessing a non-existent key.",
+            "explanation": "To avoid a `KeyError`, use the `get` method, which allows you to provide a default value if the key is not found."
+        },
+        {
+            "task_id": 13,
+            "label": ["loop", "infinite loop"],
+            "task_description": "This code is supposed to stop when the counter reaches 5, but it's running indefinitely.",
+            "incorrect_code": "counter = 1\nwhile counter <= 5:\n    print(counter)\n",
+            "correct_code": "counter = 1\nwhile counter <= 5:\n    print(counter)\n    counter += 1\n",
+            "description": "Infinite loop due to missing increment of the counter.",
+            "explanation": "The counter variable should be incremented inside the loop to avoid an infinite loop."
+        },
+        {
+            "task_id": 14,
+            "label": ["file handling", "file operations", "IOError"],
+            "task_description": "This code is supposed to open and read a file, but it's not working correctly.",
+            "incorrect_code": "file = open('file.txt', 'w')\ncontents = file.read()\nfile.close()\n",
+            "correct_code": "file = open('file.txt', 'r')\ncontents = file.read()\nfile.close()\n",
+            "description": "Incorrect mode for file opening.",
+            "explanation": "Opening a file in 'w' mode is for writing. Use 'r' mode for reading the file contents."
+        },
+        {
+            "task_id": 15,
+            "label": ["list", "sort", "TypeError"],
+            "task_description": "This code is supposed to sort a list of numbers, but it's not working correctly.",
+            "incorrect_code": "my_list = [1, 2, '3', 4]\nmy_list.sort()\nprint(my_list)\n",
+            "correct_code": "my_list = [1, 2, 3, 4]\nmy_list.sort()\nprint(my_list)\n",
+            "description": "TypeError due to mixing data types in a list.",
+            "explanation": "The `sort` method cannot compare integers with strings. Ensure all elements in the list are of the same type before sorting."
+        }
+    ]
+}
