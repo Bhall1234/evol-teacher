@@ -10,6 +10,7 @@ from tqdm import tqdm
 from dotenv import load_dotenv
 import time
 
+# Send a request to the local LLM server to generate completions
 def send_request_to_local_llm(prompt: str, model: str, temperature: float, max_tokens: int):
     url = "http://localhost:1234/v1/chat/completions"
     headers = {"Content-Type": "application/json"}
@@ -22,31 +23,14 @@ def send_request_to_local_llm(prompt: str, model: str, temperature: float, max_t
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 
+# Load a JSON file containing a list of questions
 def load_questions(file_path: str):
     with open(file_path, 'r') as f:
         return json.load(f)
 
+# Generate answers for a list of questions using the specified model
 def generate_answers(questions, model: str, temperature: float, max_tokens: int) -> list:
     paired_qa = []
-
-    # incorrect code prompt v1
-    """prompt_answer = ( 
-    "Please generate an explanation and incorrect code for the following beginner-level Python programming question. "
-    "The answer should include:\n"
-    "1. An explanation of the problem, detailed enough for a beginner to understand the fundamental concept behind the question.\n"
-    "2. Some INCORRECT or MISSING code based on the question, so the user can try and learn the concepts by debugging, THE CODE MUST INCLUDE SOME KIND OF MISTAKE, THE CODE CANNOT BE CORRECT. \n"
-    "3. A prompt asking the user to spot the problem in the code. DO NOT provide the correct code. DO NOT EXPLAIN why the code is incorrect. This is for the user to try and understand.\n"
-    "Avoid using any meta-text such as 'Here's the answer' or any phrases indicating the correct solution. DO NOT EXPLAIN WHY THE CODE IS INCORRECT.\n\n"
-    "Question:\n{question}\n\n"
-    "Answer:\n"
-    "Explanation:\n"
-    "Provide a clear and concise explanation of the problem.\n\n"
-    "Incorrect Code:\n"
-    "Provide some incorrect code that a beginner might write when trying to solve the problem. THE CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS, THE CODE CANNOT BE CORRECT.\n\n"
-    "Prompt:\n"
-    "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISN'T WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important.\n\n"
-    "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS THAT MAKE THE CODE INCORRECT."
-    )""" #maybe add more missing code here
 
     # v2 this was better
     prompt_answer = (
@@ -66,24 +50,6 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     "Ask the user to identify the problem in the code. DO NOT provide an explanation AS TO WHY THE CODE ISN'T WORKING. DO NOT PROVIDE AN EXPLANATION as to why the code is not working. NOT providing an explanation is very important.\n\n"
     "IMPORTANT: DO NOT EXPLAIN WHY THE CODE IS INCORRECT. ONLY PROVIDE THE INCORRECT CODE AND ASK THE USER TO IDENTIFY THE PROBLEM. THE INCORRECT CODE MUST INCLUDE SOME KIND OF MISTAKE OR HAVE MISSING PARTS THAT MAKE THE CODE INCORRECT."
     )
-    
-    #v3
-    """prompt_answer = (
-        "Create an explanation and an incorrect or partially correct code snippet for the following beginner-level Python programming question. "
-        "The response should include:\n"
-        "1. A detailed yet clear explanation of the problem to help the user grasp the fundamental concept.\n"
-        "2. An incorrect or partially correct code snippet relevant to the question. The code must contain a mistake that logically aligns with the user's question, such as a syntax error, logical error, incorrect function usage, missing return statement, or incorrect variable name.\n"
-        "3. A prompt that asks the user to identify the problem in the code. Do not provide the correct solution or explain why the code is incorrect.\n\n"
-        "Question:\n{question}\n\n"
-        "Answer:\n"
-        "Explanation:\n"
-        "Offer a clear and thorough explanation of the problem.\n\n"
-        "Incorrect Code:\n"
-        "Present an incorrect or partially correct code snippet that a beginner might write when attempting to solve the problem. Ensure the code includes a logical mistake, such as a syntax error, logical error, incorrect function usage, missing return statement, or incorrect variable name.\n\n"
-        "Prompt:\n"
-        "Encourage the user to identify the problem in the code. Avoid providing an explanation as to why the code is incorrect. The goal is for the user to understand the issue independently.\n"
-        "IMPORTANT: Do not explain why the code is incorrect. Only provide the incorrect code and prompt the user to find the mistake. The incorrect code must contain a mistake or be incomplete, making it logically incorrect."
-    )"""
 
     for question in tqdm(questions, desc="Generating answers"):
         prompt = prompt_answer.format(question=question['instruction'])
@@ -93,10 +59,12 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
     
     return paired_qa
 
+# Save the paired questions and answers to a JSON file
 def save_paired_qa(paired_qa, output_file_path):
     with open(output_file_path, 'w') as f:
         json.dump(paired_qa, f, indent=4)
 
+# Generate a random string of lowercase letters
 def generate_random_string(length=8):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(length))
@@ -129,7 +97,6 @@ def main(input_file_path, output_file_path, sample_size=None):
     print(f"Total duration: {end_time - start_time:.2f} seconds")
 
 if __name__ == "__main__":
-    #input_file_path = 'python_examples/combined_questions/Datasets/half_of_baoviwnf.json' # just generated from model. didnt seem to change a lot.
     input_file_path =  './python_examples/combined_questions/combined_output.json' #combined 
     output_dir = './python_examples/answered_questions/outputs'
     os.makedirs(output_dir, exist_ok=True)
