@@ -40,6 +40,13 @@ def send_request_to_local_llm(prompt: str, model: str, temperature: float, max_t
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 
+# This function generates incorrect responses based on given instructions.
+# It takes the following parameters:
+# - instructions: A list of instructions for generating incorrect responses.
+# - model: The name of the model to use for generating responses.
+# - temperature: A float value representing the randomness of the model's output.
+# - max_tokens: An integer specifying the maximum number of tokens in the generated response.
+# The function returns a list of incorrect responses.
 def generate_incorrect_responses(instructions, model: str, temperature: float, max_tokens: int) -> list:
     methods = {
         'loop': [
@@ -66,7 +73,10 @@ def generate_incorrect_responses(instructions, model: str, temperature: float, m
             'Incorrect variable naming.'
         ]
     }
-    
+
+    #This list contains templates for generating responses that include intentional mistakes.
+    # Each template is a string with a placeholder for the code snippet.
+    # The purpose of these templates is to challenge the user to identify and correct the deliberate errors in the provided code.
     response_templates = [
         "I've written a piece of code based on your instruction, but I've included a small mistake on purpose. Can you figure out what's wrong?\n\n{}",
         "Here's the code you asked for, but be aware that I've intentionally added an error. Can you spot and fix it?\n\n{}",
