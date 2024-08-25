@@ -53,10 +53,10 @@ def diversify_questions(task, model: str, temperature: float, max_tokens: int) -
     for _ in range(num_variations):
         chosen_method = random.choice(methods)
         prompt = (f"Please rewrite the following programming question using the following method:\n{chosen_method}\n\n"
-                  f"#Original Test#\n{task['instruction']}\n\n"
+                  f"#Original Instruction#\n{task['instruction']}\n\n"
                   "Ensure the rewritten question is clear and simple. "
                   "Do not include any answer, solution, or explanation, just the instruction."
-                  "ONLY INCLUDE THE REWIRTTEN QUESTION! NO 'HERE IS THE REWRITTEN ANSWER' OR SIMILAR"
+                  "ONLY INCLUDE THE REWRITTEN QUESTION! NO 'HERE IS THE REWRITTEN ANSWER' OR SIMILAR"
                   "\n\n#Rewritten Instruction#")
         
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)

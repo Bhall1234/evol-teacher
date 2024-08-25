@@ -63,7 +63,7 @@ def main(output_file_path, num_questions):
 
     model_name = "lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF"
     temperature = 1.0
-    max_tokens = 2048  # Adjust as necessary
+    max_tokens = 2048 # Maximum number of tokens to generate in each response
 
     start_time = time.time()
     print(f"Start time: {datetime.fromtimestamp(start_time).strftime('%Y-%m-%d %H:%M:%S')}")
@@ -87,5 +87,5 @@ if __name__ == "__main__":
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     output_file_path = os.path.join(output_dir, f'generated_python_questions_{timestamp}_{random_string}.json')
     
-    num_questions = 1000  # Change to generate more or fewer questions
+    num_questions = 1000  # Number of questions to generate
     main(output_file_path, num_questions)
