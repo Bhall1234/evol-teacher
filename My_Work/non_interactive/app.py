@@ -14,7 +14,7 @@ logging.basicConfig(filename=log_path, level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Load tasks from JSON
-with open('My_Work/new_architecture_v2/data/tasks.json') as f:
+with open('My_Work/non_interactive/data/tasks.json') as f:
     tasks = json.load(f)['tasks']
 
 @app.route("/")

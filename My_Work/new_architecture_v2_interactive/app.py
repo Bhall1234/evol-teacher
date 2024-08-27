@@ -48,7 +48,7 @@ logging.basicConfig(filename=log_path, level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Load datasets
-correct_code_examples = load_dataset('./My_Work/new_architecture_v2/data/code_examples.json')
+correct_code_examples = load_dataset('./My_Work/new_architecture_v2_interactive/data/code_examples.json')
 
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
