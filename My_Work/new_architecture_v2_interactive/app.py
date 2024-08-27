@@ -97,6 +97,7 @@ def ask():
     # Reset the context for the chat conversation when a new question is asked.
     session.clear()
 
+    # Check if the user's question contains the word "python" to avoid adding it again.
     if "python" not in user_question.lower():
         user_question += " (programming Language: python)"
         log_with_session(f"Modified user question: {user_question}")
@@ -241,6 +242,7 @@ def interact():
                 session[f"conversation_history_{task_id}"] = history
                 log_with_session(f"Stored updated conversation history: {history}")
 
+                # SHOW REFLECTION CHAT if the user's code is correct
                 response["show_reflection_chat"] = True
                 response["initial_chat_message"] = formatted_reflection_question
                 log_with_session(f"Final response with reflection chat: {response}")
@@ -281,6 +283,7 @@ def interact():
 
 @app.route("/chat", methods=["POST"])
 def chat():
+    # get the user message and task ID from the form data
     user_message = request.form.get("message")
     task_id = request.form.get("task_id")
     log_with_session(f"User chat message: {user_message} for task ID: {task_id}")
@@ -322,6 +325,7 @@ def chat():
         formatted_assistant_response = format_code_snippets(assistant_response)
         log_with_session(f"Assistant's chat response: {formatted_assistant_response}")
 
+        # Add the assistant's response to the chat history
         chat_history.append({"role": "assistant", "content": formatted_assistant_response})
 
         # Store the updated chat history back in the session
@@ -378,7 +382,6 @@ def dont_know():
         # Log the "I don't know" action
         log_with_session(f"User pressed 'I don't know' for task ID: {task_id}")
 
-        # Optionally, you can also store this in the session or a database if needed.
         # session[f"dont_know_{task_id}"] = True
 
         return jsonify({"status": "success"}), 200
@@ -448,7 +451,7 @@ def get_related_code_by_keywords(keywords, correct_code_examples):
                         best_match_score = score
                         best_match_example = random.choice(data["examples"])
 
-                    # Optionally, add a threshold for matching to avoid irrelevant selections
+                    # add a threshold for matching to avoid irrelevant selections
                     if score > 80:
                         matching_examples.extend(data["examples"])
         

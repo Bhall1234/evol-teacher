@@ -316,7 +316,7 @@
                 <div class="buttons">
                     <button class="run-button" onclick="runCode()">Run Code</button>
                     <button class="reset-button" onclick="resetCode()">Reset Code</button>
-                    <button class="dont-know-button" onclick="handleIDontKnow()">I Don't Know</button> <!-- Add this button -->
+                    <button class="dont-know-button" onclick="handleIDontKnow()">I Don't Know</button>
                 </div>
                 <form id="check-code-form">
                     <input type="hidden" id="task-id" name="task_id" value="{{ task_id }}">
@@ -423,7 +423,8 @@
                 console.error("Error logging 'I don't know':", error);
             });
         }
-
+        
+        // Function to toggle the solution visibility, not used anymore.
         function toggleSolution() {
             var solution = document.getElementById("solution");
             if (solution.style.display === "none") {
@@ -433,6 +434,7 @@
             }
         }
 
+        // Function to run the code in the editor
         function runCode() {
             var code = editor.getValue();
             var outputElement = document.getElementById("output");
@@ -465,7 +467,7 @@
             document.getElementById("loading-overlay").style.display = "flex";
         });
 
-
+        // checks the code for the task using fetch, event listener for the check code button.
         document.getElementById("check-code-form").addEventListener("submit", function(event) {
             event.preventDefault();
             
@@ -523,7 +525,7 @@
             });
         });
 
-
+        // Function to send a message to the chat assistant
         function sendMessage() {
             var message = document.getElementById("chat-input").value;
             var chatbox = document.getElementById("chatbox");
@@ -553,6 +555,7 @@
             });
         }
 
+        // Function to send a reflection message
         function sendReflectionMessage() {
             var message = document.getElementById("reflection-chat-input").value;
             var chatbox = document.getElementById("reflection-chatbox");
