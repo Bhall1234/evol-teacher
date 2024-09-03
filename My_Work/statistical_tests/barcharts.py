@@ -64,28 +64,28 @@ def chatbot_data():
     output_file_path = os.path.join(output_dir, 'perceived_task_difficulty.png')
 
     # Generate bar chart for existing data
-    create_bar_chart(participants, perceived_difficulty, colors, title, output_file_path, 6, 'Perceived Task Difficulty')
+    create_bar_chart(participants, perceived_difficulty, colors, title, output_file_path, 6, 'Perceived Task Difficulty', 'Participant')
 
     # Data for new questions
     q2_likert = [5, 1, 5, 4]
-    q2_title = 'Perceived Satisfaction using non-interactive system'
+    q2_title = 'Perceived Satisfaction using interactive system'
     q2_output_file_path = os.path.join(output_dir, 'perceived_satisfaction.png')
-    create_bar_chart(participants, q2_likert, colors, q2_title, q2_output_file_path, 6, 'Perceived Satisfaction')
+    create_bar_chart(participants, q2_likert, colors, q2_title, q2_output_file_path, 6, 'Perceived Satisfaction', 'Participant')
 
     q3_likert = [5, 5, 4, 4]
-    q3_title = 'Perceived Learning Effectiveness using non-interactive system'
+    q3_title = 'Perceived Learning Effectiveness using interactive system'
     q3_output_file_path = os.path.join(output_dir, 'perceived_learning.png')
-    create_bar_chart(participants, q3_likert, colors, q3_title, q3_output_file_path, 6, 'Perceived Learning Effectiveness')
+    create_bar_chart(participants, q3_likert, colors, q3_title, q3_output_file_path, 6, 'Perceived Learning Effectiveness', 'Participant')
 
     q4_likert = [4, 4, 4, 4]
-    q4_title = 'Perceived Confidence Increase using non-interactive system'
+    q4_title = 'Perceived Confidence Increase using interactive system'
     q4_output_file_path = os.path.join(output_dir, 'perceived_confidence.png')
-    create_bar_chart(participants, q4_likert, colors, q4_title, q4_output_file_path, 6, 'Perceived Confidence Increase')
+    create_bar_chart(participants, q4_likert, colors, q4_title, q4_output_file_path, 6, 'Perceived Confidence Increase', 'Participant')
 
     q5_likert = [1, 2, 3, 3]
     q5_title = 'Perceived Task Challenge in isolation'
     q5_output_file_path = os.path.join(output_dir, 'perceived_challenge.png')
-    create_bar_chart(participants, q5_likert, colors, q5_title, q5_output_file_path, 3.5, 'Perceived Task Challenge')
+    create_bar_chart(participants, q5_likert, colors, q5_title, q5_output_file_path, 3.5, 'Perceived Task Challenge', 'Participant')
 
 def comparison_data():
     # Data for existing questions
@@ -133,7 +133,7 @@ def comparison_data():
     create_bar_chart(dependent_options, dependent_responses, dependent_colors, dependent_title, dependent_output_file_path, 4, 'Number of Participants', 'Response')
 
 def main():
-    comparison_data()
+    chatbot_data()
 
 if __name__ == '__main__':
     main()
