@@ -15,3 +15,6 @@ group_b_non_interactive_scores = [4, 4]  # scores for Group A after non-interact
 # Perform the test for Group B
 stat_b, p_value_b = stats.wilcoxon(group_b_interactive_scores, group_b_non_interactive_scores)
 print('Group B Wilcoxon Test: Stat=%.3f, p=%.3f' % (stat_b, p_value_b))
+
+# Group A Wilcoxon Test: Stat=0.000, p=0.317
+# Group B Wilcoxon Test: Stat=0.000, p=0.500
