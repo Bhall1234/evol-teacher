@@ -23,7 +23,7 @@ def send_request_to_local_llm(prompt: str, model: str, temperature: float, max_t
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 
-# Load a JSON file containing a list of questions
+# Load the JSON file containing a list of questions
 def load_questions(file_path: str):
     with open(file_path, 'r') as f:
         return json.load(f)
@@ -55,7 +55,7 @@ def generate_answers(questions, model: str, temperature: float, max_tokens: int)
         prompt = prompt_answer.format(question=question['instruction'])
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
         answer = response["choices"][0]["message"]["content"].strip()
-        paired_qa.append({"instruction": question['instruction'], "output": answer}) #changed answer to output
+        paired_qa.append({"instruction": question['instruction'], "output": answer}) #changed answer to output, works with the fine-tuning script.
     
     return paired_qa
 

@@ -23,7 +23,7 @@ def combine_json_files(file_paths, output_file_path):
 if __name__ == "__main__":
     # List of JSON files to combine
     json_files = [
-        './python_examples/combine_gen_original/diverse_responses_evolution_1.json', #C:\Users\benha\Documents\GitHub\evol-teacher\python_examples\combine_gen_original\diverse_responses_evolution_1.json
+        './python_examples/combine_gen_original/diverse_responses_evolution_1.json',
         './python_examples/combine_gen_original/diverse_responses_evolution_2.json',
         './python_examples/combine_gen_original/diverse_responses_evolution_3.json',
         './python_examples/combine_gen_original/generated_python_questions_20240727131756_baoviwnf.json'

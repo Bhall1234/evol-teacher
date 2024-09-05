@@ -71,7 +71,7 @@ def diversify_questions(instructions, model: str, temperature: float, max_tokens
         response = send_request_to_local_llm(prompt, model, temperature, max_tokens)
         rewritten_instruction = response["choices"][0]["message"]["content"].strip()
         
-        # Ensure to strip out unnecessary meta-text
+        # strip out unnecessary meta-text
         rewritten_instruction = rewritten_instruction.replace("#Rewritten Test#", "").strip()
         new_tasks.append({
             "instruction": rewritten_instruction,

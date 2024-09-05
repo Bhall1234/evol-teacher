@@ -1,6 +1,6 @@
 import json
 
-# Define the EOS token
+# EOS token to append to the end of the output
 EOS_TOKEN = " <|endoftext|>"
 
 def add_eos_to_record(record):
