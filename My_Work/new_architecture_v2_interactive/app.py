@@ -53,7 +53,7 @@ correct_code_examples = load_dataset('./My_Work/new_architecture_v2_interactive/
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
 
-# Initialize PhraseMatcher
+# Initialise PhraseMatcher
 phrase_matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
 
 # Add patterns to the matcher
@@ -80,11 +80,13 @@ synonyms = {
     "key-value": ["key value", "key-value pair", "key-value pairs"], 
 }
 
+# Route for the home page
 @app.route("/")
 def home():
     log_with_session("Accessed the home page.")
     return render_template("index.html")
 
+# route for the initial question submission
 @app.route("/ask", methods=["POST"])
 def ask():
     predefined_question = request.form.get("predefined_question")
@@ -336,6 +338,7 @@ def chat():
         log_with_session(f"No matching task found for task ID: {task_id}", level=logging.ERROR)
         return jsonify({"response": "Sorry, I couldn't find any information about this task."})
 
+# Function to run the user's code and return the output
 @app.route("/run_code", methods=["POST"])
 def run_code():
     try:
@@ -356,6 +359,7 @@ def run_code():
     except Exception as e:
         return jsonify({"output": f"Unexpected error:\n{str(e)}"}), 500
 
+# parsing the pylint output to remove unnecessary information
 def parse_pylint_output(output):
     lines = output.splitlines()
     filtered_lines = []
@@ -369,10 +373,12 @@ def parse_pylint_output(output):
             filtered_lines.append(line)
     return "\n".join(filtered_lines)
 
+# Extract the initial explanation from the full explanation
 def extract_initial_explanation(explanation):
     sentences = re.split(r'[.:]\s*', explanation)
     return '. '.join(sentences[:2])
 
+# Function to log the user's action of pressing "I don't know"
 @app.route("/dont_know", methods=["POST"])
 def dont_know():
     try:
@@ -398,7 +404,7 @@ def extract_programming_keywords(text):
     matched_phrases = [doc[start:end].text.replace(" ", "_") for match_id, start, end in matches]
     keywords.update(matched_phrases)
 
-    # Existing keywords and synonyms logic
+    # keywords and synonyms logic
     programming_keywords = {
         "def", "function", "return", "functions",
         "else", "elif", "class", "import", "try", "except",
@@ -429,6 +435,7 @@ def extract_programming_keywords(text):
     log_with_session(f"Extracted programming keywords: {keywords}")
     return keywords
 
+# Function to get related code examples based on the extracted keywords
 def get_related_code_by_keywords(keywords, correct_code_examples):
     log_with_session(f"Matching keywords: {keywords}")
     
@@ -451,7 +458,7 @@ def get_related_code_by_keywords(keywords, correct_code_examples):
                         best_match_score = score
                         best_match_example = random.choice(data["examples"])
 
-                    # add a threshold for matching to avoid irrelevant selections
+                    # threshold for matching to avoid irrelevant selections
                     if score > 80:
                         matching_examples.extend(data["examples"])
         
@@ -462,6 +469,7 @@ def get_related_code_by_keywords(keywords, correct_code_examples):
     log_with_session(f"Selected example based on highest match score: {best_match_example}")
     return best_match_example
 
+# Function to find the correct example based on the task ID
 def find_correct_example(task_id, correct_code_examples):
     log_with_session(f"Finding correct example for task ID: {task_id}")
     for category, data in correct_code_examples.items():
@@ -484,6 +492,7 @@ def find_correct_example(task_id, correct_code_examples):
     log_with_session(f"No correct example found for task ID: {task_id}", level=logging.ERROR)
     return None
 
+# Function to format code snippets using Pygments
 def format_code_snippets(response):
     code_block_pattern = re.compile(r'```(?:python)?\n(.*?)\n```', re.DOTALL)
     def replace_code_block(match):

@@ -219,7 +219,7 @@
         }
         #guide-content {
             position: fixed;
-            right: -400px; /* Keep the guide box hidden off-screen initially */
+            right: -400px;
             top:10%;
             width: 300px;
             height: 75%;
@@ -232,9 +232,9 @@
         }
         
         #guide-tab {
-            position: fixed; /* Position relative to the guide-content box */
+            position: fixed;
             top: 10%; 
-            right: 0px; /* Position the tab to the left of the guide-content */
+            right: 0px;
             width: 40px;
             height: 100px;
             padding: 10px;
@@ -333,7 +333,6 @@
             {% endif %}
         </div>
     </div>
-    <!-- New column for chat interaction -->
     <div class="column chat-column" id="chat-column">
         <h2>Chat with Assistant</h2>
         <input type="text" id="chat-input" placeholder="Ask about the code..." style="width: calc(100% - 40px); padding: 10px; margin-top: 10px;">

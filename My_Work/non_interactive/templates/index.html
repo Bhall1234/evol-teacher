@@ -103,8 +103,6 @@
         #follow-up-challenge {
             margin-top: 20px;
         }
-
-        /* Guide Tab Styling */
         #guide-tab {
             position: fixed;
             top: 10%;
@@ -120,7 +118,6 @@
             transform-origin: 0 0;
             z-index: 9999;
         }
-
         #guide-content {
             position: fixed;
             right: -400px;
@@ -177,8 +174,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Guide Tab -->
     <div id="guide-tab">Guide</div>
     <div id="guide-content">
         <h3>How to Use the Python Code Task Runner</h3>
@@ -201,6 +196,7 @@
             theme: "default"
         });
 
+        // Function to handle the "Can't Figure It Out" button click
         function cantFigureItOut() {
             var taskId = document.getElementById("task-select").value;
             
@@ -224,6 +220,7 @@
             // Logic to load the next task
         }
 
+        // function to load the task details
         function loadTask() {
             var taskId = document.getElementById("task-select").value;
 
@@ -247,11 +244,13 @@
             }
         }
 
+        // function to copy the incorrect code to the editor
         function copyCodeToEditor() {
             var incorrectCode = document.getElementById("incorrect-code-block").textContent;
             editor.setValue(incorrectCode);
         }
 
+        // function to run the user code
         function runCode() {
             var userCode = editor.getValue();
             var taskId = document.getElementById("task-select").value;
@@ -279,6 +278,7 @@
             });
         }
 
+        // function to check the user code
         function checkCode() {
             var userCode = editor.getValue();
             var taskId = document.getElementById("task-select").value;
@@ -313,6 +313,7 @@
             });
         }
 
+        // function to submit the reflection response
         function submitReflection() {
             var reflectionResponse = document.getElementById("reflection-input").value;
             var taskId = document.getElementById("task-select").value;
@@ -330,6 +331,7 @@
             });
         }
 
+        // Guide Tab functionality
         document.getElementById("guide-tab").addEventListener("click", function() {
             var guideContent = document.getElementById("guide-content");
             if (guideContent.style.right === "0px") {

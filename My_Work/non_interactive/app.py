@@ -101,6 +101,7 @@ def check_code():
         logging.error(f"Error in code execution: {e.stderr.strip()}")
         return jsonify({"output": f"Error in code execution:\n{e.stderr.strip()}"}), 400
 
+# Reflection submission
 @app.route("/submit_reflection", methods=["POST"])
 def submit_reflection():
     data = request.get_json()
@@ -112,6 +113,7 @@ def submit_reflection():
 
     return jsonify({"message": "Reflection submitted successfully."})
 
+# Task retrieval
 @app.route("/get_task", methods=["GET"])
 def get_task():
     task_id = request.args.get("task_id", "")
@@ -122,7 +124,8 @@ def get_task():
     else:
         logging.warning("Task not found")
         return jsonify({"error": "Task not found"}), 404
-    
+
+# "Cant figure it out" route
 @app.route("/cant_figure_it_out", methods=["POST"])
 def cant_figure_it_out():
     data = request.get_json()
