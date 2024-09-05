@@ -1,0 +1,22 @@
+{
+    "internal": [
+        [
+            "What is a for loop?",
+            "A for loop in programming is a control flow statement that allows code to be executed repeatedly. It is used when you know in advance how many times you want the loop to iterate.\n\nThe syntax of a for loop in most languages is:\n\n```\nfor (initialization; condition; increment) {\n    // code to be executed\n}\n```\n\n- **Initialization**: This is where you initialize your loop variable. This is executed only once, before the execution of the code block.\n- **Condition**: This is the condition in which to check the loop variable. If the condition is true, the code block will be executed. If it's false, the loop will stop.\n- **Increment**: This is the operation that is performed at the end of each loop iteration.\n\nHere's an example in Python:\n\n```python\nfor i in range(5):\n    print(i)\n```\n\nThis would output:\n\n```\n0\n1\n2\n3\n4\n```\n\nIn this example, `i` is the loop variable, and the loop will run 5 times (as specified by `range(5)`). The `print(i)` statement will be executed each time the loop runs."
+        ],
+        [
+            "Write a Python function to calculate the factorial of a given number.",
+            "Sure, here is a simple Python function to calculate the factorial of a given number:\n\n```python\ndef factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n-1)\n```\n\nThis function uses recursion to calculate the factorial. The base case is when `n` is 0, in which case it returns 1. Otherwise, it returns `n` multiplied by the factorial of `n-1`.\n\nYou can call this function with a number to get the factorial of that number. For example:\n\n```python\nprint(factorial(5))  # Output: 120\n```\n\nThis means that the factorial of 5 (written as 5!) is 120."
+        ]
+    ],
+    "visible": [
+        [
+            "What is a for loop?",
+            "A for loop in programming is a control flow statement that allows code to be executed repeatedly. It is used when you know in advance how many times you want the loop to iterate.\n\nThe syntax of a for loop in most languages is:\n\n```\nfor (initialization; condition; increment) {\n    // code to be executed\n}\n```\n\n- **Initialization**: This is where you initialize your loop variable. This is executed only once, before the execution of the code block.\n- **Condition**: This is the condition in which to check the loop variable. If the condition is true, the code block will be executed. If it&#x27;s false, the loop will stop.\n- **Increment**: This is the operation that is performed at the end of each loop iteration.\n\nHere&#x27;s an example in Python:\n\n```python\nfor i in range(5):\n    print(i)\n```\n\nThis would output:\n\n```\n0\n1\n2\n3\n4\n```\n\nIn this example, `i` is the loop variable, and the loop will run 5 times (as specified by `range(5)`). The `print(i)` statement will be executed each time the loop runs."
+        ],
+        [
+            "Write a Python function to calculate the factorial of a given number.",
+            "Sure, here is a simple Python function to calculate the factorial of a given number:\n\n```python\ndef factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n-1)\n```\n\nThis function uses recursion to calculate the factorial. The base case is when `n` is 0, in which case it returns 1. Otherwise, it returns `n` multiplied by the factorial of `n-1`.\n\nYou can call this function with a number to get the factorial of that number. For example:\n\n```python\nprint(factorial(5))  # Output: 120\n```\n\nThis means that the factorial of 5 (written as 5!) is 120."
+        ]
+    ]
+}

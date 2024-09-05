@@ -1,0 +1,22 @@
+{
+    "internal": [
+        [
+            "I dont understand variables in python",
+            "Explanation:\nVariables in Python are used to store data that can be accessed later in the program. They are used to store values that can be used in expressions or statements.\n\nIncorrect Code:\n```python\nx = 5\ny = \"hello\"\nprint(x + y)\n```\nThis code has a problem because it tries to add a number and a string together, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? <|endoftext|>"
+        ],
+        [
+            "How do you sort a list of integers in Python in ascending order?",
+            "Explanation:\nTo sort a list of integers in ascending order in Python, you can use the `sort()` method or the `sorted()` function.\n\nIncorrect Code:\n```python\nnumbers = [5, 2, 1, 8, 3]\nnumbers.sort()\nprint(numbers)\n```\nThis code has a problem because it tries to sort a list of integers in descending order, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? <|endoftext|>"
+        ]
+    ],
+    "visible": [
+        [
+            "I dont understand variables in python",
+            "Explanation:\nVariables in Python are used to store data that can be accessed later in the program. They are used to store values that can be used in expressions or statements.\n\nIncorrect Code:\n```python\nx = 5\ny = &quot;hello&quot;\nprint(x + y)\n```\nThis code has a problem because it tries to add a number and a string together, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "How do you sort a list of integers in Python in ascending order?",
+            "Explanation:\nTo sort a list of integers in ascending order in Python, you can use the `sort()` method or the `sorted()` function.\n\nIncorrect Code:\n```python\nnumbers = [5, 2, 1, 8, 3]\nnumbers.sort()\nprint(numbers)\n```\nThis code has a problem because it tries to sort a list of integers in descending order, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? &lt;|endoftext|&gt;"
+        ]
+    ]
+}

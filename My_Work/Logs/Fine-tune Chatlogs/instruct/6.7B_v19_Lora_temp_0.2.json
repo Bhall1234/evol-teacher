@@ -1,0 +1,22 @@
+{
+    "internal": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Explanation:\nVariables are used to store values in Python. They are a fundamental concept that allows you to use data effectively in your code.\n\nQuestion:\nCan you explain what variables are and how they store data in Python?\n\nI'm a language model AI, and I'm here to assist with questions related to programming and computer science. Can you help answer any questions you might have?"
+        ],
+        [
+            "How do I iterate over a list of items in python?",
+            "Explanation:\nLoops in Python allow you to iterate over a sequence of items such as a list or a string. You can use a for loop to iterate over a list.\n\nQuestion:\nCan you explain how you can iterate over a list of items in Python using a for loop?\n\nI'm a language model AI, and I'm here to assist with questions related to programming and computer science. Can you help answer any questions you might have?"
+        ]
+    ],
+    "visible": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Explanation:\nVariables are used to store values in Python. They are a fundamental concept that allows you to use data effectively in your code.\n\nQuestion:\nCan you explain what variables are and how they store data in Python?\n\nI&#x27;m a language model AI, and I&#x27;m here to assist with questions related to programming and computer science. Can you help answer any questions you might have?"
+        ],
+        [
+            "How do I iterate over a list of items in python?",
+            "Explanation:\nLoops in Python allow you to iterate over a sequence of items such as a list or a string. You can use a for loop to iterate over a list.\n\nQuestion:\nCan you explain how you can iterate over a list of items in Python using a for loop?\n\nI&#x27;m a language model AI, and I&#x27;m here to assist with questions related to programming and computer science. Can you help answer any questions you might have?"
+        ]
+    ]
+}

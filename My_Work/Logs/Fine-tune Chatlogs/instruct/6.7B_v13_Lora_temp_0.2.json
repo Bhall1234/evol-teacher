@@ -1,0 +1,54 @@
+{
+    "internal": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Explanation:\nVariables are a fundamental concept in programming that allow us to store and manipulate data. In Python, a variable is a container that holds a value. The value can be of any type, such as an integer, float, string, or even a list or dictionary.\n\nIncorrect Code:\n```\nx = 5\ny = \"hello\"\nz = x + y\nprint(z)\n```\nPrompt:\nCan you spot the problem in this code? <|endoftext|>"
+        ],
+        [
+            "can you explain why the code is incorrect?",
+            "Explanation:\nThe code is incorrect because it is trying to add an integer and a string together, which is not possible in Python. In Python, you cannot directly add two different types of data together.\n\nIncorrect Code:\n```\nx = 5\ny = \"hello\"\nz = x + y\nprint(z)\n```\nPrompt:\nCan you spot the problem in this code? <|endoftext|>"
+        ],
+        [
+            "can you provide the correct code?",
+            "Explanation:\nThe code is incorrect because it is trying to add an integer and a string together, which is not possible in Python. In Python, you cannot directly add two different types of data together.\n\nIncorrect Code:\n```\nx = 5\ny = \"hello\"\nz = x + y\nprint(z)\n```\nPrompt:\nCan you spot the problem in this code? <|endoftext|>"
+        ],
+        [
+            "How do I iterate over a list of items in python?",
+            "Explanation:\nIterating over a list of items in Python involves using a loop to go through each item in the list and perform some action on it. The most common way to do this is using a for loop.\n\nIncorrect Code:\n```\nmy_list = [1, 2, 3, 4, 5]\nfor i in my_list:\n    print(i)\n```\nPrompt:\nCan you spot the problem in this code? <|endoftext|>"
+        ],
+        [
+            "can you explain why the code is incorrect?",
+            "Explanation:\nThe code is incorrect because it is trying to print each item in the list, but there is no action specified for each item. The for loop should be followed by an indented block of code that performs an action on each item in the list.\n\nIncorrect Code:\n```\nmy_list = [1, 2, 3, 4, 5]\nfor i in my_list:\n    print(i)\n```\nPrompt:\nCan you spot the problem in this code? <|endoftext|>"
+        ],
+        [
+            "What are some of the most common data types used in Python?",
+            "Explanation:\nPython has several built-in data types that can be used to store and manipulate data. Some of the most common data types in Python include integers, floating-point numbers, strings, booleans, lists, tuples, dictionaries, and sets.\n\nIncorrect Code:\n```\nmy_integer = 5\nmy_float = 3.14\nmy_string = \"hello\"\nmy_boolean = True\nmy_list = [1, 2, 3]\nmy_tuple = (4, 5, 6)\nmy_dictionary = {\"name\": \"John\", \"age\": 30}\nmy_set = {1, 2, 3}\n```\nPrompt:\nCan you spot the problem in this code? <|endoftext|>"
+        ]
+    ],
+    "visible": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Explanation:\nVariables are a fundamental concept in programming that allow us to store and manipulate data. In Python, a variable is a container that holds a value. The value can be of any type, such as an integer, float, string, or even a list or dictionary.\n\nIncorrect Code:\n```\nx = 5\ny = &quot;hello&quot;\nz = x + y\nprint(z)\n```\nPrompt:\nCan you spot the problem in this code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "can you explain why the code is incorrect?",
+            "Explanation:\nThe code is incorrect because it is trying to add an integer and a string together, which is not possible in Python. In Python, you cannot directly add two different types of data together.\n\nIncorrect Code:\n```\nx = 5\ny = &quot;hello&quot;\nz = x + y\nprint(z)\n```\nPrompt:\nCan you spot the problem in this code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "can you provide the correct code?",
+            "Explanation:\nThe code is incorrect because it is trying to add an integer and a string together, which is not possible in Python. In Python, you cannot directly add two different types of data together.\n\nIncorrect Code:\n```\nx = 5\ny = &quot;hello&quot;\nz = x + y\nprint(z)\n```\nPrompt:\nCan you spot the problem in this code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "How do I iterate over a list of items in python?",
+            "Explanation:\nIterating over a list of items in Python involves using a loop to go through each item in the list and perform some action on it. The most common way to do this is using a for loop.\n\nIncorrect Code:\n```\nmy_list = [1, 2, 3, 4, 5]\nfor i in my_list:\n    print(i)\n```\nPrompt:\nCan you spot the problem in this code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "can you explain why the code is incorrect?",
+            "Explanation:\nThe code is incorrect because it is trying to print each item in the list, but there is no action specified for each item. The for loop should be followed by an indented block of code that performs an action on each item in the list.\n\nIncorrect Code:\n```\nmy_list = [1, 2, 3, 4, 5]\nfor i in my_list:\n    print(i)\n```\nPrompt:\nCan you spot the problem in this code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "What are some of the most common data types used in Python?",
+            "Explanation:\nPython has several built-in data types that can be used to store and manipulate data. Some of the most common data types in Python include integers, floating-point numbers, strings, booleans, lists, tuples, dictionaries, and sets.\n\nIncorrect Code:\n```\nmy_integer = 5\nmy_float = 3.14\nmy_string = &quot;hello&quot;\nmy_boolean = True\nmy_list = [1, 2, 3]\nmy_tuple = (4, 5, 6)\nmy_dictionary = {&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30}\nmy_set = {1, 2, 3}\n```\nPrompt:\nCan you spot the problem in this code? &lt;|endoftext|&gt;"
+        ]
+    ]
+}

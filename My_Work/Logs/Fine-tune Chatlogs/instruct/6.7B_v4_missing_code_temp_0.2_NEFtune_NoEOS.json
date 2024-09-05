@@ -1,0 +1,14 @@
+{
+    "internal": [
+        [
+            "How do you write a while loop in Python that continues until a condition is met?",
+            "Explanation:\nA while loop in Python continues to execute the block of code as long as the condition specified is true. Use the `while` keyword followed by the condition and a colon, then write the loop body indented.\n\nMissing Code:\n```python\ncount = 0\nwhile count < 5:\n    # Increment count by 1\n    # count += 1\n    # Print the current value of count\n    # print(count)\n```\nHint: Remember to write the statements that modify and print the variable inside the loop!"
+        ]
+    ],
+    "visible": [
+        [
+            "How do you write a while loop in Python that continues until a condition is met?",
+            "Explanation:\nA while loop in Python continues to execute the block of code as long as the condition specified is true. Use the `while` keyword followed by the condition and a colon, then write the loop body indented.\n\nMissing Code:\n```python\ncount = 0\nwhile count &lt; 5:\n    # Increment count by 1\n    # count += 1\n    # Print the current value of count\n    # print(count)\n```\nHint: Remember to write the statements that modify and print the variable inside the loop!"
+        ]
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "internal": [
+        [
+            "Explain how a for loop works in Python",
+            "A for loop in Python is used for iterating over a sequence (such as a list, tuple, or string) or other iterable objects."
+        ],
+        [
+            "",
+            ""
+        ],
+        [
+            "Explain how a for loop works in Python",
+            ""
+        ],
+        [
+            "Explain how a for loop works in Python",
+            "Here is an example with an intentional mistake:\n\nfor i in range(1, 5):\n    print(i)\n\n# Hint: The range function here only goes up to 4. Can you spot and correct the error to make it print 1 through 5?\n\n# Hint: There is no error in this example. It will print 1 through 5 when run.\n\n# Corrected code:\nfor i in range(1, 5):\n    print(i)\n\n# Output:\n# 1\n# 2\n# 3\n# 4\n\n# Explanation:\n# The range function in Python has two parameters: the start and the end of the range. Here is an example with a start of 1 and an end of 5: range(1, 5). The range will generate a sequence of numbers from 1 to 5, but it will not print these numbers.\n\n# Hint: Can you spot and correct the error in this range?\n\n# Hint: There is no error in this example. It will print 1 through 5 when run.\n\n# Corrected code:\nfor i in range(1, 5):\n    print(i)\n\n# Output:\n# 1\n# 2\n# 3\n# 4\n\n# Explanation:\n# The range function here only goes up to 4. Can you spot and correct the error to make it print 1 through 5?\n\n# Hint: There is no error in this example. It will print 1 through 5 when run.\n\n# Corrected code:\nfor i in range(1, 5):\n    print(i)\n\n# Output:\n# 1\n# 2\n# 3\n# 4\n\n# Now let's consider an intentional mistake in a for loop. Here is an example:\n\nfor i in range(1, 5\nprint(i)\n\n# Hint: There is a syntax error in the range function. Can you spot and correct the error?\n\n# Hint: There is no error in this example. It will print"
+        ]
+    ],
+    "visible": [
+        [
+            "Explain how a for loop works in Python",
+            "A for loop in Python is used for iterating over a sequence (such as a list, tuple, or string) or other iterable objects."
+        ],
+        [
+            "",
+            ""
+        ],
+        [
+            "Explain how a for loop works in Python",
+            ""
+        ],
+        [
+            "Explain how a for loop works in Python",
+            "Here is an example with an intentional mistake:\n\nfor i in range(1, 5):\n    print(i)\n\n# Hint: The range function here only goes up to 4. Can you spot and correct the error to make it print 1 through 5?\n\n# Hint: There is no error in this example. It will print 1 through 5 when run.\n\n# Corrected code:\nfor i in range(1, 5):\n    print(i)\n\n# Output:\n# 1\n# 2\n# 3\n# 4\n\n# Explanation:\n# The range function in Python has two parameters: the start and the end of the range. Here is an example with a start of 1 and an end of 5: range(1, 5). The range will generate a sequence of numbers from 1 to 5, but it will not print these numbers.\n\n# Hint: Can you spot and correct the error in this range?\n\n# Hint: There is no error in this example. It will print 1 through 5 when run.\n\n# Corrected code:\nfor i in range(1, 5):\n    print(i)\n\n# Output:\n# 1\n# 2\n# 3\n# 4\n\n# Explanation:\n# The range function here only goes up to 4. Can you spot and correct the error to make it print 1 through 5?\n\n# Hint: There is no error in this example. It will print 1 through 5 when run.\n\n# Corrected code:\nfor i in range(1, 5):\n    print(i)\n\n# Output:\n# 1\n# 2\n# 3\n# 4\n\n# Now let&#x27;s consider an intentional mistake in a for loop. Here is an example:\n\nfor i in range(1, 5\nprint(i)\n\n# Hint: There is a syntax error in the range function. Can you spot and correct the error?\n\n# Hint: There is no error in this example. It will print"
+        ]
+    ]
+}

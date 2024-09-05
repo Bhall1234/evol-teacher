@@ -1,0 +1,14 @@
+{
+    "internal": [
+        [
+            "Explain how a while loop works in Python",
+            "A while loop in Python is a control flow statement that allows code to be executed repeatedly based on a given condition.\n\nHere's a basic syntax for a while loop:\n\n```python\nwhile condition:\n    # code to be executed\n```\n\nThe while loop continues to execute as long as the condition is true. If the condition becomes false, the code inside the while loop is skipped.\n\nHere's an example:\n\n```python\ni = 0\nwhile i < 5:\n    print(i)\n    i += 1\n```\n\nIn this example, the while loop will execute as long as `i` is less than 5. On each iteration, the value of `i` is printed and then incremented by 1. When `i` becomes 5, the condition becomes false and the loop stops.\n\nThe while loop can also be used to repeat an action until a certain condition is met."
+        ]
+    ],
+    "visible": [
+        [
+            "Explain how a while loop works in Python",
+            "A while loop in Python is a control flow statement that allows code to be executed repeatedly based on a given condition.\n\nHere&#x27;s a basic syntax for a while loop:\n\n```python\nwhile condition:\n    # code to be executed\n```\n\nThe while loop continues to execute as long as the condition is true. If the condition becomes false, the code inside the while loop is skipped.\n\nHere&#x27;s an example:\n\n```python\ni = 0\nwhile i &lt; 5:\n    print(i)\n    i += 1\n```\n\nIn this example, the while loop will execute as long as `i` is less than 5. On each iteration, the value of `i` is printed and then incremented by 1. When `i` becomes 5, the condition becomes false and the loop stops.\n\nThe while loop can also be used to repeat an action until a certain condition is met."
+        ]
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "internal": [
+        [
+            "Explain how a while loop works in Python",
+            "In Python, a while loop is a control flow statement that allows code to be executed repeatedly as long as a specified condition is true.\n\nHere's a simple example:\n\n```python\ni = 0\nwhile i < 5:\n    print(i)\n    i += 1\n```\n\nIn this code, we initialize a counter `i` to `0`. Then, we start a while loop that will continue as long as `i` is less than `5`. Inside the loop, we print the current value of `i` and then increment `i` by `1`.\n\nThe loop will execute the code block once, then check the condition `i < 5`. If the condition is true, the loop will continue, and the code inside the loop will be executed again. If the condition is false, the loop will stop.\n\nHere's an example with a break statement:\n\n```python\ni = 0\nwhile True:\n    print(i)\n    i += 1\n    if i >= 5:\n        break\n```\n\nIn this code, the while loop will continue indefinitely, but we've added a `break` statement that will stop the loop when `i` reaches `5`.\n\nRemember, while loops can be used to write complex programs by defining multiple control flow statements, but they can also be used to write simple programs by using a single `while` loop with a single condition."
+        ]
+    ],
+    "visible": [
+        [
+            "Explain how a while loop works in Python",
+            "In Python, a while loop is a control flow statement that allows code to be executed repeatedly as long as a specified condition is true.\n\nHere&#x27;s a simple example:\n\n```python\ni = 0\nwhile i &lt; 5:\n    print(i)\n    i += 1\n```\n\nIn this code, we initialize a counter `i` to `0`. Then, we start a while loop that will continue as long as `i` is less than `5`. Inside the loop, we print the current value of `i` and then increment `i` by `1`.\n\nThe loop will execute the code block once, then check the condition `i &lt; 5`. If the condition is true, the loop will continue, and the code inside the loop will be executed again. If the condition is false, the loop will stop.\n\nHere&#x27;s an example with a break statement:\n\n```python\ni = 0\nwhile True:\n    print(i)\n    i += 1\n    if i &gt;= 5:\n        break\n```\n\nIn this code, the while loop will continue indefinitely, but we&#x27;ve added a `break` statement that will stop the loop when `i` reaches `5`.\n\nRemember, while loops can be used to write complex programs by defining multiple control flow statements, but they can also be used to write simple programs by using a single `while` loop with a single condition."
+        ]
+    ]
+}

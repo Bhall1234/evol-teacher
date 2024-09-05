@@ -1,0 +1,14 @@
+{
+    "internal": [
+        [
+            "Please create a for loop in Python to print out the items in the following list of fruits: [\\\"apple\\\", \\\"banana\\\", \\\"cherry\\\", \\\"orange\\\"].",
+            "Sure, here is a simple Python script that uses a for loop to print the items in the list:\n\n```python\nfruits = [\"apple\", \"banana\", \"cherry\", \"orange\"]\nfor fruit in fruits:\n    print(fruit)\n```\n\nWhen you run this script, it will print:\n\n```\napple\nbanana\ncherry\norange\n```"
+        ]
+    ],
+    "visible": [
+        [
+            "Please create a for loop in Python to print out the items in the following list of fruits: [\\&quot;apple\\&quot;, \\&quot;banana\\&quot;, \\&quot;cherry\\&quot;, \\&quot;orange\\&quot;].",
+            "Sure, here is a simple Python script that uses a for loop to print the items in the list:\n\n```python\nfruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;orange&quot;]\nfor fruit in fruits:\n    print(fruit)\n```\n\nWhen you run this script, it will print:\n\n```\napple\nbanana\ncherry\norange\n```"
+        ]
+    ]
+}

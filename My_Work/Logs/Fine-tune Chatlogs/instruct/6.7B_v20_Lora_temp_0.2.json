@@ -1,0 +1,46 @@
+{
+    "internal": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Explanation:\nVariables are containers that hold values. In Python, variables are created using the assignment operator (=) followed by the variable name and the value to be stored. For example, `x = 5` creates a variable named `x` and stores the value `5` in it.\n\nIncorrect Code:\n```python\nx = 5\ny = \"hello\"\nprint(x + y)\n```\nThis code has a problem because it tries to add an integer and a string together, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? <|endoftext|>"
+        ],
+        [
+            "How do I iterate over a list of items in python?",
+            "Explanation:\nTo iterate over a list of items in Python, you can use a for loop. The syntax is as follows:\n```python\nfor item in list:\n    # do something with item\n```\nIncorrect Code:\n```python\nfruits = [\"apple\", \"banana\", \"cherry\"]\nfor fruit in fruits:\n    print(fruit)\n```\nThis code has a problem because it tries to print the fruit name twice, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? <|endoftext|>"
+        ],
+        [
+            "What is the difference between = and == in Python?",
+            "Explanation:\nIn Python, the assignment operator (=) is used to assign a value to a variable, while the comparison operator (==) is used to compare two values.\n\nIncorrect Code:\n```python\nx = 5\ny = \"hello\"\nprint(x == y)\n```\nThis code has a problem because it tries to compare an integer and a string, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? <|endoftext|>"
+        ],
+        [
+            "How do you sort a list of integers in Python in ascending order?",
+            "Explanation:\nTo sort a list of integers in ascending order in Python, you can use the `sort()` method. The `sort()` method sorts the elements of a list in ascending order.\n\nIncorrect Code:\n```python\nnumbers = [5, 3, 1, 2, 4]\nnumbers.sort()\nprint(numbers)\n```\nThis code has a problem because it tries to sort a list of integers in descending order, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? <|endoftext|>"
+        ],
+        [
+            "I dont understand variables in python",
+            "Explanation:\nVariables are containers that hold values. In Python, variables are created using the assignment operator (=) followed by the variable name and the value to be stored. For example, `x = 5` creates a variable named `x` and stores the value `5` in it.\n\nIncorrect Code:\n```python\nx = 5\ny = \"hello\"\nprint(x + y)\n```\nThis code has a problem because it tries to add an integer and a string together, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? <|endoftext|>"
+        ]
+    ],
+    "visible": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Explanation:\nVariables are containers that hold values. In Python, variables are created using the assignment operator (=) followed by the variable name and the value to be stored. For example, `x = 5` creates a variable named `x` and stores the value `5` in it.\n\nIncorrect Code:\n```python\nx = 5\ny = &quot;hello&quot;\nprint(x + y)\n```\nThis code has a problem because it tries to add an integer and a string together, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "How do I iterate over a list of items in python?",
+            "Explanation:\nTo iterate over a list of items in Python, you can use a for loop. The syntax is as follows:\n```python\nfor item in list:\n    # do something with item\n```\nIncorrect Code:\n```python\nfruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]\nfor fruit in fruits:\n    print(fruit)\n```\nThis code has a problem because it tries to print the fruit name twice, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "What is the difference between = and == in Python?",
+            "Explanation:\nIn Python, the assignment operator (=) is used to assign a value to a variable, while the comparison operator (==) is used to compare two values.\n\nIncorrect Code:\n```python\nx = 5\ny = &quot;hello&quot;\nprint(x == y)\n```\nThis code has a problem because it tries to compare an integer and a string, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "How do you sort a list of integers in Python in ascending order?",
+            "Explanation:\nTo sort a list of integers in ascending order in Python, you can use the `sort()` method. The `sort()` method sorts the elements of a list in ascending order.\n\nIncorrect Code:\n```python\nnumbers = [5, 3, 1, 2, 4]\nnumbers.sort()\nprint(numbers)\n```\nThis code has a problem because it tries to sort a list of integers in descending order, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "I dont understand variables in python",
+            "Explanation:\nVariables are containers that hold values. In Python, variables are created using the assignment operator (=) followed by the variable name and the value to be stored. For example, `x = 5` creates a variable named `x` and stores the value `5` in it.\n\nIncorrect Code:\n```python\nx = 5\ny = &quot;hello&quot;\nprint(x + y)\n```\nThis code has a problem because it tries to add an integer and a string together, which is not allowed in Python.\n\nPrompt:\nCan you spot the problem in the code? &lt;|endoftext|&gt;"
+        ]
+    ]
+}

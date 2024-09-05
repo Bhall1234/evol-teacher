@@ -1,0 +1,22 @@
+{
+    "internal": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Variables are used in programming to store data that can be manipulated or used later in the code. They are essentially containers that hold values. In Python, variables are created using the assignment operator (=).\n\nHere's an example of how variables store data in Python:\n\n```python\n# Create a variable named \"x\" and assign it the value 5\nx = 5\n\n# Print the value of \"x\"\nprint(x)\n```\n\nIn this example, the variable \"x\" is created and assigned the value 5. When we print the value of \"x\" using the print() function, it outputs 5.\n\nVariables in Python can store different types of data, such as integers, floats, strings, and more. They can also be used to perform various operations and calculations using Python's built-in functions and operators."
+        ],
+        [
+            "How do I iterate over a list of items in python?",
+            "In Python, you can iterate over a list of items using a for loop. Here's an example:\n\n```python\n# Create a list of items\nitems = ['apple', 'banana', 'cherry', 'date', 'elderberry']\n\n# Use a for loop to iterate over the list\nfor item in items:\n    # Print each item\n    print(item)\n```\n\nIn this example, the for loop iterates over each item in the list and prints it. The variable `item` is used to hold the current item in the list during each iteration.\n\nYou can also use the `enumerate()` function to get both the index and value of each item in the list:\n\n```python\n# Create a list of items\nitems = ['apple', 'banana', 'cherry', 'date', 'elderberry']\n\n# Use a for loop with enumerate to iterate over the list\nfor index, item in enumerate(items):\n    # Print each item along with its index\n    print(f\"Item {index + 1}: {item}\")\n```\n\nIn this example, the `enumerate()` function returns a tuple containing the index and value of each item in the list. The for loop then unpacks these values into the variables `index` and `item` during each iteration."
+        ]
+    ],
+    "visible": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Variables are used in programming to store data that can be manipulated or used later in the code. They are essentially containers that hold values. In Python, variables are created using the assignment operator (=).\n\nHere&#x27;s an example of how variables store data in Python:\n\n```python\n# Create a variable named &quot;x&quot; and assign it the value 5\nx = 5\n\n# Print the value of &quot;x&quot;\nprint(x)\n```\n\nIn this example, the variable &quot;x&quot; is created and assigned the value 5. When we print the value of &quot;x&quot; using the print() function, it outputs 5.\n\nVariables in Python can store different types of data, such as integers, floats, strings, and more. They can also be used to perform various operations and calculations using Python&#x27;s built-in functions and operators."
+        ],
+        [
+            "How do I iterate over a list of items in python?",
+            "In Python, you can iterate over a list of items using a for loop. Here&#x27;s an example:\n\n```python\n# Create a list of items\nitems = [&#x27;apple&#x27;, &#x27;banana&#x27;, &#x27;cherry&#x27;, &#x27;date&#x27;, &#x27;elderberry&#x27;]\n\n# Use a for loop to iterate over the list\nfor item in items:\n    # Print each item\n    print(item)\n```\n\nIn this example, the for loop iterates over each item in the list and prints it. The variable `item` is used to hold the current item in the list during each iteration.\n\nYou can also use the `enumerate()` function to get both the index and value of each item in the list:\n\n```python\n# Create a list of items\nitems = [&#x27;apple&#x27;, &#x27;banana&#x27;, &#x27;cherry&#x27;, &#x27;date&#x27;, &#x27;elderberry&#x27;]\n\n# Use a for loop with enumerate to iterate over the list\nfor index, item in enumerate(items):\n    # Print each item along with its index\n    print(f&quot;Item {index + 1}: {item}&quot;)\n```\n\nIn this example, the `enumerate()` function returns a tuple containing the index and value of each item in the list. The for loop then unpacks these values into the variables `index` and `item` during each iteration."
+        ]
+    ]
+}

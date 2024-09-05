@@ -1,0 +1,62 @@
+{
+    "internal": [
+        [
+            "What are some basic concepts of Python?",
+            "Explanation:\nPython is a high-level programming language that is known for its simplicity and readability. It is an interpreted language, which means that it does not need to be compiled before it can be run. Python has a large standard library that provides many built-in functions and modules that make it easy to perform common tasks.\n\nIncorrect Code:\n```\ndef greet[name]:\n    print(\"Hello, \" + name)\n\ngreet(John\")\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "Create a program that asks the user for three integers and outputs the largest of the three.",
+            "Explanation:\nThe question asks the user to write a program that can accept three integers from the user and print out the largest of the three numbers. The fundamental concept behind this question is understanding how to use variables, data types, and functions in Python programming.\n\nIncorrect Code:\n```python\ndef find_largest(num1, num2, num3):\n    if num1 < num2 and num1 < num3:\n        return num1\n    elif num2 < num1 and num2 < num3:\n        return num2\n    else:\n        return num3\n\nprint(find_largest(10, 20, 30))\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "Write a program that can accept 5 integers from the user and print out the largest of the three numbers.",
+            "Explanation:\nThe question asks the user to write a program that can accept five integers from the user and print out the largest of the five numbers. The fundamental concept behind this question is understanding how to use variables, data types, and functions in Python programming.\n\nIncorrect Code:\n```python\ndef find_largest(num1, num2, num3, num4, num5):\n    if num1 < num2 and num1 < num3 and num1 < num4 and num1 < num5:\n        return num1\n    elif num2 < num1 and num2 < num3 and num2 < num4 and num2 < num5:\n       oint(find_largest(10, 20, 30, 40, 50))\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "Please use the Python bubble sort technique to arrange the following objects in numerical order: 3, 4, 8, 6, 6",
+            "Explanation:\nThe question asks the user to write a program that can accept five integers from the user and print out the largest of the five numbers. The fundamental concept behind this question is understanding how to use variables, data types, and functions in Python programming.\n\nIncorrect Code:\n```python\ndef find_largest(num1, num2, num3, num4, num5):\n    if num1 < num2 and num1 < num3 and num1 < num4 and num1 < num5:\n        return num1\n    elif num2 < num1 and num2 < num3 and num2 < num4 and num2 < num5:\n       oint(find_largest(10, 20, 30, 40, 50))\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "How may repetitive operations be automated in Python programming by iterating over a series of actions several times?",
+            "Explanation:\nThe question asks how to use a loop to automate a repetitive action in Python programming. The basic concept is understanding how to use loops in Python programming.\n\nIncorrect Code:\n```python\nfor i in range(5):\nprint(\"Hello\")\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "What kind of repetitive tasks can a Python loop help you accomplish?",
+            "Explanation:\nThe question asks how to use a loop to automate a repetitive action in Python programming. The basic concept is understanding how to use loops in Python programming.\n\nIncorrect Code:\n```python\nfor i in range(5):\nprint(\"Hello\")\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "What distinguishes Python's variables from lists, and can you illustrate each concept with a concrete example?",
+            "Explanation:\nThe question asks how to use a loop to automate a repetitive action in Python programming. The basic concept is understanding how to use loops in Python programming.\n\nIncorrect Code:\n```python\nfor i in range(5):\nprint(\"Hello\")\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ]
+    ],
+    "visible": [
+        [
+            "What are some basic concepts of Python?",
+            "Explanation:\nPython is a high-level programming language that is known for its simplicity and readability. It is an interpreted language, which means that it does not need to be compiled before it can be run. Python has a large standard library that provides many built-in functions and modules that make it easy to perform common tasks.\n\nIncorrect Code:\n```\ndef greet[name]:\n    print(&quot;Hello, &quot; + name)\n\ngreet(John&quot;)\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "Create a program that asks the user for three integers and outputs the largest of the three.",
+            "Explanation:\nThe question asks the user to write a program that can accept three integers from the user and print out the largest of the three numbers. The fundamental concept behind this question is understanding how to use variables, data types, and functions in Python programming.\n\nIncorrect Code:\n```python\ndef find_largest(num1, num2, num3):\n    if num1 &lt; num2 and num1 &lt; num3:\n        return num1\n    elif num2 &lt; num1 and num2 &lt; num3:\n        return num2\n    else:\n        return num3\n\nprint(find_largest(10, 20, 30))\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "Write a program that can accept 5 integers from the user and print out the largest of the three numbers.",
+            "Explanation:\nThe question asks the user to write a program that can accept five integers from the user and print out the largest of the five numbers. The fundamental concept behind this question is understanding how to use variables, data types, and functions in Python programming.\n\nIncorrect Code:\n```python\ndef find_largest(num1, num2, num3, num4, num5):\n    if num1 &lt; num2 and num1 &lt; num3 and num1 &lt; num4 and num1 &lt; num5:\n        return num1\n    elif num2 &lt; num1 and num2 &lt; num3 and num2 &lt; num4 and num2 &lt; num5:\n       oint(find_largest(10, 20, 30, 40, 50))\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "Please use the Python bubble sort technique to arrange the following objects in numerical order: 3, 4, 8, 6, 6",
+            "Explanation:\nThe question asks the user to write a program that can accept five integers from the user and print out the largest of the five numbers. The fundamental concept behind this question is understanding how to use variables, data types, and functions in Python programming.\n\nIncorrect Code:\n```python\ndef find_largest(num1, num2, num3, num4, num5):\n    if num1 &lt; num2 and num1 &lt; num3 and num1 &lt; num4 and num1 &lt; num5:\n        return num1\n    elif num2 &lt; num1 and num2 &lt; num3 and num2 &lt; num4 and num2 &lt; num5:\n       oint(find_largest(10, 20, 30, 40, 50))\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "How may repetitive operations be automated in Python programming by iterating over a series of actions several times?",
+            "Explanation:\nThe question asks how to use a loop to automate a repetitive action in Python programming. The basic concept is understanding how to use loops in Python programming.\n\nIncorrect Code:\n```python\nfor i in range(5):\nprint(&quot;Hello&quot;)\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "What kind of repetitive tasks can a Python loop help you accomplish?",
+            "Explanation:\nThe question asks how to use a loop to automate a repetitive action in Python programming. The basic concept is understanding how to use loops in Python programming.\n\nIncorrect Code:\n```python\nfor i in range(5):\nprint(&quot;Hello&quot;)\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ],
+        [
+            "What distinguishes Python&#x27;s variables from lists, and can you illustrate each concept with a concrete example?",
+            "Explanation:\nThe question asks how to use a loop to automate a repetitive action in Python programming. The basic concept is understanding how to use loops in Python programming.\n\nIncorrect Code:\n```python\nfor i in range(5):\nprint(&quot;Hello&quot;)\n```\nPrompt:\nWhat is the problem with this code? Can you identify any mistakes or missing parts?"
+        ]
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "internal": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Explanation:\nVariables in Python are used to store data. They are created using the assignment operator (=) and can be used to perform various operations such as arithmetic, comparison, and logical operations.\n\nIncorrect Code:\n```python\nx = 5\ny = 10\nz = x + y\nprint(z)\n```\nThis code has a problem: the variable names are not descriptive. The variable `x` and `y` are not clear, and the operation is not clear.\n\nPrompt:\nCan you spot the problem in this code? <|endoftext|>"
+        ],
+        [
+            "How do I iterate over a list of items in python?",
+            "Explanation:\nIterating over a list in Python involves using a loop to go through each item in the list. The most common way to do this is with a for loop.\n\nIncorrect Code:\n```python\nitems = [\"apple\", \"banana\", \"cherry\"]\nfor item in items:\n    print(item)\n```\nThis code has a problem: the variable name `item` is not descriptive. The variable `item` is not clear, and the operation is not clear.\n\nPrompt:\nCan you spot the problem in this code? <|endoftext|>"
+        ],
+        [
+            "What is a loop in Python and how can you use it to perform repetitive tasks?",
+            "Explanation:\nA loop in Python is a control flow statement that allows a block of code to be executed repeatedly. The most common types of loops are for loops and while loops.\n\nIncorrect Code:\n```python\nfor i in range(5):\n    print(i)\n```\nThis code has a problem: the variable name `i` is not descriptive. The variable `i` is not clear, and the operation is not clear.\n\nPrompt:\nCan you spot the problem in this code? <|endoftext|>"
+        ],
+        [
+            "What is the difference between = and == in Python?",
+            "Explanation:\nIn Python, = is an assignment operator that assigns a value to a variable, while == is a comparison operator that checks if two values are equal.\n\nIncorrect Code:\n```python\nx = 5\ny = 10\nz = x + y\nprint(z)\n```\nThis code has a problem: the variable names are not descriptive. The variable `x` and `y` are not clear, and the operation is not clear.\n\nPrompt:\nCan you spot the problem in this code? <|endoftext|>"
+        ],
+        [
+            "How do you sort a list of integers in Python in ascending order?",
+            "Explanation:\nTo sort a list of integers in ascending order in Python, you can use the `sort()` method. This method modifies the original list and does not return a new sorted list.\n\nIncorrect Code:\n```python\nnumbers = [5, 2, 10, 3, 8]\nnumbers.sort()\nprint(numbers)\n```\nThis code has a problem: the variable name `numbers` is not descriptive. The variable `numbers` is not clear, and the operation is not clear.\n\nPrompt:\nCan you spot the problem in this code? <|endoftext|>"
+        ]
+    ],
+    "visible": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Explanation:\nVariables in Python are used to store data. They are created using the assignment operator (=) and can be used to perform various operations such as arithmetic, comparison, and logical operations.\n\nIncorrect Code:\n```python\nx = 5\ny = 10\nz = x + y\nprint(z)\n```\nThis code has a problem: the variable names are not descriptive. The variable `x` and `y` are not clear, and the operation is not clear.\n\nPrompt:\nCan you spot the problem in this code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "How do I iterate over a list of items in python?",
+            "Explanation:\nIterating over a list in Python involves using a loop to go through each item in the list. The most common way to do this is with a for loop.\n\nIncorrect Code:\n```python\nitems = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]\nfor item in items:\n    print(item)\n```\nThis code has a problem: the variable name `item` is not descriptive. The variable `item` is not clear, and the operation is not clear.\n\nPrompt:\nCan you spot the problem in this code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "What is a loop in Python and how can you use it to perform repetitive tasks?",
+            "Explanation:\nA loop in Python is a control flow statement that allows a block of code to be executed repeatedly. The most common types of loops are for loops and while loops.\n\nIncorrect Code:\n```python\nfor i in range(5):\n    print(i)\n```\nThis code has a problem: the variable name `i` is not descriptive. The variable `i` is not clear, and the operation is not clear.\n\nPrompt:\nCan you spot the problem in this code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "What is the difference between = and == in Python?",
+            "Explanation:\nIn Python, = is an assignment operator that assigns a value to a variable, while == is a comparison operator that checks if two values are equal.\n\nIncorrect Code:\n```python\nx = 5\ny = 10\nz = x + y\nprint(z)\n```\nThis code has a problem: the variable names are not descriptive. The variable `x` and `y` are not clear, and the operation is not clear.\n\nPrompt:\nCan you spot the problem in this code? &lt;|endoftext|&gt;"
+        ],
+        [
+            "How do you sort a list of integers in Python in ascending order?",
+            "Explanation:\nTo sort a list of integers in ascending order in Python, you can use the `sort()` method. This method modifies the original list and does not return a new sorted list.\n\nIncorrect Code:\n```python\nnumbers = [5, 2, 10, 3, 8]\nnumbers.sort()\nprint(numbers)\n```\nThis code has a problem: the variable name `numbers` is not descriptive. The variable `numbers` is not clear, and the operation is not clear.\n\nPrompt:\nCan you spot the problem in this code? &lt;|endoftext|&gt;"
+        ]
+    ]
+}

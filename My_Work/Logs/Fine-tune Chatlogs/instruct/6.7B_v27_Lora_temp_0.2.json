@@ -1,0 +1,14 @@
+{
+    "internal": [
+        [
+            "I dont understand variables in python",
+            "Variables in Python are used to store data that can be used later in the program. They are a fundamental concept in programming and are used to create reusable code.\n\nHere's a simple example of how to use variables in Python:\n\n```python\n# Define a variable called \"x\" and assign it the value 5\nx = 5\n\n# Print the value of \"x\"\nprint(x)\n\n# Change the value of \"x\" to 10\nx = 10\n\n# Print the new value of \"x\"\nprint(x)\n```\n\nIn this example, we first define a variable called \"x\" and assign it the value 5. Then we print the value of \"x\". After that, we change the value of \"x\" to 10 and print the new value of \"x\".\n\nVariables can be used in many ways in Python, such as in loops, conditionals, function calls, and more. They are a key part of any program that involves data manipulation or logic."
+        ]
+    ],
+    "visible": [
+        [
+            "I dont understand variables in python",
+            "Variables in Python are used to store data that can be used later in the program. They are a fundamental concept in programming and are used to create reusable code.\n\nHere&#x27;s a simple example of how to use variables in Python:\n\n```python\n# Define a variable called &quot;x&quot; and assign it the value 5\nx = 5\n\n# Print the value of &quot;x&quot;\nprint(x)\n\n# Change the value of &quot;x&quot; to 10\nx = 10\n\n# Print the new value of &quot;x&quot;\nprint(x)\n```\n\nIn this example, we first define a variable called &quot;x&quot; and assign it the value 5. Then we print the value of &quot;x&quot;. After that, we change the value of &quot;x&quot; to 10 and print the new value of &quot;x&quot;.\n\nVariables can be used in many ways in Python, such as in loops, conditionals, function calls, and more. They are a key part of any program that involves data manipulation or logic."
+        ]
+    ]
+}

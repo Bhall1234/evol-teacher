@@ -1,0 +1,38 @@
+{
+    "internal": [
+        [
+            "What is the correct way to write a function in Python that returns the sum of two numbers?",
+            "The correct way to write a function in Python that returns the sum of two numbers is as follows:\n\n```python\ndef add_numbers(a, b):\n    return a + b\n```\n\nIn this function, `a` and `b` are parameters that represent the two numbers to be added. The function adds the two numbers together and returns the result."
+        ],
+        [
+            "What is the correct way to write a function in Python that returns the sum of two numbers?",
+            "The correct way to write a function in Python that returns the sum of two numbers is as follows:\n\n```python\ndef add_numbers(a, b):\n    return a + b\n```\n\nIn this function, `a` and `b` are parameters that represent"
+        ],
+        [
+            "",
+            "The correct way to write a function in Python that returns the sum of two numbers is as follows:\n\n```python\ndef add_numbers(a, b):\n    return a + b\n```\n\nIn this function, `a` and `b` are parameters that represent the two numbers to be added. The function adds the two numbers together and returns the result."
+        ],
+        [
+            "What is the correct way to write a function in Python that returns the sum of two numbers?",
+            "Explanation:\nTo write a function in Python that returns the sum of two numbers, define the function using the `def` keyword, add parameters for the two numbers, and use a return statement to return the sum.\n\nMissing Code:\n```python\ndef add_numbers(a, b):\n    # Add the two numbers and return the sum\n    # return the sum of a and b\n```\nHint: Make sure to write the return statement correctly to return the sum of the two numbers. <|endoftext"
+        ]
+    ],
+    "visible": [
+        [
+            "What is the correct way to write a function in Python that returns the sum of two numbers?",
+            "The correct way to write a function in Python that returns the sum of two numbers is as follows:\n\n```python\ndef add_numbers(a, b):\n    return a + b\n```\n\nIn this function, `a` and `b` are parameters that represent the two numbers to be added. The function adds the two numbers together and returns the result."
+        ],
+        [
+            "What is the correct way to write a function in Python that returns the sum of two numbers?",
+            "The correct way to write a function in Python that returns the sum of two numbers is as follows:\n\n```python\ndef add_numbers(a, b):\n    return a + b\n```\n\nIn this function, `a` and `b` are parameters that represent"
+        ],
+        [
+            "",
+            "The correct way to write a function in Python that returns the sum of two numbers is as follows:\n\n```python\ndef add_numbers(a, b):\n    return a + b\n```\n\nIn this function, `a` and `b` are parameters that represent the two numbers to be added. The function adds the two numbers together and returns the result."
+        ],
+        [
+            "What is the correct way to write a function in Python that returns the sum of two numbers?",
+            "Explanation:\nTo write a function in Python that returns the sum of two numbers, define the function using the `def` keyword, add parameters for the two numbers, and use a return statement to return the sum.\n\nMissing Code:\n```python\ndef add_numbers(a, b):\n    # Add the two numbers and return the sum\n    # return the sum of a and b\n```\nHint: Make sure to write the return statement correctly to return the sum of the two numbers. &lt;|endoftext"
+        ]
+    ]
+}

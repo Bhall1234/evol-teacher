@@ -1,0 +1,14 @@
+{
+    "internal": [
+        [
+            "What are some ways to loop through elements in a list?",
+            "Looping through elements in a list is an essential operation in programming. Here are some ways to do it in several popular programming languages:\n\n1. For Loop:\n```python\nnumbers = [1, 2, 3, 4, 5]\n\nfor number in numbers:\n    print(number)\n```\nThis code prints each element of the list `numbers` to the console.\n\n2. While Loop:\n```python\nnumbers = [1, 2, 3, 4, 5]\nindex = 0\n\nwhile index < len(numbers):\n    print(numbers[index])\n    index += 1\n```\nThis code does the same thing as the first, but uses a while loop instead of a for loop.\n\n3. List comprehension:\n```python\nnumbers = [1, 2, 3, 4, 5]\n\n[print(number) for number in numbers]\n```\nThis one is a bit unusual. It uses list comprehension to print each number in the list to the console.\n\n4. Using the `map` function:\n```python\nnumbers = [1, 2, 3, 4, 5]\n\nlist(map(print, numbers))\n```\nThis will print each number to the console.\n\n5. Using `enumerate` function:\n```python\nnumbers = [1, 2, 3, 4, 5]\n\nfor index, number in enumerate(numbers):\n    print(f\"Index: {index}, Number: {number}\")\n```\nThis will print the index and the number for each element in the list.\n\nEach of these ways can be used depending on what you need to accomplish, the complexity of your list, and the efficiency you need."
+        ]
+    ],
+    "visible": [
+        [
+            "What are some ways to loop through elements in a list?",
+            "Looping through elements in a list is an essential operation in programming. Here are some ways to do it in several popular programming languages:\n\n1. For Loop:\n```python\nnumbers = [1, 2, 3, 4, 5]\n\nfor number in numbers:\n    print(number)\n```\nThis code prints each element of the list `numbers` to the console.\n\n2. While Loop:\n```python\nnumbers = [1, 2, 3, 4, 5]\nindex = 0\n\nwhile index &lt; len(numbers):\n    print(numbers[index])\n    index += 1\n```\nThis code does the same thing as the first, but uses a while loop instead of a for loop.\n\n3. List comprehension:\n```python\nnumbers = [1, 2, 3, 4, 5]\n\n[print(number) for number in numbers]\n```\nThis one is a bit unusual. It uses list comprehension to print each number in the list to the console.\n\n4. Using the `map` function:\n```python\nnumbers = [1, 2, 3, 4, 5]\n\nlist(map(print, numbers))\n```\nThis will print each number to the console.\n\n5. Using `enumerate` function:\n```python\nnumbers = [1, 2, 3, 4, 5]\n\nfor index, number in enumerate(numbers):\n    print(f&quot;Index: {index}, Number: {number}&quot;)\n```\nThis will print the index and the number for each element in the list.\n\nEach of these ways can be used depending on what you need to accomplish, the complexity of your list, and the efficiency you need."
+        ]
+    ]
+}

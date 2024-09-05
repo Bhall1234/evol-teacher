@@ -1,0 +1,86 @@
+{
+    "internal": [
+        [
+            "How do you write a while loop in Python that continues until a condition is met?",
+            "Explanation:\nA while loop in Python continues to execute the block of code as long as the condition specified is true. Use the `while` keyword followed by the condition and a colon, then write the loop body indented.\n\nMissing Code:\n```python\ncount = 0\nwhile count < 5:\n    # Increment count by 1\n    # count += 1\n    # Print the current value of count\n    # print(count)\n```\nHint: Remember to write the statements that modify and print the variable inside the loop body. <|endoftext|>"
+        ],
+        [
+            "What is the correct way to write a function in Python that returns the sum of two numbers?",
+            "Explanation:\nTo write a function in Python that returns the sum of two numbers, define it using the `def` keyword, add parameters for the two numbers, and use a return statement to return the sum.\n\nMissing Code:\n```python\ndef add_numbers(a, b):\n    # Add the two numbers and return the sum\n    # return the sum of a and b\n```\nHint: Make sure to write the addition of the two numbers and the return statement inside the function. <|endoftext|>"
+        ],
+        [
+            "How do you use a for loop to iterate over a list in Python?",
+            "Explanation:\nTo use a for loop to iterate over a list in Python, use the `for` keyword followed by a variable name, the `in` keyword, and the list. Then, write the loop body indented.\n\nMissing Code:\n```python\nmy_list = [1, 2, 3, 4]\nfor item in my_list:\n    # Print each item in the list\n    # print(item)\n```\nHint: Remember to write the print statement inside the loop to print each item. <|endoftext|>"
+        ],
+        [
+            "How do i use a for loop to iterate over some items in python?",
+            "Explanation:\nTo use a for loop to iterate over some items in Python, use the `for` keyword followed by a variable name, the `in` keyword, and the iterable. Then, write the loop body indented.\n\nMissing Code:\n```python\nmy_items = [1, 2, 3, 4]\nfor item in my_items:\n    # Print each item in the list\n    # print(item)\n```\nHint: Make sure to write the print statement inside the loop to print each item. <|endoftext|>"
+        ],
+        [
+            "How can I convert a string to an integer in Python?",
+            "Explanation:\nTo convert a string to an integer in Python, use the `int()` function.\n\nMissing Code:\n```python\nnum_str = \"123\"\n# Convert the string to an integer\n# num = int(num_str)\nprint(num)\n```\nHint: Ensure you correctly use the `int()` function and assign the result to a variable. <|endoftext|>"
+        ],
+        [
+            "How do you locate the highest value in a list in Python?",
+            "Explanation:\nTo locate the highest value in a list in Python, use the `max()` function.\n\nMissing Code:\n```python\nmy_list = [1, 2, 3, 4]\n# Find the maximum value in the list\n# max_value = max(my_list)\nprint(max_value)\n```\nHint: Ensure you correctly use the `max()` function and assign the result to a variable. <|endoftext|>"
+        ],
+        [
+            "In Python, how can one find the maximum value in a list?",
+            "Explanation:\nTo find the maximum value in a list in Python, use the `max()` function.\n\nMissing Code:\n```python\nmy_list = [1, 2, 3, 4]\n# Find the maximum value in the list\n# max_value = max(my_list)\nprint(max_value)\n```\nHint: Ensure you correctly use the `max()` function and assign the result to a variable. <|endoftext|>"
+        ],
+        [
+            "In Python, how can one determine if a given number is even or odd?",
+            "Explanation:\nTo determine if a number is even or odd in Python, use the modulus operator `%` to determine if the number is divisible by 2.\n\nMissing Code:\n```python\nnum = 4\n# Check if the number is even or odd\n# if num % 2 == 0:\n#     print(\"Even\")\n# else:\n#     print(\"Odd\")\n```\nHint: Ensure you correctly use the modulus operator to check if the number is even or odd. <|endoftext|>"
+        ],
+        [
+            "In Python, how may a string be converted to an integer?",
+            "Explanation:\nTo convert a string to an integer in Python, use the `int()` function.\n\nMissing Code:\n```python\nnum_str = \"123\"\n# Convert the string to an integer\n# num = int(num_str)\nprint(num)\n```\nHint: Ensure you correctly use the `int()` function and assign the result to a variable. <|endoftext|>"
+        ],
+        [
+            "In Python, how do you join two strings?",
+            "Explanation:\nTo join two strings in Python, use the `+` operator to concatenate them or use the `join()` method of the `str` class.\n\nMissing Code:\n```python\nstr1 = \"Hello\"\nstr2 = \"World\"\n# Join the strings\n# result = str1 + \" \" + str2\nprint(result)\n```\nHint: Ensure you correctly use the `+` operator to concatenate the strings and the `join()` method to format the result. <|endoftext|>"
+        ]
+    ],
+    "visible": [
+        [
+            "How do you write a while loop in Python that continues until a condition is met?",
+            "Explanation:\nA while loop in Python continues to execute the block of code as long as the condition specified is true. Use the `while` keyword followed by the condition and a colon, then write the loop body indented.\n\nMissing Code:\n```python\ncount = 0\nwhile count &lt; 5:\n    # Increment count by 1\n    # count += 1\n    # Print the current value of count\n    # print(count)\n```\nHint: Remember to write the statements that modify and print the variable inside the loop body. &lt;|endoftext|&gt;"
+        ],
+        [
+            "What is the correct way to write a function in Python that returns the sum of two numbers?",
+            "Explanation:\nTo write a function in Python that returns the sum of two numbers, define it using the `def` keyword, add parameters for the two numbers, and use a return statement to return the sum.\n\nMissing Code:\n```python\ndef add_numbers(a, b):\n    # Add the two numbers and return the sum\n    # return the sum of a and b\n```\nHint: Make sure to write the addition of the two numbers and the return statement inside the function. &lt;|endoftext|&gt;"
+        ],
+        [
+            "How do you use a for loop to iterate over a list in Python?",
+            "Explanation:\nTo use a for loop to iterate over a list in Python, use the `for` keyword followed by a variable name, the `in` keyword, and the list. Then, write the loop body indented.\n\nMissing Code:\n```python\nmy_list = [1, 2, 3, 4]\nfor item in my_list:\n    # Print each item in the list\n    # print(item)\n```\nHint: Remember to write the print statement inside the loop to print each item. &lt;|endoftext|&gt;"
+        ],
+        [
+            "How do i use a for loop to iterate over some items in python?",
+            "Explanation:\nTo use a for loop to iterate over some items in Python, use the `for` keyword followed by a variable name, the `in` keyword, and the iterable. Then, write the loop body indented.\n\nMissing Code:\n```python\nmy_items = [1, 2, 3, 4]\nfor item in my_items:\n    # Print each item in the list\n    # print(item)\n```\nHint: Make sure to write the print statement inside the loop to print each item. &lt;|endoftext|&gt;"
+        ],
+        [
+            "How can I convert a string to an integer in Python?",
+            "Explanation:\nTo convert a string to an integer in Python, use the `int()` function.\n\nMissing Code:\n```python\nnum_str = &quot;123&quot;\n# Convert the string to an integer\n# num = int(num_str)\nprint(num)\n```\nHint: Ensure you correctly use the `int()` function and assign the result to a variable. &lt;|endoftext|&gt;"
+        ],
+        [
+            "How do you locate the highest value in a list in Python?",
+            "Explanation:\nTo locate the highest value in a list in Python, use the `max()` function.\n\nMissing Code:\n```python\nmy_list = [1, 2, 3, 4]\n# Find the maximum value in the list\n# max_value = max(my_list)\nprint(max_value)\n```\nHint: Ensure you correctly use the `max()` function and assign the result to a variable. &lt;|endoftext|&gt;"
+        ],
+        [
+            "In Python, how can one find the maximum value in a list?",
+            "Explanation:\nTo find the maximum value in a list in Python, use the `max()` function.\n\nMissing Code:\n```python\nmy_list = [1, 2, 3, 4]\n# Find the maximum value in the list\n# max_value = max(my_list)\nprint(max_value)\n```\nHint: Ensure you correctly use the `max()` function and assign the result to a variable. &lt;|endoftext|&gt;"
+        ],
+        [
+            "In Python, how can one determine if a given number is even or odd?",
+            "Explanation:\nTo determine if a number is even or odd in Python, use the modulus operator `%` to determine if the number is divisible by 2.\n\nMissing Code:\n```python\nnum = 4\n# Check if the number is even or odd\n# if num % 2 == 0:\n#     print(&quot;Even&quot;)\n# else:\n#     print(&quot;Odd&quot;)\n```\nHint: Ensure you correctly use the modulus operator to check if the number is even or odd. &lt;|endoftext|&gt;"
+        ],
+        [
+            "In Python, how may a string be converted to an integer?",
+            "Explanation:\nTo convert a string to an integer in Python, use the `int()` function.\n\nMissing Code:\n```python\nnum_str = &quot;123&quot;\n# Convert the string to an integer\n# num = int(num_str)\nprint(num)\n```\nHint: Ensure you correctly use the `int()` function and assign the result to a variable. &lt;|endoftext|&gt;"
+        ],
+        [
+            "In Python, how do you join two strings?",
+            "Explanation:\nTo join two strings in Python, use the `+` operator to concatenate them or use the `join()` method of the `str` class.\n\nMissing Code:\n```python\nstr1 = &quot;Hello&quot;\nstr2 = &quot;World&quot;\n# Join the strings\n# result = str1 + &quot; &quot; + str2\nprint(result)\n```\nHint: Ensure you correctly use the `+` operator to concatenate the strings and the `join()` method to format the result. &lt;|endoftext|&gt;"
+        ]
+    ]
+}

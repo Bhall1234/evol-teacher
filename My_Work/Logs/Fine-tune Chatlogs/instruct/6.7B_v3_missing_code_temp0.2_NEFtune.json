@@ -1,0 +1,30 @@
+{
+    "internal": [
+        [
+            "How do you write a while loop in Python that continues until a condition is met?",
+            "Explanation:\nA while loop in Python continues to execute the block of code as long as the condition specified is true. Use the `while` keyword followed by the condition and a colon, then write the loop body indented.\n\nMissing Code:\n```python\ncount = 0\nwhile count < 5:\n    # Increment count by 1\n    # count += 1\n    # Print the current value of count\n    # print(count)\n```\nHint: Remember to write the statements that modify and print the variable inside the loop body. <|endoftext|>"
+        ],
+        [
+            "What is the correct way to write a function in Python that returns the sum of two numbers?",
+            "Explanation:\nTo write a function in Python that returns the sum of two numbers, define the function using the `def` keyword, add parameters for the two numbers, and use a return statement to return the sum.\n\nMissing Code:\n```python\ndef add_numbers(a, b):\n    # Add the two numbers and return the sum\n    # result = a + b\n    # return result\n```\nHint: Remember to write the addition operation inside the function and return the result. <|endoftext|osh"
+        ],
+        [
+            "How do you use a for loop to iterate over a list in Python?",
+            "Explanation:\nTo use a for loop to iterate over a list in Python, use the `for` keyword followed by a variable name, the `in` keyword, and the list. Then, write the loop body indented.\n\nMissing Code:\n```python\nmy_list = [1, 2, 3, 4]\nfor item in my_list:\n    # Print each item in the list\n    # print(item)\n```\nHint: Remember to write the print statement inside the loop to print each item. <|endoftext|osh"
+        ]
+    ],
+    "visible": [
+        [
+            "How do you write a while loop in Python that continues until a condition is met?",
+            "Explanation:\nA while loop in Python continues to execute the block of code as long as the condition specified is true. Use the `while` keyword followed by the condition and a colon, then write the loop body indented.\n\nMissing Code:\n```python\ncount = 0\nwhile count &lt; 5:\n    # Increment count by 1\n    # count += 1\n    # Print the current value of count\n    # print(count)\n```\nHint: Remember to write the statements that modify and print the variable inside the loop body. &lt;|endoftext|&gt;"
+        ],
+        [
+            "What is the correct way to write a function in Python that returns the sum of two numbers?",
+            "Explanation:\nTo write a function in Python that returns the sum of two numbers, define the function using the `def` keyword, add parameters for the two numbers, and use a return statement to return the sum.\n\nMissing Code:\n```python\ndef add_numbers(a, b):\n    # Add the two numbers and return the sum\n    # result = a + b\n    # return result\n```\nHint: Remember to write the addition operation inside the function and return the result. &lt;|endoftext|osh"
+        ],
+        [
+            "How do you use a for loop to iterate over a list in Python?",
+            "Explanation:\nTo use a for loop to iterate over a list in Python, use the `for` keyword followed by a variable name, the `in` keyword, and the list. Then, write the loop body indented.\n\nMissing Code:\n```python\nmy_list = [1, 2, 3, 4]\nfor item in my_list:\n    # Print each item in the list\n    # print(item)\n```\nHint: Remember to write the print statement inside the loop to print each item. &lt;|endoftext|osh"
+        ]
+    ]
+}

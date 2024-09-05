@@ -1,0 +1,14 @@
+{
+    "internal": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Variables in Python are used to store data. They are essentially containers that hold information. The data stored in a variable can be of any type, such as integers, floating-point numbers, strings, lists, dictionaries, etc.\n\nIn Python, you can create a variable by using the assignment operator `=`. Here's an example:\n\n```python\nx = 10\n```\n\nIn this example, `x` is a variable that holds the integer `10`.\n\nYou can also create multiple variables at once:\n\n```python\nx, y, z = \"Orange\", \"Banana\", \"Cherry\"\n```\n\nIn this example, `x` is a variable that holds the string `\"Orange\"`, `y` holds the string `\"Banana\"`, and `z` holds the string `\"Cherry\"`.\n\nYou can also change the value of a variable:\n\n```python\nx = \"awesome\"\nprint(\"Python is \" + x)\n```\n\nIn this example, the value of `x` is changed to `\"awesome\"`, and then it is used in a string. The output will be `\"Python is awesome\"`.\n\nIn summary, variables in Python are used to store data and can be used to manipulate that data."
+        ]
+    ],
+    "visible": [
+        [
+            "What are variables, and how do they store data in Python?",
+            "Variables in Python are used to store data. They are essentially containers that hold information. The data stored in a variable can be of any type, such as integers, floating-point numbers, strings, lists, dictionaries, etc.\n\nIn Python, you can create a variable by using the assignment operator `=`. Here&#x27;s an example:\n\n```python\nx = 10\n```\n\nIn this example, `x` is a variable that holds the integer `10`.\n\nYou can also create multiple variables at once:\n\n```python\nx, y, z = &quot;Orange&quot;, &quot;Banana&quot;, &quot;Cherry&quot;\n```\n\nIn this example, `x` is a variable that holds the string `&quot;Orange&quot;`, `y` holds the string `&quot;Banana&quot;`, and `z` holds the string `&quot;Cherry&quot;`.\n\nYou can also change the value of a variable:\n\n```python\nx = &quot;awesome&quot;\nprint(&quot;Python is &quot; + x)\n```\n\nIn this example, the value of `x` is changed to `&quot;awesome&quot;`, and then it is used in a string. The output will be `&quot;Python is awesome&quot;`.\n\nIn summary, variables in Python are used to store data and can be used to manipulate that data."
+        ]
+    ]
+}
