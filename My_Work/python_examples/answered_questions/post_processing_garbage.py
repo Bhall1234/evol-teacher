@@ -64,7 +64,7 @@ def main(input_file_path, output_file_path, sample_size=None):
 
     model_name = "TheBloke/CodeLlama-13B-Instruct-GGUF"
     temperature = 0.2 # was 0.8
-    max_tokens = 16384  # Adjust as necessary 2048
+    max_tokens = 16384  # was 2048
 
     start_time = time.time()
     print(f"Start time: {datetime.fromtimestamp(start_time).strftime('%Y-%m-%d %H:%M:%S')}")
@@ -94,5 +94,5 @@ if __name__ == "__main__":
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     output_file_path = os.path.join(output_dir, f'paired_python_qa_post_process{timestamp}_{random_string}.json')
     
-    sample_size = 10 #None  # Set to None to process the entire dataset
+    sample_size = 10 #None  #None to process the entire dataset
     main(input_file_path, output_file_path, sample_size)
