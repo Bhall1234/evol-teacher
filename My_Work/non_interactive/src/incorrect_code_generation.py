@@ -1,7 +1,6 @@
-# Contains functions for introducing errors into correct code snippets (SOMEHOW, NOT SURE HOW YET)
+# Contains functions for introducing errors into correct code snippets (SOMEHOW, NOT SURE HOW YET), not used in the current version of the project.
 
 # this could be more advanced and I could have a system that retrieves code errors from a database and then introduces them into the correct code snippet.
 def introduce_errors(correct_code):
-    # Example: Introduce a common syntax error
     incorrect_code = correct_code.replace("==", "=")
     return incorrect_code

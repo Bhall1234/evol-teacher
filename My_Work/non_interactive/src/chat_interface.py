@@ -7,7 +7,7 @@ from src.response_combination import create_combined_response
 from src.utils import save_log
 
 def get_related_code(question, correct_code_examples):
-    # Simple matching based on keywords. You can expand this to be more sophisticated.
+    # Simple matching based on keywords, could be more sophisticated.
     if "for loop" in question.lower():
         related_hints = [example for example in correct_code_examples if "for loop" in example["hint"].lower()]
     elif "while loop" in question.lower():
@@ -25,7 +25,7 @@ def chat_interface(correct_code_examples, user_questions):
     while True:
         user_question = input("Ask a question about Python: ")
         print("Processing your question...")
-        explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")  # was "deepseekcoder"
+        explanation = generate_explanation(user_question, "TheBloke/CodeLlama-13B-Instruct-GGUF")
         
         correct_code = get_related_code(user_question, correct_code_examples)
         
