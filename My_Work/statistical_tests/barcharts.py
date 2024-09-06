@@ -6,7 +6,6 @@ def create_bar_chart(participants, perceived_difficulty, colors, title, output_f
     plt.figure(figsize=(8, 6))
     plt.bar(participants, perceived_difficulty, color=colors)
 
-    # Add labels and title
     #plt.xlabel('Participant')
     plt.xlabel(x_label)
     plt.ylabel(y_label)  # Correctly set the y-axis label
@@ -16,7 +15,7 @@ def create_bar_chart(participants, perceived_difficulty, colors, title, output_f
     # Save the chart
     plt.savefig(output_file_path)
 
-    # Optionally display the chart
+    # display the chart
     plt.show()
 
 def non_chatbot_data():
@@ -102,7 +101,7 @@ def comparison_data():
 
     # New question data
     engagement_options = ['System 1', 'System 2', 'Both', 'Neither']
-    engagement_responses = [3, 0, 1, 0]  # Example responses
+    engagement_responses = [3, 0, 1, 0]
     engagement_colors = ['blue', 'green', 'orange', 'red']
     engagement_title = 'Engagement/Enjoyment Comparison'
     engagement_output_file_path = os.path.join(output_dir, 'engagement_comparison.png')
@@ -110,7 +109,7 @@ def comparison_data():
 
     # Yes/No/Maybe question data
     yes_no_maybe_options = ['Yes', 'No', 'Maybe']
-    yes_no_maybe_responses = [4, 0, 0]  # Example responses
+    yes_no_maybe_responses = [4, 0, 0]
     yes_no_maybe_colors = ['green', 'red', 'yellow']
     yes_no_maybe_title = 'Did you feel the chatbot saved time?'
     yes_no_maybe_output_file_path = os.path.join(output_dir, 'time_comparison.png')
@@ -118,7 +117,7 @@ def comparison_data():
 
     # New question data
     frustration_options = ['System 1', 'System 2', 'Both Frustrating', 'Neither']
-    frustration_responses = [1, 2, 1, 0]  # Example responses
+    frustration_responses = [1, 2, 1, 0]
     frustration_colors = ['blue', 'green', 'orange', 'red']
     frustration_title = 'Frustration Comparison'
     frustration_output_file_path = os.path.join(output_dir, 'frustration_comparison.png')
@@ -126,7 +125,7 @@ def comparison_data():
 
     # New question data
     dependent_options = ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']
-    dependent_responses = [0, 1, 1, 1, 1]  # Example responses
+    dependent_responses = [0, 1, 1, 1, 1]
     dependent_colors = ['blue', 'green', 'orange', 'red', 'purple']
     dependent_title = 'Chabtot Dependency'
     dependent_output_file_path = os.path.join(output_dir, 'dependent_comparison.png')
